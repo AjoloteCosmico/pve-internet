@@ -1,0 +1,415 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+.cabecera {
+    max-height: 15vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.6vh 6vw;
+}
+
+.cabecera p {
+    align-items: center;
+}
+
+/*main*/
+
+.main {
+    display: flex;
+    flex-direction: row;
+    background-color: #050a30;
+    color: white;
+    align-items:center;
+    padding: 5% 10% ;
+}
+
+.izquierda {
+    width: 60%;
+    padding-right: 3%;
+}
+.derecha {
+    padding-left: 3%;
+    width: 40%;
+}
+
+/*INFORMACIÓN*/
+.info {
+    width: 100%;
+    font-size: small;
+        
+}
+
+.info li {
+    list-style: disc;
+    margin-left: 40px;
+    margin-bottom: 15px;
+}
+
+/*IMÁGENES PROPÓSITOS*/
+.propositos {
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+   
+}
+
+.propositos img {
+    margin: 35px 10px 5px;
+    border-radius: 5px;
+    max-height: 18vh;
+    width: auto;
+    flex-shrink: auto;
+}
+
+/*CUADRO INICIAR ENCUESTA*/
+.iniciar {
+    background-color: white;
+    border-radius: 5px;
+    margin: 3%;
+    padding: 6% 6%;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: smaller;
+}
+
+form {
+    margin: 15px auto 15px auto;
+    color: black;
+    font-weight: 600;
+    font-size:small;
+    border-radius: 5px;
+}
+
+.formExterna label {
+    font-size: smaller;
+}
+
+
+input {
+    width:80%;
+    border: 1px solid gray;
+    margin: 0 10px 20px 10px;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: inset gray 2px 2px 5px ;
+}
+
+button {
+    background-color: #ba800d;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    text-decoration: none;
+    border: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    box-shadow: gray 2px 2px 5px;
+    font-size: small;
+}
+
+.blue_button {
+    background-color: #002b7a !important;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    text-decoration: none;
+    border: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    box-shadow: gray 2px 2px 5px;
+    font-size: small;
+}
+
+button:hover {
+    background-color: #002b7a;
+    transform: translateY(-3px);
+
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    appearance: none; 
+}
+
+/*AVISO DE PRIVACIDAD*/
+.aviso {
+    color: #002b7a;
+    background-color: white;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3%;
+}
+
+.botonAviso {
+    background-color: #002b7a;
+    color: white;
+    font-weight: 700;
+    margin-top: 30px;
+    padding: 15px 40px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.botonAviso a {
+    text-decoration: underline;
+    color:#e6af2b;
+}
+
+.texto4{
+    font-size: smaller;
+}
+
+.texto7{
+    font-size: smaller;
+}
+
+.texto8{
+    font-size: small;
+}
+
+.fondo_encuesta{
+    background-color: #868b94;
+    display: flex;
+    color: white;
+    align-items:center;
+    padding: 2% 3% ;
+}
+
+.blank_square{
+background-color: rgb(235, 235, 235);
+padding: 4.5vw;
+margin:0.9vw;
+border-radius: 1.3vw;
+}
+
+.horizontal{
+    display: flex;
+flex-direction: row;
+}
+
+.blue_text{
+color:#002b7a;
+size:2.5vw;
+font-weight: bold;
+}
+
+.black_text{
+    color:#0d1014;
+    size:1.5vw;
+    font-weight: bold;
+    }
+
+.input-label{
+  size:1.5vh;  
+}
+
+.active{
+    padding:0.9vh 1.9vmin;
+    border-radius: 0.9vmin;
+    background: #002b7a;
+    color:white;
+   animation: fade 1.5s infinite 400ms;
+   
+}
+
+
+@-webkit-keyframes fade {
+    from {opacity: 1;}
+    to {opacity: 0;}
+} 
+
+@keyframes fade {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+
+
+/*GRID layout////////////////////////////////////////////////////////////////////////*/
+.fondo_encuesta{
+    background-color: #D9D9D9;
+    padding: 2% 8%;
+    display:grid;
+    grid-template-columns: repeat(auto);
+    grid-template-rows: repeat(20vh 80vh);
+    justify-content: stretch;
+}
+
+.blank_square{
+background-color: white;
+padding: 1vw 2.4vw;
+margin:0.9vw;
+border-radius: 0.9vw;
+}
+
+    /*DATOS DEL EGRESADO*/
+.horizontal{
+    grid-column: 1/7;
+    grid-row: 1;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+
+.datos{
+    display: flex;
+    flex-direction: row;
+}
+.datos p {
+    margin: 0.4vw;
+}
+
+
+    /*INDICADOR LATERAR SECCIONES*/
+.sidebar {
+    grid-column: 1;
+    grid-row: 2;
+    height: 80vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.btn {
+    background-color: #D9D9D9;
+    text-decoration: none;
+    color: rgb(170, 170, 170);
+    font-weight: 600;
+}
+
+.btn:active {
+    background-color: #ba800d;
+    color: white;
+    font-weight: 700;
+}
+
+
+    /*ENCUESTA, LISTA DE REACTIVOS*/
+.listaReactivos {
+    grid-column: 2/7;
+    grid-row: 2;
+
+    height:80vh; 
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+
+}
+.listaReactivos::-webkit-scrollbar {
+    width: 8px;
+}
+.listaReactivos::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #e6af2b;
+}
+
+
+    /*BOTÓN GUARDAR Y CONTINUAR*/
+.continuarBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.blue_button {
+    background-color: #002b7a !important;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin: 10px;
+    text-decoration: none;
+    border: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    box-shadow: gray 2px 2px 5px;
+    font-size: small;
+}
+.blue_button:hover {
+    color: #ba800d;
+}
+
+
+.blue_text{
+color:#002b7a;
+size:2.5vw;
+font-weight: bold;
+}
+
+.black_text{
+    color:#0d1014;
+    size:1.5vw;
+    font-weight: bold;
+    }
+
+.section-btn{
+    white-space: normal;
+   word-wrap: break-word;
+    width: 15.5vw;
+    height: auto;
+}    
+.completed{
+    background-color: #002b7a;
+    color:white;
+}
+
+/*circulito selector*/
+input[type="radio"] {
+    width:1.3vmax;
+    height:1.3vmax;
+    box-shadow: none;
+    vertical-align: text-bottom;
+    margin: 0 0.8vmax;
+    }
+
+input[type="radio"] {
+    accent-color: #00308a;}
+
+    /*grid layout RESPONSIVE*/
+
+@media screen and (max-width: 890px) {
+
+    * {
+        font-size: min(2.5vmax);
+    }
+
+    .horizontal {
+        flex-wrap: wrap;
+    }
+    .sidebar {
+        grid-column: 1/7;
+        grid-row: 2;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: fit-content;
+    }
+
+    .btn {
+        margin: 2px 15px;
+    }
+
+    .listaReactivos {
+        grid-column: 1/7;
+        grid-row: 3;
+    }
+    
+    /*circulito selector*/
+    input[type="radio"] {
+        min-width:2.5vmax;
+        min-height:2.5vmax;
+        vertical-align: text-bottom;
+        }
+}
