@@ -36,7 +36,7 @@ class Enc20Controller extends Controller
             $Encuesta->materno=$Egresado->materno;
             $Encuesta->nombre=$Egresado->nombre;
             $Encuesta->nombre=$Egresado->nombre;
-            $Encuesta->nbr2=$carrera;
+            $Encuesta->nbr2=$Egresado->carrera;
             $Encuesta->nbr3=$Egresado->plantel;
             $Encuesta->gen_dgae=2020;
             $Encuesta->completed=0;
@@ -97,7 +97,17 @@ class Enc20Controller extends Controller
                $Telefono->save();
             }
            }
-      return redirect()->route('enc20.section',[$Encuesta->registro,'A']);
+           $section='A';
+        
+           foreach(array('A','E','F','C','D','G') as $sec){
+               $format_field='sec_'.strtolower($sec);
+              
+               if($Encuesta->$format_field!=1){ 
+                   $section=$sec;
+                   break;
+               }
+           }
+      return redirect()->route('enc20.section',[$Encuesta->registro,$section]);
     }
 
     public function update(Request $request,$id){
@@ -107,6 +117,25 @@ class Enc20Controller extends Controller
         $Encuesta->save();
         $section=Request::get('section');
         
+        if($section=='F'){
+            $Discriminacion=DB::table('discriminacion')->where('encuesta_id','=',$Encuesta->registro)->get();
+            $nfr23_options=DB::table('options')->where('reactivo','=','nfr23')->get();
+            DB::table('discriminacion')->where('encuesta_id',$Encuesta->registro)->delete();
+            foreach($nfr23_options as $o){
+                $field_presenter = 'opcion'.$o->clave;
+                if($request->$field_presenter){
+                    $arr=[
+                    "encuesta_id"=>$Encuesta->registro,
+                        "tipo"=>$o->clave,
+                    ];
+                    DB::table('discriminacion')->insert($arr);
+                
+                }
+
+    }
+        }
+
+
         foreach(array('A','E','F','C','D','G') as $sec){
             $format_field='sec_'.strtolower($sec);
            

@@ -29,7 +29,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
     <!--CABECERA/HEADER-->
     <div class="cabecera">
         <div class="logo">
-            <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('public/img/logos/logoUNAM-large-azul.png')}}"> </a>
+            <a class=logoUNAM href="https://www.unam.mx/"> <img src="img/logos/logoUNAM-large-azul.png"> </a>
 
             <a class=lovoPVE href="https://www.pveu.unam.mx/"> <img src="img/logos/logoPVE-large.png"> </a>
         </div>

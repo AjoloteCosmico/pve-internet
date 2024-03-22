@@ -28,6 +28,7 @@ class ReactivosController extends Controller
                 $Opciones=Option::where('reactivo',$Reactivo->clave)->get();
                 
             }
+        
             return view('components.reactivos.option',compact('Reactivo','Opciones','Bloqueos'));
         }
     }

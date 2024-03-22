@@ -109,6 +109,38 @@ if(last_index>=reactivos.length){
     }
 }
 
+function MultipleOptionWasClicked(react_name){
+    last_index=reactivos.indexOf(react_name);
+    last_index=last_index+1;
+    reactivo_siguiente=reactivos[last_index];
+
+
+    //verificar que el sig reactivo no este en la lista
+    console.log('el reactivo sig, por ahora, es '+reactivo_siguiente);
+    console.log(for_block);
+    console.log(for_block.length);
+    console.log('start while')
+    while((no_se_contestan.includes(reactivo_siguiente)) &&( last_index<reactivos.length)) {
+        
+        last_index=last_index+1;
+        console.log(last_index);
+        dishable_reactive(reactivo_siguiente);
+        reactivo_siguiente=reactivos[last_index];
+        console.log('el reactivo sig, por ahora, es '+reactivo_siguiente);
+    
+}
+
+console.log('nreactivos',reactivos.length);
+console.log('reactivo siguiente',reactivo_siguiente);
+if(last_index>=reactivos.length){
+    $("#final-button").removeAttr("disabled");
+    
+    }else{
+    hable_reactive(reactivo_siguiente);
+    
+    }
+}
+
 function unblockNext(react_name){
     var element = document.getElementById(react_name+'label');
      element.classList.toggle("active");
