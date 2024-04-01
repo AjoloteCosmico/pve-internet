@@ -50,7 +50,7 @@
             
                  </div>
                 <!-- lista de reactivos  -->
-                <div class="blank_square listaReactivos">
+                <div class="blank_square listaReactivos" id="rlist">
             @if($section=='personal_data')
                 @include('encuesta2020.'.$section)
             @else

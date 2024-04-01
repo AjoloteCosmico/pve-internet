@@ -104,9 +104,9 @@ if(last_index>=reactivos.length){
     element.scrollIntoView();
     }else{
     hable_reactive(reactivo_siguiente);
-    const element = document.getElementById(reactivo_siguiente);
+    const element = document.getElementById(reactivo_siguiente+'-redact');
     element.scrollIntoView();
-    }
+}
 }
 
 function MultipleOptionWasClicked(react_name){
@@ -134,7 +134,6 @@ console.log('nreactivos',reactivos.length);
 console.log('reactivo siguiente',reactivo_siguiente);
 if(last_index>=reactivos.length){
     $("#final-button").removeAttr("disabled");
-    
     }else{
     hable_reactive(reactivo_siguiente);
     
@@ -165,8 +164,9 @@ function unblockNext(react_name){
 
 function submitForm(){
     for (var i = 0; i < no_se_contestan.length; i++) {
-        document.getElementsByName(no_se_contestan[i])[0].value=0;
         console.log('cambiando valores',no_se_contestan[i]);
+       
+        document.getElementsByName(no_se_contestan[i])[0].value="0";
         }
 
     $("#main_form").submit();

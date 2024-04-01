@@ -117,23 +117,23 @@ class Enc20Controller extends Controller
         $Encuesta->save();
         $section=Request::get('section');
         
-        if($section=='F'){
-            $Discriminacion=DB::table('discriminacion')->where('encuesta_id','=',$Encuesta->registro)->get();
-            $nfr23_options=DB::table('options')->where('reactivo','=','nfr23')->get();
-            DB::table('discriminacion')->where('encuesta_id',$Encuesta->registro)->delete();
-            foreach($nfr23_options as $o){
-                $field_presenter = 'opcion'.$o->clave;
-                if($request->$field_presenter){
-                    $arr=[
-                    "encuesta_id"=>$Encuesta->registro,
-                        "tipo"=>$o->clave,
-                    ];
-                    DB::table('discriminacion')->insert($arr);
+    //     if($section=='F'){
+    //         $Discriminacion=DB::table('discriminacion')->where('encuesta_id','=',$Encuesta->registro)->get();
+    //         $nfr23_options=DB::table('options')->where('reactivo','=','nfr23')->get();
+    //         DB::table('discriminacion')->where('encuesta_id',$Encuesta->registro)->delete();
+    //         foreach($nfr23_options as $o){
+    //             $field_presenter = 'opcion'.$o->clave;
+    //             if($request->$field_presenter){
+    //                 $arr=[
+    //                 "encuesta_id"=>$Encuesta->registro,
+    //                     "tipo"=>$o->clave,
+    //                 ];
+    //                 DB::table('discriminacion')->insert($arr);
                 
-                }
+    //             }
 
-    }
-        }
+    // }
+    //     }
 
 
         foreach(array('A','E','F','C','D','G') as $sec){
@@ -147,7 +147,7 @@ class Enc20Controller extends Controller
         if(($Encuesta->sec_a==1)&&($Encuesta->sec_a==1)&&($Encuesta->sec_c==1)&&($Encuesta->sec_d==1)&&($Encuesta->sec_e==1)&&($Encuesta->sec_f==1)&&($Encuesta->sec_g==1)){
             $Encuesta->completed=1;
             $Egresado->status=2; //i.e encuestado via Internet
-       
+
         }else{
             $Encuesta->completed=0;
             $Egresado->status=10; //encuesta inconclusa
