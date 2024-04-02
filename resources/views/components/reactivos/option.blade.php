@@ -1,4 +1,7 @@
 <h3 id="{{$Reactivo->clave.'-redact'}}">{{$Reactivo->description}}</h3>
+@if($Reactivo->extra_label)
+<h4>{{$Reactivo->extra_label}} </h4>
+@endif
 
 @foreach($Opciones as $option)
 <div style="border: 1px solid black; border-radius: 1.3vw; padding:1.3vw; margin 2.5vw;">
