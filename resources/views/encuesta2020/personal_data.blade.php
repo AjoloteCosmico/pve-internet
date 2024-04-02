@@ -8,7 +8,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Sexo</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" @if($Egresado->sexo="M") value="Masculino" @else value="Femenino" @endif disabled style="background-color:#868b94">
+                    <input type="text" class="form-control" id="exampleFormControlInput1" @if($Egresado->sexo=="M") value="Masculino" @else value="Femenino" @endif disabled style="background-color:#868b94">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Fecha de nacimiento</label>
