@@ -3,7 +3,7 @@
 //     1: deshabilitar todos los reactivos salvo el primero
 //             -como saber cual es el primero :O
 //     2: al contestar, habilitar sig, scroll
-var reactivos=[@foreach($Reactivos as $r)'{{$r->clave}}', @endforeach];
+var reactivos=[@foreach($Reactivos as $r) @if($r->type!='label') '{{$r->clave}}', @endif @endforeach];
 //reactivos que no se contestan
 var no_se_contestan=[];
 

@@ -1,0 +1,454 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/*MEDIA QUERIES LANDING*/
+@media screen and (max-width: 1150px) {
+
+	.objetivo {
+		padding: 10% 15%;
+	}
+	.creditos2 {
+	flex-wrap: wrap;
+}
+}
+
+@media screen and (max-width: 1100px) {
+
+	.logo img{
+		min-height: 6vw;
+		width:auto;
+		object-fit: contain;
+	}
+	.banner {
+		display: flex;
+		flex-direction: column;
+		height: fit-content;
+		padding: 5% 20%;
+		margin: 0;
+	}
+	.textoBanner {
+		width: 100%;
+		height: auto;
+		display: flex;
+		justify-content: center;
+	}
+	.textoBanner img{
+		width:100%;
+	}
+	.imgBanner {
+		display: flex;
+		flex-direction: row;
+		justify-items: center;
+		padding-left: 15px;
+		max-width: 70% fit-content;
+		display: none;
+	}
+	.imgBanner img {
+		width: 60%;
+		height: 60%;
+		margin: 0px -15px;
+	}
+}
+
+@media screen and (max-width: 1050px) {
+
+	.titulo4 {
+		font-size: min(1.2vw);
+	}
+	.creditos1 {
+		flex-wrap: wrap;
+	}
+	.creditos3 {
+		flex-wrap: wrap;
+	}
+	.objPartImg {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+}
+}
+
+/*MENÚ HAMBURGUESA*/
+@media screen and (max-width: 1020px) {
+
+	nav {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+	}
+	nav {
+		max-height: 95px;
+		align-items: center;
+		position: fixed;
+		top: 0;
+		transition: top 0.5s;
+		box-shadow: inset 0px -6px 20px -12px black;
+		z-index: 100;
+	}
+	#navbar {
+		padding: 4% 6% 4% 4%;
+	}
+	header {
+		margin: 0;
+	}
+	.logo {
+		margin-left: 0;
+	}
+	.logo img{
+		width: 75%;
+		height: auto;
+		margin: 0%;
+	}
+	.logoUNAM {
+		padding: 5%;
+	}
+	.logoPVE {
+		padding: 5%;
+	}
+
+	.iconMenubtn {
+		display:flex;
+		width: 10vmin;
+	}
+	.menu {
+		z-index:1;
+		position: absolute;
+		top:95px;
+		right: 6%;
+		flex-direction: column;
+		transition: 0.5s ease;
+		background-color: white;
+		border-radius:7px;
+		box-shadow: 0 6px 20px black;
+		margin:-2.5vh 0 0 0;
+		padding: 20px;
+		overflow: hidden;
+		display: none;
+	}
+	.menu ol {
+		max-height: 0;
+		display: flex;
+		flex-direction: column;
+		background-color: white;
+		transition: 0.5s ease;
+		overflow: hidden;
+	}
+	.menu li {
+		text-align: center;
+		margin: 10px 20px ;
+		padding: 10px;
+	}
+	.menu li:hover {
+		font-weight: 700;
+	}
+	::-webkit-scrollbar {
+		width: 0px;
+		height: 0px;
+	}
+	.show {
+		display:contents;
+		transition: 0.7 all ease;
+	}
+	.unshow {
+		display:none;
+		transition: 0.7 all ease;
+	}
+}
+
+
+/*//////////////////////////////////////////*/
+
+@media screen and (max-width: 730px) {
+p {
+	font-size: min(2.5vh);
+}
+
+/*INICIO*/
+header {
+    min-height: 30vh;
+    padding: 5%;
+}
+.bg-cover {
+    padding: 35% 5% 5%;
+    height: 60vh;
+}
+/*CARRUSEL*/
+.carousel {
+    margin: 4%;
+}
+
+/*BANNER*/
+.boton2{
+	scale:100%;
+}
+
+/*RESULTADOS GLOBALES*/
+.resultadosGlob {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 20% 10% 10% 18%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 110vh;
+}
+.resultadosGlob li {
+    text-decoration: underline;
+}
+.imgLanding {
+    display: none;
+}
+/*RESULTADOS POR CARRERA*/
+.resultadosCarrera {
+	padding: 0% 5%;
+}
+.badgeCarrera {
+	font-size: smaller;
+}
+.badgePlantel {
+	font-size:smaller;
+}
+.badgePDF {
+	font-size: smaller;
+}
+
+/*RESULTADOS POR CARRERA-TABLA*/
+
+thead{
+	font-size:smaller;
+}
+/*cuadro de búsqueda*/
+.dataTables_filter input {
+    width: 25vmax;
+	max-height: unset;
+	height: 4.2vmax;
+    font-size: 1.9vmax;
+	margin-left: 10px;
+  }
+.dataTables_filter {
+    align-items: center;
+	color: gray;
+	height: fit-content;
+  
+  }
+/*botones de paginación*/
+#table_info {
+	font-size: larger;
+}
+
+.dataTables_paginate .paginate_button {
+	padding: 5px 10px;
+	margin: 7px;
+	font-size: 3vmax;
+}
+
+.paginate_button.current {
+	display: none;
+}
+
+/*selector*/
+#table_length {
+	display: none;
+}
+
+/*OBJETIVO*/
+.objetivo {
+    padding: 10% 10%;
+}
+.objetivoTexto {
+    margin:0;
+    padding: 0 5%;
+	margin-left:0;
+    max-width: 100%;
+    font-size: min(2.5vh);
+}
+/*OBJETIVOS PARTICULARES*/
+.objetivosPart {
+	padding: 10% 15%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: justify;
+}
+.objPartImg img {
+	height: auto;
+	width: 80%;
+}
+/*METODOLOGÍA*/
+.metodologia {
+    padding: 10% 15%;
+}
+/*CEJILLA*/
+.cejilla {
+	display:none;
+}
+/*FUENTES*/
+.titulo1 {
+    font-size: 4.3vh;
+}
+.titulo4{
+	font-size: min(2.2vh);
+}
+.subtitulo1 {
+	font-size: 2.5vh;
+}
+.subtitulo2 {
+	font-size: 2.5vh;
+}
+.subtitulo3 {
+	font-size: 3vh;
+}
+
+.texto1 {
+	font-size: 2vw;
+}
+.texto2 a {
+	font-size: 5vw;
+    line-height: 110%;
+}
+.texto3 {
+	font-size: min(1.1vw);
+}
+.texto4 {
+	font-size: min(2.2vmax);
+}
+.texto5 {
+	font-size: 2.5vh;
+}
+.texto6 {
+	font-size: 8pt;
+}
+.texto7 {
+	font-size: min(2.5vmax);
+}
+.texto8 {
+	font-size: min(2.5vmax);
+	text-align: center;
+}
+.principal {
+	font-size: min(5vh);
+	text-align: center;
+	line-height: 100%;
+}
+}
+
+/*MEDIA QUERIES  CSS METODOLOGÍA*/
+@media screen and (max-width: 1020px) {
+	.principal {
+		font-size: min(5vh);
+		text-align: center;
+		line-height: 100%;
+	}
+	.navbarDoc {
+		display: none;
+	}
+	main {
+		margin: 0;
+	}
+	main p {
+		line-height: 120%;
+		font-size: min(3vh);
+	}
+
+	.metodologiaDoc {
+		padding: 15% 7%;
+	}
+	.metodologiaDoc li {
+		font-size: min(3vh);
+		line-height: 120%;
+		padding-right: 6%;
+	}
+	.botonesResponsive {
+		display:contents;
+	}
+}
+
+
+/*MEDIA QUERIES MENSAJES ENCUESTA*/
+@media screen and (max-width: 1020px) {
+
+	.main {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+
+	.aviso {
+		padding: 10%;
+		text-align: center;
+	}
+
+	.aviso a{
+		font-size: min(2.2vmax)
+	}
+
+	.izquierda {
+		width: 100%;
+		padding-top: 8%;
+		padding-bottom: 1cqb;
+	}
+
+	.info {
+		padding-bottom: 7%;
+	}
+	.derecha {
+		width: 100%;
+		padding:10% 0;
+		margin-left: -5%;
+	}
+
+	.propositos {
+		width: 100%;
+		padding: 10%;
+		margin:0;
+		justify-content:center;
+	}
+
+	.propositos img {
+		max-height: 25vh;
+	}
+	
+}
+
+@media screen and (max-width: 660px) {
+
+	
+	/*MENSAJE ENCUESTA FINALIZADA*/
+	.mainFinal {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		padding: 12%;
+		text-align: center;
+	}
+
+	
+
+	.propositosFinal {
+		width: 100%;
+		padding: 0;
+		margin:0;
+		justify-content:center;
+	}
+
+	.propositosFinal img {
+    max-height: 25vh;
+	}
+	
+	.footer {
+		padding: 5% 10%;
+	}
+
+	.footer, .texto6 {
+		font-size: 1.5vh;
+		font-weight: 600;
+	}
+
+}
+
+
+
+
+
+
+
+

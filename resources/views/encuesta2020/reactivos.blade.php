@@ -9,7 +9,7 @@ use \App\Http\Controllers\ReactivosController;
                    <h1 class="black_text"> Seccion {{$section}}</h1>
             @foreach($Reactivos as $reactivo)
             <div id="{{$reactivo->clave}}" style="padding: 1.2vw">
-            {{$reactivo->clave}}
+            <!-- {{$reactivo->clave}} -->
             {{ReactivosController::chooseType($reactivo->id)}}
             </div>
             @endforeach

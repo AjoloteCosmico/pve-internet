@@ -17,6 +17,9 @@ class ReactivosController extends Controller
         if($Reactivo->type=="number"){
             return view('components.reactivos.number',compact('Reactivo'));
         }
+        if($Reactivo->type=="label"){
+            return view('components.reactivos.label',compact('Reactivo'));
+        }
         
         if($Reactivo->type=="option"){
             $Bloqueos=Bloqueo::where('clave_reactivo','=',$Reactivo->clave)->get();

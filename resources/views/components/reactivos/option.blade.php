@@ -6,7 +6,6 @@
   
 {{$option->descripcion}} 
 {{--{{$Bloqueos}}--}}
-{{$Bloqueos}}
  </div>
 <br>
 @endforeach
