@@ -6,7 +6,7 @@ use \App\Http\Controllers\ReactivosController;
                    <input type="text" name="{{'sec_'.strtolower($Reactivos->first()->section)}}" value="1" hidden>
                    <input type="text" name="section" value="{{$Reactivos->first()->section}}" hidden>
            
-                   <h1 class="black_text"> Seccion {{$section}}</h1>
+                  
             @foreach($Reactivos as $reactivo)
             <div id="{{$reactivo->clave}}" style="padding: 1.2vw">
             <!-- {{$reactivo->clave}} -->
