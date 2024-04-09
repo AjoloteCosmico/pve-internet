@@ -1,15 +1,16 @@
 @php
 use \App\Http\Controllers\ReactivosController; 
 @endphp
+<h1 class="black_text"> {{$NombreSeccion}}</h1>
+              
 <form action="{{ route('enc20.update',$Encuesta->registro)}}" method="POST" enctype="multipart/form-data" id="main_form">
                    @csrf    
                    <input type="text" name="{{'sec_'.strtolower($Reactivos->first()->section)}}" value="1" hidden>
                    <input type="text" name="section" value="{{$Reactivos->first()->section}}" hidden>
-           
-                  
+                     
             @foreach($Reactivos as $reactivo)
             <div id="{{$reactivo->clave}}" style="padding: 1.2vw">
-            <!-- {{$reactivo->clave}} -->
+            {{$reactivo->clave}}
             {{ReactivosController::chooseType($reactivo->id)}}
             </div>
             @endforeach

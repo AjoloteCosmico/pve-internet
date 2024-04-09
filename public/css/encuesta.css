@@ -214,14 +214,7 @@ font-weight: bold;
   size:1.5vh;  
 }
 
-.active{
-    padding:0.9vh 1.9vmin;
-    border-radius: 0.9vmin;
-    background: #002b7a;
-    color:white;
-   animation: fade 1.5s infinite 400ms;
-   
-}
+
 
 
 @-webkit-keyframes fade {
@@ -353,16 +346,37 @@ font-weight: bold;
     size:1.5vw;
     font-weight: bold;
     }
-
+/* .section-btn a{
+    text-align: center;
+} */
 .section-btn{
     white-space: normal;
    word-wrap: break-word;
-    width: 15.5vw;
-    height: auto;
+    width: 15.5vmax;
+    min-height: 3.8vmax;
+    border-radius: 0.7vmax;
+    font-weight: bold;
+    font-size: 0.8vmax;
+    padding:0.6vmax;
+    
 }    
+.active{
+    padding:0.9vh 1.9vmin;
+    border-radius: 0.9vmin;
+    background: #002b7a;
+    color:white;
+   animation: fade 1.5s infinite 400ms;
+}
 .completed{
     background-color: #002b7a;
     color:white;
+}
+.actual{
+    background-color: #ba800d;
+    color:white;
+    
+    font-weight: 700;
+    font-size: 0.9vw !important;
 }
 
 /*circulito selector*/
@@ -399,6 +413,7 @@ input[type="radio"] {
 
     .btn {
         margin: 2px 15px;
+        text-justify: center;
     }
 
     .listaReactivos {

@@ -152,12 +152,15 @@ function unblockNext(react_name){
         reactivo_siguiente=reactivos[last_index+1];
         console.log('el reactivo sig, por ahora, es '+reactivo_siguiente);}
 
-    if(last_index>=reactivos.length){
+        if(last_index>=reactivos.length){
     $("#final-button").removeAttr("disabled");
+    const element = document.getElementById('final-button');
+    element.scrollIntoView();
     }else{
     hable_reactive(reactivo_siguiente);
-    const element = document.getElementById(reactivo_siguiente);
-    element.scrollIntoView();}
+    const element = document.getElementById(reactivo_siguiente+'-redact');
+    element.scrollIntoView();
+}
     
 
 }

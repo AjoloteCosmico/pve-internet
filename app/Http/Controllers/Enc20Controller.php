@@ -69,7 +69,31 @@ class Enc20Controller extends Controller
             $Reactivos="";
             $Bloqueos="";
         }
-        return view('encuesta2020.section',compact('Encuesta','Carrera','Plantel','Egresado','Telefonos','Correos','section','Reactivos','Bloqueos'));
+        $NombreSeccion="";
+        switch ($section) {
+            case 'A':
+                $NombreSeccion="SECCIÓN 1: Datos sociodemográficos";
+                break;
+            case 'E':
+                $NombreSeccion="SECCIÓN 2: Actualización académica";
+                break;
+            case 'C':
+                $NombreSeccion="SECCIÓN 3: Datos laborales";
+                break;
+            case 'D':
+                $NombreSeccion="SECCIÓN 4: Incorporación al mercado";
+                break; 
+            case 'F':
+                $NombreSeccion="SECCIÓN 5: Satisfacción con la institución";
+                break;
+            case 'G':
+                $NombreSeccion="SECCIÓN 6: Habilidades desarrolladas";
+                break;            
+        }
+        return view('encuesta2020.section',
+                     compact('Encuesta','Carrera','Plantel','Egresado',
+                            'Telefonos','Correos','section','Reactivos',
+                            'Bloqueos','NombreSeccion'));
     }
 
     public function update_personal_data(Request $request,$id){

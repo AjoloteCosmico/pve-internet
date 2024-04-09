@@ -37,7 +37,7 @@
                     @endforeach
                 </div>
                 <div class="form-group" id="telefonosDiv">
-                    <label for="exampleFormControlInput1">Numeros de Telefono</label>
+                    <label for="exampleFormControlInput1">Números de Teléfono</label>
                     @php   $count_tel=0; @endphp
                     @foreach($Telefonos as $t)
                     <table>
@@ -58,7 +58,7 @@
                     @endforeach
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Numero de Cuenta</label>
+                    <label for="exampleFormControlInput1">Número de Cuenta</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$Egresado->cuenta}}"  disabled style="background-color:#868b94">
                 </div>
                 <div class="form-group">
