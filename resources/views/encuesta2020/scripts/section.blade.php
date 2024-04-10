@@ -26,6 +26,7 @@ function dishable_reactive(react_name){
         cells[i].disabled = true;
     }
 }
+
 function hable_reactive(react_name){
     
     console.log('habilitar '+react_name);
@@ -175,6 +176,6 @@ function submitForm(){
     $("#main_form").submit();
 }
 
-for (var i = 1; i < reactivos.length; i++) { dishable_reactive(reactivos[i]);}
+// for (var i = 1; i < reactivos.length; i++) { dishable_reactive(reactivos[i]);}
 
 </script>
