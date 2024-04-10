@@ -15,6 +15,7 @@ function showlabel(id){
   element.classList.toggle("active");
 }
 
+
 function dishable_reactive(react_name){
     console.log('deshabilitar '+react_name);
     $("#"+react_name).children().prop('disabled', true);
@@ -176,6 +177,6 @@ function submitForm(){
     $("#main_form").submit();
 }
 
-// for (var i = 1; i < reactivos.length; i++) { dishable_reactive(reactivos[i]);}
+for (var i = 1; i < reactivos.length; i++) { dishable_reactive(reactivos[i]);}
 
 </script>
