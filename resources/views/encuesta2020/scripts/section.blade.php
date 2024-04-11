@@ -39,7 +39,7 @@ function hable_reactive(react_name){
     // }
     var cells = document.getElementsByClassName('op'+react_name); 
     for (var i = 0; i < cells.length; i++) { 
-        cells[i].disabled = false;
+        cells[i].disabled = false;a
     }
 }
 

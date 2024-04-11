@@ -33,6 +33,11 @@ class ReactivosController extends Controller
             }
         
             return view('components.reactivos.option',compact('Reactivo','Opciones','Bloqueos'));
+            // if($Opciones->count() > 5){
+            //     return view('components.reactivos.option_large',compact('Reactivo','Opciones','Bloqueos'));
+            // }else{
+            //     return view('components.reactivos.option',compact('Reactivo','Opciones','Bloqueos'));
+            // }
         }
     }
 }

@@ -99,6 +99,15 @@ input {
     padding: 5px;
     box-shadow: inset gray 2px 2px 5px ;
 }
+select {
+    width:80%;
+    border: 1px solid gray;
+    margin: 0 10px 20px 10px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size:1.3vmax;
+    box-shadow: inset gray 2px 2px 5px ;
+}
 
 button {
     background-color: #ba800d;
