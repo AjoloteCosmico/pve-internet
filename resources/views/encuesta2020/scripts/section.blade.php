@@ -29,6 +29,7 @@ function dishable_reactive(react_name){
 }
 
 function hable_reactive(react_name){
+
     
     console.log('habilitar '+react_name);
     $("#"+react_name).children().prop('disabled', false);
@@ -39,7 +40,7 @@ function hable_reactive(react_name){
     // }
     var cells = document.getElementsByClassName('op'+react_name); 
     for (var i = 0; i < cells.length; i++) { 
-        cells[i].disabled = false;a
+        cells[i].disabled = false;
     }
 }
 
@@ -102,13 +103,23 @@ console.log('nreactivos',reactivos.length);
 console.log('reactivo siguiente',reactivo_siguiente);
 if(last_index>=reactivos.length){
     $("#final-button").removeAttr("disabled");
-    const element = document.getElementById('final-button');
-    element.scrollIntoView();
+    var element = document.getElementById('final-button');
+    // element.scrollIntoView();
+    
     }else{
     hable_reactive(reactivo_siguiente);
-    const element = document.getElementById(reactivo_siguiente+'-redact');
-    element.scrollIntoView();
+    var element = document.getElementById(reactivo_siguiente+'-redact');
 }
+var ventana = document.getElementById('rlist');
+    var headerOffset = 45;
+    var elementPosition = element.getBoundingClientRect().top;
+    var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    console.log(elementPosition+' POSICIONADO');
+    console.log(element);
+    ventana.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+      });   
 }
 
 function MultipleOptionWasClicked(react_name){
