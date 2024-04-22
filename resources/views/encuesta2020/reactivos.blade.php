@@ -10,14 +10,13 @@ use \App\Http\Controllers\ReactivosController;
                      
             @foreach($Reactivos as $reactivo)
                 <div id="{{$reactivo->clave}}" style="padding: 1.2vw">
-                {{'q'.$reactivo->clave.'-redact'}}
                 <h3 id="{{$reactivo->clave.'-redact'}}">{{$reactivo->order}} .- {{$reactivo->description}}</h3>
                 @if($reactivo->extra_label)
                     <h4>{{$reactivo->extra_label}} </h4>
                 @endif
 
 
-            {{$reactivo->clave}}
+            
             {{ReactivosController::chooseType($reactivo->id)}}
             </div>
             @endforeach

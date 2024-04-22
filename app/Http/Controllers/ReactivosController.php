@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Reactivo;
 use App\Models\Option;
 use App\Models\Bloqueo;
+use DB;
 class ReactivosController extends Controller
 {
     public static function chooseType($id){
@@ -22,7 +23,10 @@ class ReactivosController extends Controller
         }
         
         if($Reactivo->type=="option"){
-            $Bloqueos=Bloqueo::where('clave_reactivo','=',$Reactivo->clave)->get();
+          
+            $Bloqueos=DB::table('bloqueos')->join('reactivos','bloqueos.bloqueado','reactivos.clave')
+            ->where('clave_reactivo','=',$Reactivo->clave)->get();
+           
             if($Reactivo->archtype){
                 
                 $Opciones=Option::where('reactivo',$Reactivo->archtype)->get();

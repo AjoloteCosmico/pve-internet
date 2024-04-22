@@ -104,22 +104,15 @@ console.log('reactivo siguiente',reactivo_siguiente);
 if(last_index>=reactivos.length){
     $("#final-button").removeAttr("disabled");
     var element = document.getElementById('final-button');
-    // element.scrollIntoView();
-    
     }else{
     hable_reactive(reactivo_siguiente);
     var element = document.getElementById(reactivo_siguiente+'-redact');
 }
 var ventana = document.getElementById('rlist');
-    var headerOffset = 45;
     var elementPosition = element.getBoundingClientRect().top;
-    var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
     console.log(elementPosition+' POSICIONADO');
-    console.log(element);
-    ventana.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-      });   
+    console.log(element);  
+    ventana.scrollTop= ventana.scrollTop+elementPosition-50;
 }
 
 function MultipleOptionWasClicked(react_name){
@@ -131,7 +124,7 @@ function MultipleOptionWasClicked(react_name){
     //verificar que el sig reactivo no este en la lista
     console.log('el reactivo sig, por ahora, es '+reactivo_siguiente);
     console.log(for_block);
-    console.log(for_block.length);
+    console.log(for_block.length); 
     console.log('start while')
     while((no_se_contestan.includes(reactivo_siguiente)) &&( last_index<reactivos.length)) {
         
@@ -149,7 +142,6 @@ if(last_index>=reactivos.length){
     $("#final-button").removeAttr("disabled");
     }else{
     hable_reactive(reactivo_siguiente);
-    
     }
 }
 
@@ -165,15 +157,19 @@ function unblockNext(react_name){
         reactivo_siguiente=reactivos[last_index+1];
         console.log('el reactivo sig, por ahora, es '+reactivo_siguiente);}
 
-        if(last_index>=reactivos.length){
-    $("#final-button").removeAttr("disabled");
-    const element = document.getElementById('final-button');
-    element.scrollIntoView();
+    if(last_index>=reactivos.length){
+        $("#final-button").removeAttr("disabled");
+        var element = document.getElementById('final-button');
     }else{
-    hable_reactive(reactivo_siguiente);
-    const element = document.getElementById(reactivo_siguiente+'-redact');
-    element.scrollIntoView();
+        hable_reactive(reactivo_siguiente);
+        var element = document.getElementById(reactivo_siguiente+'-redact');
 }
+    var ventana = document.getElementById('rlist');
+    var elementPosition = element.getBoundingClientRect().top;
+    
+    ventana.scrollTop= ventana.scrollTop+elementPosition-50;
+    console.log(elementPosition+' POSICIONADO');
+    console.log(element);
     
 
 }
