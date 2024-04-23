@@ -9,8 +9,14 @@ use \App\Http\Controllers\ReactivosController;
                    <input type="text" name="section" value="{{$Reactivos->first()->section}}" hidden>
                      
             @foreach($Reactivos as $reactivo)
-                <div id="{{$reactivo->clave}}" style="padding: 1.2vw">
-                <h3 id="{{$reactivo->clave.'-redact'}}" @if($reactivo->child==1) style="font-size:0.9vw" @endif>  @if($reactivo->child!=1) {{$reactivo->order}} @endif .- {{$reactivo->description}}</h3>
+                <div id="{{$reactivo->clave}}" style="padding: 1.2vmax;  @if($reactivo->child==1) padding-left:4.4vmax !important @endif" >
+                @if($reactivo->child==1) 
+                   <h4 id="{{$reactivo->clave.'-redact'}}">  @if($reactivo->child!=1) {{$reactivo->order}} .- @endif {{$reactivo->description}}</h4>
+                @else
+                   <h3 id="{{$reactivo->clave.'-redact'}}">  @if($reactivo->child!=1) {{$reactivo->order}} .- @endif {{$reactivo->description}}</h3>
+                
+                @endif
+
                 @if($reactivo->extra_label)
                     <h4>{{$reactivo->extra_label}} </h4>
                 @endif
