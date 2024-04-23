@@ -10,7 +10,7 @@ use \App\Http\Controllers\ReactivosController;
                      
             @foreach($Reactivos as $reactivo)
                 <div id="{{$reactivo->clave}}" style="padding: 1.2vw">
-                <h3 id="{{$reactivo->clave.'-redact'}}">{{$reactivo->order}} .- {{$reactivo->description}}</h3>
+                <h3 id="{{$reactivo->clave.'-redact'}}" @if($reactivo->child==1) style="font-size:0.9vw" @endif>  @if($reactivo->child!=1) {{$reactivo->order}} @endif .- {{$reactivo->description}}</h3>
                 @if($reactivo->extra_label)
                     <h4>{{$reactivo->extra_label}} </h4>
                 @endif
