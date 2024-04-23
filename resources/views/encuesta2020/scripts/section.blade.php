@@ -108,11 +108,11 @@ if(last_index>=reactivos.length){
     hable_reactive(reactivo_siguiente);
     var element = document.getElementById(reactivo_siguiente+'-redact');
 }
-var ventana = document.getElementById('rlist');
+    var ventana = document.getElementById('rlist');
     var elementPosition = element.getBoundingClientRect().top;
     console.log(elementPosition+' POSICIONADO');
     console.log(element);  
-    ventana.scrollTop= ventana.scrollTop+elementPosition-50;
+    ventana.scrollTop= ventana.scrollTop+elementPosition-50-ventana.getBoundingClientRect().top;
 }
 
 function MultipleOptionWasClicked(react_name){
@@ -167,7 +167,7 @@ function unblockNext(react_name){
     var ventana = document.getElementById('rlist');
     var elementPosition = element.getBoundingClientRect().top;
     
-    ventana.scrollTop= ventana.scrollTop+elementPosition-50;
+    ventana.scrollTop= ventana.scrollTop+elementPosition-50-ventana.getBoundingClientRect().top;
     console.log(elementPosition+' POSICIONADO');
     console.log(element);
     
