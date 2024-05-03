@@ -12,27 +12,26 @@ var no_se_contestan=[];
 console.log(reactivos)
 
 function showlabel(id){
-//     console.log('showing.label')
-//  var element = document.getElementById(id);
-//   element.classList.toggle("active");
-Swal.fire({
-  title: "CPresiona enter cuando termines",
-  showClass: {
-    popup: `
-      animate__animated
-      animate__fadeInUp
-      animate__faster
-    `
-  },
-  hideClass: {
-    popup: `
-      animate__animated
-      animate__fadeOutDown
-      animate__faster
-    `
-  }});
-
-}
+    console.log('showing.label')
+ var element = document.getElementById(id);
+  element.classList.toggle("active");
+// Swal.fire({
+//   title: "CPresiona enter cuando termines",
+//   showClass: {
+//     popup: `
+//       animate__animated
+//       animate__fadeInUp
+//       animate__faster
+//     `
+//   },
+//   hideClass: {
+//     popup: `
+//       animate__animated
+//       animate__fadeOutDown
+//       animate__faster
+//     `
+//   }});
+   }
 
 
 function dishable_reactive(react_name){
