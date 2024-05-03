@@ -78,13 +78,13 @@ class Enc20Controller extends Controller
                 $NombreSeccion="SECCIÓN 2: Actualización académica";
                 break;
             case 'C':
-                $NombreSeccion="SECCIÓN 3: Datos laborales";
+                $NombreSeccion="SECCIÓN 4: Datos laborales";
                 break;
             case 'D':
-                $NombreSeccion="SECCIÓN 4: Incorporación al mercado";
+                $NombreSeccion="SECCIÓN 5: Incorporación al mercado";
                 break; 
             case 'F':
-                $NombreSeccion="SECCIÓN 5: Satisfacción con la institución";
+                $NombreSeccion="SECCIÓN 3: Satisfacción con la institución";
                 break;
             case 'G':
                 $NombreSeccion="SECCIÓN 6: Habilidades desarrolladas";
@@ -170,6 +170,9 @@ class Enc20Controller extends Controller
         }
         if(($Encuesta->sec_a==1)&&($Encuesta->sec_a==1)&&($Encuesta->sec_c==1)&&($Encuesta->sec_d==1)&&($Encuesta->sec_e==1)&&($Encuesta->sec_f==1)&&($Encuesta->sec_g==1)){
             $Encuesta->completed=1;
+            $Encuesta->aplica=111;
+            $Encuesta->ncr21_a=$Encuesta->ncr21;
+            $Encuesta->fec_capt=now()->modify('-6 hours') ;
             $Egresado->status=2; //i.e encuestado via Internet
 
         }else{

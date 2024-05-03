@@ -1,3 +1,5 @@
+<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script>
 // TODO:
 //     1: deshabilitar todos los reactivos salvo el primero
@@ -10,9 +12,26 @@ var no_se_contestan=[];
 console.log(reactivos)
 
 function showlabel(id){
-    console.log('showing.label')
- var element = document.getElementById(id);
-  element.classList.toggle("active");
+//     console.log('showing.label')
+//  var element = document.getElementById(id);
+//   element.classList.toggle("active");
+Swal.fire({
+  title: "CPresiona enter cuando termines",
+  showClass: {
+    popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `
+  },
+  hideClass: {
+    popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `
+  }});
+
 }
 
 
@@ -22,6 +41,7 @@ function dishable_reactive(react_name){
     // $("#"+react_name).css("background-color","#c6c6c6");
     $("#"+react_name).css("color","#a6a6a6");
     // document.getElementsByName(react_name)[0].value="0";
+
     var cells = document.getElementsByClassName('op'+react_name); 
     for (var i = 0; i < cells.length; i++) { 
         cells[i].disabled = true;

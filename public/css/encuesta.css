@@ -365,7 +365,7 @@ font-weight: bold;
     min-height: 3.8vmax;
     border-radius: 0.7vmax;
     font-weight: bold;
-    font-size: 0.8vmax;
+    font-size: max(0.8vmax,12px);
     padding:0.6vmax;
     
 }    
@@ -385,7 +385,7 @@ font-weight: bold;
     color:white;
     
     font-weight: 700;
-    font-size: 0.9vw !important;
+    font-size: max(0.9vmax,14px) !important;
 }
 
 /*circulito selector*/

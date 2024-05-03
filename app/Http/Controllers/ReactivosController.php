@@ -32,7 +32,7 @@ class ReactivosController extends Controller
                 $Opciones=Option::where('reactivo',$Reactivo->archtype)->get();
                 
             }else{
-                $Opciones=Option::where('reactivo',$Reactivo->clave)->get();
+                $Opciones=Option::where('reactivo',$Reactivo->clave)->orderBy('clave', 'ASC')->get();
                 
             }
         
