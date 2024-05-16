@@ -36,12 +36,20 @@ class ReactivosController extends Controller
                 
             }
         
-            return view('components.reactivos.option',compact('Reactivo','Opciones','Bloqueos'));
-            // if($Opciones->count() > 5){
-            //     return view('components.reactivos.option_large',compact('Reactivo','Opciones','Bloqueos'));
-            // }else{
-            //     return view('components.reactivos.option',compact('Reactivo','Opciones','Bloqueos'));
-            // }
+            // return view('components.reactivos.option',compact('Reactivo','Opciones','Bloqueos'));
+            if($Opciones->count() > 5){
+                return view('components.reactivos.option_large',compact('Reactivo','Opciones','Bloqueos'));
+            }else{
+                return view('components.reactivos.option',compact('Reactivo','Opciones','Bloqueos'));
+            }
+        }
+        if($Reactivo->type=="multiple_option"){
+            $Opciones=Option::where('reactivo',$Reactivo->clave)->get();
+            $Bloqueos=DB::table('bloqueos')->join('reactivos','bloqueos.bloqueado','reactivos.clave')
+            ->where('clave_reactivo','=',$Reactivo->clave)->get();
+        //    dd($Bloqueos->where('valor',18)->count());
+            return view('components.reactivos.multiple',compact('Reactivo','Opciones','Bloqueos'));
+           
         }
     }
 }

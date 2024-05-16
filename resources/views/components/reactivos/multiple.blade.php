@@ -1,11 +1,18 @@
-<h3>{{$Reactivo->description}}</h3>
 
-@foreach($Opciones as $option)
-<div style="border: 1px solid black; border-radius: 1.3vw; padding:1.3vw; margin 2.5vw;">
-<input type="checkbox" id="{{$Reactivo->clave.$option->clave}}" name="{{'option'.$option->clave}}" class="{{'op'.$Reactivo->clave}}" value="{{$option->clave}}"  onclick="multipleOptionWasClicked('{{$Reactivo->clave}}');">
-  
-{{$option->descripcion}} 
-{{--{{$Bloqueos}}--}}
- </div>
-<br>
+<div class="container" style="width: 45vmax">
+@foreach($Opciones as $o)
+
+    <div class="row">
+        <div class="col">
+        <input type="checkbox" id="{{$Reactivo->clave.'op'.$o->clave}}" class="{{$Reactivo->clave}}opcion" name="{{$Reactivo->clave}}opcion{{$o->clave}}" onclick="optionChecked('{{$Reactivo->clave}}','{{$o->clave}}',@if($Bloqueos->where('valor',$o->clave)->count()>0) '{{$Bloqueos->where('valor',$o->clave)->first()->bloqueado}}' @endif)" />
+        <label>{{$o->descripcion}}</label>
+        </div>
+    </div>
+
 @endforeach
+
+<br>
+<label class="input-label" id="{{$Reactivo->clave.'label'}}" onclick="siguiente('{{$Reactivo->clave}}')">Listo</label>
+
+</div>
+

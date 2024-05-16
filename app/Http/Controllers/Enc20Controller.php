@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Request;
-
+use Illuminate\Support\Arr;
 use App\Models\respuestas20;
 use App\Models\Carrera;
 use App\Models\Correo;
@@ -10,6 +10,7 @@ use App\Models\Telefono;
 use App\Models\Egresado;
 use App\Models\Reactivo;
 use App\Models\Opcion;
+use App\Models\multiple_option_answer;
 use App\Models\Comentario;
 use DB;
 class Enc20Controller extends Controller
@@ -135,29 +136,37 @@ class Enc20Controller extends Controller
     }
 
     public function update(Request $request,$id){
+        
+        $filteredArray = Arr::where(Request::except(['_token', '_method','btnradio','section']), function ($value, $key) {
+            return $value != "on";
+        });
+        // dd(Request::all(),$filteredArray);
         $Encuesta=respuestas20::find($id);
         $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr2)->first();
-        $Encuesta->update(Request::except(['_token', '_method','btnradio','section']) );
+        $Encuesta->update($filteredArray);
         $Encuesta->save();
         $section=Request::get('section');
         
-    //     if($section=='F'){
-    //         $Discriminacion=DB::table('discriminacion')->where('encuesta_id','=',$Encuesta->registro)->get();
-    //         $nfr23_options=DB::table('options')->where('reactivo','=','nfr23')->get();
-    //         DB::table('discriminacion')->where('encuesta_id',$Encuesta->registro)->delete();
-    //         foreach($nfr23_options as $o){
-    //             $field_presenter = 'opcion'.$o->clave;
-    //             if($request->$field_presenter){
-    //                 $arr=[
-    //                 "encuesta_id"=>$Encuesta->registro,
-    //                     "tipo"=>$o->clave,
-    //                 ];
-    //                 DB::table('discriminacion')->insert($arr);
-                
-    //             }
-
-    // }
-    //     }
+        //si la seccion contiene reactivos multiples,  iteramos sobre ellos
+        $reativos_multiples=Reactivo::where('type','multiple_option')->where('section',$section)->get();
+        foreach($reativos_multiples as $r){
+            $clave=$r->clave;
+            $selected_options = Arr::where(Request::except(['_token', '_method','btnradio','section']), function ($value, $key) use($clave){
+                return str_contains($key,$clave.'opcion');
+            });
+            // dd($selected_options);
+            //borramos las respuestas seleccionadas anteriores (si las habia)
+            $affectedRows = multiple_option_answer::where('encuesta_id',$Encuesta->registro)
+               ->where('reactivo',$clave)->delete();
+            foreach($selected_options as $key => $value){
+                $answer=new multiple_option_answer();
+                $answer->encuesta_id=$Encuesta->registro;
+                $answer->reactivo=$clave;
+                $answer->clave_opcion=str_replace($clave.'opcion','',$key);
+                $answer->save();
+            }
+            // dd($selected_options);
+        }
 
 
         foreach(array('A','E','F','C','D','G') as $sec){

@@ -57,10 +57,6 @@
                 @include('encuesta2020.reactivos')
             @endif
             </div>
-       
-    
-   
-
    
 </div>
 @endsection
