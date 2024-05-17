@@ -285,7 +285,7 @@ function unblockNext(react_name){
 
 }
 
-function optionChecked(react_name,op,bloqueado=''){
+function optionChecked(react_name,op,bloqueados){
 
     var element = document.getElementById(react_name+'label');
     var opciones=document.getElementsByClassName(react_name+'opcion');
@@ -308,16 +308,24 @@ function optionChecked(react_name,op,bloqueado=''){
             element.classList.toggle("active");
         }
     }
-    if(bloqueado!=''){
-        if(!document.getElementById(react_name+'op'+String(op)).checked){
-            no_se_contestan.push(bloqueado);
-            dishable_reactive(bloqueado);
+    if(bloqueados.length>0){
+        if(document.getElementById(react_name+'op'+String(op)).checked){
+            
+            for (var j = 0; j < bloqueados.length; j++) {
+                no_se_contestan.push(bloqueados[j]);
+                dishable_reactive(bloqueados[j]);
+            }
+            
             }else{
-                hable_reactive(bloqueado);
-                if(no_se_contestan.includes(bloqueado)){
-                 no_se_contestan.splice(no_se_contestan.indexOf(bloqueado),1);
+                
+                for (var j = 0; j < bloqueados.length; j++) {
+                hable_reactive(bloqueados[j]);
+                if(no_se_contestan.includes(bloqueados[j])){
+                 no_se_contestan.splice(no_se_contestan.indexOf(bloqueados[j]),1);
                  
-               }
+                  }
+                }
+                
             
             }     
     }

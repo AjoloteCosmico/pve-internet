@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col">
-        <input type="checkbox" id="{{$Reactivo->clave.'op'.$o->clave}}" class="{{$Reactivo->clave}}opcion" name="{{$Reactivo->clave}}opcion{{$o->clave}}" onclick="optionChecked('{{$Reactivo->clave}}','{{$o->clave}}',@if($Bloqueos->where('valor',$o->clave)->count()>0) '{{$Bloqueos->where('valor',$o->clave)->first()->bloqueado}}' @endif)" />
+        <input type="checkbox" id="{{$Reactivo->clave.'op'.$o->clave}}" class="{{$Reactivo->clave}}opcion" name="{{$Reactivo->clave}}opcion{{$o->clave}}" onclick="optionChecked('{{$Reactivo->clave}}','{{$o->clave}}', [ @foreach($Bloqueos->where('valor',$o->clave) as $b) '{{$b->bloqueado}}', @endforeach ] )" />
         <label>{{$o->descripcion}}</label>
         </div>
     </div>
