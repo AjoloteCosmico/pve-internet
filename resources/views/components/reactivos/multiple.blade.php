@@ -1,5 +1,5 @@
 
-<div class="container" style="width: 45vmax">
+<div class="container" name="{{$Reactivo->clave}}" style="width: 45vmax">
 @foreach($Opciones as $o)
 
     <div class="row">
