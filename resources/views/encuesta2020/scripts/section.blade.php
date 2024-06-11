@@ -269,10 +269,14 @@ function unblockNext(react_name){
         reactivo_siguiente=reactivos[last_index+1];
         console.log('el reactivo sig, por ahora, es '+reactivo_siguiente);}
 
-    if(last_index>=reactivos.length){
+    if(last_index+1>=reactivos.length){
         $("#final-button").removeAttr("disabled");
         var element = document.getElementById('final-button');
+        console.log('es el boton');
     }else{
+        console.log('toca: '+reactivo_siguiente);
+        console.log('el indice es '+last_index);
+        console.log(reactivos)
         hable_reactive(reactivo_siguiente);
         var element = document.getElementById(reactivo_siguiente+'-redact');
 }
@@ -335,8 +339,7 @@ function siguiente(react_name){
     last_index=reactivos.indexOf(react_name);
     last_index=last_index+1;
     reactivo_siguiente=reactivos[last_index]; 
-    while((no_se_contestan.includes(reactivo_siguiente)) &&( last_index<reactivos.length)) {
-        
+    while((no_se_contestan.includes(reactivo_siguiente)) &&( last_index<reactivos.length)) {   
         last_index=last_index+1;
         console.log(last_index);
         dishable_reactive(reactivo_siguiente);
@@ -346,7 +349,7 @@ function siguiente(react_name){
 
 console.log('nreactivos',reactivos.length);
 console.log('reactivo siguiente',reactivo_siguiente);
-if(last_index>=reactivos.length){
+if(last_index+1>=reactivos.length){
     $("#final-button").removeAttr("disabled");
     var element = document.getElementById('final-button');
     }else{

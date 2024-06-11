@@ -219,8 +219,19 @@ font-weight: bold;
 .input-label{
   size:1.5vh;  
 }
+.warning-label{
+    display:none;
+}
 
-
+.active-warn{
+    display:flex;
+    color:red;
+    font-size:1.3vmax;
+    padding-left:1.4vmax;
+}
+.error{
+    border:2px solid red;
+}
 
 
 @-webkit-keyframes fade {
@@ -379,6 +390,7 @@ font-weight: bold;
     font-size: max(0.9vmax,14px);
     animation: none;
 }
+
 .completed{
     background-color: #002b7a;
     color:white;

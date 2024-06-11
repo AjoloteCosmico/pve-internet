@@ -15,54 +15,67 @@
                     <input type="date" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->fec_nac}}" disabled style="background-color:#868b94">
                 </div>
                 
-                <div class="form-group" id="correosDiv">
+                <div class="form-group" >
                     <label for="exampleFormControlInput1">Correos</label>
                     @php   $count_correo=0; @endphp
                     @foreach($Correos as $c)
+                    
+                            <input type="email" class="form-control"  value="{{$c->correo}}" name="correos[{{$count_correo}}]">
+                              @php   $count_correo=$count_correo+1; @endphp
+                          
+                    @endforeach
                     <table>
                         <tr>
                             <td>
-                            <input type="text" class="form-control"  value="{{$c->correo}}" name="correos[{{$count_correo}}]">
-                              @php   $count_correo=$count_correo+1; @endphp
+                            <input type="email" class="form-control"   name="correos[{{$count_correo}}]" placeholder="Ingresa un correo actualizado">
+                            
                             </td>
                             <td>
-                                
-                    @if($count_correo==$Correos->count())
-                    <button style="background-color:#3fbd3c" type="button" onclick="add_correo()"><i class="fa fa-plus" aria-hidden="true"></i> </button>
-                    @endif
+                                <button style="background-color:#3fbd3c" type="button" onclick="add_correo()"><i class="fa fa-plus" aria-hidden="true"></i> Agregar otro</button>
+                
                             </td>
                         </tr>
                     </table>
-                  
-                    @endforeach
+                    <div id="correosDiv"></div>
                 </div>
-                <div class="form-group" id="telefonosDiv">
+                <div class="form-group" >
                     <label for="exampleFormControlInput1">Números de Teléfono</label>
                     @php   $count_tel=0; @endphp
                     @foreach($Telefonos as $t)
+                    
+                        <input type="text" class="form-control"  value="{{$t->telefono}}" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado"> 
+                        <p class="warning-label" id="warnlab[{{$count_tel}}]"> Ingresa almenos 10 digitos </p>
+                         @php   $count_tel=$count_tel+1; @endphp
+                    @endforeach
+
                     <table>
                         <tr>
                             <td>
-                            <input type="text" class="form-control"  value="{{$t->telefono}}" name="telefonos[{{$count_tel}}]">
-                              @php   $count_tel=$count_tel+1; @endphp
+                            <input type="text" class="form-control"  value="" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado"> 
+                            <p class="warning-label" id="warnlab[{{$count_tel}}]"> Ingresa almenos 10 digitos </p>
+                          
                             </td>
                             <td>
                                 
-                    @if($count_tel==$Telefonos->count())
-                    <button style="background-color:#3fbd3c" type="button" onclick="add_tel()"><i class="fa fa-plus" aria-hidden="true"></i> </button>
-                    @endif
+                             <button style="background-color:#3fbd3c" type="button" onclick="add_tel()"> <i class="fa fa-plus" aria-hidden="true"></i> Agregar otro </button>
+                 
                             </td>
                         </tr>
                     </table>
-                  
-                    @endforeach
+                  <div id="telefonosDiv">
+
+                  </div>
+                   
+                    <!-- //pasando este loop agregar un telefono obligatorio y mover aqui el boton de mas -->
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Número de Cuenta</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$Egresado->cuenta}}"  disabled style="background-color:#868b94">
                 </div>
+                @if($Encuesta->aplica2!=1)
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Carrera</label>
+                  
                     <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Carrera}}" disabled style="background-color:#868b94">
                 </div>
                 <div class="form-group">
@@ -73,7 +86,12 @@
                     <label for="exampleFormControlInput1">Promedio</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->promedio}}" disabled style="background-color:#868b94">
                 </div>
+                @else
+                @include('encuesta2020.general_reactives')
+                @endif
                 <center>
-            <button class="btn blue_button" type="submit"> Guardar y enviar</button>
+            <button id="final-button" class="btn blue_button" type="submit"> Guardar y enviar</button>
         </center>
         </form>
+
+

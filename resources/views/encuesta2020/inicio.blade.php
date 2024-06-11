@@ -29,9 +29,9 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
     <!--CABECERA/HEADER-->
     <div class="cabecera">
         <div class="logo">
-            <a class=logoUNAM href="https://www.unam.mx/"> <img src="img/logos/logoUNAM-large-azul.png"> </a>
+            <a class=logoUNAM href="https://www.unam.mx/"> <img src="/img/logos/logoUNAM-large-azul.png"> </a>
 
-            <a class=lovoPVE href="https://www.pveu.unam.mx/"> <img src="img/logos/logoPVE-large.png"> </a>
+            <a class=lovoPVE href="https://www.pveu.unam.mx/"> <img src="/img/logos/logoPVE-large.png"> </a>
         </div>
 
         <div class="subtitulo2 ">
@@ -44,7 +44,12 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
     <div class="izquierda">
     <div class="info">
         <p class="subtitulo3">
+            @if($type=='general')
             TODAS LAS CARRERAS Y GENERACIONES
+            @else
+            Generacion de egreso 2020
+            @endif
+           
         </p>
         <br><br><br>
         <p class="texto2">
@@ -67,11 +72,11 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
         <!--CARDS PROPÓSITOS-->
 
     <div class="propositos">
-        <img class="card" src="img/gráficos/pag-encuesta-1.png">
+        <img class="card" src="/img/gráficos/pag-encuesta-1.png">
 
-        <img class="card" src="img/gráficos/pag-encuesta-2.png">
+        <img class="card" src="/img/gráficos/pag-encuesta-2.png">
 
-        <img class="card" src="img/gráficos/pag-encuesta-3.png">
+        <img class="card" src="/img/gráficos/pag-encuesta-3.png">
     </div>
     </div>
 
@@ -91,11 +96,30 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 
         <form action="{{ route('enc20.verify')}}" method="POST" enctype="multipart/form-data">
         @csrf
+            <input type="hidden" name="type" value="{{$type}}">
             <ul>
                 <li>
                     <label>Número de Cuenta:</label>
-                    <input type="number" id="numeroCuenta" name="cuenta"/>
+                    <input type="number" id="numeroCuenta"   name="cuenta" max="999999999"/>
                 </li>
+
+                @if($type=='general')
+                
+                <li>
+                    <label>Apellido Paterno:</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="paterno"/>
+                </li>
+                <li>
+                    <label>Apellido Materno:</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"   name="materno"/>
+                </li>
+                <li>
+                    <label>Nombre(s):</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="nombre"/>
+                </li>
+               
+                
+                @endif
                 <li>
                     <button type="submit">Iniciar encuesta</button>
                 </li>
@@ -161,6 +185,17 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 </script>
 @endif
 
+@if (session('message') == 'notinsample')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    Swal.fire({
+  icon: "warning",
+  title: "Parece que no es tu generacion",
+  text: "Por favor Ingresa a la encuesta general llenando todos tus datos",
+  footer: '<a href="#">Why do I have this issue?</a>'
+});
+</script>
+@endif
 <script>
     $(window).load(function(){
     $('#myModal').modal('show');

@@ -15,8 +15,8 @@ use App\Models\Comentario;
 use DB;
 class Enc20Controller extends Controller
 {
-    public function inicio(){
-        return view('encuesta2020.inicio');
+    public function inicio($type){
+        return view('encuesta2020.inicio',compact('type'));
     }
 
     public function verify(Request $request){
@@ -24,39 +24,121 @@ class Enc20Controller extends Controller
         $cuenta=Request::get('cuenta');
         $Egresado=Egresado::where('cuenta',$cuenta)->first();
         $Encuesta=respuestas20::where('cuenta',$cuenta)->first();
-        // dd($Egresado,$Encuesta);
-        if(!$Egresado){
-         return redirect()->route('enc20.inicio')->with('message','no_data');
-        }else{
-        if($Egresado->anio_egreso==2020)
-        if(!$Encuesta){
-            $Encuesta=new respuestas20();
-            $Encuesta->cuenta=$cuenta;
-            $Encuesta->nombre=$Egresado->nombre;
-            $Encuesta->paterno=$Egresado->paterno;
-            $Encuesta->materno=$Egresado->materno;
-            $Encuesta->nombre=$Egresado->nombre;
-            $Encuesta->nombre=$Egresado->nombre;
-            $Encuesta->nbr2=$Egresado->carrera;
-            $Encuesta->nbr3=$Egresado->plantel;
-            $Encuesta->gen_dgae=2020;
-            $Encuesta->completed=0;
-            $Encuesta->save();
-        }
-        if($Encuesta->completed!=1){
-        return redirect()->route('enc20.section',[$Encuesta->registro,'personal_data']);}
-        else{
-            return redirect()->route('enc20.inicio')->with('message','realized');
+        //HAY EGRESADO
+        if($Egresado){
+          //ES 2020
+          if($Egresado->anio_egreso==2020){
+            //LLENA LOS DATOS CON LA TABLA DE EG Y COMIENZA ENC
+            if(!$Encuesta){
+                $Encuesta=new respuestas20();
+                $Encuesta->cuenta=$cuenta;
+                $Encuesta->nombre=$Egresado->nombre;
+                $Encuesta->paterno=$Egresado->paterno;
+                $Encuesta->materno=$Egresado->materno;
+                $Encuesta->nombre=$Egresado->nombre;
+                $Encuesta->nombre=$Egresado->nombre;
+                $Encuesta->nbr2=$Egresado->carrera;
+                $Encuesta->nbr3=$Egresado->plantel;
+                $Encuesta->gen_dgae=2020;
+                $Encuesta->completed=0;
+                $Encuesta->save();
+            }
+             //comnzar encuesta 2020
+            if($Encuesta->completed!=1){
+            return redirect()->route('enc20.section',[$Encuesta->registro,'personal_data']);}
+            else{
+                return redirect()->route('enc20.inicio')->with('message','realized');
+            
+            }
+
+
+          }else{
+          //NO ES 2020
+            if(Request::get('type')=='general'){
+                 //TYPE=GENERAL
+                //SE LLENAN LOS DATOS CON EL INPUT Y COMIENZA ENC
+                
+                if(!$Encuesta){
+                    $Encuesta=new respuestas20();
+                    $Encuesta->cuenta=$cuenta;
+                    $Encuesta->aplica2=1;
+                    $Encuesta->nombre=Request::get('nombre');
+                    $Encuesta->paterno=Request::get('paterno');
+                    $Encuesta->materno=Request::get('materno');
+                    $Encuesta->completed=0;
+                    $Encuesta->save();
+                }
+                if($Encuesta->completed!=1){
+                    return redirect()->route('enc20.section',[$Encuesta->registro,'personal_data']);}
+                    else{
+                        return redirect()->route('enc.inicio')->with('message','realized');
+                    
+                    }
+            }
+          
+            if(Request::get('type')=='2020'){
+            //TYPE 2020
+                //REDIRECCIONA A ENC GENERAL
+                return redirect()->route('enc.inicio','general')->with('message','notinsample');
+          }
+              
+          
+                }
+            }else{
+                   //NO HAY ERGESADO
+                   if(Request::get('type')=='general'){
+                    //TYPE=GENERAL
+                    $Egresado=new Egresado();
+                $Egresado->cuenta=$cuenta;
+                $Egresado->fuente='encuesta externa';
+                $Egresado->nombre=Request::get('nombre');
+                $Egresado->paterno=Request::get('paterno');
+                $Egresado->materno=Request::get('materno');
+                $Egresado->save();
+                    if(!$Encuesta){
+                        $Encuesta=new respuestas20();
+                        $Encuesta->cuenta=$cuenta;
+                        $Encuesta->aplica2=1;
+                        $Encuesta->nombre=Request::get('nombre');
+                        $Encuesta->paterno=Request::get('paterno');
+                        $Encuesta->materno=Request::get('materno');
+                        $Encuesta->gen_dgae=Request::get('anio');
+                        $Encuesta->completed=0;
+                        $Encuesta->save();
+                    }
+                    if($Encuesta->completed!=1){
+                        return redirect()->route('enc20.section',[$Encuesta->registro,'personal_data']);}
+                        else{
+                            return redirect()->route('enc.inicio')->with('message','realized');
+                        
+                        }
+                }
+             
+               if(Request::get('type')=='2020'){
+                    //TYPE 2020
+                   //REDIRECCIONA A ENC GENERAL
+                   return redirect()->route('enc.inicio','general')->with('message','notinsample');;
+               }
+               
+             }
+                
+
+
         
-        }
-        }
     }
 
     public function section($id,$section){
         $Encuesta=respuestas20::find($id);
+        $Carrera='';$Plantel='';
         $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr2)->first();
-        $Carrera=Carrera::where('clave_carrera','=',$Egresado->carrera)->first()->carrera;
-        $Plantel=Carrera::where('clave_plantel','=',$Egresado->plantel)->first()->plantel;
+        if($Encuesta->aplica2==1){
+            $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->first();
+        }else{
+            $Carrera=Carrera::where('clave_carrera','=',$Egresado->carrera)->first()->carrera;
+            $Plantel=Carrera::where('clave_plantel','=',$Egresado->plantel)->first()->plantel;
+           
+        }
+
         $Comentario=''.Comentario::where('cuenta','=',$Encuesta->cuenta)->first();
         $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
         $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
@@ -106,7 +188,7 @@ class Enc20Controller extends Controller
         foreach (Request::get('correos') as $correo) {
          if($correo!="" && $Correos->where('correo',$correo)->count()==0){
             $Correo= new Correo();
-            $Correo->cuenta=$Egresado->cuenta;
+            $Correo->cuenta=$Encuesta->cuenta;
             $Correo->correo=$correo;
             $Correo->status='en uso';
             $Correo->save();
@@ -116,7 +198,7 @@ class Enc20Controller extends Controller
         foreach (Request::get('telefonos') as $telefono) {
             if($telefono!="" && $Telefonos->where('telefono',$telefono)->count()==0){
                $Telefono= new Telefono();
-               $Telefono->cuenta=$Egresado->cuenta;
+               $Telefono->cuenta=$Encuesta->cuenta;
                $Telefono->telefono=$telefono;
                $Telefono->status='en uso';
                $Telefono->save();

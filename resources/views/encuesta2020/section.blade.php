@@ -64,7 +64,29 @@
 
 @if($section=='personal_data')
                 @include('encuesta2020.scripts.personal_data')
+
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                    Swal.fire({
+                icon: "info",
+                title: "Mantente conectado a tu universidad!",
+                text: "Por favor Ingresa almenos un telefono y un correo que utilices regularmente",
+                imageUrl: "/img/logos/logoUNAM-large-azul.png",
+                imageWidth: 150,
+                imageHeight: 150,
+                className: "red-bg",
+                });
+                </script>
             @else
                 @include('encuesta2020.scripts.section')
             @endif
+ @endpush
+
+ @push('css')
+ <style>
+   .swal2-popup {
+  font-size: 1.6rem !important;
+  font-family: sans-serif;
+}
+ </style>
  @endpush
