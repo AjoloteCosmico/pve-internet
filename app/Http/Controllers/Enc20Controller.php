@@ -133,8 +133,8 @@ class Enc20Controller extends Controller
            
             $Carreras=Carrera::all();
             if($Encuesta->nbr2){
-                $Carrera=Carrera::where('clave_carrera','=',$Encuesta->nbr3)->first()->carrera;
-                $Plantel=Carrera::where('clave_plantel','=',$Encuesta->nbr2)->first()->plantel;
+                $Carrera=Carrera::where('clave_carrera','=',$Encuesta->nbr2)->first()->carrera;
+                $Plantel=Carrera::where('clave_plantel','=',$Encuesta->nbr3)->first()->plantel;
             
             }
              
@@ -187,7 +187,7 @@ class Enc20Controller extends Controller
 
     public function update_personal_data(Request $request,$id){
         $Encuesta=respuestas20::find($id);
-        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr3)->first();
+        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr2)->first();
         // dd($Egresado,$Encuesta);
         $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
         $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
@@ -196,8 +196,8 @@ class Enc20Controller extends Controller
             $Encuesta->nbr2=Request::get('nbr2');
             $Encuesta->nbr3=Request::get('nbr3');
             $Encuesta->save();
-            $Egresado->plantel=Request::get('nbr2');
-            $Egresado->carrera=Request::get('nbr3');
+            $Egresado->plantel=Request::get('nbr3');
+            $Egresado->carrera=Request::get('nbr2');
             $Egresado->save();
             
 
