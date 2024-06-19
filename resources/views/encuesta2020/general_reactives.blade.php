@@ -3,7 +3,7 @@
 <div class="form-group">
     <label for="exampleFormControlInput1">Plantel</label>
                     
-    <select name="nbr2" id="nbr2" >
+    <select name="nbr3" id="nbr3" >
     <option value="" >Seleccione... </option> 
 
     @foreach($Planteles as $option)
@@ -15,7 +15,7 @@
 <div class="form-group">
     <label for="exampleFormControlInput1">Carrera</label>
                   
-    <select name="nbr3" id="nbr3" >
+    <select name="nbr2" id="nbr2" >
     <option value="" >Seleccione... </option> 
 
     @foreach($Carreras as $option)
@@ -49,8 +49,8 @@ function removeOptions(selectElement) {
 function set_carreras(seleccionado){
     console.log('entrando a la funcion');
         console.log(seleccionado)
-removeOptions(document.getElementById('nbr3'));
-var desc = document.getElementById("nbr3");
+removeOptions(document.getElementById('nbr2'));
+var desc = document.getElementById("nbr2");
 @foreach($Planteles as $p)
 if(seleccionado=={{$p->clave_plantel}}){
     var example_array = {
@@ -69,13 +69,13 @@ for(index in example_array) {
 }
 
 $(document).ready(function () {     
-  $('#nbr2').change(function(){
+  $('#nbr3').change(function(){
         var seleccionado = $(this).val();
         set_carreras(seleccionado);
         
   });
   });
-  var seleccionado = document.getElementById('nbr2').value;
+  var seleccionado = document.getElementById('nbr3').value;
   set_carreras(seleccionado);
   </script>
 @endpush
