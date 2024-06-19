@@ -361,8 +361,6 @@ if(last_index+1>=reactivos.length){
     console.log(elementPosition+' POSICIONADO');
     console.log(element);  
     ventana.scrollTop= ventana.scrollTop+elementPosition-50-ventana.getBoundingClientRect().top;
-
-
 }
 
 function submitForm(){

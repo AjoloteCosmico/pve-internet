@@ -113,30 +113,36 @@ class Enc20Controller extends Controller
                         
                         }
                 }
-             
                if(Request::get('type')=='2020'){
                     //TYPE 2020
                    //REDIRECCIONA A ENC GENERAL
                    return redirect()->route('enc.inicio','general')->with('message','notinsample');;
                }
-               
-             }
-                
-
-
-        
+             }      
     }
 
     public function section($id,$section){
         $Encuesta=respuestas20::find($id);
-        $Carrera='';$Plantel='';
         $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr2)->first();
+        $Carrera=" ";
+        $Plantel=" ";
         if($Encuesta->aplica2==1){
             $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->first();
+            // enviar la lista de planteles
+            $Planteles=Carrera::select('clave_plantel','plantel')->distinct()->get();
+           
+            $Carreras=Carrera::all();
+            if($Encuesta->nbr2){
+                $Carrera=Carrera::where('clave_carrera','=',$Encuesta->nbr3)->first()->carrera;
+                $Plantel=Carrera::where('clave_plantel','=',$Encuesta->nbr2)->first()->plantel;
+            
+            }
+             
         }else{
             $Carrera=Carrera::where('clave_carrera','=',$Egresado->carrera)->first()->carrera;
             $Plantel=Carrera::where('clave_plantel','=',$Egresado->plantel)->first()->plantel;
-           
+            $Planteles=' ';
+            $Carreras=' ';
         }
 
         $Comentario=''.Comentario::where('cuenta','=',$Encuesta->cuenta)->first();
@@ -176,15 +182,26 @@ class Enc20Controller extends Controller
         return view('encuesta2020.section',
                      compact('Encuesta','Carrera','Plantel','Egresado',
                             'Telefonos','Correos','section','Reactivos',
-                            'Bloqueos','NombreSeccion'));
+                            'Bloqueos','NombreSeccion','Planteles','Carreras'));
     }
 
     public function update_personal_data(Request $request,$id){
         $Encuesta=respuestas20::find($id);
-        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr2)->first();
+        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr3)->first();
+        // dd($Egresado,$Encuesta);
         $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
         $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
-       
+        
+        if($Encuesta->aplica2==1){
+            $Encuesta->nbr2=Request::get('nbr2');
+            $Encuesta->nbr3=Request::get('nbr3');
+            $Encuesta->save();
+            $Egresado->plantel=Request::get('nbr3');
+            $Egresado->carrera=Request::get('nbr2');
+            $Egresado->save();
+            
+
+        }
         foreach (Request::get('correos') as $correo) {
          if($correo!="" && $Correos->where('correo',$correo)->count()==0){
             $Correo= new Correo();
