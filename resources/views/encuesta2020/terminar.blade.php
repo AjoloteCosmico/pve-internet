@@ -6,7 +6,7 @@
         <div class="logo">
             <a class=logoUNAM href="https://www.unam.mx/"> <img src="/img/logos/logoUNAM-large-azul.png"> </a>
 
-            <a class=lovoPVE href="https://www.pveu.unam.mx/"> <img src="/img/logos/logoPVE-large.png"> </a>
+            <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png"> </a>
         </div>
 
         <div class="subtitulo2 ">
@@ -48,11 +48,13 @@
     <!--CARDS PROPÓSITOS-->
 
     <div class="propositos">
+
         <img class="card" src="/img/gráficos/pag-encuesta-1.png">
 
         <img class="card" src="/img/gráficos/pag-encuesta-2.png">
-
-        <img class="card" src="/img/gráficos/pag-encuesta-3.png">
+        
+        <a href="https://www.pveaju.unam.mx/encuesta/01/seguimiento2024/#resultadosCarrera">
+        <img class="card" src="/img/gráficos/pag-encuesta-3.png"></a>
     </div>
 
 </div>
