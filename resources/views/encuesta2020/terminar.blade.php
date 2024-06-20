@@ -1,4 +1,6 @@
+@extends('layouts.app')
 
+@section('content')
     <!--CABECERA/HEADER-->
     <div class="cabecera">
         <div class="logo">
@@ -56,3 +58,4 @@
 </div>
 </div>
 
+@endsection
