@@ -14,7 +14,7 @@
         
         <!-- Modal body -->
         <div class="modal-body text-justify">
-El Programa de Vinculación con los Egresados de la Universidad Nacional Autónoma de México (UNAM), con domicilio en Zona Cultural de Ciudad Universitaria, Edificio D, planta baja, Alcaldía Coyoacán, C.P. 04510, en la Ciudad de México, es responsable del tratamiento de sus datos personales para el registro como egresado, difusión de información y generación de estadísticas para identificar, detectar e impulsar el desarrollo de oportunidades para los egresados de la UNAM.<br><br> No se realizarán transferencias de datos personales, salvo aquellas excepciones previstas por la Ley. Podrá ejercer sus derechos ARCO en  la Unidad de Transparencia de la UNAM, o a través de la Plataforma Nacional de Transparencia <br>(<a href='http://www.plataformadetransparencia.org.mx'>http://www.plataformadetransparencia.org.mx/</a>).<br><br>El aviso de privacidad integral se puede consultar en la sección Aviso de Privacidad de nuestro sitio web: <a href='http://www.pveu.unam.mx/avisodeprivacidad'>http://www.pveu.unam.mx/avisodeprivacidad</a>.
+El Programa de Vinculación con los Egresados de la Universidad Nacional Autónoma de México (UNAM), con domicilio en Zona Cultural de Ciudad Universitaria, Edificio D, planta baja, Alcaldía Coyoacán, C.P. 04510, en la Ciudad de México, es responsable del tratamiento de sus datos personales para el registro como egresado, difusión de información y generación de estadísticas para identificar, detectar e impulsar el desarrollo de oportunidades para los egresados de la UNAM.<br><br> No se realizarán transferencias de datos personales, salvo aquellas excepciones previstas por la Ley. Podrá ejercer sus derechos ARCO en  la Unidad de Transparencia de la UNAM, o a través de la Plataforma Nacional de Transparencia <br>(<a href='http://www.plataformadetransparencia.org.mx'>http://www.plataformadetransparencia.org.mx/</a>).<br><br>El aviso de privacidad integral se puede consultar en la sección Aviso de Privacidad de nuestro sitio web: <a href='http://www.pveaju.unam.mx/avisodeprivacidad'>http://www.pveaju.unam.mx/avisodeprivacidad</a>.
         </div>
         
         <!-- Modal footer -->
@@ -31,7 +31,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
         <div class="logo">
             <a class=logoUNAM href="https://www.unam.mx/"> <img src="/img/logos/logoUNAM-large-azul.png"> </a>
 
-            <a class=lovoPVE href="https://www.pveu.unam.mx/"> <img src="/img/logos/logoPVE-large.png"> </a>
+            <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png"> </a>
         </div>
 
         <div class="subtitulo2 ">
@@ -141,7 +141,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 
     <div class="botonAviso">
         <p class="texto7">IMPORTANTE</p>
-        <a href="https://www.pveu.unam.mx/aviso-de-privacidad.php">Aviso de Privacidad</a>
+        <a href="https://www.pveaju.unam.mx/aviso-de-privacidad.php">Aviso de Privacidad</a>
     </div>
 </div>
 @endsection
