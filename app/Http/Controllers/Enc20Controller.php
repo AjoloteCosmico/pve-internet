@@ -244,7 +244,7 @@ class Enc20Controller extends Controller
         $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr2)->first();
         $Encuesta->update($filteredArray);
         $Encuesta->save();
-        dd(Request::all(),$filteredArray);
+        // dd(Request::all(),$filteredArray);
         $section=Request::get('section');
         
         //si la seccion contiene reactivos multiples,  iteramos sobre ellos
