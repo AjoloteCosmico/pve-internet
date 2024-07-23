@@ -195,7 +195,7 @@ seguir prestando el servicio del sistema en l&iacute;nea que nos solicit&oacute;
 conclusi&oacute;n de su relaci&oacute;n con nosotros.</P>
 <P><STRONG>Limitar el env&iacute;o de informaci&oacute;n</STRONG></P>
 <P>  Usted puede dejar de recibir los mensajes informativos visitando 
-<U>www.pve.unam.mx/tools/unsucribe.php</U> e ingresando su direcci&oacute;n de 
+<U>www.pveaju.unam.mx/tools/unsucribe.php</U> e ingresando su direcci&oacute;n de 
 correo.</P>
 <P><STRONG>Modificaciones al Aviso de  Privacidad</STRONG></P>
 <P>  El presente aviso de privacidad puede sufrir modificaciones o 

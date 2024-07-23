@@ -8,7 +8,7 @@
         <div class="logo">
         <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}"> </a>
 
-            <a class=lovoPVE href="https://www.pveu.unam.mx/"> <img src="{{url('img/logos/logoPVE-large.png')}}"> </a>
+            <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="{{url('img/logos/logoPVE-large.png')}}"> </a>
         </div>
 
         <div class="subtitulo2 ">
