@@ -47,7 +47,7 @@ class Enc20Controller extends Controller
             if($Encuesta->completed!=1){
             return redirect()->route('enc20.section',[$Encuesta->registro,'personal_data']);}
             else{
-                return redirect()->route('enc20.inicio')->with('message','realized');
+                return redirect()->route('enc.inicio','2020')->with('message','realized');
             
             }
 
@@ -71,7 +71,7 @@ class Enc20Controller extends Controller
                 if($Encuesta->completed!=1){
                     return redirect()->route('enc20.section',[$Encuesta->registro,'personal_data']);}
                     else{
-                        return redirect()->route('enc.inicio')->with('message','realized');
+                        return redirect()->route('enc.inicio','2020')->with('message','realized');
                     
                     }
             }
@@ -109,7 +109,7 @@ class Enc20Controller extends Controller
                     if($Encuesta->completed!=1){
                         return redirect()->route('enc20.section',[$Encuesta->registro,'personal_data']);}
                         else{
-                            return redirect()->route('enc.inicio')->with('message','realized');
+                            return redirect()->route('enc.inicio','general')->with('message','realized');
                         
                         }
                 }

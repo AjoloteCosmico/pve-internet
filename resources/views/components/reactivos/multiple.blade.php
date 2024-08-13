@@ -8,11 +8,10 @@
         <label>{{$o->descripcion}}</label>
         </div>
     </div>
-
 @endforeach
 
 <br>
-<label class="input-label" id="{{$Reactivo->clave.'label'}}" onclick="siguiente('{{$Reactivo->clave}}')">Listo</label>
+<button class="input-label" type="button" id="{{$Reactivo->clave.'label'}}" onclick="find_next('{{$Reactivo->clave}}')" disabled>Listo</button>
 
 </div>
 

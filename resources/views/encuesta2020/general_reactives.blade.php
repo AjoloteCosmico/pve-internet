@@ -17,11 +17,8 @@
                   
     <select name="nbr2" id="nbr2" >
     <option value="" >Seleccione... </option> 
-
     @foreach($Carreras as $option)
     <option value="{{$option->clave}} " >{{$option->carrera}} </option> 
-
-
     <br>
     @endforeach
     </select>
@@ -29,8 +26,8 @@
 <div class="form-group">
     <label for="exampleFormControlInput1">Año en que ingresó</label>
     <input type="number"  name="anio_ingreso">
-
 </div>
+
 <div class="form-group">
     <label for="exampleFormControlInput1">Año en que Egresó</label>
     <input type="number"  name="anio_egreso">

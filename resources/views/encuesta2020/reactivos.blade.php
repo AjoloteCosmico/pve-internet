@@ -10,7 +10,7 @@ use \App\Http\Controllers\ReactivosController;
                      
             @foreach($Reactivos as $reactivo)
                 <div id="{{$reactivo->clave}}" style="padding: 1.2vmax;  @if($reactivo->child==1) padding-left:4.4vmax !important @endif" >
-               
+               {{$reactivo->clave}}
                 @if($reactivo->child==1) 
                    <h4 id="{{$reactivo->clave.'-redact'}}">  @if($reactivo->child!=1 && $reactivo->type!='label') {{$reactivo->order}} .- @endif {{$reactivo->description}}</h4>
                 @else
@@ -32,3 +32,8 @@ use \App\Http\Controllers\ReactivosController;
                 <button class="btn blue_button" type="button" id="final-button" onclick="submitForm()" disabled> Guardar y Siguiente</button>
             </div>
 </form>
+
+
+<div id='monitor_reactivos_cerrrados' style="position: fixed; top: 20px; left: 20px; background:white; color: black; heigth:10.5vw;">
+
+</div>

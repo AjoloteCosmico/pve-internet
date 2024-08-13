@@ -380,8 +380,8 @@ font-weight: bold;
 .active{
     padding:0.9vh 1.9vmin;
     border-radius: 0.9vmin;
-    background: #002b7a;
-    color:white;
+    background: #002b7a !important;
+    color:white !important;
    animation: fade 1.5s infinite 200ms;
 }
 .active:hover{
