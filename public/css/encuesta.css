@@ -25,6 +25,14 @@
     align-items:center;
     padding: 5% 10% ;
 }
+.mainFinal {
+    display: flex;
+    flex-direction: row;
+    background-color: #050a30;
+    color: white;
+    align-items:center;
+    padding: 4% 15% ;
+}
 
 .izquierda {
     width: 60%;
@@ -38,7 +46,8 @@
 /*INFORMACIÓN*/
 .info {
     width: 100%;
-    font-size: small;        
+    font-size: small;
+        
 }
 
 .info li {
@@ -49,9 +58,11 @@
 
 /*IMÁGENES PROPÓSITOS*/
 .propositos {
+
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+   
 }
 
 .propositos img {
@@ -60,6 +71,20 @@
     max-height: 18vh;
     width: auto;
     flex-shrink: auto;
+}
+
+.propositosFinal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.propositosFinal img {
+    margin: 15px 10px;
+    max-height: 20vh;
+    object-fit: contain;
+    flex-shrink: auto;
+    border-radius: 5px;
 }
 
 /*CUADRO INICIAR ENCUESTA*/
@@ -351,7 +376,16 @@ border-radius: 0.9vw;
     color: #ba800d;
 }
 
+.boton1 {
+    width: fit-content;
+    font-size: medium;
+}
 
+.finalBtn {
+    display: flex;
+    justify-content: center;
+    margin-top:8%;
+}
 .blue_text{
 color:#002b7a;
 size:2.5vw;
