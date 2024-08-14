@@ -66,13 +66,13 @@
     </p>
     <br><br>
     <p class="texto2">
-        <a href="index.html#creditos"><span style= "font-size:min(1.9vh);text-decoration:underline;">CRÉDITOS</span></a>
+        <a href="https://www.pveaju.unam.mx/encuesta/01/seguimiento2024/#creditos"><span style= "font-size:min(1.9vh);text-decoration:underline;">CRÉDITOS</span></a>
     </p>
 </div>
 
 <div class="finalBtn">
     <div class="boton1">
-        <a href="index.html#resultadosCarrera">FINALIZAR Y SALIR</a>
+        <a href="https://www.pveaju.unam.mx/encuesta/01/seguimiento2024/#resultados">FINALIZAR Y SALIR</a>
     </div>
 </div>
 
