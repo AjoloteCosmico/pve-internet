@@ -10,7 +10,7 @@ use \App\Http\Controllers\ReactivosController;
                      
             @foreach($Reactivos as $reactivo)
                 <div id="{{$reactivo->clave}}" style="padding: 1.2vmax;  @if($reactivo->child==1) padding-left:4.4vmax !important @endif" >
-               {{$reactivo->clave}}
+               <!-- {{$reactivo->clave}} -->
                 @if($reactivo->child==1) 
                    <h4 id="{{$reactivo->clave.'-redact'}}">  @if($reactivo->child!=1 && $reactivo->type!='label') {{$reactivo->order}} .- @endif {{$reactivo->description}}</h4>
                 @else

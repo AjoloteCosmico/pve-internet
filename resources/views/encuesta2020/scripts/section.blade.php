@@ -23,7 +23,7 @@ var all_bloqueos=[
     },
     @endforeach
 ];
-document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
+// document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
 // console.log('aun no',aun_no);
 // console.log('reactivos:',reactivos);
 act_block();
@@ -171,7 +171,7 @@ function find_next(react_name){
     var elementPosition = element.getBoundingClientRect().top;
     console.log(element);  
     ventana.scrollTop= ventana.scrollTop+elementPosition-50-ventana.getBoundingClientRect().top;
-    document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
+    // document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
 }
 function optionWasSelected(react_name,involucrados){
 
