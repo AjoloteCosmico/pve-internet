@@ -15,7 +15,7 @@ function add_tel(){
     console.log('ejecutando funcion');
     console.log(ntel);
     const div = document.getElementById("telefonosDiv");
-    div.innerHTML += `<input type="text" class="form-control"  value="" name="telefonos[`+ntel+`]" id="telefonos[`+ntel+`]" onkeyup="validate_phone(`+ntel+`)"> <p class="warning-label" id="warnlab[`+ntel+`]"> Ingresa almenos 10 digitos </p>`;
+    div.innerHTML += `<input type="text" class="form-control myinput"  value="" name="telefonos[`+ntel+`]" id="telefonos[`+ntel+`]" onkeyup="validate_phone(`+ntel+`)" placeholder="Ingresa un numero actualizado"> <p class="warning-label" id="warnlab[`+ntel+`]"> Ingresa almenos 10 digitos </p>`;
     ntel=String( parseInt(ntel)+1);
 }
 function countDigits( str ) {

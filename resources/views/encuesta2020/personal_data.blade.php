@@ -24,48 +24,36 @@
                               @php   $count_correo=$count_correo+1; @endphp
                           
                     @endforeach
-                    <table>
-                        <tr>
-                            <td>
+                    
                             <input type="email" class="form-control"   name="correos[{{$count_correo}}]" placeholder="Ingresa un correo actualizado">
                             
-                            </td>
-                            <td>
-                                <button style="background-color:#3fbd3c" type="button" onclick="add_correo()"><i class="fa fa-plus" aria-hidden="true"></i> Agregar otro</button>
-                
-                            </td>
-                        </tr>
-                    </table>
+                            
+                                
                     <div id="correosDiv"></div>
+                    <button style="background-color:#3fbd3c" type="button" onclick="add_correo()"><i class="fa fa-plus" aria-hidden="true"></i> Agregar otro</button>
+                
                 </div>
                 <div class="form-group" >
                     <label for="exampleFormControlInput1">Números de Teléfono</label>
                     @php   $count_tel=0; @endphp
                     @foreach($Telefonos as $t)
                     
-                        <input type="text" class="form-control"  value="{{$t->telefono}}" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado"> 
-                        <p class="warning-label" id="warnlab[{{$count_tel}}]"> Ingresa almenos 10 digitos </p>
+                        <input type="text" class="form-control myinput"  value="{{$t->telefono}}" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado"> 
+                        <p class="warning-label" id="warnlab[{{$count_tel}}]"> Ingresa al menos 10 dígitos </p>
                          @php   $count_tel=$count_tel+1; @endphp
                     @endforeach
 
-                    <table>
-                        <tr>
-                            <td>
-                            <input type="text" class="form-control"  value="" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado"> 
-                            <p class="warning-label" id="warnlab[{{$count_tel}}]"> Ingresa almenos 10 digitos </p>
+                    
+                    <input type="text" class="form-control myinput"  value="" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado" > 
+                    <p class="warning-label" id="warnlab[{{$count_tel}}]"> Ingresa almenos 10 digitos </p>
                           
-                            </td>
-                            <td>
-                                
-                             <button style="background-color:#3fbd3c" type="button" onclick="add_tel()"> <i class="fa fa-plus" aria-hidden="true"></i> Agregar otro </button>
-                 
-                            </td>
-                        </tr>
-                    </table>
+                            
+                   
                   <div id="telefonosDiv">
 
                   </div>
-                   
+                  <button style="background-color:#3fbd3c" type="button" onclick="add_tel()"> <i class="fa fa-plus" aria-hidden="true"></i> Agregar otro </button>
+                 
                     <!-- //pasando este loop agregar un telefono obligatorio y mover aqui el boton de mas -->
                 </div>
                 <div class="form-group">
@@ -95,3 +83,10 @@
         </form>
 
 
+@push('css')
+<style>
+    .myinput{
+     width:35%;
+    }
+</style>
+@endpush

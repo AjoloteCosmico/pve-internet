@@ -41,11 +41,11 @@
 
 	<!--indicador lateral secciones-->
     <div class="blank_square sidebar">
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_a==1) completed @endif @if($section=='A') actual @endif"  > Sección 1: Sociodemográficos &nbsp; @if($Encuesta->sec_a==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
+            <div class="row"><a class="btn section-btn @if($Encuesta->sec_a==1) completed @endif @if($section=='A') actual @endif"  > Sección 1: Datos Sociodemográficos &nbsp; @if($Encuesta->sec_a==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
             <div class="row"><a class="btn section-btn @if($Encuesta->sec_e==1) completed @endif @if($section=='E') actual @endif"  > Sección 2: Actualización académica &nbsp; @if($Encuesta->sec_e==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_f==1) completed @endif @if($section=='F') actual @endif"  > Sección 3: Satisfaccion con la institución &nbsp; @if($Encuesta->sec_f==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
+            <div class="row"><a class="btn section-btn @if($Encuesta->sec_f==1) completed @endif @if($section=='F') actual @endif"  > Sección 3: Satisfacción con la institución &nbsp; @if($Encuesta->sec_f==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
             <div class="row"><a class="btn section-btn @if($Encuesta->sec_c==1) completed @endif @if($section=='C') actual @endif"  > Sección 4: Datos Laborales &nbsp; @if($Encuesta->sec_c==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif </a></div>
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_d==1) completed @endif @if($section=='D') actual @endif"  > Sección 5: Incorporación al mercado &nbsp; @if($Encuesta->sec_d==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
+            <div class="row"><a class="btn section-btn @if($Encuesta->sec_d==1) completed @endif @if($section=='D') actual @endif"  > Sección 5: Incorporación al mercado laboral &nbsp; @if($Encuesta->sec_d==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
             <div class="row"><a class="btn section-btn @if($Encuesta->sec_g==1) completed @endif @if($section=='G') actual @endif"  > Sección 6: Habilidades&nbsp; @if($Encuesta->sec_g==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif </a></div>
             
                  </div>
@@ -69,8 +69,8 @@
                 <script>
                     Swal.fire({
                 icon: "info",
-                title: "Mantente conectado a tu universidad!",
-                text: "Por favor Ingresa almenos un telefono y un correo que utilices regularmente",
+                title: "¡Mantente conectado a tu Universidad!",
+                text: "Por favor ingresa al menos un teléfono y un correo que utilices regularmente",
                 imageUrl: "/img/logos/logoUNAM-large-azul.png",
                 imageWidth: 150,
                 imageHeight: 150,

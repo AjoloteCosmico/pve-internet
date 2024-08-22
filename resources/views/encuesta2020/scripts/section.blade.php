@@ -9,6 +9,7 @@ var reactivos=[@foreach($Reactivos as $r) @if($r->type!='label') '{{$r->clave}}'
 //reactivos que no se contestan
 //se ira llenando dependiendo de las respuestas que bloqueen otros reactivos
 var no_se_contestan=[];
+
 //reactivos que permaneces bloqueados para evitar que se cconteste en desorden
 var aun_no=reactivos.slice(1,reactivos.lenght);//inicia como la lista de reactivos sin el primer elemento
 var  checked_boxes=[];//cajas que han sido seleccionadas?
@@ -22,10 +23,14 @@ var all_bloqueos=[
          "bloqueado":"{{$b->bloqueado}}"
     },
     @endforeach
+   
 ];
-// document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
+//  document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
 // console.log('aun no',aun_no);
 // console.log('reactivos:',reactivos);
+//En la seccion D, no se pregunta la imnportancia de los factores de contratacion si el egresado no es empleado (prof independiente, trabajador independiente, propietario)
+
+console.log(no_se_contestan);
 act_block();
 //Funciones Logicas y de bloqueo------------------------------------------------
 function dishable_reactive(react_name){
@@ -33,6 +38,7 @@ function dishable_reactive(react_name){
     $("#"+react_name).children().prop('disabled', true);
     $("#"+react_name).css("background-color","#e6e6e6");
     $("#"+react_name).css("color","#a6a6a6");
+    $("#"+react_name).value=' ';
     //top label (si es que existe)
     $("#"+react_name+'label').css("background-color","#e6e6e6");
     $("#"+react_name+'label').css("color","#a6a6a6");
@@ -79,6 +85,12 @@ function hable_reactive(react_name){
 }
 //act_block: bloquea todo lo que exista en los arreglos 'no se contestan' y 'aun no'
 function act_block(){
+    @if($section=='D'&&in_array($Encuesta->ncr6,array(2,3,6)))
+    console.log('pushing to no se contestan');
+    if(!no_se_contestan.includes('ndr3')){
+       no_se_contestan.push("ndr3",'ndr8','ndr4','ndr9','ndr5','ndr10','ndr6','ndr11','ndr7','ndr12','ndr12a','ndr12b','ndr12c','ndr13a'); 
+    }
+    @endif
     console.log('Actualizando--------------------');
     for (var i = 0; i < reactivos.length; i++) {
             if(no_se_contestan.includes(reactivos[i])||aun_no.includes(reactivos[i])){
@@ -127,15 +139,18 @@ function optionWasClicked(react_name,for_block,involucrados,option_key=0){
                }
             }
             console.log('resetenadno lista de no contestar');
-               console.log(involucrados);
-               console.log(no_se_contestan);
+               console.log('involucrados ',involucrados);
+               console.log('no se contestan ',no_se_contestan);
         }
         //si es que hay algo que bloquear lo hace
         console.log('agregando a no se contestan');
 
     if(for_block.length>0){
         for (var i = 0; i < for_block.length; i++) {
-        no_se_contestan.push(for_block[i]);
+            if(! no_se_contestan.includes(for_block[i])){
+                no_se_contestan.push(for_block[i]);
+            }
+        
         }
     }
 
@@ -199,7 +214,9 @@ if(involucrados.length>0){
     console.log('por bloquear: ', for_block);
 if(for_block.length>0){
     for (var i = 0; i < for_block.length; i++){
-        no_se_contestan.push(for_block[i].bloqueado);
+        if(! no_se_contestan.includes(for_block[i])){
+                no_se_contestan.push(for_block[i].bloqueado);
+            }
         }
     }
  find_next(react_name);
@@ -245,7 +262,9 @@ if(bloqueados.length>0){
     if(document.getElementById(react_name+'op'+String(op)).checked){
         
         for (var j = 0; j < bloqueados.length; j++) {
-            no_se_contestan.push(bloqueados[j]);
+            if(! no_se_contestan.includes(bloqueados[j])){
+                no_se_contestan.push(bloqueados[j]);
+            }
         }
         
         }else{
