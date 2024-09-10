@@ -27,7 +27,7 @@ class Enc20Controller extends Controller
         //HAY EGRESADO
         if($Egresado){
           //ES 2020
-          if($Egresado->anio_egreso==2020){
+          if($Egresado->anio_egreso==2020||$Egresado->muestra==3){
             //LLENA LOS DATOS CON LA TABLA DE EG Y COMIENZA ENC
             if(!$Encuesta){
                 $Encuesta=new respuestas20();
@@ -144,7 +144,7 @@ class Enc20Controller extends Controller
             $Planteles=' ';
             $Carreras=' ';
         }
-
+        
         $Comentario=''.Comentario::where('cuenta','=',$Encuesta->cuenta)->first();
         $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
         $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
@@ -187,7 +187,7 @@ class Enc20Controller extends Controller
 
     public function update_personal_data(Request $request,$id){
         $Encuesta=respuestas20::find($id);
-        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr2)->first();
+        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->first();
         // dd($Egresado,$Encuesta);
         $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
         $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
