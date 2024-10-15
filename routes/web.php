@@ -22,6 +22,11 @@ Route::post('/verify_cuenta_2020', [App\Http\Controllers\Enc20Controller::class,
 Route::get('/encuesta2020/section/{id}/{section}', [App\Http\Controllers\Enc20Controller::class, 'section'])->name('enc20.section');
 Route::post('/update_personal_data/{id}', [App\Http\Controllers\Enc20Controller::class, 'update_personal_data'])->name('enc20.update_personal_data');
 Route::post('/update_section/{id}', [App\Http\Controllers\Enc20Controller::class, 'update'])->name('enc20.update');
+
+//Encuesta Egresados destacados
+Route::get('/encuesta_destacados/{cuenta}', [App\Http\Controllers\EncDestacadosController::class, 'index'])->name('enc_destacados.index');
+Route::post('/encuesta_destacados_save', [App\Http\Controllers\EncDestacadosController::class, 'save'])->name('enc_destacados.save');
+
 Route::get('/', function () {
     return redirect(route('login'));
 });
