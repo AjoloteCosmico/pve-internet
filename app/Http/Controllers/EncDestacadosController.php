@@ -11,24 +11,28 @@ use App\Models\Egresado;
 use DB;
 class EncDestacadosController extends Controller
 {
-    public function index($cuenta){
-
-
-        $key='"E"Y\x03"';
-        $plaintext = "308106325";
-        $cipher = "aes-128-gcm";
-        if (in_array($cipher, openssl_get_cipher_methods()))
-        {
-            $ivlen = openssl_cipher_iv_length($cipher);
-            $iv = openssl_random_pseudo_bytes($ivlen);
-            $ciphertext = openssl_encrypt($plaintext, $cipher, $key, $options=0, $iv, $tag);
-            echo $ciphertext."\n";
-            //store $cipher, $iv, and $tag for decryption later
-            $original_plaintext = openssl_decrypt($ciphertext, $cipher, $key, $options=0, $iv, $tag);
-            echo $original_plaintext."\n";
+    public function index($id){
+        $dictEncrypt=Array(0=>'qw',
+        1=>'bv',
+        2=>'er',
+        3=>'tr',
+        4=>'xz',
+        5=>'lo',
+        6=>'rt',
+        7=>'yj',
+        8=>'lp',
+        9=>'zx');
+        $Crypted=(String)$id;
+        $Decrypt='';
+        for($i=0;$i<strlen($Crypted)/2;$i++) {
+            echo "\n";
+            echo $i*2, $i*2+2;
+            echo substr($Crypted, $i*2, 2);
+            $Decrypt=$Decrypt.(String)array_search(substr($Crypted, $i*2, 2),$dictEncrypt);
         }
-        $Egresado=Egresado::where('cuenta',$cuenta)->first();
+        $Egresado=Egresado::find((int)$Decrypt);
         if($Egresado){
+            $cuenta=$Egresado->cuenta;
             $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
             $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
            
@@ -41,10 +45,47 @@ class EncDestacadosController extends Controller
     }
 
     public function save(Request $request){
-        $rules=[];
+        $rules=[
+            'eg1' => ['required', 'max:255'],
+            'reason1' => ['required','max:255'],
+            
+            'eg2' => ['required', 'max:255'],
+            'reason2' => ['required','max:255'],
+            
+            'cuenta' => ['required','max:10'],
+        ];
         //validate rules
+        $request->validate($rules);
         $respuestas=new Destacado();
+        $Egresado=Egresado::find($request->Eg_id)->first();
+        $respuestas->cuenta=$Egresado->cuenta;
+        $respuestas->eg1=$request->eg1;
+        $respuestas->eg2=$request->eg2;
+        $respuestas->reason1=$request->reason1;
+        $respuestas->reason2=$request->reason2;
+        $respuestas->save();         
+        
 
+
+        foreach (Request::get('correos') as $correo) {
+            if($correo!="" && $Correos->where('correo',$correo)->count()==0){
+               $Correo= new Correo();
+               $Correo->cuenta=$Encuesta->cuenta;
+               $Correo->correo=$correo;
+               $Correo->status='en uso';
+               $Correo->save();
+            }
+           }
+   
+           foreach (Request::get('telefonos') as $telefono) {
+               if($telefono!="" && $Telefonos->where('telefono',$telefono)->count()==0){
+                  $Telefono= new Telefono();
+                  $Telefono->cuenta=$Encuesta->cuenta;
+                  $Telefono->telefono=$telefono;
+                  $Telefono->status='en uso';
+                  $Telefono->save();
+               }
+              }
 
     }
 }
