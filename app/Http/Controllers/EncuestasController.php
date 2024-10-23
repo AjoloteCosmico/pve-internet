@@ -91,8 +91,8 @@ class EncuestasController extends Controller{
 
         if(strlen(strval($request-> telcasa ))>0){
             $Encuesta-> telcasa  = $request-> telcasa ;}
-        if(strlen(strval($request-> TELCEL ))>0){
-            $Encuesta-> TELCEL  = $request-> TELCEL ;}
+        if(strlen(strval($request-> telcel ))>0){
+            $Encuesta-> telcel  = $request-> telcel ;}
         if(strlen(strval($request-> teltra ))>0){
             $Encuesta-> teltra  = $request-> teltra ;}
         if(strlen(strval($request-> exttra ))>0){
@@ -251,12 +251,12 @@ class EncuestasController extends Controller{
             $Encuesta-> ndr11  = $request-> ndr11 ;}
         if(strlen(strval($request-> ndr12 ))>0){
             $Encuesta-> ndr12  = $request-> ndr12 ;}
-        if(strlen(strval($request-> NDR12A ))>0){
-            $Encuesta-> NDR12A  = $request-> NDR12A ;}
+        if(strlen(strval($request-> ndr12a ))>0){
+            $Encuesta-> ndr12a  = $request-> ndr12a ;}
         if(strlen(strval($request-> NDR12B ))>0){
             $Encuesta-> NDR12B  = $request-> NDR12B ;}
-        if(strlen(strval($request-> NDR12C ))>0){
-            $Encuesta-> NDR12C  = $request-> NDR12C ;}
+        if(strlen(strval($request-> ndr12c ))>0){
+            $Encuesta-> ndr12c  = $request-> ndr12c ;}
         if(strlen(strval($request-> ndr13a ))>0){
             $Encuesta-> ndr13a  = $request-> ndr13a ;}
         if(strlen(strval($request-> ndr14 ))>0){
@@ -273,8 +273,8 @@ class EncuestasController extends Controller{
             $Encuesta-> ndr19  = $request-> ndr19 ;}
         if(strlen(strval($request-> ner1 ))>0){
             $Encuesta-> ner1  = $request-> ner1 ;}
-        if(strlen(strval($request-> NER1A ))>0){
-            $Encuesta-> NER1A  = $request-> NER1A ;}
+        if(strlen(strval($request-> ner1a ))>0){
+            $Encuesta-> ner1a  = $request-> ner1a ;}
         if(strlen(strval($request-> ner2 ))>0){
             $Encuesta-> ner2  = $request-> ner2 ;}
         if(strlen(strval($request-> ner3 ))>0){
@@ -549,12 +549,12 @@ class EncuestasController extends Controller{
             $Encuesta-> ngr45_a  = $request-> ngr45_a ;}
         if(strlen(strval($request-> ngr45otra ))>0){
             $Encuesta-> ngr45otra  = $request-> ngr45otra ;}
-        if(strlen(strval($request-> CONOCE ))>0){
-            $Encuesta-> CONOCE  = $request-> CONOCE ;}
-        if(strlen(strval($request-> CUE_CRE ))>0){
-            $Encuesta-> CUE_CRE  = $request-> CUE_CRE ;}
-        if(strlen(strval($request-> UTILIZA ))>0){
-            $Encuesta-> UTILIZA  = $request-> UTILIZA ;}
+        if(strlen(strval($request-> conoce ))>0){
+            $Encuesta-> conoce  = $request-> conoce ;}
+        if(strlen(strval($request-> cue_cre ))>0){
+            $Encuesta-> cue_cre  = $request-> cue_cre ;}
+        if(strlen(strval($request-> utiliza ))>0){
+            $Encuesta-> utiliza  = $request-> utiliza ;}
         if(strlen(strval($request-> nrx ))>0){
             $Encuesta-> nrx  = $request-> nrx ;}
         if(strlen(strval($request-> nrxx ))>0){
@@ -622,7 +622,7 @@ class EncuestasController extends Controller{
     }
 
     public function show_14($id){
-        $Encuesta=respuestas14::where('REGISTRO','=',$id)->first();
+        $Encuesta=respuestas14::where('registro','=',$id)->first();
         if(!$Encuesta){
             dd('o_o');
             return Redirect::back();
