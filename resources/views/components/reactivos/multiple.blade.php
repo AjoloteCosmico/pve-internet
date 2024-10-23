@@ -1,7 +1,7 @@
 
 <div class="container" name="{{$Reactivo->clave}}" style="width: 45vmax">
 seleccione una o varias opciones
-@foreach($Opciones->sortBy('order')  as $o)
+@foreach($Opciones->sortBy('orden')  as $o)
 
     <div class="row">
         <div class="col">
