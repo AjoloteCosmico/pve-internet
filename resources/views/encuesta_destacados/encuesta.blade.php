@@ -63,34 +63,34 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 
                  </div>
                  <div style="padding-right:10vh;padding-left:10vh;">
-                <form action="{{ route('enc_destacados.save')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('enc_destacados.save',$Egresado->id)}}" method="POST" enctype="multipart/form-data">
                    @csrf    
                    <h1 class="black_text" style="color:#002b7a; font-size:2.6vh">Quiero nominar a <b>LA EGRESADA:</b> </h1>
                    <div class="form-group">
                     <label for="exampleFormControlInput1">Nombre</label> <br>
-                    <input type="text" id="exampleFormControlInput1" style="border:3px solid #0f0f0f;font-size:2.8vh;width:70%" name='eg1'>
+                    <input type="text" id="exampleFormControlInput1" style="border:3px solid #0f0f0f;font-size:2.8vh;width:70%" name='eg1' value="{{old('eg1')}}">
 
                  <h2 class="black_text" style='color:#002b7a; font-size:2.6vh'>Puesto que considero que su labor ha marcado una diferencia por los siguientes motivos:</h2>
              
                    <div class="form-group">
                    <label for="exampleFormControlInput1">Razones para la nominación</label> <br>
-                    <textarea type="text" class="form-control" id="exampleFormControlInput1" style="border:3px solid #0f0f0f;font-size:2.1vh; width:70%" max='200' name='reason1' ></textarea>
+                    <textarea type="text" class="form-control" id="exampleFormControlInput1" style="border:3px solid #0f0f0f;font-size:2.1vh; width:70%" max='200' name='reason1' value="{{old('reason1')}}"></textarea>
                 </div>
                 <h1 class="black_text" style="color:#002b7a; font-size:2.6vh"> y al <b>EGRESADO:</b> </h1>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Nombre</label> <br>
-                    <input type="text" id="exampleFormControlInput1" style="border:3px solid #0f0f0f;font-size:2.8vh;width:70%" name='eg2'>
+                    <input type="text" id="exampleFormControlInput1" style="border:3px solid #0f0f0f;font-size:2.8vh;width:70%" name='eg2' value="{{old('eg2')}}">
 
                  <h2 class="black_text" style='color:#002b7a; font-size:2.6vh'>Puesto que considero que su labor ha marcado una diferencia por los siguientes motivos:</h2>
              
                    <div class="form-group">
                    <label for="exampleFormControlInput1">Razones para la nominación</label> <br>
-                    <textarea type="text" class="form-control" id="exampleFormControlInput1" style="border:3px solid #0f0f0f;font-size:2.1vh; width:70%" name='reason2'></textarea>
+                    <textarea type="text" class="form-control" id="exampleFormControlInput1" style="border:3px solid #0f0f0f;font-size:2.1vh; width:70%" name='reason2' value="{{old('reason2')}}"></textarea>
                 </div>
                 <br>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Confirma tu numero de cuenta <p>*******{{substr($cuenta,-2)}}</p> para saber que eres tu </label>
-                    <input type="text" class="form-control" name="cuenta" id="exampleFormControlInput1" >
+                    <input type="text" class="form-control" name="cuenta" id="exampleFormControlInput1" value="{{old('cuenta')}}">
                 </div>
                
         <br><br>

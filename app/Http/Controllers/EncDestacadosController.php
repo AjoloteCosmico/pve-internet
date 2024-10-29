@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+use Request;
+// use Illuminate\Http\Request;
 
 use App\Models\Destacado;
 use App\Models\Correo;
 use App\Models\Telefono;
 use App\Models\Egresado;
+
 use DB;
 class EncDestacadosController extends Controller
 {
@@ -25,9 +26,9 @@ class EncDestacadosController extends Controller
         $Crypted=(String)$id;
         $Decrypt='';
         for($i=0;$i<strlen($Crypted)/2;$i++) {
-            echo "\n";
-            echo $i*2, $i*2+2;
-            echo substr($Crypted, $i*2, 2);
+            // echo "\n";
+            // echo $i*2, $i*2+2;
+            // echo substr($Crypted, $i*2, 2);
             $Decrypt=$Decrypt.(String)array_search(substr($Crypted, $i*2, 2),$dictEncrypt);
         }
         $Egresado=Egresado::find((int)$Decrypt);
@@ -44,7 +45,7 @@ class EncDestacadosController extends Controller
         return view('encuesta_destacados.encuesta',compact('cuenta','Telefonos','Correos','Egresado'));
     }
 
-    public function save(Request $request){
+    public function save(Request $request,$id){
         $rules=[
             'eg1' => ['required', 'max:255'],
             'reason1' => ['required','max:255'],
@@ -55,14 +56,15 @@ class EncDestacadosController extends Controller
             'cuenta' => ['required','max:10'],
         ];
         //validate rules
-        $request->validate($rules);
+        Request::validate($rules);
         $respuestas=new Destacado();
-        $Egresado=Egresado::find($request->Eg_id)->first();
-        $respuestas->cuenta=$Egresado->cuenta;
-        $respuestas->eg1=$request->eg1;
-        $respuestas->eg2=$request->eg2;
-        $respuestas->reason1=$request->reason1;
-        $respuestas->reason2=$request->reason2;
+        $Egresado=Egresado::find(Request::get('Eg_id'))->first();
+        $respuestas->cuenta_r=Request::get('cuenta');
+        $respuestas->eg_id=$Egresado->id;
+        $respuestas->eg1=Request::get('eg1');
+        $respuestas->eg2=Request::get('eg2');
+        $respuestas->reason1=Request::get('reason1');
+        $respuestas->reason2=Request::get('reason2');
         $respuestas->save();         
         
 
@@ -86,6 +88,7 @@ class EncDestacadosController extends Controller
                   $Telefono->save();
                }
               }
-
+              return view('encuesta2020.terminar');
     }
+    
 }

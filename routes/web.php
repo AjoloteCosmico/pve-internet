@@ -25,15 +25,13 @@ Route::controller(Enc20Controller::class)->group(function(){
     Route::post('/update_section/{id}','update')->name('enc20.update');
 });
 
-
 //Encuesta Egresados destacados
 Route::get('/encuesta_destacados/{cuenta}', [App\Http\Controllers\EncDestacadosController::class, 'index'])->name('enc_destacados.index');
-Route::post('/encuesta_destacados_save', [App\Http\Controllers\EncDestacadosController::class, 'save'])->name('enc_destacados.save');
+Route::post('/encuesta_destacados_save/{id}', [App\Http\Controllers\EncDestacadosController::class, 'save'])->name('enc_destacados.save');
 
 Route::get('/', function () {
     return redirect(route('enc.inicio',[2020]));
 });
-
 
 Auth::routes();
 Route::group(['middleware' => ['auth']], function()
