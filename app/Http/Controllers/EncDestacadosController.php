@@ -47,18 +47,33 @@ class EncDestacadosController extends Controller
 
     public function save(Request $request,$id){
         $rules=[
-            'eg1' => ['required', 'max:255'],
-            'reason1' => ['required','max:255'],
+            'eg1' => 'required|max:255',
+            'reason1' => 'required|max:255',
+            'eg2' => 'required|max:255',
+            'reason2' => 'required|max:255',
+            'cuenta' => 'required|max:10'];
+        $messages=['eg1.required'=>'EL Nombre del egresado es necesario para la nominación',
+                   'eg1.max:255'=> 'Nombre demasiado largo',
+                   'reason1.required'=>'Debe ingresar almenos una razon para nominar a este egresado',
+                   'reason1.max:255'=>'mucho texto',
             
-            'eg2' => ['required', 'max:255'],
-            'reason2' => ['required','max:255'],
+            'eg2.required'=>'EL Nombre del egresado es necesario para la nominación',
+            'eg2.max:255'=> 'Nombre demasiado largo',
+            'reason2.required'=>'Debe ingresar almenos una razon para nominar a este egresado',
+            'reason2.max:255'=>'mucho texto',
             
-            'cuenta' => ['required','max:10'],
+            'cuenta.required'=>'por favor ingrese su numero de cuenta',
+            'cuenta.max:10'=>'la cuenta solo debe tener 10 caracteres'
         ];
+        
         //validate rules
-        Request::validate($rules);
+        Request::validate($rules,$messages);
         $respuestas=new Destacado();
         $Egresado=Egresado::find(Request::get('Eg_id'))->first();
+
+        $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
+        $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
+       
         $respuestas->cuenta_r=Request::get('cuenta');
         $respuestas->eg_id=$Egresado->id;
         $respuestas->eg1=Request::get('eg1');
@@ -68,11 +83,10 @@ class EncDestacadosController extends Controller
         $respuestas->save();         
         
 
-
         foreach (Request::get('correos') as $correo) {
             if($correo!="" && $Correos->where('correo',$correo)->count()==0){
                $Correo= new Correo();
-               $Correo->cuenta=$Encuesta->cuenta;
+               $Correo->cuenta=$Egresado->cuenta;
                $Correo->correo=$correo;
                $Correo->status='en uso';
                $Correo->save();
@@ -82,7 +96,7 @@ class EncDestacadosController extends Controller
            foreach (Request::get('telefonos') as $telefono) {
                if($telefono!="" && $Telefonos->where('telefono',$telefono)->count()==0){
                   $Telefono= new Telefono();
-                  $Telefono->cuenta=$Encuesta->cuenta;
+                  $Telefono->cuenta=$Egresado->cuenta;
                   $Telefono->telefono=$telefono;
                   $Telefono->status='en uso';
                   $Telefono->save();
