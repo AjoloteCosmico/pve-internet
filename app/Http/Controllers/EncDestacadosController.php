@@ -32,6 +32,8 @@ class EncDestacadosController extends Controller
             $Decrypt=$Decrypt.(String)array_search(substr($Crypted, $i*2, 2),$dictEncrypt);
         }
         $Egresado=Egresado::find((int)$Decrypt);
+        $Egresado->enc_destacados=$Egresado->enc_destacados+1;
+        $Egresado->save();
         if($Egresado){
             $cuenta=$Egresado->cuenta;
             $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
