@@ -31,6 +31,7 @@ class EncDestacadosController extends Controller
             // echo substr($Crypted, $i*2, 2);
             $Decrypt=$Decrypt.(String)array_search(substr($Crypted, $i*2, 2),$dictEncrypt);
         }
+        //Identificar si ha entrado a la pagina
         $Egresado=Egresado::find((int)$Decrypt);
         $Egresado->enc_destacados=$Egresado->enc_destacados+1;
         $Egresado->save();

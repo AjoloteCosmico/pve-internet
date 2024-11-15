@@ -51,7 +51,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
     <div class="blank_square" id="rlist">
 
                  <div class="texto-encuesta">
-                 Estimad@ <b> @if($Egresado){{$Egresado->nombre}} {{$Egresado->paterno}}@endif </b>:
+                 <b>Estimad@  Egresad@ </b>:
                  <hr>
                  <br>
                  En el marco del 40 aniversario del Programa de Vinculación con los Egresados, Queremos reconocer a <b>cuatro egresadas o egresados que han dejado una huella</b>, no solo en su profesión, sino también en nuestra sociedad, representando los valores de nuestra Universidad con su trabajo y compromiso.
