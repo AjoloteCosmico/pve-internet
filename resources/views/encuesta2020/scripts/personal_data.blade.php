@@ -1,7 +1,8 @@
 <script>
+@isset($Correos)
 var ncorreos="{{$Correos->count()+1}}";
 var ntel="{{$Telefonos->count()+1}}";
-
+@endisset
 function add_correo(){
     console.log('ejecutando funcion');
     

@@ -64,7 +64,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 
                  </div>
                  <div style="padding-right:10vh;padding-left:10vh;">
-                <form action="{{ route('enc_destacados.save',$Egresado->id)}}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('enc_destacados.save')}}" method="POST" enctype="multipart/form-data">
                    @csrf    
                    <h1 class="black_text" style="color:#002b7a; font-size:2.6vh">Quiero nominar a <b>LA EGRESADA:</b> </h1>
                    <div class="form-group">
@@ -102,7 +102,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Confirma tu numero de cuenta <p>*******{{substr($cuenta,-2)}}</p> para saber que eres tu </label>
+                    <label for="exampleFormControlInput1">Confirma tu numero de cuenta para saber que eres tu </label>
                     @error('cuenta')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -116,7 +116,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
             <div class="texto-encuesta">
             Para el programa de seguimiento de egresados es muy importante manenernos en comunicación con usted, por favor actualice sus datos de contacto, para que la universidad continue a la vanguardia de sus egresados, sus datos personales estan protegidos y puede consultar aquí el <a href="http://www.pveaju.unam.mx/avisodeprivacidad"><b>Aviso de Provacidad</b></a>
             </div>
-                <div class="form-group">
+                {{--<div class="form-group">
                     <label for="exampleFormControlInput1">Nombre</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" @if($Egresado) value="{{$Egresado->nombre}} {{$Egresado->paterno}} {{$Egresado->materno}}" @endif disabled style="background-color:#868b94;">
                 </div>
@@ -124,20 +124,13 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Fecha de nacimiento</label>
                     <input type="date" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->fec_nac}}" disabled style="background-color:#868b94">
-                </div>
+                </div>--}}
                
                 <div class="form-group" >
                     <label for="exampleFormControlInput1">Correos</label>
                     @php   $count_correo=0; @endphp
-                @if($Correos)
-                    @foreach($Correos as $c)
-                    
-                            <input type="email" class="form-control"  value="{{$c->correo}}" name="correos[{{$count_correo}}]">
-                              @php   $count_correo=$count_correo+1; @endphp
-                          
-                    @endforeach
-                @endif    
-                            <input type="email" class="form-control"   name="correos[{{$count_correo}}]" placeholder="Ingresa un correo actualizado">
+                 
+                    <input type="email" class="form-control"   name="correos[{{$count_correo}}]" placeholder="Ingresa un correo actualizado">
                             
                             
                     <div id="correosDiv"></div>
@@ -147,14 +140,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
                 <div class="form-group" >
                     <label for="exampleFormControlInput1">Números de Teléfono</label>
                     @php   $count_tel=0; @endphp
-                @if($Telefonos)
-                    @foreach($Telefonos as $t)
-                    
-                        <input type="text" class="form-control myinput"  value="{{$t->telefono}}" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado"> 
-                        <p class="warning-label" id="warnlab[{{$count_tel}}]"> Ingresa al menos 10 dígitos </p>
-                         @php   $count_tel=$count_tel+1; @endphp
-                    @endforeach
-                @endif
+               
                     
                     <input type="text" class="form-control myinput"  value="" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado" > 
                     <p class="warning-label" id="warnlab[{{$count_tel}}]"> Ingresa almenos 10 digitos </p>
@@ -165,7 +151,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
                  
                     <!-- //pasando este loop agregar un telefono obligatorio y mover aqui el boton de mas -->
                 </div>
-               <input type="text" name='Eg_id' hidden value="{{$Egresado->id}}" >
+              {{--<input type="text" name='Eg_id' hidden value="{{$Egresado->id}}" >--}} 
                 <center>
             <button id="final-button" class="btn blue_button" type="submit"> Guardar y enviar</button>
 

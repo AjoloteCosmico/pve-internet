@@ -26,8 +26,8 @@ Route::controller(Enc20Controller::class)->group(function(){
 });
 
 //Encuesta Egresados destacados
-Route::get('/encuesta_destacados/{cuenta}', [App\Http\Controllers\EncDestacadosController::class, 'index'])->name('enc_destacados.index');
-Route::post('/encuesta_destacados_save/{id}', [App\Http\Controllers\EncDestacadosController::class, 'save'])->name('enc_destacados.save');
+Route::get('/encuesta_destacados', [App\Http\Controllers\EncDestacadosController::class, 'index'])->name('enc_destacados.index');
+Route::post('/encuesta_destacados_save', [App\Http\Controllers\EncDestacadosController::class, 'save'])->name('enc_destacados.save');
 
 Route::get('/', function () {
     return redirect(route('enc.inicio',[2020]));
