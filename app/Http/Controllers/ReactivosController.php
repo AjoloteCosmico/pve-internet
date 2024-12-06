@@ -28,12 +28,9 @@ class ReactivosController extends Controller
             ->where('clave_reactivo','=',$Reactivo->clave)->get();
            
             if($Reactivo->archtype){
-                
                 $Opciones=Option::where('reactivo',$Reactivo->archtype)->get();
-                
             }else{
-                $Opciones=Option::where('reactivo',$Reactivo->clave)->orderBy('clave', 'ASC')->get();
-                
+                $Opciones=Option::where('reactivo',$Reactivo->clave)->orderBy('clave', 'ASC')->get();   
             }
         
             // return view('components.reactivos.option',compact('Reactivo','Opciones','Bloqueos'));
