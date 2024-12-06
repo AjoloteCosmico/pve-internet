@@ -58,7 +58,7 @@
         <br>
         <span style="font-size:1.5vmax"><b>Cuenta: </b>{{$Encuesta->cuenta}} </span>
         <br>
-        <span style="font-size:1.5vmax"><b>Fecha de encuesta: </b> {{now()}}</span>
+        <span style="font-size:1.5vmax"><b>Fecha de encuesta: </b> {{now()->modify('-6 hours')}}</span>
     </p>
     <br><br>
     <p class="texto2">
