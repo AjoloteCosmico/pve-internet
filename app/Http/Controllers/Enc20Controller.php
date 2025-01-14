@@ -291,7 +291,7 @@ class Enc20Controller extends Controller
         $Encuesta->save();
         $Egresado->save();
         if($Encuesta->completed==1){
-           return view('encuesta2020.terminar');
+           return view('encuesta2020.terminar',compact('Encuesta'));
         }else{
 
         }

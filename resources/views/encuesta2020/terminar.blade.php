@@ -53,6 +53,13 @@
     <p class="subtitulo">
         <span style="color: #e6af2b"><b>¡AGRADECEMOS SU PARTICIPACIÓN!</b></span>
     </p>
+    <p class="subtitulo">
+        <span style="font-size:1.5vmax" ><b>Alumno: </b> {{$Encuesta->nombre}} {{$Encuesta->paterno}} {{$Encuesta->materno}}</span>
+        <br>
+        <span style="font-size:1.5vmax"><b>Cuenta: </b>{{$Encuesta->cuenta}} </span>
+        <br>
+        <span style="font-size:1.5vmax"><b>Fecha de encuesta: </b> {{now()->modify('-6 hours')}}</span>
+    </p>
     <br><br>
     <p class="texto2">
         Los resultados obtenidos servirán para contribuir al mejoramiento de esta Máxima Casa de Estudios
