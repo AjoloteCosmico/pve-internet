@@ -207,7 +207,7 @@ class Enc20Controller extends Controller
             $Correo= new Correo();
             $Correo->cuenta=$Encuesta->cuenta;
             $Correo->correo=$correo;
-            $Correo->status='en uso';
+            $Correo->status=13;
             $Correo->save();
          }
         }
@@ -217,7 +217,7 @@ class Enc20Controller extends Controller
                $Telefono= new Telefono();
                $Telefono->cuenta=$Encuesta->cuenta;
                $Telefono->telefono=$telefono;
-               $Telefono->status='en uso';
+               $Telefono->status=13;
                $Telefono->save();
             }
            }
