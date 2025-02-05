@@ -20,7 +20,7 @@ class Enc20Controller extends Controller
     }
 
     public function verify(Request $request){
-        
+
         $cuenta=Request::get('cuenta');
         $Egresado=Egresado::where('cuenta',$cuenta)->first();
         $Encuesta=respuestas20::where('cuenta',$cuenta)->first();
@@ -102,7 +102,7 @@ class Enc20Controller extends Controller
                         $Encuesta->nombre=Request::get('nombre');
                         $Encuesta->paterno=Request::get('paterno');
                         $Encuesta->materno=Request::get('materno');
-                        $Encuesta->gen_dgae=Request::get('anio');
+                        $Encuesta->gen_dgae=Request::get('anio_egreso');
                         $Encuesta->completed=0;
                         $Encuesta->save();
                     }

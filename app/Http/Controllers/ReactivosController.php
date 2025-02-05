@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Reactivo;
 use App\Models\Option;
@@ -45,8 +44,7 @@ class ReactivosController extends Controller
             $Bloqueos=DB::table('bloqueos')->join('reactivos','bloqueos.bloqueado','reactivos.clave')
             ->where('clave_reactivo','=',$Reactivo->clave)->get();
         //    dd($Bloqueos->where('valor',18)->count());
-            return view('components.reactivos.multiple',compact('Reactivo','Opciones','Bloqueos'));
-           
+            return view('components.reactivos.multiple',compact('Reactivo','Opciones','Bloqueos'));   
         }
     }
 }

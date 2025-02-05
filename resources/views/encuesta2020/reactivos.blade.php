@@ -16,7 +16,7 @@ use \App\Http\Controllers\ReactivosController;
                 @else
                    <h3 id="{{$reactivo->clave.'-redact'}}">  @if($reactivo->child!=1 && $reactivo->type!='label') {{$reactivo->orden}} .- @endif {{$reactivo->description}}</h3>
                 @endif
-
+                
                 @if($reactivo->extra_label)
                     <h4>{{$reactivo->extra_label}} </h4>
                 @endif
