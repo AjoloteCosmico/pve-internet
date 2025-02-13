@@ -219,7 +219,6 @@ class PosgradoController extends Controller
         if(($Encuesta->sec_pa==1)&&($Encuesta->sec_pb==1)&&($Encuesta->sec_pc==1)&&($Encuesta->sec_pd==1)&&($Encuesta->sec_pe==1)){
             $Encuesta->completed=1;
             $Encuesta->aplica=111;
-            $Encuesta->ncr21_a=$Encuesta->ncr21;
             $Encuesta->fec_capt=now()->modify('-6 hours') ;
             $Egresado->status=2; //i.e encuestado via Internet
 
