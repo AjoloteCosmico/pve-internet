@@ -229,7 +229,7 @@ class PosgradoController extends Controller
         $Encuesta->save();
         $Egresado->save();
         if($Encuesta->completed==1){
-           return view('encuesta_posgrado.terminar',compact('Encuesta'));
+           return view('encuestaPosgrado.terminar',compact('Encuesta'));
         }else{
 
         }
