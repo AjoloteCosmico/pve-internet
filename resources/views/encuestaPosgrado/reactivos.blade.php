@@ -3,13 +3,14 @@ use \App\Http\Controllers\ReactivosController;
 @endphp
 <h1 class="black_text"> {{$NombreSeccion}}</h1>
 
-<form action="{{ route('enc20.update',$Encuesta->registro)}}" method="POST" enctype="multipart/form-data" id="main_form">
+<form action="{{ route('enc_posgrado.update',$Encuesta->registro)}}" method="POST" enctype="multipart/form-data" id="main_form">
                    @csrf    
                    <input type="text" name="{{'sec_'.strtolower($Reactivos->first()->section)}}" value="1" hidden>
                    <input type="text" name="section" value="{{$Reactivos->first()->section}}" hidden>
                      
             @foreach($Reactivos as $reactivo)
                 <div id="{{$reactivo->clave}}" style="padding: 1.2vmax;  @if($reactivo->child==1) padding-left:4.4vmax !important @endif" >
+                {{$reactivo->clave}}
                 @if($reactivo->child==1) 
                    <h4 id="{{$reactivo->clave.'-redact'}}">  @if($reactivo->child!=1 && $reactivo->type!='label') {{$reactivo->orden}} .- @endif {{$reactivo->description}}</h4>
                 @else

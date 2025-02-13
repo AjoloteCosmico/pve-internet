@@ -22,7 +22,6 @@ class ReactivosController extends Controller
         }
         
         if($Reactivo->type=="option"){
-          
             $Bloqueos=DB::table('bloqueos')->join('reactivos','bloqueos.bloqueado','reactivos.clave')
             ->where('clave_reactivo','=',$Reactivo->clave)->get();
            

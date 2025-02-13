@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MuestrasController;
 
 use App\Http\Controllers\Enc20Controller;
+use App\Http\Controllers\PosgradoController;
 use App\Http\Controllers\CorreosController;
 use App\Http\Controllers\EncuestasController;
 /*
@@ -24,6 +25,14 @@ Route::controller(Enc20Controller::class)->group(function(){
     Route::post('/update_personal_data/{id}', 'update_personal_data')->name('enc20.update_personal_data');
     Route::post('/update_section/{id}','update')->name('enc20.update');
 });
+Route::controller(PosgradoController::class)->group(function(){
+    Route::get('/encuesta_posgrado', 'inicio')->name('enc_posgrado.inicio');
+    Route::post('/verify_cuenta_posgrado',  'verify')->name('enc_posgrado.verify');
+    Route::get('/encuesta_posgrado/section/{id}/{section}',  'section')->name('enc_posgrado.section');
+    Route::post('/update_personal_data_posgrado/{id}', 'update_personal_data')->name('enc_posgrado.update_personal_data');
+    Route::post('/update_section_posgrado/{id}','update')->name('enc_posgrado.update');
+});
+
 
 //Encuesta Egresados destacados
 Route::get('/encuesta_destacados', [App\Http\Controllers\EncDestacadosController::class, 'index'])->name('enc_destacados.index');
