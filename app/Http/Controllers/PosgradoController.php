@@ -138,7 +138,6 @@ class PosgradoController extends Controller
             $Egresado->plantel=Request::get('nbr3');
             $Egresado->carrera=Request::get('nbr2');
             $Egresado->save();
-            
 
         }
         foreach (Request::get('correos') as $correo) {

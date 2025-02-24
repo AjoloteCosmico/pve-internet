@@ -198,6 +198,7 @@ class Enc20Controller extends Controller
             $Encuesta->save();
             $Egresado->plantel=Request::get('nbr3');
             $Egresado->carrera=Request::get('nbr2');
+            $Egresado->anio_egreso=Request::get('anio_egreso');
             $Egresado->save();
             
 
