@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Request;
 use Illuminate\Support\Arr;
 use App\Models\respuestas20;
+use App\Models\respuestas16;
 use App\Models\Carrera;
 use App\Models\Correo;
 use App\Models\Telefono;
@@ -13,6 +14,7 @@ use App\Models\Opcion;
 use App\Models\multiple_option_answer;
 use App\Models\Comentario;
 use DB;
+
 class Enc20Controller extends Controller
 {
     public function inicio($type){
@@ -50,7 +52,27 @@ class Enc20Controller extends Controller
             }
 
 
-          }else{
+          }
+          if($Egresado->anio_egreso==2016&&$Egresado->act_suvery==1){
+            //llena los datos de la tabla y comienza la encuesta
+            if(!$Encuesta){
+                $Encuesta=new respuestas16();
+                $Encuesta->cuenta=$cuenta;
+                $Encuesta->nombre=$Egresado->nombre;
+                $Encuesta->paterno=$Egresado->paterno;
+                $Encuesta->materno=$Egresado->materno;
+                $Encuesta->nbr2=$Egresado->carrera;
+                $Encuesta->nbr3=$Egresado->plantel;
+                $Encuesta->completed=0;
+                $Encuesta->save();
+            }
+            //Comenzar encuesta 2016
+            if($Encuesta->completed!=1){
+                return redirect()->route('enc16.section',[$Encuesta->registro,'personal_data']);}
+                else{
+                    return redirect()->route('enc16.inicio','2016')->with('message','realized');
+                }
+        }else{
           //NO ES 2020
             if(Request::get('type')=='general'){
                  //TYPE=GENERAL
@@ -118,6 +140,8 @@ class Enc20Controller extends Controller
                }
              }      
     }
+
+
 
     public function section($id,$section){
         $Encuesta=respuestas20::find($id);
