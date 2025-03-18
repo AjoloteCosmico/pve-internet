@@ -80,13 +80,25 @@
             @else
                 @include('encuesta2020.scripts.section')
             @endif
+
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script>
+console.log('inicializar tippy');
+  tippy('#cuadritonar81', {
+    placement: 'top',
+  });
+</script>
  @endpush
 
  @push('css')
+ <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css">
+
  <style>
    .swal2-popup {
   font-size: 1.6rem !important;
   font-family: sans-serif;
 }
  </style>
+
  @endpush

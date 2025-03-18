@@ -35,8 +35,6 @@ class Enc20Controller extends Controller
                 $Encuesta->nombre=$Egresado->nombre;
                 $Encuesta->paterno=$Egresado->paterno;
                 $Encuesta->materno=$Egresado->materno;
-                $Encuesta->nombre=$Egresado->nombre;
-                $Encuesta->nombre=$Egresado->nombre;
                 $Encuesta->nbr2=$Egresado->carrera;
                 $Encuesta->nbr3=$Egresado->plantel;
                 $Encuesta->gen_dgae=2020;
@@ -200,8 +198,6 @@ class Enc20Controller extends Controller
             $Egresado->carrera=Request::get('nbr2');
             $Egresado->anio_egreso=Request::get('anio_egreso');
             $Egresado->save();
-            
-
         }
         foreach (Request::get('correos') as $correo) {
          if($correo!="" && $Correos->where('correo',$correo)->count()==0){
