@@ -7,6 +7,8 @@ use App\Http\Controllers\Enc20Controller;
 use App\Http\Controllers\PosgradoController;
 use App\Http\Controllers\CorreosController;
 use App\Http\Controllers\EncuestasController;
+use App\Http\Controllers\Enc16Controller;
+
 /*
 |--------------------------------------------------------------------------|
 | Web Routes                                                               |
@@ -32,6 +34,16 @@ Route::controller(PosgradoController::class)->group(function(){
     Route::post('/update_personal_data_posgrado/{id}', 'update_personal_data')->name('enc_posgrado.update_personal_data');
     Route::post('/update_section_posgrado/{id}','update')->name('enc_posgrado.update');
 });
+
+Route::controller(Enc16Controller::class)->group(function(){
+    Route::get('/encuesta_actualizacion/{type}', 'inicio')->name('enc16.inicio');
+    Route::post('/verify_cuenta_2016', 'verify')->name('enc16.verify');
+    Route::get('/encuesta2016/section/{id}/{section}', 'section')->name('enc16.section');
+    Route::post('/update_personal_data/{id}', 'update_personal_data')->name('enc_posgrado.update_personal_data');
+    Route::post('/update_section/{id}','update')->name('enc_posgrado.update');
+});
+
+
 
 
 //Encuesta Egresados destacados

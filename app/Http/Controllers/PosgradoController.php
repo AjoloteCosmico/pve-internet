@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers;
 use Request;
 use Illuminate\Support\Arr;
@@ -36,8 +35,6 @@ class PosgradoController extends Controller
                 $Encuesta->nombre=$Egresado->nombre;
                 $Encuesta->paterno=$Egresado->paterno;
                 $Encuesta->materno=$Egresado->materno;
-                $Encuesta->nombre=$Egresado->nombre;
-                $Encuesta->nombre=$Egresado->nombre;
                 $Encuesta->carrera=$Egresado->carrera;
                 $Encuesta->plantel=$Egresado->plantel;
              
