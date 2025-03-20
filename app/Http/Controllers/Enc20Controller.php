@@ -175,9 +175,11 @@ class Enc20Controller extends Controller
         if($section!='personal_data'){
             $Bloqueos=DB::table('bloqueos')->join('reactivos','bloqueos.clave_reactivo','reactivos.clave')
             ->where('reactivos.section','=',$section)
-            ->where('bloqueos.bloqueado','like','n'.strtolower($section).'%')
+            // ->where('bloqueos.bloqueado','like','n'.strtolower($section).'%')
             ->get();
             $Reactivos=Reactivo::where('section',$section)->orderBy('orden')->get();
+            
+            $Bloqueos=$Bloqueos->whereIn('bloqueado',$Reactivos->unique('clave')->pluck('clave')->toArray());
         }else{
             $Reactivos="";
             $Bloqueos="";
