@@ -174,7 +174,9 @@ class Enc20Controller extends Controller
         $Coment=Comentario::where('cuenta','=',$Encuesta->cuenta)->first();
         if($section!='personal_data'){
             $Bloqueos=DB::table('bloqueos')->join('reactivos','bloqueos.clave_reactivo','reactivos.clave')
-            ->where('reactivos.section','=',$section)->where('bloqueos.bloqueado','like','n'.strtolower($section).'%')->get();
+            ->where('reactivos.section','=',$section)
+            ->where('bloqueos.bloqueado','like','n'.strtolower($section).'%')
+            ->get();
             $Reactivos=Reactivo::where('section',$section)->orderBy('orden')->get();
         }else{
             $Reactivos="";
