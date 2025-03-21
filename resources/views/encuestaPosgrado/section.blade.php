@@ -64,7 +64,7 @@
 @push('js')
 
 @if($section=='personal_data')
-                @include('encuestaPosgrado.scripts.personal_data')
+                @include('scripts.personal_data')
 
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                 <script>
@@ -79,7 +79,7 @@
                 });
                 </script>
             @else
-                @include('encuestaPosgrado.scripts.section')
+                @include('scripts.section')
             @endif
  @endpush
 

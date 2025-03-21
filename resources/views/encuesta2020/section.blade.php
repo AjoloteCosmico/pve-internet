@@ -63,7 +63,7 @@
 @push('js')
 
 @if($section=='personal_data')
-                @include('encuesta2020.scripts.personal_data')
+                @include('scripts.personal_data')
 
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                 <script>
@@ -78,7 +78,7 @@
                 });
                 </script>
             @else
-                @include('encuesta2020.scripts.section')
+                @include('scripts.section')
             @endif
 
 <script src="https://unpkg.com/@popperjs/core@2"></script>

@@ -136,17 +136,186 @@ class Enc16Controller extends Controller
     }
 
 
+    public function section($id,$section){
+        $Encuesta=respuestas16::find($id);
+        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr2)->first();
+        $Carrera=" ";
+        $Plantel=" ";
+        if($Encuesta->aplica2==1){
+            $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->first();
+            //se envia lista de planteles
+            $Planteles=Carrera::select('clave_plantel','plantel')->distinct()->get();
+
+            $Carreras=Carrera::all();
+            if($Encuesta->nbr2){
+                $Carrera=Carrera::where('clave_carrera','=',$Encuesta->nbr2)->first()->carrera;
+                $Plantel=Carrera::where('clave_plantel','=',$Encuesta->nbr3)->first()->plantel;
+            }
+        }else{
+            $Carrera=Carrera::where('clave_carrera','=',$Egresado->carrera)->first()->carrera;
+            $Plantel=Carrera::where('clave_plantel','=',$Egresado->plantel)->first()->plantel;
+            $Planteles=' ';
+            $Carreras=' ';
+        }
+
+        $Comentario=''.Comentario::where('cuenta','=',$Encuesta->cuenta)->first();
+        $Telefonos=Telefono::where('cuenta','=',$Egresado->cuenta)->get();
+        $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();
+
+        $Coment=Comentario::where('cuenta','=',$Encuesta->cuenta)->first();
+        if($section!='personal_data'){
+            $Bloqueos = DB::table('bloqueos')->join('reactivos', 'bloqueos.clave_reactivo', '=', 'reactivos.clave')
+            ->whereIn('reactivos.section', [$section, 'act' . $section])
+            ->where('reactivos.rules', '=', 'act')
+            ->orderBy('orden')
+            ->get();
+
+            //$Bloqueos=DB::table('bloqueos')->join('reactivos','bloqueos.clave_reactivo','reactivos.clave')
+            //->where('reactivos.section','=',$section)->get();
+            //$Reactivos=Reactivo::where('section',$section)->orderBy('orden')->get();
 
 
+            $Reactivos=Reactivo::whereIn('section', [$section,'act'.$section])->where('rules', 'act')->orderBy('orden')->get();
+        }else{
+            $Reactivos="";
+            $Bloqueos="";
+        }
+        $NombreSeccion="";
+        switch ($section){
+            case 'A':
+                $NombreSeccion="SECCIÓN 1: Datos sociodemograficos";
+                break;
+            case 'E':
+                $NombreSeccion="SECCIÓN 2: Actualización académica";
+                break;
+            case 'C':
+                $NombreSeccion="SECCIÓN 4: Datos Laborales";
+                break;
+            case 'D':
+                $NombreSeccion="SECCIÓN 5: Incorporación al mercado";
+                break;
+            case 'F':
+                $NombreSeccion="SECCIÓN 3: Titulación";
+                break;
+            case 'G':
+                $NombreSeccion="SECCIÓN 6: Habilidsdes desarrolladas";
+                break;
+        }
 
 
+        return view('encuesta2016.section',
+                     compact('Encuesta','Carrera','Plantel','Egresado',
+                            'Telefonos','Correos','section','Reactivos',
+                            'Bloqueos','NombreSeccion','Planteles','Carreras'));
+    }
+
+    public function update_personal_data(Request $request,$id){
+        $Encuesta=respuestas16::find($id);
+        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->first();
+        $Telefonos=Telefono::where('cuenta',$Encuesta->cuenta)->get();
+        $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();
+
+        if($Encuesta->aplica2==1){
+            $Encuesta->nbr2=Request::get('nbr2');
+            $Encuesta->nbr3=Request::get('nbr3');
+            $Encuesta->save();
+            $Egresado->plantel=Request::get('nbr3');
+            $Egresado->carrera=Request::get('nbr2');
+            $Egresado->anio_egreso=Request::get('anio_egreso');
+            $Egresado->save();
+            
+        }
+        foreach (Request::get('correos') as $correo){
+            if($correo!="" && $Correos->where('correo',$correo)->count()==0){
+                $Correo= new Correo();
+                $Correo->cuenta=$Encuesta->cuenta;
+                $Correo->correo=$correo;
+                $Correo->status=13;
+                $Correo->save();
+            }
+        }
+
+        foreach (Request::get('telefonos') as $telefono){
+            if($telefono!="" && $Telefonos->where('telefono',$telefono)->count()==0){
+                $Telefono= new Telefono();
+                $Telefono->cuenta=$Encuesta->cuenta;
+                $Telefono->telefono=$telefono;
+                $Telefono->status=13;
+                $Telefono->save();
+            }
+        }
+
+        $section='A';
+        foreach(array('A','E','F','C','D','G') as $sec){
+            $format_field='sec_'.strtolower($sec);
+
+            if($Encuesta->$format_field!=1){
+                $section=$sec;
+                break;
+            }
+        }
+        return redirect()->route('enc16.section',[$Encuesta->registro,$section]);
+    }
 
 
+    public function update(Request $request,$id){
 
+        $filteredArray = Arr::where(Request::except(['_token', '_method','btnradio','section']), function ($value, $key) {
+            return $value != "on";
+        });
 
+        $Encuesta=respuestas16::find($id);
+        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr2)->first();
+        $Encuesta->update($filteredArray);
+        $Encuesta->save();
 
+        $section=Request::get('section');
 
+        //iteracion sobre los reactivos multiples
+        $reactivos_multiples=Reactivo::where('type','multiple_option')->where('section',$section)->get();
+        foreach($reactivos_multiples as $r){
+            $clave=$r->clave;
+            $selected_options = Arr::where(Request::except(['_token', '_method','btnradio','section']), function ($value, $key) use($clave){
+                return str_contains($key,$clave.'opcion');
+            });
 
+            //borramos las respuestas seleccionadas anteriores (si las habia)
+            $affectedRows = multiple_option_answer::where('encuesta_id',$Encuesta->registro)
+               ->where('reactivo',$clave)->delete();
+            foreach($selected_options as $key => $value){
+                $answer=new multiple_option_answer();
+                $answer->encuesta_id=$Encuesta->registro;
+                $answer->reactivo=$clave;
+                $answer->clave_opcion=str_replace($clave.'opcion','',$key);
+                $answer->save();
+            }
+        }
 
+        foreach(array('A','E','F','C','D','G') as $sec){
+            $format_field='sec_'.strtolower($sec);
+
+            if($Encuesta->$format_field!=1){
+                $section=$sec;
+                break;
+            }
+        }
+        if(($Encuesta->sec_a==1)&&($Encuesta->sec_a==1)&&($Encuesta->sec_c==1)&&($Encuesta->sec_d==1)&&($Encuesta->sec_e==1)&&($Encuesta->sec_f==1)&&($Encuesta->sec_g==1)){
+            $Encuesta->completed=1;
+            $Encuesta->aplica=111;
+            $Encuesta->ncr21_a=$Encuesta->ncr21;
+            $Encuesta->fec_capt=now()->modify('-6 hours');
+            $Encuesta->status=2; //encuesta via internet
+        }else{
+            $Encuesta->completed=0;
+            $Egresado->status=10; //encuesta inconclusa
+        }
+
+        $Encuesta->save();
+        $Egresado->save();
+        if($Encuesta->completed==1){
+            return view('encuesta2016.terminar',compact('Encuesta'));
+        }
+        return redirect()->route('enc16.section',[$Encuesta->registro,$section]);
+    }
 
 }

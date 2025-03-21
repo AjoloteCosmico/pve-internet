@@ -87,7 +87,7 @@
    }
    //act_block: bloquea todo lo que exista en los arreglos 'no se contestan' y 'aun no'
    function act_block(){
-       @if($section=='D'&&in_array($Encuesta->ncr6,array(2,3,6)))
+       @if($section=='D'&&in_array($Encuesta->ncr6,array(2,3,6))&&($Egresado->act_suvery!=1))
        console.log('pushing to no se contestan');
        if(!no_se_contestan.includes('ndr3')){
           no_se_contestan.push("ndr3",'ndr8','ndr4','ndr9','ndr5','ndr10','ndr6','ndr11','ndr7','ndr12','ndr12a','ndr12b','ndr12c','ndr13a'); 
@@ -189,11 +189,14 @@
        console.log(element);  
        ventana.scrollTop= ventana.scrollTop+elementPosition-50-ventana.getBoundingClientRect().top;
    }
-   function optionWasSelected(react_name,involucrados){
+
+
+function optionWasSelected(react_name,involucrados){
    
    var val=document.getElementById('select-'+react_name).value;
    
-   for_block = all_bloqueos.filter(item => item.valor == val).filter(item => item.clave_reactivo == react_name);
+   for_block = all_bloqueos.filter(item => item.valor == parseInt(val)).filter(item => item.clave_reactivo == react_name);
+   console.log('reactivo: '+react_name);
    console.log('selected: ',val,for_block);
    last_index=reactivos.indexOf(react_name);
    last_index=last_index+1;
