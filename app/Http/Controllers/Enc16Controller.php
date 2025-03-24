@@ -268,7 +268,7 @@ class Enc16Controller extends Controller
         $filteredArray = Arr::where(Request::except(['_token', '_method','btnradio','section']), function ($value, $key) {
             return $value != "on";
         });
-        dd($filteredArray);
+        // dd($filteredArray);
         $Encuesta=respuestas16::find($id);
         $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr2)->first();
         $Encuesta->update($filteredArray);
