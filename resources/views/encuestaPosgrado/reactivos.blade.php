@@ -21,7 +21,7 @@ use \App\Http\Controllers\ReactivosController;
                     <h4>{{$reactivo->extra_label}} </h4>
                 @endif
 
-            {{ReactivosController::chooseType($reactivo->id)}}
+            {{ReactivosController::chooseType($reactivo->id,$Reactivos)}}
             </div>
             @endforeach
             <div class="continuarBtn">

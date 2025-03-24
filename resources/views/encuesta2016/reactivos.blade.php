@@ -6,7 +6,7 @@ use \App\Http\Controllers\ReactivosController;
 
 <form action="{{ route('enc16.update',$Encuesta->registro)}}" method="POST" enctype="multipart/form-data" id="main_form">
                    @csrf    
-                   <input type="text" name="{{'sec_'.strtolower($Reactivos->first()->section)}}" value="1" hidden>
+                   <input type="text" name="{{'sec_'.strtolower($section)}}" value="1" hidden>
                    <input type="text" name="section" value="{{$Reactivos->first()->section}}" hidden>
                      
             @foreach($Reactivos as $reactivo)
@@ -23,7 +23,7 @@ use \App\Http\Controllers\ReactivosController;
                 @endif
             
 
-            {{ReactivosController::chooseType($reactivo->id)}}
+            {{ReactivosController::chooseType($reactivo->id,$Reactivos)}}
             </div>
             @endforeach
             <div class="continuarBtn">

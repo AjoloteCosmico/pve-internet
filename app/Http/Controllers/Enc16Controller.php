@@ -177,6 +177,8 @@ class Enc16Controller extends Controller
 
             $Reactivos=Reactivo::whereIn('section', [$section,'act'.$section])->where('rules', 'act')->orderBy('act_order')->get();
             
+            $Bloqueos=$Bloqueos->whereIn('bloqueado',$Reactivos->unique('clave')->pluck('clave')->toArray());
+            $Bloqueos=$Bloqueos->whereIn('clave_reactivo',$Reactivos->unique('clave')->pluck('clave')->toArray());
             
             
         }else{
@@ -266,7 +268,7 @@ class Enc16Controller extends Controller
         $filteredArray = Arr::where(Request::except(['_token', '_method','btnradio','section']), function ($value, $key) {
             return $value != "on";
         });
-
+        dd($filteredArray);
         $Encuesta=respuestas16::find($id);
         $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr2)->first();
         $Encuesta->update($filteredArray);

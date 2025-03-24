@@ -8,7 +8,7 @@ use App\Models\Bloqueo;
 use DB;
 class ReactivosController extends Controller
 {
-    public static function chooseType($id){
+    public static function chooseType($id,$Reactivos){
         $Reactivo=Reactivo::find($id);
         if($Reactivo->type=="text"){
             return view('components.reactivos.text',compact('Reactivo'));
@@ -24,7 +24,10 @@ class ReactivosController extends Controller
         if($Reactivo->type=="option"){
             $Bloqueos=DB::table('bloqueos')->join('reactivos','bloqueos.bloqueado','reactivos.clave')
             ->where('clave_reactivo','=',$Reactivo->clave)->get();
-           
+            $Bloqueos=$Bloqueos->whereIn('bloqueado',$Reactivos->unique('clave')->pluck('clave')->toArray());
+            $Bloqueos=$Bloqueos->whereIn('clave_reactivo',$Reactivos->unique('clave')->pluck('clave')->toArray());
+            
+            
             if($Reactivo->archtype){
                 $Opciones=Option::where('reactivo',$Reactivo->archtype)->get();
             }else{
