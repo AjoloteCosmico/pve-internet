@@ -146,10 +146,10 @@
            }
            //si es que hay algo que bloquear lo hace
            console.log('agregando a no se contestan');
-   
+   //agregamos al if checar la pregunta nr1a
        if(for_block.length>0){
            for (var i = 0; i < for_block.length; i++) {
-               if(! no_se_contestan.includes(for_block[i])){
+               if(for_block[i] !== 'ner1a' && !no_se_contestan.includes(for_block[i])){
                    no_se_contestan.push(for_block[i]);
                }
            

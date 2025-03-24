@@ -164,7 +164,7 @@ class Enc16Controller extends Controller
 
         $Coment=Comentario::where('cuenta','=',$Encuesta->cuenta)->first();
         if($section!='personal_data'){
-            $Bloqueos = DB::table('bloqueos')->join('reactivos', 'bloqueos.clave_reactivo', '=', 'reactivos.clave')
+            $Bloqueos = DB::table('bloqueos')->join('reactivos', 'bloqueos.clave_reactivo', '=', 'reactivos.clave')->select('bloqueos.*')
             ->whereIn('reactivos.section', [$section, 'act' . $section])
             ->where('reactivos.rules', '=', 'act')
             ->orderBy('orden')
@@ -173,9 +173,12 @@ class Enc16Controller extends Controller
             //$Bloqueos=DB::table('bloqueos')->join('reactivos','bloqueos.clave_reactivo','reactivos.clave')
             //->where('reactivos.section','=',$section)->get();
             //$Reactivos=Reactivo::where('section',$section)->orderBy('orden')->get();
+           
 
-
-            $Reactivos=Reactivo::whereIn('section', [$section,'act'.$section])->where('rules', 'act')->orderBy('orden')->get();
+            $Reactivos=Reactivo::whereIn('section', [$section,'act'.$section])->where('rules', 'act')->orderBy('act_order')->get();
+            
+            
+            
         }else{
             $Reactivos="";
             $Bloqueos="";
@@ -201,7 +204,7 @@ class Enc16Controller extends Controller
                 $NombreSeccion="SECCIÓN 6: Habilidsdes desarrolladas";
                 break;
         }
-
+        // dd($Bloqueos->pluck('bloqueado'));
 
         return view('encuesta2016.section',
                      compact('Encuesta','Carrera','Plantel','Egresado',
