@@ -14,7 +14,7 @@ use App\Models\Opcion;
 use App\Models\multiple_option_answer;
 use App\Models\Comentario;
 use DB;
-
+use Endroid\QrCode\QrCode;
 class Enc16Controller extends Controller
 {
     public function inicio($type){
@@ -174,17 +174,16 @@ class Enc16Controller extends Controller
             //->where('reactivos.section','=',$section)->get();
             //$Reactivos=Reactivo::where('section',$section)->orderBy('orden')->get();
            
-
             $Reactivos=Reactivo::whereIn('section', [$section,'act'.$section])->where('rules', 'act')->orderBy('act_order')->get();
             
             $Bloqueos=$Bloqueos->whereIn('bloqueado',$Reactivos->unique('clave')->pluck('clave')->toArray());
             $Bloqueos=$Bloqueos->whereIn('clave_reactivo',$Reactivos->unique('clave')->pluck('clave')->toArray());
             
-            
         }else{
             $Reactivos="";
             $Bloqueos="";
         }
+
         $NombreSeccion="";
         switch ($section){
             case 'A':
@@ -206,7 +205,6 @@ class Enc16Controller extends Controller
                 $NombreSeccion="SECCIÓN 6: Habilidsdes desarrolladas";
                 break;
         }
-        // dd($Bloqueos->pluck('bloqueado'));
 
         return view('encuesta2016.section',
                      compact('Encuesta','Carrera','Plantel','Egresado',
@@ -318,6 +316,7 @@ class Enc16Controller extends Controller
         $Encuesta->save();
         $Egresado->save();
         if($Encuesta->completed==1){
+
             return view('encuesta2016.terminar',compact('Encuesta'));
         }
         return redirect()->route('enc16.section',[$Encuesta->registro,$section]);
