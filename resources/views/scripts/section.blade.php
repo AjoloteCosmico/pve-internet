@@ -27,7 +27,7 @@
        @endforeach
       
    ];
-   //  document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
+   document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
    // console.log('aun no',aun_no);
    // console.log('reactivos:',reactivos);
    //En la seccion D, no se pregunta la imnportancia de los factores de contratacion si el egresado no es empleado (prof independiente, trabajador independiente, propietario)
@@ -101,6 +101,8 @@
                    hable_reactive(reactivos[i])
                }
        }
+       
+   document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
    }
    
    function optionWasClicked(react_name,for_block,involucrados,option_key=0){
