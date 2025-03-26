@@ -42,15 +42,18 @@ class ReactivosController extends Controller
             }
         }
         if($Reactivo->type=="multiple_option"){
-            $Opciones=Option::where('reactivo',$Reactivo->clave)
-            ->whereHas('reactivo', function($query){
-                $query->where('rules', 'act')->orWhereNull('rules');
-            })
-            ->get();
-            //$Opciones=Option::where('reactivo',$Reactivo->clave)->get();
+
+            // $Opciones=Option::where('reactivo',$Reactivo->clave)
+            // ->whereHas('reactivo', function($query){
+            //     $query->where('rules', 'act')->orWhereNull('rules');
+            // })
+            // ->get();
+            
+            $Opciones=Option::where('reactivo',$Reactivo->clave)->get();
+            
             $Bloqueos = DB::table('bloqueos')->join('reactivos', 'bloqueos.clave_reactivo', '=', 'reactivos.clave')->select('bloqueos.*')
-            ->whereIn('reactivos.section', [$section, 'act' . $section])
-            ->where('reactivos.rules', '=', 'act')
+            ->where('reactivos.section', $Reactivo->section)
+            // ->where('reactivos.rules', '=', 'act')
             ->orderBy('orden')
             ->get();
             $Bloqueos=$Bloqueos->whereIn('bloqueado',$Reactivos->unique('clave')->pluck('clave')->toArray());
