@@ -168,6 +168,28 @@
        last_index=reactivos.indexOf(react_name);
        last_index=last_index+1;
        reactivo_siguiente=reactivos[last_index];
+
+       // Condición específica para nfr23
+       if (react_name === 'nfr23') {
+           var opciones = document.getElementsByClassName(react_name+'opcion'); 
+           for (var i = 0; i < opciones.length; i++) {
+            console.log('Opción ' + i + ' - checked:', opciones[i].checked);
+               if (opciones[i].checked===true && opciones[i].id === 'nfr23op18') {
+                console.log('Opción con valor 18 encontrada');
+                if (no_se_contestan.includes('nfr24')) {
+                    no_se_contestan.splice(no_se_contestan.indexOf('nfr24'), 1);
+                    break;
+                   }
+               }
+           }
+           //console.log('reactivo:', react_name);
+       }
+       
+       
+
+
+
+    
        //verificar que el sig reactivo no este en la lista
        console.log('start while');
        while((no_se_contestan.includes(reactivo_siguiente)) &&( last_index<reactivos.length)) {
@@ -186,6 +208,9 @@
        }else{
            var element = document.getElementById(reactivo_siguiente+'-redact');
        }
+
+   
+   
        var ventana = document.getElementById('rlist');
        var elementPosition = element.getBoundingClientRect().top;
        console.log(element);  
@@ -235,9 +260,10 @@ function optionWasSelected(react_name,involucrados){
        find_next(react_name);
    }
    
+   
    function optionChecked(react_name,op,bloqueados){
-    var element = document.getElementById(react_name+'label');
-    var opciones=document.getElementsByClassName(react_name+'opcion');
+    var element = document.getElementById(react_name+'label'); //elemento del reactivo
+    var opciones=document.getElementsByClassName(react_name+'opcion'); //opciones asociadas al reactivo
     almenos_una_opcion=0;
     console.log(opciones);
     for(i=0;i<opciones.length;i++){
@@ -248,6 +274,7 @@ function optionWasSelected(react_name,involucrados){
         }
     }
     
+    //checa si es que hay una opcion seleccionada
     if(almenos_una_opcion){
         //quitar el propio reactivo de la lista de aun no
         if(aun_no.includes(react_name)){aun_no.splice(aun_no.indexOf(react_name),1);}
@@ -262,6 +289,8 @@ function optionWasSelected(react_name,involucrados){
             element.disabled=true;
         }
     }
+
+    //opciones bloqueadas
     if(bloqueados.length>0){
         if(document.getElementById(react_name+'op'+String(op)).checked){
             
