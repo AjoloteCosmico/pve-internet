@@ -309,6 +309,7 @@ class Enc16Controller extends Controller
             $Encuesta->fec_capt=now()->modify('-6 hours');
             $Encuesta->status=2; //encuesta via internet
             $Egresado->status=2;
+            $Egresado->save();
         }else{
             $Encuesta->completed=0;
             $Egresado->status=10; //encuesta inconclusa
