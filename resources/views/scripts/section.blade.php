@@ -102,7 +102,7 @@
                }
        }
        
-   document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
+   //document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
    }
    
    function optionWasClicked(react_name,for_block,involucrados,option_key=0){
