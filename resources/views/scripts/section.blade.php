@@ -182,15 +182,8 @@
                    }
                }
            }
-           //console.log('reactivo:', react_name);
        }
        
-       
-
-
-
-    
-       //verificar que el sig reactivo no este en la lista
        console.log('start while');
        while((no_se_contestan.includes(reactivo_siguiente)) &&( last_index<reactivos.length)) {
            last_index=last_index+1;
@@ -273,7 +266,41 @@ function optionWasSelected(react_name,involucrados){
             almenos_una_opcion=1;
         }
     }
-    
+
+    //if para caso de nar3a
+
+    if(react_name === 'nar3a') {
+    for (var i = 0; i < opciones.length; i++){
+        
+        if(opciones[i].id === 'nar3aop1'){
+            // Si 'nar3aop1' está seleccionada, bloquea las otras opciones
+            if(opciones[i].checked === true){
+                for(var j = 0; j < opciones.length; j++){
+                    // Evitar bloquear la opción 'nar3aop1' misma
+                    if(opciones[j].id !== 'nar3aop1'){
+                        // Desmarcar otras opciones seleccionadas
+                        if(opciones[j].checked === true){
+                            opciones[j].checked = false;
+                        }
+                        // Bloquear otras opciones
+                        opciones[j].disabled = true;
+                    }
+                }
+            } 
+            // Si 'nar3aop1' NO está seleccionada, desbloquea las otras opciones
+            else {
+                for(var j = 0; j < opciones.length; j++){
+                    
+                    if(opciones[j].id !== 'nar3aop1'){
+                        opciones[j].disabled = false;
+                    }
+                }
+            }
+            break;
+        }
+    }
+}
+
     //checa si es que hay una opcion seleccionada
     if(almenos_una_opcion){
         //quitar el propio reactivo de la lista de aun no
@@ -312,6 +339,7 @@ function optionWasSelected(react_name,involucrados){
             
             }     
     }
+
    }
    
    function submitForm(){
