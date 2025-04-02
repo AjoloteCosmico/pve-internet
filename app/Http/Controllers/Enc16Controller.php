@@ -187,7 +187,7 @@ class Enc16Controller extends Controller
         $NombreSeccion="";
         switch ($section){
             case 'A':
-                $NombreSeccion="SECCIÓN 1: Datos sociodemograficos";
+                $NombreSeccion="SECCIÓN 1: Datos sociodemográficos";
                 break;
             case 'E':
                 $NombreSeccion="SECCIÓN 2: Actualización académica";
@@ -202,7 +202,7 @@ class Enc16Controller extends Controller
                 $NombreSeccion="SECCIÓN 3: Titulación";
                 break;
             case 'G':
-                $NombreSeccion="SECCIÓN 6: Habilidsdes desarrolladas";
+                $NombreSeccion="SECCIÓN 6: Habilidades desarrolladas";
                 break;
         }
 
