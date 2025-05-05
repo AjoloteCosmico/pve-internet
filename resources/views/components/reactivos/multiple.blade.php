@@ -5,8 +5,17 @@ seleccione una o varias opciones
 
     <div class="row">
         <div class="col">
-        <input type="checkbox" id="{{$Reactivo->clave.'op'.$o->clave}}" class="{{$Reactivo->clave}}opcion" name="{{$Reactivo->clave}}opcion{{$o->clave}}" onclick="optionChecked('{{$Reactivo->clave}}','{{$o->clave}}', [ @foreach($Bloqueos->where('valor',$o->clave) as $b) '{{$b->bloqueado}}', @endforeach ] )" />
-        <label>{{$o->descripcion}}</label>
+            <input type="checkbox" 
+                   id="{{$Reactivo->clave.'op'.$o->clave}}" 
+                   class="{{$Reactivo->clave}}opcion" 
+                   name="{{$Reactivo->clave}}opcion{{$o->clave}}" 
+                   onclick="optionChecked('{{$Reactivo->clave}}','{{$o->clave}}', [ @foreach($Bloqueos->where('valor',$o->clave) as $b) '{{$b->bloqueado}}', @endforeach ] )"
+                   data-tippy-size="jumbo"
+                   data-tippy-content="{{$option->help_info}}" /> 
+            <label data-tippy-size="jumbo"
+                   data-tippy-content="{{$option->help_info}}">
+                {{$o->descripcion}}
+            </label>
         </div>
     </div>
 @endforeach

@@ -137,6 +137,17 @@ select {
     font-size:1.3vmax;
     box-shadow: inset gray 2px 2px 5px ;
 }
+/* Cambiar el color de fondo de las opciones seleccionadas */
+select option:hover {
+    background-color: #f0f0f0; /* Cambia el color al pasar el cursor */
+    color: #333; /* Cambia el color del texto */
+}
+
+/* Cambiar el color de la opción seleccionada */
+select option:checked {
+    background-color: #007bff; /* Color de fondo para la opción seleccionada */
+    color: #fff; /* Color del texto */
+}
 
 button {
     background-color: #ba800d;
@@ -514,4 +525,91 @@ input[type="radio"] {
         min-height:2.5vmax;
         vertical-align: text-bottom;
         }
+}
+
+/* Estilo para el contenedor personalizado */
+.custom-select {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    font-family: Arial, sans-serif;
+}
+
+.select-header {
+    padding: 12px;
+    background: #f0f0f0;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.select-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 1000;
+}
+/*------------------------------- editadoooo----------------------*/
+.option-item {
+    padding: 12px;
+    cursor: pointer;
+    background-color: #28a745; /* Fondo verde */
+    color: white; /* Texto blanco */
+    border-bottom: 1px solid #eee;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.option-item:hover {
+    background-color: #218838; /* Fondo verde más oscuro al pasar el cursor */
+    transform: scale(1.02);
+}
+
+.option-item:hover .option-description {
+    opacity: 1;
+    max-height: 100px;
+}
+
+.option-description {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s;
+    font-size: 0.8em;
+    margin-top: 5px;
+    color: rgba(255,255,255,0.9);
+}
+.option-extra {
+    font-size: 0.8em;
+    margin-top: 5px;
+    color: white; /* Texto blanco */
+    font-style: italic;
+    display: none;
+}
+.option-item:hover .option-extra {
+    display: block; /* Mostrar al pasar el cursor */
+}
+
+.selected-value {
+    font-weight: bold;
+    color: #333;
+}
+
+.option-item.blocked {
+    background-color: #e0e0e0; /* Color gris para indicar bloqueo */
+    color: #a0a0a0; /* Texto deshabilitado */
+    cursor: not-allowed; /* Cursor de no permitido */
+    pointer-events: none; /* Deshabilitar interacción */
+}
+
+.option-item.blocked:hover {
+    background-color: #e0e0e0; /* Evitar cambios de color en hover */
+    color: #a0a0a0;
 }
