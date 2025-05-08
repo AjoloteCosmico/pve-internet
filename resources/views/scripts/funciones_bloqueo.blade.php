@@ -169,9 +169,13 @@ if(last_index>=reactivos.length){
     document.getElementById('monitor_reactivos_cerrrados').innerHTML=no_se_contestan;
 }
 
-function optionWasSelected(react_name,involucrados){
 
-    var val=document.getElementById('select-'+react_name).value;
+
+function optionWasSelected(react_name,involucrados, valorSelecionado){
+
+    var val = valorSeleccionado;
+
+    document.getElementById('input-' + react_name).value = val;
     
     for_block = all_bloqueos.filter(item => item.valor == val);
     console.log('selected: ',val,for_block);
@@ -230,6 +234,49 @@ if(last_index>=reactivos.length){
     ventana.scrollTop= ventana.scrollTop+elementPosition-50-ventana.getBoundingClientRect().top;
     document.getElementById('monitor_reactivos_cerrrados').innerHTML=no_se_contestan;
 }
+
+
+/** 
+function optionWasSelected(react_name, optionClave) {
+    console.log(`Opción seleccionada: Reactivo ${react_name}, Opción ${optionClave}`);
+
+    // Obtener el valor seleccionado o inicializarlo como 0
+    var val = optionClave || '0';
+
+    // Filtrar bloqueos relacionados
+    var for_block = all_bloqueos.filter(item => item.valor == parseInt(val) && item.clave_reactivo == react_name);
+    console.log('reactivo: ' + react_name);
+    console.log('selected: ', val, for_block);
+
+    // Si la opción seleccionada está bloqueada, no permitir la acción
+    if (for_block.length > 0) {
+        console.log('Esta opción está bloqueada.');
+        return;
+    }
+
+    // Actualizar la lista de reactivos desbloqueados
+    if (no_se_contestan.includes(react_name)) {
+        no_se_contestan.splice(no_se_contestan.indexOf(react_name), 1);
+    }
+
+    // Bloquear reactivos según las reglas
+    if (for_block.length > 0) {
+        for_block.forEach(block => {
+            if (!no_se_contestan.includes(block.bloqueado)) {
+                no_se_contestan.push(block.bloqueado);
+                dishable_reactive(block.bloqueado);
+            }
+        });
+    }
+
+    // Buscar el siguiente reactivo
+    find_next(react_name);
+}
+
+*/
+
+
+
 
 function MultipleOptionWasClicked(react_name){
     last_index=reactivos.indexOf(react_name);
@@ -377,5 +424,6 @@ function submitForm(){
 }
 
 for (var i = 1; i < reactivos.length; i++) { dishable_reactive(reactivos[i]);}
+
 
 </script>

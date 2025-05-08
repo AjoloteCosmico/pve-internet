@@ -137,7 +137,6 @@
         });
     });
 </script>
-
 @stack('js')
 </body>
 
