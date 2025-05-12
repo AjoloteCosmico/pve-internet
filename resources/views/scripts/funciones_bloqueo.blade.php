@@ -171,7 +171,7 @@ if(last_index>=reactivos.length){
 
 
 
-function optionWasSelected(react_name,involucrados, valorSelecionado){
+function optionWasSelected(react_name,involucrados, valorSeleccionado){
 
     var val = valorSeleccionado;
 
@@ -235,42 +235,133 @@ if(last_index>=reactivos.length){
     document.getElementById('monitor_reactivos_cerrrados').innerHTML=no_se_contestan;
 }
 
+function optionWasSelected(react_name,involucrados){
+
+var val=document.getElementById('select-'+react_name).value;
+
+for_block = all_bloqueos.filter(item => item.valor == val);
+console.log('selected: ',val,for_block);
+last_index=reactivos.indexOf(react_name);
+last_index=last_index+1;
+reactivo_siguiente=reactivos[last_index];
+if(involucrados.length>0){
+    for (var i = 0; i < involucrados.length; i++) {
+        if(no_se_contestan.includes(involucrados[i])){
+             no_se_contestan.splice(no_se_contestan.indexOf(involucrados[i]),1);
+             hable_reactive(involucrados[i]);
+           }
+        }
+        console.log('resetenadno lista de no contestar');
+           console.log(involucrados);
+           console.log(no_se_contestan);
+    }
+
+    console.log('agregando a no se contestan');
+    console.log('por bloquear: ', for_block);
+if(for_block.length>0){
+    for (var i = 0; i < for_block.length; i++){
+        no_se_contestan.push(for_block[i].bloqueado);
+        console.log(no_se_contestan);
+    console.log(no_se_contestan.includes(String(reactivo_siguiente)));
+    console.log('deshabilitando '+for_block[i].bloqueado)
+    dishable_reactive(for_block[i].bloqueado);
+        }
+    }
+
+console.log(for_block);
+console.log(for_block.length);
+console.log('start while')
+while((no_se_contestan.includes(reactivo_siguiente)) &&( last_index<reactivos.length)) {
+    
+    last_index=last_index+1;
+    console.log(last_index);
+    dishable_reactive(reactivo_siguiente);
+    reactivo_siguiente=reactivos[last_index];
+    console.log('el reactivo sig, por ahora, es '+reactivo_siguiente);
+}
+
+console.log('nreactivos',reactivos.length);
+console.log('reactivo siguiente',reactivo_siguiente);
+if(last_index>=reactivos.length){
+$("#final-button").removeAttr("disabled");
+var element = document.getElementById('final-button');
+}else{
+hable_reactive(reactivo_siguiente);
+var element = document.getElementById(reactivo_siguiente+'-redact');
+}
+var ventana = document.getElementById('rlist');
+var elementPosition = element.getBoundingClientRect().top;
+console.log(elementPosition+' POSICIONADO');
+console.log(element);  
+ventana.scrollTop= ventana.scrollTop+elementPosition-50-ventana.getBoundingClientRect().top;
+document.getElementById('monitor_reactivos_cerrrados').innerHTML=no_se_contestan;
+}
+
 
 /** 
-function optionWasSelected(react_name, optionClave) {
-    console.log(`Opción seleccionada: Reactivo ${react_name}, Opción ${optionClave}`);
 
-    // Obtener el valor seleccionado o inicializarlo como 0
-    var val = optionClave || '0';
+function optionWasSelected(react_name,involucrados, valorSeleccionado){
 
-    // Filtrar bloqueos relacionados
-    var for_block = all_bloqueos.filter(item => item.valor == parseInt(val) && item.clave_reactivo == react_name);
-    console.log('reactivo: ' + react_name);
-    console.log('selected: ', val, for_block);
+    var val = valorSeleccionado;
 
-    // Si la opción seleccionada está bloqueada, no permitir la acción
-    if (for_block.length > 0) {
-        console.log('Esta opción está bloqueada.');
-        return;
-    }
-
-    // Actualizar la lista de reactivos desbloqueados
-    if (no_se_contestan.includes(react_name)) {
-        no_se_contestan.splice(no_se_contestan.indexOf(react_name), 1);
-    }
-
-    // Bloquear reactivos según las reglas
-    if (for_block.length > 0) {
-        for_block.forEach(block => {
-            if (!no_se_contestan.includes(block.bloqueado)) {
-                no_se_contestan.push(block.bloqueado);
-                dishable_reactive(block.bloqueado);
+    document.getElementById('input-' + react_name).value = val;
+    
+    for_block = all_bloqueos.filter(item => item.valor == val);
+    console.log('selected: ',val,for_block);
+    last_index=reactivos.indexOf(react_name);
+    last_index=last_index+1;
+    reactivo_siguiente=reactivos[last_index];
+    if(involucrados.length>0){
+        for (var i = 0; i < involucrados.length; i++) {
+            if(no_se_contestan.includes(involucrados[i])){
+                 no_se_contestan.splice(no_se_contestan.indexOf(involucrados[i]),1);
+                 hable_reactive(involucrados[i]);
+               }
             }
-        });
+            console.log('resetenadno lista de no contestar');
+               console.log(involucrados);
+               console.log(no_se_contestan);
+        }
+
+        console.log('agregando a no se contestan');
+        console.log('por bloquear: ', for_block);
+    if(for_block.length>0){
+        for (var i = 0; i < for_block.length; i++){
+            no_se_contestan.push(for_block[i].bloqueado);
+            console.log(no_se_contestan);
+        console.log(no_se_contestan.includes(String(reactivo_siguiente)));
+        console.log('deshabilitando '+for_block[i].bloqueado)
+        dishable_reactive(for_block[i].bloqueado);
+            }
+        }
+
+    console.log(for_block);
+    console.log(for_block.length);
+    console.log('start while')
+    while((no_se_contestan.includes(reactivo_siguiente)) &&( last_index<reactivos.length)) {
+        
+        last_index=last_index+1;
+        console.log(last_index);
+        dishable_reactive(reactivo_siguiente);
+        reactivo_siguiente=reactivos[last_index];
+        console.log('el reactivo sig, por ahora, es '+reactivo_siguiente);
     }
 
-    // Buscar el siguiente reactivo
-    find_next(react_name);
+console.log('nreactivos',reactivos.length);
+console.log('reactivo siguiente',reactivo_siguiente);
+if(last_index>=reactivos.length){
+    $("#final-button").removeAttr("disabled");
+    var element = document.getElementById('final-button');
+    }else{
+    hable_reactive(reactivo_siguiente);
+    var element = document.getElementById(reactivo_siguiente+'-redact');
+}
+    var ventana = document.getElementById('rlist');
+    var elementPosition = element.getBoundingClientRect().top;
+    console.log(elementPosition+' POSICIONADO');
+    console.log(element);  
+    ventana.scrollTop= ventana.scrollTop+elementPosition-50-ventana.getBoundingClientRect().top;
+    document.getElementById('monitor_reactivos_cerrrados').innerHTML=no_se_contestan;
 }
 
 */

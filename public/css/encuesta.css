@@ -587,3 +587,24 @@ input[type="radio"] {
     font-weight: bold;
     color: #333;
 }
+.tippy-box[data-theme~='custom'] {
+    background-color: #ba800d; /* Fondo del recuadro */
+    color: #fff;               /* Color del texto */
+    border-radius: 6px;
+    font-size: 13px;
+    padding: 6px 10px;
+    box-shadow: 0 2px 8px rgb(186, 128, 13);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.option-item.selected {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.option-item.disabled {
+    background-color: #e6e6e6;
+    color: #a6a6a6;
+    pointer-events: none;
+    opacity: 0.6;
+}

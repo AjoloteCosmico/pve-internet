@@ -22,14 +22,15 @@
             class="option-item"
             data-valor="{{$option->clave}}"
             onmouseover="showMessage('{{ $option->help_info }}')" 
-            onclick="optionWasSelected('{{$Reactivo->clave}}', [@foreach($Bloqueos->unique('bloqueado') as $b) '{{$b->bloqueado}}', @endforeach], '{{$option->clave}}');"
+            onclick="optionWasSelected('{{$Reactivo->clave}}', [@foreach($Bloqueos->unique('bloqueado') as $b) '{{$b->bloqueado}}', @endforeach]);"
+            data-tippy-size="jumbo"
+            data-tippy-content="{{$option->help_info}}" 
             data-bloqueos='[@foreach($Bloqueos->unique("bloqueado") as $b) "{{ $b->bloqueado }}", @endforeach]'
         >
             {{$option->descripcion}}
             <div class="option-description">{{$option->help_info}}</div>
         </div>
         @endforeach
-
         <input type="hidden" name="{{ $Reactivo->clave }}" id="input-{{ $Reactivo->clave }}" value="">
     </div>
 </div>

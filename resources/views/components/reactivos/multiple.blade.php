@@ -11,9 +11,9 @@ seleccione una o varias opciones
                    name="{{$Reactivo->clave}}opcion{{$o->clave}}" 
                    onclick="optionChecked('{{$Reactivo->clave}}','{{$o->clave}}', [ @foreach($Bloqueos->where('valor',$o->clave) as $b) '{{$b->bloqueado}}', @endforeach ] )"
                    data-tippy-size="jumbo"
-                   data-tippy-content="{{$option->help_info}}" /> 
+                   data-tippy-content="{{$o->help_info}}" /> 
             <label data-tippy-size="jumbo"
-                   data-tippy-content="{{$option->help_info}}">
+                   data-tippy-content="{{$o->help_info}}">
                 {{$o->descripcion}}
             </label>
         </div>

@@ -34,9 +34,7 @@
    
    console.log(no_se_contestan);
    act_block();
-
-
- 
+   /** 
    //Funciones Logicas y de bloqueo------------------------------------------------
    function dishable_reactive(react_name){
        // console.log('deshabilitar '+react_name);
@@ -61,6 +59,133 @@
            cuad.style.backgroundColor = '#e6e6e6';
            cuad.style.color = '#a6a6a6';
        });
+   }
+   */
+
+
+   function dishable_reactive(react_name) {
+    console.log('Deshabilitando ' + react_name);
+
+    const container = document.getElementById(react_name);
+    if (container) {
+        container.style.pointerEvents = "none";
+        container.style.opacity = "0.6";
+        container.style.backgroundColor = "#e6e6e6";
+        container.style.color = "#a6a6a6";
+
+        // Deshabilitar opciones dentro del contenedor
+        const options = container.querySelectorAll('.option-item');
+        options.forEach(opt => {
+            opt.style.pointerEvents = "none";
+            opt.style.opacity = "0.6";
+            opt.style.backgroundColor = "#E6E6E6";
+            opt.style.color = "#A6A6A6";
+            opt.disabled = true;
+        });
+    }
+
+    // Deshabilitar elementos adicionales
+    var cells = document.getElementsByClassName('op' + react_name);
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].disabled = true;
+    }
+
+    var els = document.getElementsByClassName("cuadrito-" + react_name);
+    Array.prototype.forEach.call(els, function (cuad) {
+        cuad.style.backgroundColor = '#e6e6e6';
+        cuad.style.color = '#a6a6a6';
+    });
+}
+
+/** 
+   function hable_reactive(react_name){
+       // console.log('habilitar '+react_name);
+       if($("#"+react_name).children().prop('disabled')){
+           var els = document.getElementsByClassName("cuadrito-"+react_name);
+       Array.prototype.forEach.call(els, function(cuad) {
+           cuad.style.backgroundColor = '#FFF';
+           cuad.style.color = '#000';
+       });
+       }
+       $("#"+react_name).children().prop('disabled', false);
+       $("#"+react_name).css("background-color","#ffffff");
+       $("#"+react_name).css("color","#000000");
+       //top label (si es que existe)
+       $("#"+react_name+'label').css("background-color","#ffffff");
+       $("#"+react_name+'label').css("color","#000000");
+       var cells = document.getElementsByClassName('op'+react_name); 
+       for (var i = 0; i < cells.length; i++) { 
+           cells[i].disabled = false;
+       }
+       var cells = document.getElementsByClassName(react_name+'opcion'); 
+       for (var i = 0; i < cells.length; i++) { 
+           cells[i].disabled = false;
+       }
+       
+   }
+*/
+function hable_reactive(react_name) {
+    console.log('Habilitando ' + react_name);
+
+    const container = document.getElementById(react_name);
+    if (container) {
+        container.style.pointerEvents = "auto";
+        container.style.opacity = "1";
+        container.style.backgroundColor = "#ffffff";
+        container.style.color = "#000000";
+
+        // Habilitar opciones dentro del contenedor
+        const options = container.querySelectorAll('.option-item');
+        options.forEach(opt => {
+            opt.style.pointerEvents = "auto";
+            opt.style.opacity = "1";
+            opt.style.backgroundColor = "#ffffff";
+            opt.style.color = "#000000";
+            opt.disabled = false;
+        });
+    }
+
+    // Habilitar elementos adicionales
+    var cells = document.getElementsByClassName('op' + react_name);
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].disabled = false;
+    }
+
+    var els = document.getElementsByClassName("cuadrito-" + react_name);
+    Array.prototype.forEach.call(els, function (cuad) {
+        cuad.style.backgroundColor = '#FFF';
+        cuad.style.color = '#000';
+    });
+}
+
+
+/**
+ * //Funciones Logicas y de bloqueo------------------------------------------------
+   function dishable_reactive(react_name){
+       // console.log('deshabilitar '+react_name);
+       $("#"+react_name).children().prop('disabled', true);
+       $("#"+react_name).css("background-color","#e6e6e6");
+       $("#"+react_name).css("color","#a6a6a6");
+       $("#"+react_name).value=' ';
+       //top label (si es que existe)
+       $("#"+react_name+'label').css("background-color","#e6e6e6");
+       $("#"+react_name+'label').css("color","#a6a6a6");
+       var cells = document.getElementsByClassName('op'+react_name); 
+       for (var i = 0; i < cells.length; i++) { 
+           cells[i].disabled = true;
+       }
+   
+       var cells = document.getElementsByClassName(react_name+'opcion'); 
+       for (var i = 0; i < cells.length; i++) { 
+           cells[i].disabled = true;
+       }
+       var els = document.getElementsByClassName("cuadrito-"+react_name);
+       Array.prototype.forEach.call(els, function(cuad) {
+           cuad.style.backgroundColor = '#e6e6e6';
+           cuad.style.color = '#a6a6a6';
+       });
+
+       //INICIA MODIFICACION-----------------------------------------------------------
        const container = document.getElementById(react_name);
        if (container) {
         container.style.pointerEvents = "none";
@@ -76,7 +201,6 @@
         });
     }
    }
-
 
 
    function hable_reactive(react_name){
@@ -102,6 +226,7 @@
        for (var i = 0; i < cells.length; i++) { 
            cells[i].disabled = false;
        }
+       //iNICIA MODIFICACION--------------------------------------------------------------------
        const container = document.getElementById(react_name);
        if (container) {
         // Restaurar estilos del contenedor
@@ -124,80 +249,8 @@
 
 
 
+   
 
-
-
-
-   /**
-   function dishable_reactive(react_name) {
-    console.log('Deshabilitar ' + react_name);
-
-    const container = document.getElementById('select-' + react_name);
-    if (container) {
-        container.style.backgroundColor = '#e6e6e6';
-        container.style.color = '#a6a6a6';
-        container.style.pointerEvents = 'none';
-
-        // Opcional: eliminar el valor seleccionado mostrado
-        const selected = container.previousElementSibling.querySelector('.selected-value');
-        if (selected) {
-            selected.textContent = 'Seleccione...';
-            selected.removeAttribute('data-value');
-        }
-
-        // Aplicar clase y estilo a cada opción individual
-        container.querySelectorAll('.option-item').forEach(option => {
-            option.classList.add('blocked');
-            option.style.pointerEvents = 'none';
-            option.style.opacity = '0.5';
-        });
-    }
-
-    // Deshabilitar otros elementos relacionados
-    ['op' + react_name, react_name + 'opcion'].forEach(cls => {
-        document.querySelectorAll('.' + cls).forEach(el => {
-            el.disabled = true;
-        });
-    });
-
-    // Cambiar estilo visual de cuadritos (si aplica)
-    document.querySelectorAll('.cuadrito-' + react_name).forEach(cuad => {
-        cuad.style.backgroundColor = '#e6e6e6';
-        cuad.style.color = '#a6a6a6';
-    });
-}
-
-
-
-
-function hable_reactive(react_name) {
-    console.log('Habilitar ' + react_name);
-
-    const container = document.getElementById('select-' + react_name);
-    if (container) {
-        container.style.backgroundColor = '#ffffff';
-        container.style.color = '#000000';
-        container.style.pointerEvents = 'auto';
-
-        // Restaurar opciones
-        container.querySelectorAll('.option-item').forEach(option => {
-            option.classList.remove('blocked');
-            option.style.pointerEvents = 'auto';
-            option.style.opacity = '1';
-        });
-    }
-
-    ['op' + react_name, react_name + 'opcion'].forEach(cls => {
-        document.querySelectorAll('.' + cls).forEach(el => {
-            el.disabled = false;
-        });
-    });
-
-    document.querySelectorAll('.cuadrito-' + react_name).forEach(cuad => {
-        cuad.style.backgroundColor = '#ffffff';
-        cuad.style.color = '#000000';
-    });
-}
 */
 
 
@@ -237,6 +290,7 @@ function hable_reactive(react_name) {
        Array.prototype.forEach.call(els, function(el) {
            el.style.backgroundColor = '#FFFFFF';
            el.style.color = '#000000';
+           console.log('cambiando color');
        });
        //Colorear el cuadro grande de la respuesta seleccionada de azul
        document.getElementById('cuadrito'+react_name+option_key).style.backgroundColor = '#002b7a';
@@ -326,11 +380,12 @@ function hable_reactive(react_name) {
        console.log(element);  
        ventana.scrollTop= ventana.scrollTop+elementPosition-50-ventana.getBoundingClientRect().top;
    }
-
-
-function optionWasSelected(react_name,involucrados){
-   
-   var val=document.getElementById('select-'+react_name).value;
+/** 
+//SE MODIFICAAAA
+function optionWasSelected(react_name,involucrados,){
+    
+    //var val = valorSeleccionado;
+    var val=document.getElementById('select-'+react_name).value;
    
    for_block = all_bloqueos.filter(item => item.valor == parseInt(val)).filter(item => item.clave_reactivo == react_name);
    console.log('reactivo: '+react_name);
@@ -362,6 +417,59 @@ function optionWasSelected(react_name,involucrados){
        }
     find_next(react_name);
    }
+*/
+function optionWasSelected(react_name, involucrados) {
+    // Obtener valor de la opción seleccionada
+    const optionsContainer = document.getElementById('select-' + react_name);
+    const selectedOption = optionsContainer.querySelector('.option-item:hover') || null;
+    if (!selectedOption) return;
+
+    const val = selectedOption.getAttribute('data-valor');
+
+    // Actualizar el input oculto con el valor seleccionado
+    document.getElementById('input-' + react_name).value = val;
+
+    // Buscar bloqueos relacionados con este valor y reactivo
+    const for_block = all_bloqueos
+        .filter(item => item.valor == parseInt(val))
+        .filter(item => item.clave_reactivo == react_name);
+
+    console.log('Reactivo:', react_name);
+    console.log('Valor seleccionado:', val);
+    console.log('Bloqueos aplicables:', for_block);
+
+    // Limpiar lista de no_se_contestan (desbloqueo de los involucrados)
+    if (involucrados.length > 0) {
+        involucrados.forEach(bloqueado => {
+            const idx = no_se_contestan.indexOf(bloqueado);
+            if (idx !== -1) {
+                no_se_contestan.splice(idx, 1);
+            }
+        });
+        console.log('Reseteando lista de no_se_contestan con involucrados:', involucrados);
+    }
+
+    // Quitar el reactivo actual de la lista de "aun no contestados"
+    const idx_aun = aun_no.indexOf(react_name);
+    if (idx_aun !== -1) {
+        aun_no.splice(idx_aun, 1);
+    }
+
+    // Aplicar nuevos bloqueos
+    if (for_block.length > 0) {
+        for_block.forEach(item => {
+            if (!no_se_contestan.includes(item.bloqueado)) {
+                no_se_contestan.push(item.bloqueado);
+            }
+        });
+        console.log('Agregando nuevos bloqueos:', for_block.map(fb => fb.bloqueado));
+    }
+
+    // Avanzar al siguiente reactivo
+    find_next(react_name);
+}
+
+
    
    //se activa al dar enter o presionar el boton de una entrada de texto abierto o numerico
    function unblockNext(react_name){
