@@ -568,8 +568,8 @@ input[type="radio"] {
 }
 
 .option-item:hover {
-    background-color: #f0f0f0;
-    cursor: pointer;
+    background-color: #002B7A;
+    
 }
 
 .option-item.selected {
