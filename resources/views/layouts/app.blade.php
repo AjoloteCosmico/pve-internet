@@ -133,6 +133,7 @@
                 option.addEventListener('click', () => {
                     selectOptions.querySelectorAll('.option-item').forEach(opt => {
                         opt.classList.remove('selected');
+                        opt.removeAttribute('style'); 
                     });
 
                     //Agregar la clase 'selected' al elemento seleccionado

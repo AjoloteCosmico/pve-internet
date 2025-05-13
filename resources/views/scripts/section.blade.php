@@ -13,7 +13,7 @@
    var no_se_contestan=[];
    
    //reactivos que permaneces bloqueados para evitar que se cconteste en desorden
-   var aun_no=reactivos.slice(1,reactivos.lenght);//inicia como la lista de reactivos sin el primer elemento
+   var aun_no=reactivos.slice(1,reactivos.length);//inicia como la lista de reactivos sin el primer elemento
    var  checked_boxes=[];//cajas que han sido seleccionadas?
    // Vaciamos la query de bloqueos a un array de objetos js
    var all_bloqueos=[
@@ -85,7 +85,11 @@
     }
 
     // Deshabilitar elementos adicionales
-    var cells = document.getElementsByClassName('op' + react_name);
+    var cells = document.getElementsByClassName('op'+react_name); 
+       for (var i = 0; i < cells.length; i++) { 
+           cells[i].disabled = true;
+       }
+    var cells = document.getElementsByClassName(react_name+'opcion');
     for (var i = 0; i < cells.length; i++) {
         cells[i].disabled = true;
     }
@@ -113,6 +117,7 @@
        //top label (si es que existe)
        $("#"+react_name+'label').css("background-color","#ffffff");
        $("#"+react_name+'label').css("color","#000000");
+       
        var cells = document.getElementsByClassName('op'+react_name); 
        for (var i = 0; i < cells.length; i++) { 
            cells[i].disabled = false;
@@ -139,14 +144,19 @@ function hable_reactive(react_name) {
         options.forEach(opt => {
             opt.style.pointerEvents = "auto";
             opt.style.opacity = "1";
-            opt.style.backgroundColor = "#ffffff";
-            opt.style.color = "#000000";
+            opt.style.backgroundColor = "#002B7A";
+            opt.style.color = "#FFF";
             opt.disabled = false;
         });
     }
 
     // Habilitar elementos adicionales
-    var cells = document.getElementsByClassName('op' + react_name);
+    var cells = document.getElementsByClassName('op'+react_name); 
+       for (var i = 0; i < cells.length; i++) { 
+           cells[i].disabled = false;
+       }
+
+    var cells = document.getElementsByClassName(react_name+'opcion');
     for (var i = 0; i < cells.length; i++) {
         cells[i].disabled = false;
     }
@@ -286,15 +296,18 @@ function hable_reactive(react_name) {
            document.getElementById(react_name+'op'+option_key).checked = true;
        }
        //Las respuestas no seleccionadas se colorean de blanco
-       var els = document.getElementsByClassName("cuadrito-"+react_name);
+       const els = document.getElementsByClassName("cuadrito-" + react_name);
        Array.prototype.forEach.call(els, function(el) {
-           el.style.backgroundColor = '#FFFFFF';
-           el.style.color = '#000000';
-           console.log('cambiando color');
-       });
+        el.classList.remove("cuadrito-selected");
+        el.classList.add("cuadrito-default");
+        console.log('cambiando a estilo default');
+        });
        //Colorear el cuadro grande de la respuesta seleccionada de azul
-       document.getElementById('cuadrito'+react_name+option_key).style.backgroundColor = '#002b7a';
-       document.getElementById('cuadrito'+react_name+option_key).style.color = '#FFFFFF';
+       const selected = document.getElementById("cuadrito" + react_name + option_key);
+       if (selected) {
+        selected.classList.remove("cuadrito-default");
+        selected.classList.add("cuadrito-selected");
+        }   
    
        //quitar de la lista de "aun no se contestan"
        if(aun_no.includes(react_name)){aun_no.splice(aun_no.indexOf(react_name),1);}

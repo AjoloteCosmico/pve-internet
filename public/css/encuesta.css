@@ -567,6 +567,16 @@ input[type="radio"] {
     transition: all 0.3s;
 }
 
+.option-item:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.option-item.selected {
+    background-color: #002B7A;
+    color: #fff;
+}
+
 .option-description {
     opacity: 0;
     max-height: 0;
@@ -576,13 +586,7 @@ input[type="radio"] {
     margin-top: 5px;
     color: rgba(255,255,255,0.9);
 }
-.option-extra {
-    font-size: 0.8em;
-    margin-top: 5px;
-    color: white; /* Texto blanco */
-    font-style: italic;
-    display: none;
-}
+
 .selected-value {
     font-weight: bold;
     color: #333;
@@ -597,14 +601,12 @@ input[type="radio"] {
     font-family: 'Montserrat', sans-serif;
 }
 
-.option-item.selected {
-    background-color: #007bff;
-    color: #fff;
+.cuadrito-selected {
+    background-color: #002B7A !important;
+    color: #fff !important;
 }
 
-.option-item.disabled {
-    background-color: #e6e6e6;
-    color: #a6a6a6;
-    pointer-events: none;
-    opacity: 0.6;
+.cuadrito-default {
+    background-color: #ffffff;
+    color: #000000;
 }
