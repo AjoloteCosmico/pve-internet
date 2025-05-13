@@ -34,33 +34,6 @@
    
    console.log(no_se_contestan);
    act_block();
-   /** 
-   //Funciones Logicas y de bloqueo------------------------------------------------
-   function dishable_reactive(react_name){
-       // console.log('deshabilitar '+react_name);
-       $("#"+react_name).children().prop('disabled', true);
-       $("#"+react_name).css("background-color","#e6e6e6");
-       $("#"+react_name).css("color","#a6a6a6");
-       $("#"+react_name).value=' ';
-       //top label (si es que existe)
-       $("#"+react_name+'label').css("background-color","#e6e6e6");
-       $("#"+react_name+'label').css("color","#a6a6a6");
-       var cells = document.getElementsByClassName('op'+react_name); 
-       for (var i = 0; i < cells.length; i++) { 
-           cells[i].disabled = true;
-       }
-   
-       var cells = document.getElementsByClassName(react_name+'opcion'); 
-       for (var i = 0; i < cells.length; i++) { 
-           cells[i].disabled = true;
-       }
-       var els = document.getElementsByClassName("cuadrito-"+react_name);
-       Array.prototype.forEach.call(els, function(cuad) {
-           cuad.style.backgroundColor = '#e6e6e6';
-           cuad.style.color = '#a6a6a6';
-       });
-   }
-   */
 
 
    function dishable_reactive(react_name) {
@@ -101,34 +74,7 @@
     });
 }
 
-/** 
-   function hable_reactive(react_name){
-       // console.log('habilitar '+react_name);
-       if($("#"+react_name).children().prop('disabled')){
-           var els = document.getElementsByClassName("cuadrito-"+react_name);
-       Array.prototype.forEach.call(els, function(cuad) {
-           cuad.style.backgroundColor = '#FFF';
-           cuad.style.color = '#000';
-       });
-       }
-       $("#"+react_name).children().prop('disabled', false);
-       $("#"+react_name).css("background-color","#ffffff");
-       $("#"+react_name).css("color","#000000");
-       //top label (si es que existe)
-       $("#"+react_name+'label').css("background-color","#ffffff");
-       $("#"+react_name+'label').css("color","#000000");
-       
-       var cells = document.getElementsByClassName('op'+react_name); 
-       for (var i = 0; i < cells.length; i++) { 
-           cells[i].disabled = false;
-       }
-       var cells = document.getElementsByClassName(react_name+'opcion'); 
-       for (var i = 0; i < cells.length; i++) { 
-           cells[i].disabled = false;
-       }
-       
-   }
-*/
+
 function hable_reactive(react_name) {
     console.log('Habilitando ' + react_name);
 
@@ -167,103 +113,6 @@ function hable_reactive(react_name) {
         cuad.style.color = '#000';
     });
 }
-
-
-/**
- * //Funciones Logicas y de bloqueo------------------------------------------------
-   function dishable_reactive(react_name){
-       // console.log('deshabilitar '+react_name);
-       $("#"+react_name).children().prop('disabled', true);
-       $("#"+react_name).css("background-color","#e6e6e6");
-       $("#"+react_name).css("color","#a6a6a6");
-       $("#"+react_name).value=' ';
-       //top label (si es que existe)
-       $("#"+react_name+'label').css("background-color","#e6e6e6");
-       $("#"+react_name+'label').css("color","#a6a6a6");
-       var cells = document.getElementsByClassName('op'+react_name); 
-       for (var i = 0; i < cells.length; i++) { 
-           cells[i].disabled = true;
-       }
-   
-       var cells = document.getElementsByClassName(react_name+'opcion'); 
-       for (var i = 0; i < cells.length; i++) { 
-           cells[i].disabled = true;
-       }
-       var els = document.getElementsByClassName("cuadrito-"+react_name);
-       Array.prototype.forEach.call(els, function(cuad) {
-           cuad.style.backgroundColor = '#e6e6e6';
-           cuad.style.color = '#a6a6a6';
-       });
-
-       //INICIA MODIFICACION-----------------------------------------------------------
-       const container = document.getElementById(react_name);
-       if (container) {
-        container.style.pointerEvents = "none";
-        container.style.opacity = "0.6";
-
-        // Deshabilita cada opción
-        const options = container.querySelectorAll('.option-item');
-        options.forEach(opt => {
-            opt.style.backgroundColor = "#e6e6e6";
-            opt.style.color = "#a6a6a6";
-            opt.style.pointerEvents = "none";
-            opt.style.opacity = "0.6";
-        });
-    }
-   }
-
-
-   function hable_reactive(react_name){
-       // console.log('habilitar '+react_name);
-       if($("#"+react_name).children().prop('disabled')){
-           var els = document.getElementsByClassName("cuadrito-"+react_name);
-       Array.prototype.forEach.call(els, function(cuad) {
-           cuad.style.backgroundColor = '#FFF';
-           cuad.style.color = '#000';
-       });
-       }
-       $("#"+react_name).children().prop('disabled', false);
-       $("#"+react_name).css("background-color","#ffffff");
-       $("#"+react_name).css("color","#000000");
-       //top label (si es que existe)
-       $("#"+react_name+'label').css("background-color","#ffffff");
-       $("#"+react_name+'label').css("color","#000000");
-       var cells = document.getElementsByClassName('op'+react_name); 
-       for (var i = 0; i < cells.length; i++) { 
-           cells[i].disabled = false;
-       }
-       var cells = document.getElementsByClassName(react_name+'opcion'); 
-       for (var i = 0; i < cells.length; i++) { 
-           cells[i].disabled = false;
-       }
-       //iNICIA MODIFICACION--------------------------------------------------------------------
-       const container = document.getElementById(react_name);
-       if (container) {
-        // Restaurar estilos del contenedor
-        container.style.pointerEvents = "auto";
-        container.style.opacity = "1";
-        container.style.backgroundColor = "#ffffff";
-        container.style.color = "#000000";
-
-        // Restaurar estilos y funcionalidad de las opciones
-        const options = container.querySelectorAll('.option-item');
-        options.forEach(opt => {
-            opt.style.backgroundColor = "#ffffff";
-            opt.style.color = "#000000";
-            opt.style.pointerEvents = "auto";
-            opt.style.opacity = "1";
-        });
-    }
-       
-   }
-
-
-
-   
-
-*/
-
-
 
    //act_block: bloquea todo lo que exista en los arreglos 'no se contestan' y 'aun no'
    function act_block(){
@@ -393,44 +242,9 @@ function hable_reactive(react_name) {
        console.log(element);  
        ventana.scrollTop= ventana.scrollTop+elementPosition-50-ventana.getBoundingClientRect().top;
    }
-/** 
-//SE MODIFICAAAA
-function optionWasSelected(react_name,involucrados,){
-    
-    //var val = valorSeleccionado;
-    var val=document.getElementById('select-'+react_name).value;
+
+
    
-   for_block = all_bloqueos.filter(item => item.valor == parseInt(val)).filter(item => item.clave_reactivo == react_name);
-   console.log('reactivo: '+react_name);
-   console.log('selected: ',val,for_block);
-   last_index=reactivos.indexOf(react_name);
-   last_index=last_index+1;
-   reactivo_siguiente=reactivos[last_index];
-   if(involucrados.length>0){
-       for (var i = 0; i < involucrados.length; i++) {
-           if(no_se_contestan.includes(involucrados[i])){
-                no_se_contestan.splice(no_se_contestan.indexOf(involucrados[i]),1);
-              }
-           }
-              console.log('resetenadno lista de no contestar');
-              console.log(involucrados);
-              console.log(no_se_contestan);
-       }
-       //quitar el propio reactivo de la lista de aun no
-       if(aun_no.includes(react_name)){aun_no.splice(aun_no.indexOf(react_name),1);}
-         
-       console.log('agregando a no se contestan');
-       console.log('por bloquear: ', for_block);
-   if(for_block.length>0){
-       for (var i = 0; i < for_block.length; i++){
-           if(! no_se_contestan.includes(for_block[i])){
-                   no_se_contestan.push(for_block[i].bloqueado);
-               }
-           }
-       }
-    find_next(react_name);
-   }
-*/
 function optionWasSelected(react_name, involucrados) {
     // Obtener valor de la opción seleccionada
     const optionsContainer = document.getElementById('select-' + react_name);
