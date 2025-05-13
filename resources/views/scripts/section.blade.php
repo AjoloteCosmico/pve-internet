@@ -62,6 +62,7 @@
    
    function hable_reactive(react_name){
        // console.log('habilitar '+react_name);
+       //
        if($("#"+react_name).children().prop('disabled')){
            var els = document.getElementsByClassName("cuadrito-"+react_name);
        Array.prototype.forEach.call(els, function(cuad) {
@@ -85,6 +86,7 @@
        }
        
    }
+
    //act_block: bloquea todo lo que exista en los arreglos 'no se contestan' y 'aun no'
    function act_block(){
        @if($section=='D'&&in_array($Encuesta->ncr6,array(2,3,6))&&($Egresado->act_suvery!=1))
