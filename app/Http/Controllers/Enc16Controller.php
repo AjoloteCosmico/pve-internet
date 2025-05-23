@@ -18,8 +18,8 @@ use Endroid\QrCode\QrCode;
 class Enc16Controller extends Controller
 {
     public function inicio($type){
-        if($type== '2020'){
-            return redirect()->route('enc16.inicio','general');
+        if($type!== '2016'){
+            return redirect()->route('enc.inicio','general');
         }
         return view('encuesta2016.inicio',compact('type'));
     }
