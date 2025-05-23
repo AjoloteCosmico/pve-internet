@@ -86,7 +86,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
         <!--CUADRO DE INICIAR ENCUESTA-->
     <div class="iniciar">
         <p class="texto4">
-            <b>DURACIÓN APROXIMADA: 18 MINUTOS</b>
+            <b>DURACIÓN APROXIMADA: 7 MINUTOS</b>
         </p>
         <br>
         <p class="texto4">

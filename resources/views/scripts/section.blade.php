@@ -34,6 +34,9 @@
    
    console.log(no_se_contestan);
    act_block();
+
+
+ 
    //Funciones Logicas y de bloqueo------------------------------------------------
    function dishable_reactive(react_name){
        // console.log('deshabilitar '+react_name);
@@ -58,8 +61,24 @@
            cuad.style.backgroundColor = '#e6e6e6';
            cuad.style.color = '#a6a6a6';
        });
+       const container = document.getElementById(react_name);
+       if (container) {
+        container.style.pointerEvents = "none";
+        container.style.opacity = "0.6";
+
+        // Deshabilita cada opción
+        const options = container.querySelectorAll('.option-item');
+        options.forEach(opt => {
+            opt.style.backgroundColor = "#e6e6e6";
+            opt.style.color = "#a6a6a6";
+            opt.style.pointerEvents = "none";
+            opt.style.opacity = "0.6";
+        });
+    }
    }
-   
+
+
+
    function hable_reactive(react_name){
        // console.log('habilitar '+react_name);
        //
@@ -84,8 +103,105 @@
        for (var i = 0; i < cells.length; i++) { 
            cells[i].disabled = false;
        }
+       const container = document.getElementById(react_name);
+       if (container) {
+        // Restaurar estilos del contenedor
+        container.style.pointerEvents = "auto";
+        container.style.opacity = "1";
+        container.style.backgroundColor = "#ffffff";
+        container.style.color = "#000000";
+
+        // Restaurar estilos y funcionalidad de las opciones
+        const options = container.querySelectorAll('.option-item');
+        options.forEach(opt => {
+            opt.style.backgroundColor = "#ffffff";
+            opt.style.color = "#000000";
+            opt.style.pointerEvents = "auto";
+            opt.style.opacity = "1";
+        });
+    }
        
    }
+
+
+
+
+
+
+
+   /**
+   function dishable_reactive(react_name) {
+    console.log('Deshabilitar ' + react_name);
+
+    const container = document.getElementById('select-' + react_name);
+    if (container) {
+        container.style.backgroundColor = '#e6e6e6';
+        container.style.color = '#a6a6a6';
+        container.style.pointerEvents = 'none';
+
+        // Opcional: eliminar el valor seleccionado mostrado
+        const selected = container.previousElementSibling.querySelector('.selected-value');
+        if (selected) {
+            selected.textContent = 'Seleccione...';
+            selected.removeAttribute('data-value');
+        }
+
+        // Aplicar clase y estilo a cada opción individual
+        container.querySelectorAll('.option-item').forEach(option => {
+            option.classList.add('blocked');
+            option.style.pointerEvents = 'none';
+            option.style.opacity = '0.5';
+        });
+    }
+
+    // Deshabilitar otros elementos relacionados
+    ['op' + react_name, react_name + 'opcion'].forEach(cls => {
+        document.querySelectorAll('.' + cls).forEach(el => {
+            el.disabled = true;
+        });
+    });
+
+    // Cambiar estilo visual de cuadritos (si aplica)
+    document.querySelectorAll('.cuadrito-' + react_name).forEach(cuad => {
+        cuad.style.backgroundColor = '#e6e6e6';
+        cuad.style.color = '#a6a6a6';
+    });
+}
+
+
+
+
+function hable_reactive(react_name) {
+    console.log('Habilitar ' + react_name);
+
+    const container = document.getElementById('select-' + react_name);
+    if (container) {
+        container.style.backgroundColor = '#ffffff';
+        container.style.color = '#000000';
+        container.style.pointerEvents = 'auto';
+
+        // Restaurar opciones
+        container.querySelectorAll('.option-item').forEach(option => {
+            option.classList.remove('blocked');
+            option.style.pointerEvents = 'auto';
+            option.style.opacity = '1';
+        });
+    }
+
+    ['op' + react_name, react_name + 'opcion'].forEach(cls => {
+        document.querySelectorAll('.' + cls).forEach(el => {
+            el.disabled = false;
+        });
+    });
+
+    document.querySelectorAll('.cuadrito-' + react_name).forEach(cuad => {
+        cuad.style.backgroundColor = '#ffffff';
+        cuad.style.color = '#000000';
+    });
+}
+*/
+
+
 
    //act_block: bloquea todo lo que exista en los arreglos 'no se contestan' y 'aun no'
    function act_block(){

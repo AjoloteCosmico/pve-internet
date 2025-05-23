@@ -18,6 +18,9 @@ use Endroid\QrCode\QrCode;
 class Enc16Controller extends Controller
 {
     public function inicio($type){
+        if($type!== '2016'){
+            return redirect()->route('enc.inicio','general');
+        }
         return view('encuesta2016.inicio',compact('type'));
     }
 
@@ -187,7 +190,7 @@ class Enc16Controller extends Controller
         $NombreSeccion="";
         switch ($section){
             case 'A':
-                $NombreSeccion="SECCIÓN 1: Datos sociodemograficos";
+                $NombreSeccion="SECCIÓN 1: Datos sociodemográficos";
                 break;
             case 'E':
                 $NombreSeccion="SECCIÓN 2: Actualización académica";
@@ -202,7 +205,7 @@ class Enc16Controller extends Controller
                 $NombreSeccion="SECCIÓN 3: Titulación";
                 break;
             case 'G':
-                $NombreSeccion="SECCIÓN 6: Habilidsdes desarrolladas";
+                $NombreSeccion="SECCIÓN 6: Habilidades desarrolladas";
                 break;
         }
 

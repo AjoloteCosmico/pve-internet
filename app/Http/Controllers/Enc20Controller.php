@@ -18,6 +18,9 @@ use DB;
 class Enc20Controller extends Controller
 {
     public function inicio($type){
+        if($type!= '2020'&&$type!='general'){
+            return redirect()->route('enc.inicio','general');
+        }
         return view('encuesta2020.inicio',compact('type'));
     }
 
@@ -53,7 +56,8 @@ class Enc20Controller extends Controller
 
 
           }
-          if($Egresado->anio_egreso==2016&&$Egresado->act_suvery==1){
+          //ES 2016
+          if($Egresado->anio_egreso==2016 && $Egresado->act_suvery==1){
             //llena los datos de la tabla y comienza la encuesta
             if(!$Encuesta){
                 $Encuesta=new respuestas16();
@@ -138,6 +142,7 @@ class Enc20Controller extends Controller
                    //REDIRECCIONA A ENC GENERAL
                    return redirect()->route('enc.inicio','general')->with('message','notinsample');;
                }
+               
              }      
     }
 

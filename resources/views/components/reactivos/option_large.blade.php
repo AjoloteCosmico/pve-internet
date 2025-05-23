@@ -1,11 +1,56 @@
-
+<!--
 <select name="{{$Reactivo->clave}}" id="{{'select-'.$Reactivo->clave}}" onchange="optionWasSelected('{{$Reactivo->clave}}',[@foreach($Bloqueos->unique('bloqueado') as $b) '{{$b->bloqueado}}', @endforeach ])">
 <option value="" >Seleccione... </option> 
 
 @foreach($Opciones->sortBy('orden') as $option)
-<!-- <input type="radio" id="{{$Reactivo->clave.$option->clave}}" name="{{$Reactivo->clave}}" class="{{'op'.$Reactivo->clave}}" value="{{$option->clave}}"  
-onclick="optionWasClicked('{{$Reactivo->clave}}',[@foreach($Bloqueos as $b) @if($b->valor==$option->clave) '{{$b->bloqueado}}', @endif @endforeach ], [@foreach($Bloqueos as $b) '{{$b->bloqueado}}', @endforeach ]);"> -->
+
  <option value="{{$option->clave}}" title="{{$option->help_info}}"> {{$option->descripcion}} </option> 
 <br>
 @endforeach
 </select>
+-->
+
+
+<div class="custom-select">
+    <div class="select-header" onclick="toggleSelect('{{ 'select-' . $Reactivo->clave }}')">
+        <span class="selected-value">Seleccione...</span>
+    </div>
+    <div class="select-options" id="{{ 'select-' . $Reactivo->clave }}">
+        @foreach($Opciones->sortBy('orden') as $option)
+        <div 
+            class="option-item"
+            data-valor="{{$option->clave}}"
+            onmouseover="showMessage('{{ $option->help_info }}')" 
+            onclick="optionWasSelected('{{$Reactivo->clave}}', [@foreach($Bloqueos->unique('bloqueado') as $b) '{{$b->bloqueado}}', @endforeach], '{{$option->clave}}');"
+            data-bloqueos='[@foreach($Bloqueos->unique("bloqueado") as $b) "{{ $b->bloqueado }}", @endforeach]'
+        >
+            {{$option->descripcion}}
+            <div class="option-description">{{$option->help_info}}</div>
+        </div>
+        @endforeach
+
+        <input type="hidden" name="{{ $Reactivo->clave }}" id="input-{{ $Reactivo->clave }}" value="">
+    </div>
+</div>
+
+<script>
+    function showMessage(message) {
+        console.log(message); // Muestra el mensaje en la consola
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
