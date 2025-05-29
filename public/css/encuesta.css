@@ -556,8 +556,8 @@ input[type="radio"] {
     display: block;
     z-index: 1000;
 /* Estilo para las opciones del select */
-    max-height: 250px;   /* Ajusta la altura máxima visible */
-    overflow-y: auto;    /* Scroll vertical automático */
+    max-height: 250px;   
+    overflow-y: auto;    
 }
 
 
