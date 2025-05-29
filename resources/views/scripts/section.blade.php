@@ -215,6 +215,7 @@ function hable_reactive(react_name) {
 
    function hable_reactive(react_name){
        // console.log('habilitar '+react_name);
+       //
        if($("#"+react_name).children().prop('disabled')){
            var els = document.getElementsByClassName("cuadrito-"+react_name);
        Array.prototype.forEach.call(els, function(cuad) {
