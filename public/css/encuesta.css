@@ -553,9 +553,14 @@ input[type="radio"] {
     border: 1px solid #ddd;
     border-radius: 4px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    display: none;
+    display: block;
     z-index: 1000;
+
+    max-height: 250px;   /* Ajusta la altura máxima visible */
+    overflow-y: auto;    /* Scroll vertical automático */
 }
+
+
 /*------------------------------- editadoooo----------------------*/
 .option-item {
     padding: 12px;
@@ -565,6 +570,7 @@ input[type="radio"] {
     border-bottom: 1px solid #eee;
     position: relative;
     transition: all 0.3s;
+    
 }
 
 .option-item:hover {
@@ -610,3 +616,4 @@ input[type="radio"] {
     background-color: #ffffff;
     color: #000000;
 }
+

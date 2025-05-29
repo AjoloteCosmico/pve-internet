@@ -5,7 +5,6 @@
 @foreach($Opciones->sortBy('orden') as $option)
 
  <option value="{{$option->clave}}" title="{{$option->help_info}}"> {{$option->descripcion}} </option> 
-
 <br>
 @endforeach
 </select>
@@ -40,10 +39,6 @@
         console.log(message); // Muestra el mensaje en la consola
     }
 </script>
-
-
-
-
 
 
 

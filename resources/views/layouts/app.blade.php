@@ -155,6 +155,8 @@
             animation: 'fade',
         });
     });
+
+    
 </script>
 @stack('js')
 </body>
