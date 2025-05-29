@@ -555,7 +555,7 @@ input[type="radio"] {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     display: block;
     z-index: 1000;
-
+/* Estilo para las opciones del select */
     max-height: 250px;   /* Ajusta la altura máxima visible */
     overflow-y: auto;    /* Scroll vertical automático */
 }
