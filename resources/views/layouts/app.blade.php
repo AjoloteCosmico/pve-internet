@@ -137,7 +137,7 @@
                     });
 
                     //Agregar la clase 'selected' al elemento seleccionado
-                    option.classList.add('selected');
+                    option.classList.add('selected');|
 
                     //actualizar el texto seleccionado
                     selectedValue.textContent = option.textContent.trim();

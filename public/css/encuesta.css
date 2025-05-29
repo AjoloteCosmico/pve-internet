@@ -528,7 +528,7 @@ input[type="radio"] {
 }
 
 /* Estilo para el contenedor personalizado */
-.custom-select {
+/* .custom-select {
     position: relative;
     width: 100%;
     max-width: 300px;
@@ -557,11 +557,11 @@ input[type="radio"] {
     z-index: 1000;
 }
 /*------------------------------- editadoooo----------------------*/
-.option-item {
+/* .option-item {
     padding: 12px;
     cursor: pointer;
     background-color: #002B7A; 
-    color: white; /* Texto blanco */
+    color: white; 
     border-bottom: 1px solid #eee;
     position: relative;
     transition: all 0.3s;
@@ -590,7 +590,76 @@ input[type="radio"] {
 .selected-value {
     font-weight: bold;
     color: #333;
+} */
+
+
+
+  .custom-select {
+            position: relative;
+            width: 300px;
+            font-family: Arial, sans-serif;
+        }
+    .custom-select.active .option-item {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    background: #fff !important;
+    color: #000 !important;
 }
+
+        .select-header {
+            padding: 12px;
+            background: #f0f0f0;
+            border: 2px solid #ccc;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .select-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: none;
+            z-index: 1000;
+        }
+
+     
+        .option-item {
+            cursor: pointer;
+            padding: 8px 12px;
+            transition: background 0.2s;
+            background: #fff;   /* <-- Asegura fondo blanco por defecto */
+            color: #000;   
+        }
+        .option-item:hover {
+            background: #002b7a;
+            color: #fff;
+        }
+
+        .option-item:hover .option-description {
+            opacity: 1;
+            max-height: 100px;
+        }
+
+        .option-description {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            font-size: 0.9em;
+            margin-top: 5px;
+            color: rgba(255, 251, 225, 0.9);
+        }
+
+        .selected-value {
+            font-weight: bold;
+            color: #333;
+        }
 .tippy-box[data-theme~='custom'] {
     background-color: #ba800d; /* Fondo del recuadro */
     color: #fff;               /* Color del texto */

@@ -108,24 +108,49 @@
         // Restaurar estilos del contenedor
         container.style.pointerEvents = "auto";
         container.style.opacity = "1";
-        container.style.backgroundColor = "#ffffff";
-        container.style.color = "#000000";
+        container.style.backgroundColor = "";
+        container.style.color = "";
 
         // Restaurar estilos y funcionalidad de las opciones
         const options = container.querySelectorAll('.option-item');
         options.forEach(opt => {
-            opt.style.backgroundColor = "#ffffff";
-            opt.style.color = "#000000";
+            container.style.backgroundColor = "";
+            container.style.color = "";
             opt.style.pointerEvents = "auto";
             opt.style.opacity = "1";
         });
     }
-       
+    // Agrega esto para manejar específicamente el custom-select
+    const customSelect = null;  
+    try{
+        console.log('try case')
+    const customSelect = document.querySelector(`#real-select${react_name}`).closest('.custom-select');
+     }catch(e){
+        
+        console.log('catch case')
+      const customSelect = null;    
+     }
+
+    if (customSelect) {
+        customSelect.style.pointerEvents = 'auto';
+        customSelect.style.opacity = '1';
+        
+        // Reinicia las opciones
+        const optionsContainer = customSelect.querySelector('.select-options');
+        if (optionsContainer) {
+            optionsContainer.style.display = 'none'; // Forzar reinicio
+        }
+        
+        // Restaurar estilos de las opciones
+        const optionItems = customSelect.querySelectorAll('.option-item');
+        optionItems.forEach(opt => {
+            opt.style.opacity = '1';
+            opt.style.pointerEvents = 'auto';
+            opt.style.backgroundColor = '#fff';
+            opt.style.color = '#000';
+        });
+    }
    }
-
-
-
-
 
 
 
@@ -201,9 +226,8 @@ function hable_reactive(react_name) {
 }
 */
 
-
-
    //act_block: bloquea todo lo que exista en los arreglos 'no se contestan' y 'aun no'
+
    function act_block(){
        @if($section=='D'&&in_array($Encuesta->ncr6,array(2,3,6))&&($Egresado->act_suvery!=1))
        console.log('pushing to no se contestan');
@@ -219,7 +243,6 @@ function hable_reactive(react_name) {
                    hable_reactive(reactivos[i])
                }
        }
-       
    //document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
    }
    
@@ -252,15 +275,15 @@ function hable_reactive(react_name) {
            //primero hay que quitar (si hay alguno), los reactivos que pudieron haber sido bloqueados con otra opacion
            //y ahora que se selleciona una opcion de nuevo no debe haber ninguno del reactivo en ceustion
        
-   
            if(involucrados.length>0){
            for (var i = 0; i < involucrados.length; i++) {
                if(no_se_contestan.includes(involucrados[i])){
                     no_se_contestan.splice(no_se_contestan.indexOf(involucrados[i]),1);
-                   //  hable_reactive(involucrados[i]);
+                
+                    //  hable_reactive(involucrados[i]);
                   }
                }
-               console.log('resetenadno lista de no contestar');
+                  console.log('resetenadno lista de no contestar');
                   console.log('involucrados ',involucrados);
                   console.log('no se contestan ',no_se_contestan);
            }
@@ -272,14 +295,11 @@ function hable_reactive(react_name) {
                if(for_block[i] !== 'ner1a' && !no_se_contestan.includes(for_block[i])){
                    no_se_contestan.push(for_block[i]);
                }
-           
            }
        }
    
-       find_next(react_name);
-       
-   
-   
+       find_next(react_name);      
+      
    }
    
    function find_next(react_name){
@@ -307,8 +327,7 @@ function hable_reactive(react_name) {
            last_index=last_index+1;
            reactivo_siguiente=reactivos[last_index];
          }
-   
-         console.log('reactivo-siguiente',reactivo_siguiente);
+        console.log('reactivo-siguiente',reactivo_siguiente);
       if(aun_no.includes(reactivo_siguiente)){
                     aun_no.splice(aun_no.indexOf(reactivo_siguiente),1);
                   }
@@ -320,14 +339,11 @@ function hable_reactive(react_name) {
            var element = document.getElementById(reactivo_siguiente+'-redact');
        }
 
-   
-   
        var ventana = document.getElementById('rlist');
        var elementPosition = element.getBoundingClientRect().top;
        console.log(element);  
        ventana.scrollTop= ventana.scrollTop+elementPosition-50-ventana.getBoundingClientRect().top;
    }
-
 
 function optionWasSelected(react_name,involucrados){
    
@@ -380,7 +396,6 @@ function optionWasSelected(react_name,involucrados){
     for(i=0;i<opciones.length;i++){
         console.log(opciones[i].checked);
         if(opciones[i].checked){
-    
             almenos_una_opcion=1;
         }
     }
@@ -389,7 +404,6 @@ function optionWasSelected(react_name,involucrados){
 
     if(react_name === 'nar3a') {
     for (var i = 0; i < opciones.length; i++){
-        
         if(opciones[i].id === 'nar3aop1'){
             // Si 'nar3aop1' está seleccionada, bloquea las otras opciones
             if(opciones[i].checked === true){
@@ -443,8 +457,7 @@ function optionWasSelected(react_name,involucrados){
                 if(! no_se_contestan.includes(bloqueados[j])){
                     no_se_contestan.push(bloqueados[j]);
                 }
-            }
-            
+            }            
             }else{
                 
                 for (var j = 0; j < bloqueados.length; j++) {
@@ -453,15 +466,13 @@ function optionWasSelected(react_name,involucrados){
                     
                     }
                 }
-                
             
             }     
     }
 
    }
    
-   function submitForm(){
-       
+   function submitForm(){       
    
        for (var i = 0; i < no_se_contestan.length; i++) {
            console.log('cambiando valores',no_se_contestan[i]);
@@ -472,9 +483,70 @@ function optionWasSelected(react_name,involucrados){
    
    //Funciones esteticas y visuales--------------------------------------------
    function showlabel(id){
-       console.log('showing.label')
-    var element = document.getElementById(id);
-     element.classList.toggle("active");
-   
+        console.log('showing.label')
+        var element = document.getElementById(id);
+        element.classList.toggle("active");
       }
+
 </script>
+
+<script>
+        // Inicialización
+        @foreach($Reactivos as $r)
+            const realSelect{{$r->clave}} = document.getElementById('real-select{{$r->clave}}');
+            const selectOptions{{$r->clave}} = document.getElementById('selectOptions{{$r->clave}}');
+            const selectedValue{{$r->clave}} = document.querySelector('.selected-value{{$r->clave}}');
+            console.log('{{$r->clave}}',realSelect{{$r->clave}});
+        @endforeach
+        
+        console.log('inicializando');
+
+        @foreach($Reactivos as $r)
+            if(realSelect{{$r->clave}} != null){
+                console.log('realSelect{{$r->clave}} no es null');
+                 // 1. Muestra temporalmente el contenedor
+        selectOptions{{$r->clave}}.style.display = 'block';
+        // 2. Limpia y agrega las opciones
+        selectOptions{{$r->clave}}.innerHTML = '';
+        realSelect{{$r->clave}}.querySelectorAll('option').forEach(option => {
+            const div = document.createElement('div');
+            div.className = 'option-item';
+            div.innerHTML = `
+                ${option.text}
+                <div class="option-description">${option.dataset.desc}</div>
+            `;
+            div.onclick = () => {
+                realSelect{{$r->clave}}.value = option.value;
+                selectedValue{{$r->clave}}.textContent = option.text;
+                selectOptions{{$r->clave}}.style.display = 'none';
+            };
+            selectOptions{{$r->clave}}.appendChild(div);
+        });
+
+        selectOptions{{$r->clave}}.style.display = 'none';
+        // 3. Fuerza reflow
+        selectOptions{{$r->clave}}.offsetHeight;
+        // 4. Oculta el contenedor de nuevo
+        selectOptions{{$r->clave}}.style.display = 'none';
+                console.log('ha sido inicializado {{$r->clave}}');
+            }
+        @endforeach
+
+        // Mostrar/ocultar opciones
+        function toggleSelect(id) {
+            console.log('toggle select function activate');
+            selectOptions.style.display = selectOptions.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function change_styles(){
+            console.log('funcion estilos');
+            selectOptionsnar11.style.display = selectOptionsnar11.style.display === 'block' ? 'none' : 'block';
+        }
+        // Cerrar al hacer click fuera
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.custom-select')) {
+                selectOptionsnar11.style.display = 'none';
+            }
+        });
+
+    </script>

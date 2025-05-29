@@ -15,6 +15,7 @@ use App\Models\multiple_option_answer;
 use App\Models\Comentario;
 use DB;
 use Endroid\QrCode\QrCode;
+
 class Enc16Controller extends Controller
 {
     public function inicio($type){
@@ -23,7 +24,7 @@ class Enc16Controller extends Controller
         }
         return view('encuesta2016.inicio',compact('type'));
     }
-
+    
     public function verify(Request $request){
 
         $cuenta=Request::get('cuenta');
