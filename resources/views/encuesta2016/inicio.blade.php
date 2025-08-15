@@ -168,7 +168,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
     Swal.fire({
   icon: "error",
   title: "Oops...",
-  text: "No encontramos tu numero de cuenta, tal vez no perteneces a las generacion 2016, revisa que tu numero de cuenta halla sido escrito correctamente!",
+  text: "No encontramos tu número de cuenta, tal vez no perteneces a las generacion 2016, revisa que tu número de cuenta halla sido escrito correctamente!",
   footer: '<a href="#">Why do I have this issue?</a>'
 });
 </script>

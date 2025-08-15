@@ -102,7 +102,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Confirma tu numero de cuenta para saber que eres tu </label>
+                    <label for="exampleFormControlInput1">Confirma tu número de cuenta para saber que eres tu </label>
                     @error('cuenta')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
