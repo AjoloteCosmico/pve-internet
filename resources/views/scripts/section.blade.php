@@ -36,8 +36,87 @@
    act_block();
 
 
- 
-   //Funciones Logicas y de bloqueo------------------------------------------------
+   function dishable_reactive(react_name) {
+    console.log('Deshabilitando ' + react_name);
+
+    const container = document.getElementById(react_name);
+    if (container) {
+        container.style.pointerEvents = "none";
+        container.style.opacity = "0.6";
+        container.style.backgroundColor = "#e6e6e6";
+        container.style.color = "#a6a6a6";
+
+        // Deshabilitar opciones dentro del contenedor
+        const options = container.querySelectorAll('.option-item');
+        options.forEach(opt => {
+            opt.style.pointerEvents = "none";
+            opt.style.opacity = "0.6";
+            opt.style.backgroundColor = "#E6E6E6";
+            opt.style.color = "#A6A6A6";
+            opt.disabled = true;
+        });
+    }
+
+    // Deshabilitar elementos adicionales
+    var cells = document.getElementsByClassName('op'+react_name); 
+       for (var i = 0; i < cells.length; i++) { 
+           cells[i].disabled = true;
+       }
+    var cells = document.getElementsByClassName(react_name+'opcion');
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].disabled = true;
+    }
+
+    var els = document.getElementsByClassName("cuadrito-" + react_name);
+    Array.prototype.forEach.call(els, function (cuad) {
+        cuad.style.backgroundColor = '#e6e6e6';
+        cuad.style.color = '#a6a6a6';
+    });
+}
+
+
+function hable_reactive(react_name) {
+    console.log('Habilitando ' + react_name);
+
+    const container = document.getElementById(react_name);
+    if (container) {
+        container.style.pointerEvents = "auto";
+        container.style.opacity = "1";
+        container.style.backgroundColor = "#ffffff";
+        container.style.color = "#000000";
+
+        // Habilitar opciones dentro del contenedor
+        const options = container.querySelectorAll('.option-item');
+        options.forEach(opt => {
+            opt.style.pointerEvents = "auto";
+            opt.style.opacity = "1";
+            opt.style.backgroundColor = "#002B7A";
+            opt.style.color = "#FFF";
+            opt.disabled = false;
+        });
+    }
+
+    // Habilitar elementos adicionales
+    var cells = document.getElementsByClassName('op'+react_name); 
+       for (var i = 0; i < cells.length; i++) { 
+           cells[i].disabled = false;
+       }
+
+    var cells = document.getElementsByClassName(react_name+'opcion');
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].disabled = false;
+    }
+
+    var els = document.getElementsByClassName("cuadrito-" + react_name);
+    Array.prototype.forEach.call(els, function (cuad) {
+        cuad.style.backgroundColor = '#FFF';
+        cuad.style.color = '#000';
+    });
+}
+
+
+/**
+ * //Funciones Logicas y de bloqueo------------------------------------------------
    function dishable_reactive(react_name){
        // console.log('deshabilitar '+react_name);
        $("#"+react_name).children().prop('disabled', true);
@@ -61,6 +140,8 @@
            cuad.style.backgroundColor = '#e6e6e6';
            cuad.style.color = '#a6a6a6';
        });
+
+       //INICIA MODIFICACION-----------------------------------------------------------
        const container = document.getElementById(react_name);
        if (container) {
         container.style.pointerEvents = "none";
@@ -345,40 +426,60 @@ function hable_reactive(react_name) {
        ventana.scrollTop= ventana.scrollTop+elementPosition-50-ventana.getBoundingClientRect().top;
    }
 
-function optionWasSelected(react_name,involucrados){
+
    
-   var val=document.getElementById('select-'+react_name).value;
-   
-   for_block = all_bloqueos.filter(item => item.valor == parseInt(val)).filter(item => item.clave_reactivo == react_name);
-   console.log('reactivo: '+react_name);
-   console.log('selected: ',val,for_block);
-   last_index=reactivos.indexOf(react_name);
-   last_index=last_index+1;
-   reactivo_siguiente=reactivos[last_index];
-   if(involucrados.length>0){
-       for (var i = 0; i < involucrados.length; i++) {
-           if(no_se_contestan.includes(involucrados[i])){
-                no_se_contestan.splice(no_se_contestan.indexOf(involucrados[i]),1);
-              }
-           }
-              console.log('resetenadno lista de no contestar');
-              console.log(involucrados);
-              console.log(no_se_contestan);
-       }
-       //quitar el propio reactivo de la lista de aun no
-       if(aun_no.includes(react_name)){aun_no.splice(aun_no.indexOf(react_name),1);}
-         
-       console.log('agregando a no se contestan');
-       console.log('por bloquear: ', for_block);
-   if(for_block.length>0){
-       for (var i = 0; i < for_block.length; i++){
-           if(! no_se_contestan.includes(for_block[i])){
-                   no_se_contestan.push(for_block[i].bloqueado);
-               }
-           }
-       }
+function optionWasSelected(react_name, involucrados) {
+    // Obtener valor de la opción seleccionada
+    const optionsContainer = document.getElementById('select-' + react_name);
+    const selectedOption = optionsContainer.querySelector('.option-item:hover') || null;
+    if (!selectedOption) return;
+
+    const val = selectedOption.getAttribute('data-valor');
+
+    // Actualizar el input oculto con el valor seleccionado
+    document.getElementById('input-' + react_name).value = val;
+
+    // Buscar bloqueos relacionados con este valor y reactivo
+    const for_block = all_bloqueos
+        .filter(item => item.valor == parseInt(val))
+        .filter(item => item.clave_reactivo == react_name);
+
+    console.log('Reactivo:', react_name);
+    console.log('Valor seleccionado:', val);
+    console.log('Bloqueos aplicables:', for_block);
+
+    // Limpiar lista de no_se_contestan (desbloqueo de los involucrados)
+    if (involucrados.length > 0) {
+        involucrados.forEach(bloqueado => {
+            const idx = no_se_contestan.indexOf(bloqueado);
+            if (idx !== -1) {
+                no_se_contestan.splice(idx, 1);
+            }
+        });
+        console.log('Reseteando lista de no_se_contestan con involucrados:', involucrados);
+    }
+
+    // Quitar el reactivo actual de la lista de "aun no contestados"
+    const idx_aun = aun_no.indexOf(react_name);
+    if (idx_aun !== -1) {
+        aun_no.splice(idx_aun, 1);
+    }
+
+    // Aplicar nuevos bloqueos
+    if (for_block.length > 0) {
+        for_block.forEach(item => {
+            if (!no_se_contestan.includes(item.bloqueado)) {
+                no_se_contestan.push(item.bloqueado);
+            }
+        });
+        console.log('Agregando nuevos bloqueos:', for_block.map(fb => fb.bloqueado));
+    }
+
+    // Avanzar al siguiente reactivo
     find_next(react_name);
-   }
+}
+
+
    
    //se activa al dar enter o presionar el boton de una entrada de texto abierto o numerico
    function unblockNext(react_name){
