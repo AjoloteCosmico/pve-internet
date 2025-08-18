@@ -43,9 +43,6 @@ Route::controller(Enc16Controller::class)->group(function(){
     Route::post('/update_section_actualizacion/{id}','update')->name('enc16.update');
 });
 
-
-
-
 //Encuesta Egresados destacados
 Route::get('/encuesta_destacados', [App\Http\Controllers\EncDestacadosController::class, 'index'])->name('enc_destacados.index');
 Route::post('/encuesta_destacados_save', [App\Http\Controllers\EncDestacadosController::class, 'save'])->name('enc_destacados.save');

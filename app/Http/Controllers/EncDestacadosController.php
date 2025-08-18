@@ -67,7 +67,7 @@ class EncDestacadosController extends Controller
             'reason2.required'=>'Debe ingresar almenos una razon para nominar a este egresado',
             'reason2.max:255'=>'mucho texto',
             
-            'cuenta.required'=>'por favor ingrese su numero de cuenta',
+            'cuenta.required'=>'por favor ingrese su número de cuenta',
             'cuenta.max:10'=>'la cuenta solo debe tener 10 caracteres'
         ];
         
