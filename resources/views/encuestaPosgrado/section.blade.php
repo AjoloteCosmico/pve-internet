@@ -28,7 +28,7 @@
 </div>
 
 <div class="datos">
-    <p class="black_text"> Numero de cuenta:</p>
+    <p class="black_text"> Número de Cuenta:</p>
     <p class="blue_text"> {{$Encuesta->cuenta}}</p>
 </div>
 
@@ -46,7 +46,7 @@
     <div class="blank_square sidebar">
             <div class="row"><a class="btn section-btn @if($Encuesta->sec_pa==1) completed @endif @if($section=='pA') actual @endif"  > Sección 1: Datos Sociodemográficos &nbsp; @if($Encuesta->sec_pa==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
             <div class="row"><a class="btn section-btn @if($Encuesta->sec_pb==1) completed @endif @if($section=='pB') actual @endif"  > Sección 2: Obtención del Grado &nbsp; @if($Encuesta->sec_pb==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_pc==1) completed @endif @if($section=='pC') actual @endif"  > Sección 3: Actualización Academica &nbsp; @if($Encuesta->sec_pc==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
+            <div class="row"><a class="btn section-btn @if($Encuesta->sec_pc==1) completed @endif @if($section=='pC') actual @endif"  > Sección 3: Actualización Académica &nbsp; @if($Encuesta->sec_pc==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
             <div class="row"><a class="btn section-btn @if($Encuesta->sec_pd==1) completed @endif @if($section=='pD') actual @endif"  > Sección 4: Datos Laborales &nbsp; @if($Encuesta->sec_pd==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif </a></div>
             <div class="row"><a class="btn section-btn @if($Encuesta->sec_pe==1) completed @endif @if($section=='pE') actual @endif"  > Sección 5: Satisfacción con la institución &nbsp; @if($Encuesta->sec_pe==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
                  </div>
