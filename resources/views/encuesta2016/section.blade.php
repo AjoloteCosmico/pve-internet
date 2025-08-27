@@ -28,7 +28,7 @@
 </div>
 
 <div class="datos">
-    <p class="black_text"> Número de cuenta:</p>
+    <p class="black_text"> Número de Cúenta:</p>
     <p class="blue_text"> {{$Encuesta->cuenta}}</p>
 </div>
 

@@ -25,7 +25,7 @@
             data-tippy-size="jumbo"
             data-tippy-content="{{$option->help_info}}" 
             data-bloqueos='[@foreach($Bloqueos->unique("bloqueado") as $b) "{{ $b->bloqueado }}", @endforeach]'
-        >
+            >
             {{$option->descripcion}}
             <div class="option-description">{{$option->help_info}}</div>
         </div>

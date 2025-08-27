@@ -26,10 +26,10 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
     </div>
   </div>
 
-     <!--CABECERA/HEADER-->
+    <!--CABECERA/HEADER-->
     <div class="cabecera">
         <div class="logo">
-        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}" style="width: 4.5vw !important; height:10vw !important" > </a>
+        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}" style="width: 4.3vw !important; height:10vw !important" > </a>
        </div>
           <div class="subtitulo2">
        <p>Secretaría General</p>
@@ -37,18 +37,18 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
         <div class="logo">
             <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="{{url('img/logos/logoPVE-large.png')}}"> </a>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <a class=lovoPVE href="https://www.posgrado.unam.mx/"> <img src="{{url('img/logos/logoPosgrado.svg')}}" style="width: 8vw !important; height:auto !important"> </a>
+            <a class=lovoPVE href="https://www.dgaco.unam.mx/"> <img src="{{url('img/logos/logo-dgaco.png')}}" style="width: 8vw !important; height:auto !important"> </a>
         </div>
     </div>
 
     <!--INFORMACIÓN DE BIENVENIDA-->
-<div class="main">
+<div class="main verde">
     <div class="izquierda">
     <div class="info">
         <p class="subtitulo3">
-            EGRESADOS DE POSGRADO  <br>
-            MAESTRIA Y DOCTORADO UNAM
-           
+            ENCUESTA DE EMPLEOS VERDES <br>
+            EGRESADOS DE LICENCIATURA UNAM <br>
+            GENERACIONES 2018,2019,2020
         </p>
         <br><br><br>
         <p class="texto2">
@@ -56,13 +56,13 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
             <br><br>
             <ol>
                 <li>
-                    Su <span style="color: #e6af2b">opinión</span> sobre los beneficios que ha obtenido con su formación profesional
+                    Su <span style="color: #e6af2b">situacion laboral</span> sobre los beneficios que ha obtenido con su formación profesional
                 </li>
                 <li>
-                    Sus <span style="color: #e6af2b">expectativas</span> al incorporarse al campo ocupacional de su profesión
+                    Si es que desempeña actividades de <span style="color: #e6af2b">sustentabilidad y cuidado del ambiente</span> al incorporarse al campo ocupacional de su profesión
                 </li>
                 <li>
-                    Su grado de <span style="color: #e6af2b">satisfacción</span> con la preparación que recibió en la UNAM
+                    Su participacion en  <span style="color: #e6af2b">posgrados y actualizaciones</span> orientados tambien a estos topicos (cuidado del medio ambiente)
                 </li>
             </ol>
         </p>
@@ -71,11 +71,11 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
         <!--CARDS PROPÓSITOS-->
 
     <div class="propositos">
-        <img class="card" src="/img/gráficos/pag-encuesta-1.png">
+        <img class="card" src="/img/gráficos/hoja.webp">
 
-        <img class="card" src="/img/gráficos/pag-encuesta-2.png">
-
-        <img class="card" src="/img/gráficos/pag-encuesta-3.png">
+        <img class="card" src="/img/gráficos/hoja.webp">
+        
+        <img class="card" src="/img/gráficos/hoja.webp">
     </div>
     </div>
 
@@ -85,16 +85,16 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
         <!--CUADRO DE INICIAR ENCUESTA-->
     <div class="iniciar">
         <p class="texto4">
-            <b>DURACIÓN APROXIMADA: 9 MINUTOS</b>
+            <b>DURACIÓN APROXIMADA: 1 MINUTO</b>
             
         </p>
         <br>
-        <p class="texto4">
+        <!-- <p class="texto4">
             PARA GENERACIONES QUE INGRESARON ANTES DE 1999 SE ANTEPONE UN <b>"0"</b> EN EL NÚMERO DE CUENTA
-        </p>
+        </p> -->
         <br>
 
-        <form action="{{ route('enc_posgrado.verify')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('enc_verde.verify')}}" method="POST" enctype="multipart/form-data">
         @csrf
           
             <ul>
@@ -131,6 +131,10 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 
 @push('css')
 <style>
+    .verde{
+        background-color: #152824  !important;
+        /* #29524a */
+    }
     .swal2-popup {
     font-size: 14px !important;
 }

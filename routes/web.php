@@ -8,6 +8,7 @@ use App\Http\Controllers\PosgradoController;
 use App\Http\Controllers\CorreosController;
 use App\Http\Controllers\EncuestasController;
 use App\Http\Controllers\Enc16Controller;
+use App\Http\Controllers\EncVerdeController;
 
 /*
 |--------------------------------------------------------------------------|
@@ -43,12 +44,20 @@ Route::controller(Enc16Controller::class)->group(function(){
     Route::post('/update_section_actualizacion/{id}','update')->name('enc16.update');
 });
 
-
-
-
 //Encuesta Egresados destacados
 Route::get('/encuesta_destacados', [App\Http\Controllers\EncDestacadosController::class, 'index'])->name('enc_destacados.index');
 Route::post('/encuesta_destacados_save', [App\Http\Controllers\EncDestacadosController::class, 'save'])->name('enc_destacados.save');
+
+//Encuesta Cosas verdes de la DGOSE
+
+Route::controller(EncVerdeController::class)->group(function(){
+    Route::get('/encuesta_verde/inicio', 'inicio')->name('enc_verde.inicio');
+    Route::post('/verify_cuenta_verde', 'verify')->name('enc_verde.verify');
+    Route::get('/encuesta_verde/{section}/{id}', 'section')->name('enc_verde.section');
+    Route::post('/update_personal_data_verde/{id}', 'update_personal_data')->name('enc_verde.update_personal_data');
+    Route::post('/update_section_verde/{id}','update')->name('enc_verde.update');
+});
+
 
 Route::get('/', function () {
     return redirect(route('enc.inicio',[2020]));

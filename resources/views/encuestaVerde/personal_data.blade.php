@@ -6,7 +6,7 @@
     <!--CABECERA/HEADER-->
     <div class="cabecera">
         <div class="logo">
-        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}" style="width: 4.5vw !important; height:10vw !important" > </a>
+        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}" style="width: 4.3vw !important; height:10vw !important" > </a>
        </div>
           <div class="subtitulo2">
        <p>Secretaría General</p>
@@ -14,7 +14,7 @@
         <div class="logo">
             <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="{{url('img/logos/logoPVE-large.png')}}"> </a>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <a class=lovoPVE href="https://www.posgrado.unam.mx/"> <img src="{{url('img/logos/logoPosgrado.svg')}}" style="width: 8vw !important; height:auto !important"> </a>
+            <a class=lovoPVE href="https://www.dgaco.unam.mx/"> <img src="{{url('img/logos/logo-dgaco.png')}}" style="width: 8vw !important; height:auto !important"> </a>
         </div>
     </div>
 
@@ -35,29 +35,22 @@
 </div>
 
 <div class="datos">
-    <p class="black_text"> Plan de estudios:</p>
-    <p class="blue_text"> {{$Egresado->plan}}</p>
-</div>
-<div class="datos">
-    <p class="black_text"> Graduado:</p>
-    <p class="blue_text"> {{$Egresado->grado}}</p>
+    <p class="black_text"> Carrera:</p>
+    <p class="blue_text"> {{$Carrera}}</p>
 </div>
 
 </div>
+
 	<!--indicador lateral secciones-->
     <div class="blank_square sidebar">
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_pa==1) completed @endif @if($section=='pA') actual @endif"  > Sección 1: Datos Sociodemográficos &nbsp; @if($Encuesta->sec_pa==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_pb==1) completed @endif @if($section=='pB') actual @endif"  > Sección 2: Obtención del Grado &nbsp; @if($Encuesta->sec_pb==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_pc==1) completed @endif @if($section=='pC') actual @endif"  > Sección 3: Actualización Académica &nbsp; @if($Encuesta->sec_pc==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_pd==1) completed @endif @if($section=='pD') actual @endif"  > Sección 4: Datos Laborales &nbsp; @if($Encuesta->sec_pd==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif </a></div>
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_pe==1) completed @endif @if($section=='pE') actual @endif"  > Sección 5: Satisfacción con la institución &nbsp; @if($Encuesta->sec_pe==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
+          
                  </div>
                 <!-- lista de reactivos  -->
                 <div class="blank_square listaReactivos" id="rlist">
             @if($section=='personal_data')
-                @include('encuestaPosgrado.'.$section)
+                @include('encuesta2020.'.$section)
             @else
-                @include('encuestaPosgrado.reactivos')
+                @include('encuesta2020.reactivos')
             @endif
             </div>
    
@@ -83,13 +76,25 @@
             @else
                 @include('scripts.section')
             @endif
+
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script>
+console.log('inicializar tippy');
+  tippy('#cuadritonar81', {
+    placement: 'top',
+  });
+</script>
  @endpush
 
  @push('css')
+ <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css">
+
  <style>
    .swal2-popup {
   font-size: 1.6rem !important;
   font-family: sans-serif;
 }
  </style>
+
  @endpush

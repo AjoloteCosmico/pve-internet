@@ -27,6 +27,8 @@
        @endforeach
       
    ];
+
+
    //document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
    // console.log('aun no',aun_no);
    // console.log('reactivos:',reactivos);
@@ -285,13 +287,9 @@ function hable_reactive(react_name) {
                if(for_block[i] !== 'ner1a' && !no_se_contestan.includes(for_block[i])){
                    no_se_contestan.push(for_block[i]);
                }
-           
            }
        }
-   
        find_next(react_name);
-       
-   
    
    }
    
@@ -350,7 +348,7 @@ function optionWasSelected(react_name, involucrados) {
     if (!selectedOption) return;
 
     const val = selectedOption.getAttribute('data-valor');
-
+    selectedOption.classList.add('selected');
     // Actualizar el input oculto con el valor seleccionado
     document.getElementById('input-' + react_name).value = val;
 

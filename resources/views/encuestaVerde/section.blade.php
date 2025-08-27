@@ -6,13 +6,18 @@
     <!--CABECERA/HEADER-->
     <div class="cabecera">
         <div class="logo">
-        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}"> </a>
-
-            <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="{{url('img/logos/logoPVE-large.png')}}"> </a>
+        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}} "  style="width: auto !important; height:6.2vh !important" > </a>
+       </div>
+       <div style='width:23vw'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+          <div class="subtitulo2">
+       <p>Secretaría General</p>
         </div>
-
-        <div class="subtitulo2 ">
-            <p>Secretaría General</p>
+        <div style='width:14vw'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div class="logo">
+            <a class=logoPVE href="https://www.pveaju.unam.mx/"> <img src="{{url('img/logos/logoPVE-large.png')}}" style="width: 5.5vw !important; height:4.4 vh !important" > </a>
+        </div>
+        <div>
+            <a class=logoPVE href="https://www.dgaco.unam.mx/"> <img src="{{url('img/logos/logo-dgaco.png')}}" style="width: 5.5vw !important; height:4.4 vh !important" > </a>
         </div>
     </div>
 
@@ -40,21 +45,15 @@
 </div>
 
 	<!--indicador lateral secciones-->
-    <div class="blank_square sidebar">
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_a==1) completed @endif @if($section=='A') actual @endif"  > Sección 1: Datos Sociodemográficos &nbsp; @if($Encuesta->sec_a==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_e==1) completed @endif @if($section=='E') actual @endif"  > Sección 2: Actualización académica &nbsp; @if($Encuesta->sec_e==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_f==1) completed @endif @if($section=='F') actual @endif"  > Sección 3: Satisfacción con la institución &nbsp; @if($Encuesta->sec_f==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_c==1) completed @endif @if($section=='C') actual @endif"  > Sección 4: Datos Laborales &nbsp; @if($Encuesta->sec_c==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif </a></div>
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_d==1) completed @endif @if($section=='D') actual @endif"  > Sección 5: Incorporación al mercado laboral &nbsp; @if($Encuesta->sec_d==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
-            <div class="row"><a class="btn section-btn @if($Encuesta->sec_g==1) completed @endif @if($section=='G') actual @endif"  > Sección 6: Habilidades&nbsp; @if($Encuesta->sec_g==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif </a></div>
-            
+    <div class="blank_square sidebar verde">
+          <img class="card" src="/img/gráficos/hoja.webp">
                  </div>
                 <!-- lista de reactivos  -->
                 <div class="blank_square listaReactivos" id="rlist">
             @if($section=='personal_data')
-                @include('encuesta2020.'.$section)
+                @include('encuestaVerde.'.$section)
             @else
-                @include('encuesta2020.reactivos')
+                @include('encuestaVerde.reactivos')
             @endif
             </div>
    
@@ -95,6 +94,10 @@ console.log('inicializar tippy');
  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css">
 
  <style>
+    .verde{
+        background-color: #152824  !important;
+        /* #29524a */
+    }
    .swal2-popup {
   font-size: 1.6rem !important;
   font-family: sans-serif;
