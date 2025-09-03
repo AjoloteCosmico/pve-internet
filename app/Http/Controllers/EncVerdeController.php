@@ -21,7 +21,7 @@ class EncVerdeController extends Controller
 public function verify(Request $request){
         
         $cuenta=Request::get('cuenta');
-        $Egresado=Egresado::where('cuenta',$cuenta)->whereIn('anio_egreso',[2018,2019,2020])->first();
+        $Egresado=Egresado::where('cuenta',$cuenta)->whereIn('anio_egreso',[2016,2017,2018,2019,2020,2021,2022])->first();
         //TODO: CREAR TABLA CON LOS CAMPOS NESCESARIOS ASI COMO EL MODELO
         $Encuesta=RespuestasVerdes::where('cuenta',$cuenta)->first();
         //HAY EGRESADO
