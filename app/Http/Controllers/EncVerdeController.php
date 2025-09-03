@@ -58,7 +58,7 @@ public function verify(Request $request){
     public function section($section,$id){
         $Encuesta=RespuestasVerdes::find($id);
         
-        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->whereIn('anio_egreso',[2018,2019,2020])->first();
+        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->whereIn('anio_egreso',[2016,2017,2018,2019,2020,2021,2022])->first();
         $Carrera=Carrera::where('clave_carrera',$Encuesta->nbr2)->first()->carrera;
         $Plantel=Carrera::where('clave_plantel',$Encuesta->nbr3)->first()->plantel;
        $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
