@@ -10,4 +10,5 @@ class RespuestasVerdes extends Model
     use HasFactory;
     
     protected $table = 'respuestas_verdes';
+    protected $guarded = [];  
 }

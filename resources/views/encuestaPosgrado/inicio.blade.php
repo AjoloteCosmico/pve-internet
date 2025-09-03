@@ -102,7 +102,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
                     <label>Número de Cuenta:</label>
                     <input type="number" id="numeroCuenta"   name="cuenta" max="999999999"/>
                 </li>
-
+<br>
                 <li>
                     <button type="submit">Iniciar encuesta</button>
                 </li>
@@ -145,6 +145,9 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 @endpush
 
 @push('js')
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 @if (session('message') == 'no_data')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
@@ -180,10 +183,9 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 </script>
 @endif
 <script>
-    $(window).load(function(){
-    $('#myModal').modal('show');
-  })
-</script>
+    $(window).on("load",function(){
+        $('#myModal').modal('show');
+    });
 </script>
 
  @endpush

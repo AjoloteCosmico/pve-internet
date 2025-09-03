@@ -1,100 +1,91 @@
-@extends('layouts.app')
+<form action="{{ route('enc_verde.update_personal_data',$Encuesta->id)}}" method="POST" enctype="multipart/form-data">
+                   @csrf    
+            <h1 class="black_text"> Confirme sus datos de contacto</h1>
+              
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Nombre</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->nombre}} {{$Egresado->paterno}} {{$Egresado->materno}}" disabled style="background-color:#868b94">
+                </div>
+                @if($Encuesta->aplica2!=1)
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Sexo</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" @if($Egresado->sexo=="M") value="Masculino" @else value="Femenino" @endif disabled style="background-color:#868b94">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Fecha de nacimiento</label>
+                    <input type="date" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->fec_nac}}" disabled style="background-color:#868b94">
+                </div>
+                @endif
+                <div class="form-group" >
+                    <label for="exampleFormControlInput1">Correos</label>
+                    @php   $count_correo=0; @endphp
+                    @foreach($Correos as $c)
+                    
+                            <input type="email" class="form-control"  value="{{$c->correo}}" name="correos[{{$count_correo}}]">
+                              @php   $count_correo=$count_correo+1; @endphp
+                          
+                    @endforeach
+                    
+                            <input type="email" class="form-control"   name="correos[{{$count_correo}}]" placeholder="Ingresa un correo actualizado">
+                            
+                    <div id="correosDiv"></div>
+                    <button style="background-color:#3fbd3c" type="button" onclick="add_correo()"><i class="fa fa-plus" aria-hidden="true"></i> Agregar otro</button>
+                
+                </div>
+                <div class="form-group" >
+                    <label for="exampleFormControlInput1">Números de Teléfono</label>
+                    @php   $count_tel=0; @endphp
+                    @foreach($Telefonos as $t)
+                    
+                        <input type="text" class="form-control myinput"  value="{{$t->telefono}}" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado"> 
+                        <p class="warning-label" id="warnlab[{{$count_tel}}]"> Ingresa al menos 10 dígitos </p>
+                         @php   $count_tel=$count_tel+1; @endphp
+                    @endforeach
 
-@section('content')
+                    
+                    <input type="text" class="form-control myinput"  value="" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado" > 
+                    <p class="warning-label" id="warnlab[{{$count_tel}}]"> Ingresa almenos 10 digitos </p>
+                          
+                            
+                   
+                  <div id="telefonosDiv">
+
+                  </div>
+                  <button style="background-color:#3fbd3c" type="button" onclick="add_tel()"> <i class="fa fa-plus" aria-hidden="true"></i> Agregar otro </button>
+                 
+                    <!-- //pasando este loop agregar un telefono obligatorio y mover aqui el boton de mas -->
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Número de Cuenta</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$Egresado->cuenta}}"  disabled style="background-color:#868b94">
+                </div>
+                @if($Encuesta->aplica2!=1)
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Carrera</label>
+                  
+                    <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Carrera}}" disabled style="background-color:#868b94">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Plantel</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$Plantel}}"  disabled style="background-color:#868b94">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Promedio</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->promedio}}" disabled style="background-color:#868b94">
+                </div>
+                @else
+                @include('encuesta2020.general_reactives')
+                @endif
+                <center>
+            <button id="final-button" class="btn blue_button" type="submit"> Guardar y enviar</button>
+        </center>
+        </form>
 
 
-    <!--CABECERA/HEADER-->
-    <div class="cabecera">
-        <div class="logo">
-        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}" style="width: 4.3vw !important; height:10vw !important" > </a>
-       </div>
-          <div class="subtitulo2">
-       <p>Secretaría General</p>
-        </div>
-        <div class="logo">
-            <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="{{url('img/logos/logoPVE-large.png')}}"> </a>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <a class=lovoPVE href="https://www.dgaco.unam.mx/"> <img src="{{url('img/logos/logo-dgaco.png')}}" style="width: 8vw !important; height:auto !important"> </a>
-        </div>
-    </div>
-
-    <!--cpntenedpor de la encuesta-->
-<div class="fondo_encuesta">
-
-<!--datos del egresado-->
-<div class="blank_square horizontal">
-
-<div class="datos">
-    <p class="black_text"> Nombre:</p>
-    <p class="blue_text"> {{$Encuesta->nombre}}  {{$Encuesta->paterno}}  {{$Encuesta->materno}}</p>
-</div>
-
-<div class="datos">
-    <p class="black_text"> Número de Cuenta:</p>
-    <p class="blue_text"> {{$Encuesta->cuenta}}</p>
-</div>
-
-<div class="datos">
-    <p class="black_text"> Carrera:</p>
-    <p class="blue_text"> {{$Carrera}}</p>
-</div>
-
-</div>
-
-	<!--indicador lateral secciones-->
-    <div class="blank_square sidebar">
-          
-                 </div>
-                <!-- lista de reactivos  -->
-                <div class="blank_square listaReactivos" id="rlist">
-            @if($section=='personal_data')
-                @include('encuesta2020.'.$section)
-            @else
-                @include('encuesta2020.reactivos')
-            @endif
-            </div>
-   
-</div>
-@endsection
-@push('js')
-
-@if($section=='personal_data')
-                @include('scripts.personal_data')
-
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                <script>
-                    Swal.fire({
-                icon: "info",
-                title: "¡Mantente conectado a tu Universidad!",
-                text: "Por favor ingresa al menos un teléfono y un correo que utilices regularmente",
-                imageUrl: "/img/logos/logoUNAM-large-azul.png",
-                imageWidth: 150,
-                imageHeight: 150,
-                className: "red-bg",
-                });
-                </script>
-            @else
-                @include('scripts.section')
-            @endif
-
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://unpkg.com/tippy.js@6"></script>
-<script>
-console.log('inicializar tippy');
-  tippy('#cuadritonar81', {
-    placement: 'top',
-  });
-</script>
- @endpush
-
- @push('css')
- <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css">
-
- <style>
-   .swal2-popup {
-  font-size: 1.6rem !important;
-  font-family: sans-serif;
-}
- </style>
-
- @endpush
+@push('css')
+<style>
+    .myinput{
+     width:35%;
+    }
+</style>
+@endpush

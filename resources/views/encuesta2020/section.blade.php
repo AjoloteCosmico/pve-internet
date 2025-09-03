@@ -93,10 +93,23 @@ console.log('inicializar tippy');
 
  @push('css')
  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css">
+ <style>
+    .section-btn{
+    white-space: normal;
+   word-wrap: break-word;
+    width: 15.5vmax;
+    min-height: 3.8vmax;
+    border-radius: 0.7vmax;
+    font-weight: bold;
+    font-size: max(0.8vmax,12px);
+    padding:0.6vmax;
+    
+}    
 
+ </style>
  <style>
    .swal2-popup {
-  font-size: 1.6rem !important;
+  font-size: 0.5 rem !important;
   font-family: sans-serif;
 }
  </style>

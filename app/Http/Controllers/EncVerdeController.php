@@ -19,7 +19,7 @@ class EncVerdeController extends Controller
     }
 
 public function verify(Request $request){
-
+        
         $cuenta=Request::get('cuenta');
         $Egresado=Egresado::where('cuenta',$cuenta)->whereIn('anio_egreso',[2018,2019,2020])->first();
         //TODO: CREAR TABLA CON LOS CAMPOS NESCESARIOS ASI COMO EL MODELO
@@ -38,6 +38,7 @@ public function verify(Request $request){
                 $Encuesta->save();
             }
              //comnzar encuesta 
+            
             return redirect()->route('enc_verde.section',['encuesta_verde',$Encuesta->id]);
           }
           else{
@@ -78,11 +79,8 @@ public function verify(Request $request){
                //GRADUADO DE MAESTRIA
                 }else{
                     $Reactivos=Reactivo::where('section',$section)->whereNotIn('clave',['pbr3','pbr4','pbr5','pbr5otro','pbr6','pbr7'])->orderBy('orden')->get();
-           
                 }
-            
             }
-
         }else{
             $Reactivos="";
             $Bloqueos="";
@@ -94,4 +92,49 @@ public function verify(Request $request){
                             'Bloqueos'));
     }
 
+    public function update(Request $request,$id){
+
+        $filteredArray = Arr::where(Request::except(['_token', '_method','btnradio','section']), function ($value, $key) {
+            return $value != "on";
+        });
+        // dd($filteredArray);
+        $Encuesta=RespuestasVerdes::find($id);
+        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr2)->first();
+        $Encuesta->update($filteredArray);
+        $Encuesta->save();
+
+        //return personal data update with mesage
+        return redirect()->route('enc_verde.section',['personal_data',$Encuesta->id]);
+            // return view('encuesta2016.terminar',compact('Encuesta'));
+        }
+    public function update_personal_data(Request $request,$id){
+        $Encuesta=RespuestasVerdes::find($id);
+        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->first();
+        // dd($Egresado,$Encuesta);
+        $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
+        $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
+        
+        
+        foreach (Request::get('correos') as $correo) {
+         if($correo!="" && $Correos->where('correo',$correo)->count()==0){
+            $Correo= new Correo();
+            $Correo->cuenta=$Encuesta->cuenta;
+            $Correo->correo=$correo;
+            $Correo->status=13;
+            $Correo->save();
+         }
+        }
+
+        foreach (Request::get('telefonos') as $telefono) {
+            if($telefono!="" && $Telefonos->where('telefono',$telefono)->count()==0){
+               $Telefono= new Telefono();
+               $Telefono->cuenta=$Encuesta->cuenta;
+               $Telefono->telefono=$telefono;
+               $Telefono->status=13;
+               $Telefono->save();
+            }
+           }
+          
+      return redirect()->route('enc_verde.inicio')->with('teminada','ok');
+    }
 }

@@ -227,21 +227,33 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: small;
 }
 
-.fondo_encuesta{
+.fondo_verde{
     background-color: #868b94;
     display: flex;
     color: white;
     align-items:center;
     padding: 1% 2% ;
 }
+.fondo_encuesta{
+    background-color: #868b94;
+    display: flex;
+    color: white;
+    align-items:center;
+    padding: 2% 3% ;
+}
 
-.blank_square{
+.verde_square{
 background-color: rgb(235, 235, 235);
 padding: 4.5vw;
 margin:0.3vw;
 border-radius: 1.3vw;
 }
-
+.blank_square{
+background-color: rgb(235, 235, 235);
+padding: 4.5vw;
+margin:0.9vw;
+border-radius: 1.3vw;
+}
 .horizontal{
     display: flex;
 flex-direction: row;

@@ -25,119 +25,50 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
       </div>
     </div>
   </div>
+   
 
-    <!--CABECERA/HEADER-->
-    <div class="cabecera">
-        <div class="logo">
-        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}" style="width: 4.3vw !important; height:10vw !important" > </a>
-       </div>
-          <div class="subtitulo2">
-       <p>Secretaría General</p>
+
+<div class="container-fluid fondo-container">
+
+  <!-- LADO IZQUIERDO -->
+  <div class="izquierda">
+    <img src="{{ asset('img/verde/header.png') }}" alt="Header" class="fondo-img" >
+    <br> <br>
+    <img src="{{ asset('img/verde/empleabilidad.png') }}" alt="Empleabilidad Verde" class="fondo-img">
+   
+   
+    <img src="{{ asset('img/verde/leyenda.png') }}" alt="Empleabilidad Verde" class="fondo-img">
+    
+  </div>
+
+  <!-- LADO DERECHO CON HOJAS -->
+  <div class="derecha">
+    <div class="formulario">
+      <form action="{{ route('enc_verde.verify')}}" method="POST" enctype="multipart/form-data">
+          @csrf
+        <div class="form-group">
+          <label for="cuenta" style="color:#96d877ff">Número de Cuenta:</label>
+          <input  class="form-control"  type="number" id="numeroCuenta"   name="cuenta" max="999999999">
         </div>
-        <div class="logo">
-            <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="{{url('img/logos/logoPVE-large.png')}}"> </a>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <a class=lovoPVE href="https://www.dgaco.unam.mx/"> <img src="{{url('img/logos/logo-dgaco.png')}}" style="width: 8vw !important; height:auto !important"> </a>
-        </div>
+     
+        <button type="submit" class="btn btn-warning btn-block w-5">Iniciar</button>
+      </form>
     </div>
+  </div>
 
-    <!--INFORMACIÓN DE BIENVENIDA-->
-<div class="main verde">
-    <div class="izquierda">
-    <div class="info">
-        <p class="subtitulo3">
-            ENCUESTA DE EMPLEOS VERDES <br>
-            EGRESADOS DE LICENCIATURA UNAM <br>
-            GENERACIONES 2018,2019,2020
-        </p>
-        <br><br><br>
-        <p class="texto2">
-            Solicitamos su apoyo para contestar el siguiente cuestionario que tiene como propósito conocer:
-            <br><br>
-            <ol>
-                <li>
-                    Su <span style="color: #e6af2b">situacion laboral</span> sobre los beneficios que ha obtenido con su formación profesional
-                </li>
-                <li>
-                    Si es que desempeña actividades de <span style="color: #e6af2b">sustentabilidad y cuidado del ambiente</span> al incorporarse al campo ocupacional de su profesión
-                </li>
-                <li>
-                    Su participacion en  <span style="color: #e6af2b">posgrados y actualizaciones</span> orientados tambien a estos topicos (cuidado del medio ambiente)
-                </li>
-            </ol>
-        </p>
-    </div>
-
-        <!--CARDS PROPÓSITOS-->
-
-    <div class="propositos">
-        <img class="card" src="/img/gráficos/hoja.webp">
-
-        <img class="card" src="/img/gráficos/hoja.webp">
-        
-        <img class="card" src="/img/gráficos/hoja.webp">
-    </div>
-    </div>
-
-
-<div class="derecha">
-
-        <!--CUADRO DE INICIAR ENCUESTA-->
-    <div class="iniciar">
-        <p class="texto4">
-            <b>DURACIÓN APROXIMADA: 1 MINUTO</b>
-            
-        </p>
-        <br>
-        <!-- <p class="texto4">
-            PARA GENERACIONES QUE INGRESARON ANTES DE 1999 SE ANTEPONE UN <b>"0"</b> EN EL NÚMERO DE CUENTA
-        </p> -->
-        <br>
-
-        <form action="{{ route('enc_verde.verify')}}" method="POST" enctype="multipart/form-data">
-        @csrf
-          
-            <ul>
-                <li>
-                    <label>Número de Cuenta:</label>
-                    <input type="number" id="numeroCuenta"   name="cuenta" max="999999999"/>
-                </li>
-
-                <li>
-                    <button type="submit">Iniciar encuesta</button>
-                </li>
-            </ul>
-        </form>
-        <br>
-        <p class="texto8">
-            <b>Preferentemente utilizar Google Chrome</b>
-        </p>
-    </div>
 
 </div>
-</div>
-<!--AVISO DE PRIVACIDAD-->
-<div class="aviso">
-    <p class="texto4">
-            LA INFORMACIÓN QUE PROPORCIONE SERÁ ESTRICTAMENTE CONFIDENCIAL Y SÓLO SE UTILIZARÁ CON FINES ESTADÍSTICOS.
-    </p>
 
-    <div class="botonAviso">
-        <p class="texto7">IMPORTANTE</p>
-        <a href="https://www.pveaju.unam.mx/aviso-de-privacidad.php">Aviso de Privacidad</a>
-    </div>
-</div>
+  <div class='footer'> </div>
+
 @endsection
 
 @push('css')
 <style>
-    .verde{
-        background-color: #152824  !important;
-        /* #29524a */
-    }
-    .swal2-popup {
+   
+.swal2-popup {
     font-size: 14px !important;
-}
+    }
 
 .swal2-styled {
     padding: 10px 32px 10px 32px !important;
@@ -146,9 +77,91 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
     height: 45px;
 }
 </style>
+  <style>
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      background-color: #f0f0f0;
+    }
+
+    .fondo-container {
+      display: flex;
+      flex-wrap: wrap;
+      min-height: 80vh;
+      width: 100% !important;
+    }
+
+    /* LADO IZQUIERDO */
+    .izquierda {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: left;
+      align-items: left;
+      padding: 3vw 9vw 4vh 9vw;
+      background: #fff;
+    }
+
+    .fondo-img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    /* LADO DERECHO CON FONDO DE HOJAS */
+    .derecha {
+      flex: 1;
+      position: relative;
+      background: url('{{ asset('img/verde/hojas.png') }}') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* FORM ENCIMA DEL FONDO */
+    .formulario {
+      background: rgba(15, 15, 245, 0.8);
+      padding: 20px;
+      border-radius: 18px;
+      font-color: #96d877ff;
+      width: 100%;
+      max-width: 350px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      
+      z-index: 10; /* se asegura de estar encima del fondo */
+    }
+
+    .footer{
+        width:100%;
+        height:20vh;
+        background-color:#91b400;
+    }
+
+    /* Layout vertical en pantallas pequeñas */
+    @media (max-width: 991px) {
+      .fondo-container {
+        flex-direction: column;
+      }
+      .izquierda, .derecha {
+        flex: none;
+        width: 100%;
+        min-height: 50vh;
+      }
+      .formulario {
+        margin-top: 20px;
+      }
+    }
+  </style>
 @endpush
 
 @push('js')
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 @if (session('message') == 'no_data')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
@@ -160,6 +173,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 });
 </script>
 @endif
+
 @if (session('message') == 'realized')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
@@ -183,11 +197,10 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 });
 </script>
 @endif
-<script>
-    $(window).load(function(){
-    $('#myModal').modal('show');
-  })
-</script>
-</script>
 
+<script>
+    $(window).on("load",function(){
+        $('#myModal').modal('show');
+    });
+</script>
  @endpush
