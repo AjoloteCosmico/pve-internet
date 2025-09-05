@@ -47,13 +47,8 @@ public function verify(Request $request){
             //TYPE 2020
                 //REDIRECCIONA A ENC GENERALs
                 return redirect()->route('enc_verde.inicio')->with('message','notinsample');
-          
-              
-          
-                }
-                   
+                }              
     }
-
 
     public function section($section,$id){
         $Encuesta=RespuestasVerdes::find($id);

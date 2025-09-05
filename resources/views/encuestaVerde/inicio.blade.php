@@ -32,10 +32,9 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 
   <!-- LADO IZQUIERDO -->
   <div class="izquierda">
-    <img src="{{ asset('img/verde/header.png') }}" alt="Header" class="fondo-img" >
+    <img src="{{ asset('img/verde/header.png') }}" alt="Header" class="header-img" >
     <br> <br>
-    <img src="{{ asset('img/verde/empleabilidad.png') }}" alt="Empleabilidad Verde" class="fondo-img">
-   
+    <img src="{{ asset('img/verde/empleabilidad.png') }}" alt="Empleabilidad Verde" class="emp-img">
    
     <img src="{{ asset('img/verde/leyenda.png') }}" alt="Empleabilidad Verde" class="fondo-img">
     
@@ -47,7 +46,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
       <form action="{{ route('enc_verde.verify')}}" method="POST" enctype="multipart/form-data">
           @csrf
         <div class="form-group">
-          <label for="cuenta" style="color:#96d877ff">Número de Cuenta:</label>
+          <label for="cuenta" style="color:#96d877ff;  font-size: 4.1 vh;">Número de Cuenta:</label>
           <input  class="form-control"  type="number" id="numeroCuenta"   name="cuenta" max="999999999">
         </div>
      
@@ -59,11 +58,51 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 
 </div>
 
-  <div class='footer'> </div>
+<div class="footer">
+  <div class="footer-content container text-center">
+
+    <!-- Texto superior -->
+    <p class="footer-intro">
+      <strong>Egresados UNAM:</strong><br>
+      La Encuesta <span class="destacado">Egresados UNAM: Empleabilidad Verde</span> busca
+      conocer el impacto de la inserción laboral de los egresados
+      en el ámbito profesional enfocado o relacionado con el denominado
+      <span class="destacado">empleo verde</span>.
+    </p>
+    </div>
+  </div>
+  <div class="footer-white">
+    <div class="footer-content container text-center">
+    <!-- Subtítulo -->
+     <br><br>
+    <p class="footer-subtitulo">
+      En cumplimiento del Eje transversal<br>
+      <span class="sustentabilidad">SUSTENTABILIDAD</span>, la UNAM
+    </p>
+
+    <!-- Recuadros azules -->
+    <div class="footer-cards d-flex justify-content-center">
+      <img src="{{ asset('img/verde/cuadro1.png') }}" alt="Forma" class="footer-card">
+      <img src="{{ asset('img/verde/cuadro2.png') }}" alt="Fortalece" class="footer-card">
+      <img src="{{ asset('img/verde/cuadro3.png') }}" alt="Impulsa" class="footer-card">
+    </div>
+
+    <!-- Texto inferior -->
+    <p class="footer-nota">
+      La información que proporcione será estrictamente confidencial y sólo se utilizará con fines estadísticos.<br>
+      <span class="importante">IMPORTANTE</span>
+      <a href="https://www.pveaju.unam.mx/aviso-de-privacidad/" target="_blank" class="aviso">Aviso de Privacidad</a>
+    </p>
+    <br>
+    <br><br><br>
+  </div>
+</div>
+
 
 @endsection
 
 @push('css')
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
    
 .swal2-popup {
@@ -89,6 +128,8 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
       flex-wrap: wrap;
       min-height: 80vh;
       width: 100% !important;
+      background: #fff;
+      z-index: 10;
     }
 
     /* LADO IZQUIERDO */
@@ -108,6 +149,14 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
       margin-bottom: 20px;
     }
 
+    .emp-img {
+      /* height: 48%; */
+      /* width: auto !important; */
+    }
+    .header-img {
+      max-width: 100%;
+      height: auto;
+    }
     /* LADO DERECHO CON FONDO DE HOJAS */
     .derecha {
       flex: 1;
@@ -118,14 +167,17 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
       justify-content: center;
       align-items: center;
       padding: 20px;
+      z-index: 10;
     }
 
+   
     /* FORM ENCIMA DEL FONDO */
     .formulario {
       background: rgba(15, 15, 245, 0.8);
       padding: 20px;
       border-radius: 18px;
       font-color: #96d877ff;
+    
       width: 100%;
       max-width: 350px;
       position: relative;
@@ -134,11 +186,71 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
       
       z-index: 10; /* se asegura de estar encima del fondo */
     }
+/* pie de pagina */
+  .footer {
+      width: 100%;
+      background-color: #91b400; /* verde */
+      padding: 0vh,0vh,0vh,0vh;
+      color: #fff;;
+      position: relative;
+      
+      margin-top: -12vh; /* hace que se meta un poco sobre el footer */
+      z-index: 1;
+    }
 
-    .footer{
-        width:100%;
-        height:20vh;
-        background-color:#91b400;
+    .footer-intro {
+      font-size: 2.5rem;
+      line-height: 1.5;
+      color: #fff;
+    }
+    .footer-white{
+      width: 100vw !important;
+      background-color: #fff; /* verde */
+    
+    }
+
+    .footer-intro .destacado {
+      color: #004c97; /* azul fuerte */
+      font-weight: bold;
+    }
+
+    .footer-subtitulo {
+      margin-top: 25px;
+      font-size: 2.2rem;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .footer-subtitulo .sustentabilidad {
+      color: #91b400;
+      font-weight: bold;
+    }
+
+    .footer-cards {
+      margin: 30px auto;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-card {
+      max-width: 200px;
+      height: auto;
+    }
+
+    .footer-nota {
+      font-size: 1.85rem;
+      color: #666;
+    }
+
+    .footer-nota .importante {
+      color: #91b400;
+      font-weight: bold;
+    }
+
+    .footer-nota .aviso {
+      margin-left: 10px;
+      color: #004c97;
+      text-decoration: underline;
     }
 
     /* Layout vertical en pantallas pequeñas */
@@ -159,7 +271,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 @endpush
 
 @push('js')
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 @if (session('message') == 'no_data')
