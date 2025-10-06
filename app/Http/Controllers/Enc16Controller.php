@@ -164,6 +164,7 @@ class Enc16Controller extends Controller
         $Comentario=''.Comentario::where('cuenta','=',$Encuesta->cuenta)->first();
         $Telefonos=Telefono::where('cuenta','=',$Egresado->cuenta)->get();
         $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();
+        $Generacion=respuestas16::where('cuenta',$Egresado->cuenta)->first()->gen_dgae;
 
         $Coment=Comentario::where('cuenta','=',$Encuesta->cuenta)->first();
         if($section!='personal_data'){
@@ -212,7 +213,7 @@ class Enc16Controller extends Controller
         return view('encuesta2016.section',
                      compact('Encuesta','Carrera','Plantel','Egresado',
                             'Telefonos','Correos','section','Reactivos',
-                            'Bloqueos','NombreSeccion','Planteles','Carreras'));
+                            'Bloqueos','NombreSeccion','Planteles','Carreras','Generacion'));
     }
 
     public function update_personal_data(Request $request,$id){

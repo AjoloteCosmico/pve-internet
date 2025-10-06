@@ -37,6 +37,11 @@
     <p class="blue_text"> {{$Carrera}}</p>
 </div>
 
+<div class="datos">
+    <p class="black_text"> Generacion:</p>
+    <p class="blue_text"> {{$Generacion}}</p>
+</div>
+
 </div>
 
 	<!--indicador lateral secciones-->

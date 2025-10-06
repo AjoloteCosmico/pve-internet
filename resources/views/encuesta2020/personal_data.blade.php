@@ -68,6 +68,11 @@
                     <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Carrera}}" disabled style="background-color:#868b94">
                 </div>
                 <div class="form-group">
+                    <label for="exampleFormControlInput1">Generación</label>
+                  
+                    <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Generacion}}" disabled style="background-color:#868b94">
+                </div>
+                <div class="form-group">
                     <label for="exampleFormControlInput1">Plantel</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$Plantel}}"  disabled style="background-color:#868b94">
                 </div>

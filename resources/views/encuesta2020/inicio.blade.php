@@ -46,8 +46,10 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
         <p class="subtitulo3">
             @if($type=='general')
             TODAS LAS CARRERAS Y GENERACIONES
-            @else
+            @elseif($type=='2020')
             Generación de egreso 2020
+            @else
+            Generación de egreso 2022
             @endif
            
         </p>
@@ -94,7 +96,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
         </p>
         <br>
 
-        <form action="{{ route('enc20.verify')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('enc20.verify', ['type' => $type]) }}" method="POST" enctype="multipart/form-data">
         @csrf
             <input type="hidden" name="type" value="{{$type}}">
             <ul>
