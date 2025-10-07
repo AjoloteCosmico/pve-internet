@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use App\Models\respuestas20;
 use App\Models\respuestas16;
@@ -18,133 +18,180 @@ use DB;
 class Enc20Controller extends Controller
 {
     public function inicio($type){
-        if($type!= '2020'&&$type!='general'){
+        if($type!= '2020'&&$type!='general'&&$type!='2022'){
             return redirect()->route('enc.inicio','general');
         }
         return view('encuesta2020.inicio',compact('type'));
     }
 
-    public function verify(Request $request){
 
-        $cuenta=Request::get('cuenta');
+
+    public function verify(Request $request, $type){
+
+
+        $cuenta = $request->get('cuenta'); 
         $cuenta = ltrim($cuenta, "0"); 
-        $Egresado=Egresado::where('cuenta',$cuenta)->first();
-        $Encuesta=respuestas20::where('cuenta',$cuenta)->first();
-        //HAY EGRESADO
-        if($Egresado){
-          //ES 2020
-          if($Egresado->anio_egreso==2020||$Egresado->muestra==3){
-            //LLENA LOS DATOS CON LA TABLA DE EG Y COMIENZA ENC
-            if(!$Encuesta){
-                $Encuesta=new respuestas20();
-                $Encuesta->cuenta=$cuenta;
-                $Encuesta->nombre=$Egresado->nombre;
-                $Encuesta->paterno=$Egresado->paterno;
-                $Encuesta->materno=$Egresado->materno;
-                $Encuesta->nbr2=$Egresado->carrera;
-                $Encuesta->nbr3=$Egresado->plantel;
-                $Encuesta->gen_dgae=2020;
-                $Encuesta->completed=0;
-                $Encuesta->save();
-            }
-             //comnzar encuesta 2020
-            if($Encuesta->completed!=1){
-            return redirect()->route('enc20.section',[$Encuesta->registro,'personal_data']);}
-            else{
-                return redirect()->route('enc.inicio','2020')->with('message','realized');
+        $Egresado = Egresado::where('cuenta', $cuenta)->first();
+        
+        // egresado existente
+        if ($Egresado) {
             
-            }
-
-
-          }
-          //ES 2016
-          if($Egresado->anio_egreso==2016 && $Egresado->act_suvery==1){
-            //llena los datos de la tabla y comienza la encuesta
-            if(!$Encuesta){
-                $Encuesta=new respuestas16();
-                $Encuesta->cuenta=$cuenta;
-                $Encuesta->nombre=$Egresado->nombre;
-                $Encuesta->paterno=$Egresado->paterno;
-                $Encuesta->materno=$Egresado->materno;
-                $Encuesta->nbr2=$Egresado->carrera;
-                $Encuesta->nbr3=$Egresado->plantel;
-                $Encuesta->completed=0;
-                $Encuesta->save();
-            }
-            //Comenzar encuesta 2016
-            if($Encuesta->completed!=1){
-                return redirect()->route('enc16.section',[$Encuesta->registro,'personal_data']);}
-                else{
-                    return redirect()->route('enc16.inicio','2016')->with('message','realized');
-                }
-        }else{
-          //NO ES 2020
-            if(Request::get('type')=='general'){
-                 //TYPE=GENERAL
-                //SE LLENAN LOS DATOS CON EL INPUT Y COMIENZA ENC
+            // 2020
+            if ($Egresado->muestra == 3) {
                 
-                if(!$Encuesta){
-                    $Encuesta=new respuestas20();
-                    $Encuesta->cuenta=$cuenta;
-                    $Encuesta->aplica2=1;
-                    $Encuesta->nombre=Request::get('nombre');
-                    $Encuesta->paterno=Request::get('paterno');
-                    $Encuesta->materno=Request::get('materno');
-                    $Encuesta->completed=0;
+                $Encuesta = respuestas20::where('cuenta', $cuenta)->first();
+                
+                
+                
+                if (!$Encuesta) {
+                    $Encuesta = new respuestas20();
+                    $Encuesta->cuenta = $cuenta;
+                    $Encuesta->nombre = $Egresado->nombre;
+                    $Encuesta->paterno = $Egresado->paterno;
+                    $Encuesta->materno = $Egresado->materno;
+                    $Encuesta->nbr2 = $Egresado->carrera;
+                    $Encuesta->nbr3 = $Egresado->plantel;
+                    $Encuesta->gen_dgae = $Egresado->anio_egreso;
+                    $Encuesta->completed = 0;
                     $Encuesta->save();
                 }
-                if($Encuesta->completed!=1){
-                    return redirect()->route('enc20.section',[$Encuesta->registro,'personal_data']);}
-                    else{
-                        return redirect()->route('enc.inicio','2020')->with('message','realized');
-                    
-                    }
-            }
-          
-            if(Request::get('type')=='2020'){
-            //TYPE 2020
-                //REDIRECCIONA A ENC GENERAL
-                return redirect()->route('enc.inicio','general')->with('message','notinsample');
-          }
-              
-          
+                
+                
+                if($Encuesta->completed != 1){
+                    return redirect()->route('enc20.section', [$Encuesta->registro, 'personal_data']);
+                } else {
+                    return redirect()->route('enc.inicio', $type)->with('message', 'realized');
                 }
-            }else{
-                   //NO HAY ERGESADO
-                   if(Request::get('type')=='general'){
-                    //TYPE=GENERAL
-                    $Egresado=new Egresado();
-                $Egresado->cuenta=$cuenta;
-                $Egresado->fuente='encuesta externa';
-                $Egresado->nombre=Request::get('nombre');
-                $Egresado->paterno=Request::get('paterno');
-                $Egresado->materno=Request::get('materno');
-                $Egresado->save();
+            }
+            
+            // 2022
+            elseif ($Egresado->muestra == 5) {
+                $Encuesta = respuestas20::where('cuenta', $cuenta)->first();
+                
+                
+                
+                if (!$Encuesta) {
+                    $Encuesta = new respuestas20();
+                    $Encuesta->cuenta = $cuenta;
+                    $Encuesta->nombre = $Egresado->nombre;
+                    $Encuesta->paterno = $Egresado->paterno;
+                    $Encuesta->materno = $Egresado->materno;
+                    $Encuesta->nbr2 = $Egresado->carrera;
+                    $Encuesta->nbr3 = $Egresado->plantel;
+                    $Encuesta->gen_dgae = $Egresado->anio_egreso;
+                    $Encuesta->completed = 0;
+                    $Encuesta->save();
+                }
+                
+                
+                if($Encuesta->completed != 1){
+                    return redirect()->route('enc20.section', [$Encuesta->registro, 'personal_data']);
+                } else {
+                    return redirect()->route('enc.inicio', $type)->with('message', 'realized');
+                }
+            }
+            
+            // ES 2016 
+            elseif ($Egresado->act_suvery == 1) {
+                
+                $Encuesta = respuestas16::where('cuenta', $cuenta)->first(); 
+
+                
+                if (!$Encuesta) {
+                    $Encuesta = new respuestas16();
+                    $Encuesta->cuenta = $cuenta;
+                    $Encuesta->nombre = $Egresado->nombre;
+                    $Encuesta->paterno = $Egresado->paterno;
+                    $Encuesta->materno = $Egresado->materno;
+                    $Encuesta->nbr2 = $Egresado->carrera;
+                    $Encuesta->nbr3 = $Egresado->plantel;
+                    $Encuesta->completed = 0;
+                    $Encuesta->save();
+                }
+                
+                
+                if ($Encuesta->completed != 1) {
+                    return redirect()->route('enc16.section', [$Encuesta->registro, 'personal_data']);
+                } else {
+                    return redirect()->route('enc16.inicio', '2016')->with('message', 'realized');
+                }
+            }
+            
+            // 3. NO COINCIDE MUESTRA
+            else {
+                
+                
+                if($type == 'general'){
+                    
+                    $Encuesta = respuestas20::where('cuenta', $cuenta)->first(); 
+                    
                     if(!$Encuesta){
-                        $Encuesta=new respuestas20();
-                        $Encuesta->cuenta=$cuenta;
-                        $Encuesta->aplica2=1;
-                        $Encuesta->nombre=Request::get('nombre');
-                        $Encuesta->paterno=Request::get('paterno');
-                        $Encuesta->materno=Request::get('materno');
-                        $Encuesta->gen_dgae=Request::get('anio_egreso');
-                        $Encuesta->completed=0;
+                        $Encuesta = new respuestas20();
+                        $Encuesta->cuenta = $cuenta;
+                        $Encuesta->aplica2 = 1;
+                        $Encuesta->nombre = $request->get('nombre'); 
+                        $Encuesta->paterno = $request->get('paterno');
+                        $Encuesta->materno = $request->get('materno');
+                        $Encuesta->completed = 0;
                         $Encuesta->save();
                     }
-                    if($Encuesta->completed!=1){
-                        return redirect()->route('enc20.section',[$Encuesta->registro,'personal_data']);}
-                        else{
-                            return redirect()->route('enc.inicio','general')->with('message','realized');
-                        
-                        }
+                    
+                    if($Encuesta->completed != 1){
+                        return redirect()->route('enc20.section',[$Encuesta->registro,'personal_data']);
+                    } else {
+                        return redirect()->route('enc.inicio','general')->with('message','realized');
+                    }
+                } 
+                
+                
+                return redirect()->route('enc.inicio','general')->with('message','notinsample');
+            }
+    
+        } 
+        
+        // NO HAY EGRESADO 
+        else {
+            
+            
+            if($type == 'general'){
+                
+                
+                $Egresado = new Egresado();
+                $Egresado->cuenta = $cuenta;
+                $Egresado->fuente = 'encuesta externa';
+                $Egresado->nombre = $request->get('nombre');
+                $Egresado->paterno = $request->get('paterno');
+                $Egresado->materno = $request->get('materno');
+                $Egresado->save();
+                
+                $Encuesta = respuestas20::where('cuenta', $cuenta)->first(); 
+
+                
+                if(!$Encuesta){
+                    $Encuesta = new respuestas20();
+                    $Encuesta->cuenta = $cuenta;
+                    $Encuesta->aplica2 = 1;
+                    $Encuesta->nombre = $request->get('nombre');
+                    $Encuesta->paterno = $request->get('paterno');
+                    $Encuesta->materno = $request->get('materno');
+                    $Encuesta->gen_dgae = $request->get('anio_egreso'); 
+                    $Encuesta->completed = 0;
+                    $Encuesta->save();
                 }
-               if(Request::get('type')=='2020'){
-                    //TYPE 2020
-                   //REDIRECCIONA A ENC GENERAL
-                   return redirect()->route('enc.inicio','general')->with('message','notinsample');;
-               }
+                
+                if($Encuesta->completed != 1){
+                    return redirect()->route('enc20.section',[$Encuesta->registro,'personal_data']);
+                } else {
+                    return redirect()->route('enc.inicio','general')->with('message','realized');
+                }
+            }
+            
+            
+            else {
                
-             }      
+                return redirect()->route('enc.inicio','general')->with('message','notinsample');
+            }
+        }
     }
 
 
@@ -175,7 +222,8 @@ class Enc20Controller extends Controller
         
         $Comentario=''.Comentario::where('cuenta','=',$Encuesta->cuenta)->first();
         $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
-        $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
+        $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();
+        $Generacion=respuestas20::where('cuenta',$Egresado->cuenta)->first()->gen_dgae;       
        
         $Coment=Comentario::where('cuenta','=',$Encuesta->cuenta)->first();
         if($section!='personal_data'){
@@ -214,10 +262,11 @@ class Enc20Controller extends Controller
         return view('encuesta2020.section',
                      compact('Encuesta','Carrera','Plantel','Egresado',
                             'Telefonos','Correos','section','Reactivos',
-                            'Bloqueos','NombreSeccion','Planteles','Carreras'));
+                            'Bloqueos','NombreSeccion','Planteles','Carreras','Generacion'));
     }
 
     public function update_personal_data(Request $request,$id){
+
         $Encuesta=respuestas20::find($id);
         $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->first();
         // dd($Egresado,$Encuesta);
@@ -225,15 +274,15 @@ class Enc20Controller extends Controller
         $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
         
         if($Encuesta->aplica2==1){
-            $Encuesta->nbr2=Request::get('nbr2');
-            $Encuesta->nbr3=Request::get('nbr3');
+            $Encuesta->nbr2= $request->get('nbr2');
+            $Encuesta->nbr3= $request->get('nbr3');
             $Encuesta->save();
-            $Egresado->plantel=Request::get('nbr3');
-            $Egresado->carrera=Request::get('nbr2');
-            $Egresado->anio_egreso=Request::get('anio_egreso');
+            $Egresado->plantel= $request->get('nbr3');
+            $Egresado->carrera= $request->get('nbr2');
+            $Egresado->anio_egreso= $request->get('anio_egreso');
             $Egresado->save();
         }
-        foreach (Request::get('correos') as $correo) {
+        foreach ($request->get('correos') as $correo) {
          if($correo!="" && $Correos->where('correo',$correo)->count()==0){
             $Correo= new Correo();
             $Correo->cuenta=$Encuesta->cuenta;
@@ -243,7 +292,7 @@ class Enc20Controller extends Controller
          }
         }
 
-        foreach (Request::get('telefonos') as $telefono) {
+        foreach ($request->get('telefonos') as $telefono) {
             if($telefono!="" && $Telefonos->where('telefono',$telefono)->count()==0){
                $Telefono= new Telefono();
                $Telefono->cuenta=$Encuesta->cuenta;
@@ -267,7 +316,7 @@ class Enc20Controller extends Controller
 
     public function update(Request $request,$id){
         
-        $filteredArray = Arr::where(Request::except(['_token', '_method','btnradio','section']), function ($value, $key) {
+        $filteredArray = Arr::where($request->except(['_token', '_method','btnradio','section']), function ($value, $key) {
             return $value != "on";
         });
         // dd(Request::all(),$filteredArray);
@@ -276,13 +325,13 @@ class Enc20Controller extends Controller
         $Encuesta->update($filteredArray);
         $Encuesta->save();
         // dd(Request::all(),$filteredArray);
-        $section=Request::get('section');
+        $section= $request->get('section');
         
         //si la seccion contiene reactivos multiples,  iteramos sobre ellos
         $reativos_multiples=Reactivo::where('type','multiple_option')->where('section',$section)->get();
         foreach($reativos_multiples as $r){
             $clave=$r->clave;
-            $selected_options = Arr::where(Request::except(['_token', '_method','btnradio','section']), function ($value, $key) use($clave){
+            $selected_options = Arr::where($request->except(['_token', '_method','btnradio','section']), function ($value, $key) use($clave){
                 return str_contains($key,$clave.'opcion');
             });
             // dd($selected_options);

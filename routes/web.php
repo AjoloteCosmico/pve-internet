@@ -23,8 +23,8 @@ use App\Http\Controllers\EncVerdeController;
 
 Route::controller(Enc20Controller::class)->group(function(){
     Route::get('/encuesta_generacion/{type}', 'inicio')->name('enc.inicio');
-    Route::post('/verify_cuenta_2020',  'verify')->name('enc20.verify');
-    Route::get('/encuesta2020/section/{id}/{section}',  'section')->name('enc20.section');
+    Route::post('/verify_cuenta/{type}',  'verify')->name('enc20.verify');
+    Route::get('/encuesta_seguimiento/section/{id}/{section}',  'section')->name('enc20.section');
     Route::post('/update_personal_data/{id}', 'update_personal_data')->name('enc20.update_personal_data');
     Route::post('/update_section/{id}','update')->name('enc20.update');
 });
@@ -39,7 +39,7 @@ Route::controller(PosgradoController::class)->group(function(){
 Route::controller(Enc16Controller::class)->group(function(){
     Route::get('/encuesta_actualizacion/{type}', 'inicio')->name('enc16.inicio');
     Route::post('/verify_cuenta_2016', 'verify')->name('enc16.verify');
-    Route::get('/encuesta2016/section/{id}/{section}', 'section')->name('enc16.section');
+    Route::get('/encuesta_act/section/{id}/{section}', 'section')->name('enc16.section');
     Route::post('/update_personal_data_actualizacion/{id}', 'update_personal_data')->name('enc16.update_personal_data');
     Route::post('/update_section_actualizacion/{id}','update')->name('enc16.update');
 });
