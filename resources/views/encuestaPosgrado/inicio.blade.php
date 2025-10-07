@@ -105,7 +105,11 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 <br>
                 <li>
                        @if(session('message') == 'notinsample')
-                
+                <input type="hidden" name="external" value="1">
+                 <li>
+                    <label>Nombre(s):</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="nombre"/>
+                </li>
                 <li>
                     <label>Apellido Paterno:</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="paterno"/>
@@ -114,12 +118,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
                     <label>Apellido Materno:</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"   name="materno"/>
                 </li>
-                <li>
-                    <label>Nombre(s):</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="nombre"/>
-                </li>
-               
-                
+                <br>
                 @endif
                     <button type="submit">Iniciar encuesta</button>
                 </li>

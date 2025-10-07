@@ -25,7 +25,6 @@ class Enc20Controller extends Controller
     }
 
 
-
     public function verify(Request $request, $type){
 
 

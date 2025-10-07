@@ -21,8 +21,42 @@ class PosgradoController extends Controller
     }
 
     public function verify(Request $request){
+        
         $cuenta=Request::get('cuenta');
         $cuenta = ltrim($cuenta, "0"); 
+        if(Request::get('external')==1){
+            
+            // crear egresado 
+            $Egresado=new EgresadoPos();
+            $Egresado->cuenta=$cuenta;
+            $Egresado->nombre=strtoupper(Request::get('nombre'));
+            $Egresado->paterno=strtoupper(Request::get('paterno'));
+            $Egresado->materno=strtoupper(Request::get('materno'));
+            $Egresado->status=10; 
+            $Egresado->fuente='internet';
+            $Egresado->save();
+            $Encuesta=respuestasPosgrado::where('cuenta',$cuenta)->first();
+            //LLENA LOS DATOS CON LA TABLA DE EG Y COMIENZA ENC
+            if(!$Encuesta){
+                $Encuesta=new respuestasPosgrado();
+                $Encuesta->cuenta=$cuenta;
+                $Encuesta->nombre=$Egresado->nombre;
+                $Encuesta->paterno=$Egresado->paterno;
+                $Encuesta->materno=$Egresado->materno;
+                $Encuesta->carrera=$Egresado->carrera;
+                $Encuesta->plantel=$Egresado->plantel;             
+                $Encuesta->completed=0;
+                $Encuesta->save();
+                //Revisar si pertenece a maestria o doctorado
+                //revisar si ya esta graduado
+            }
+            if($Encuesta->completed!=1){
+            return redirect()->route('enc_posgrado.section',[$Encuesta->registro,'personal_data']);}
+            else{
+                return redirect()->route('enc_posgrado.inicio')->with('message','realized');
+            }
+
+        }else{
         $Egresado=EgresadoPos::where('cuenta',$cuenta)->first();
         //TODO: CREAR TABLA CON LOS CAMPOS NESCESARIOS ASI COMO EL MODELO
         $Encuesta=respuestasPosgrado::where('cuenta',$cuenta)->first();
@@ -62,6 +96,7 @@ class PosgradoController extends Controller
               
           
                 }
+            }
                    
     }
 
@@ -127,16 +162,19 @@ class PosgradoController extends Controller
         // dd($Egresado,$Encuesta);
         $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
         $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
-        
-        if($Encuesta->aplica2==1){
-            $Encuesta->nbr2=Request::get('nbr2');
-            $Encuesta->nbr3=Request::get('nbr3');
+        if($Egresado->fuente='internet'){
+           $Egresado->plan=Request::get('plan');
+           $Egresado->programa=Request::get('programa');
+           $Egresado->grado=Request::get('grado');
+           $Egresado->anio_egreso=Request::get('anio');
+           $Egresado->save();
+           
+        if(Request::get('grado')=='NO'){
+            $Encuesta->sec_pb='1';
             $Encuesta->save();
-            $Egresado->plantel=Request::get('nbr3');
-            $Egresado->carrera=Request::get('nbr2');
-            $Egresado->save();
-
         }
+        }
+
         foreach (Request::get('correos') as $correo) {
          if($correo!="" && $Correos->where('correo',$correo)->count()==0){
             $Correo= new Correo();

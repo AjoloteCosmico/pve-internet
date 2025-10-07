@@ -6,20 +6,67 @@
                     <label for="exampleFormControlInput1">Nombre</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->nombre}} {{$Egresado->paterno}} {{$Egresado->materno}}" disabled style="background-color:#868b94">
                 </div>
+               
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Número de Cuenta</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$Egresado->cuenta}}"  disabled style="background-color:#868b94">
+                </div>
+                @php
+                      
+                        use App\Models\EgresadoPos;
+                    @endphp
+                @if($Egresado->fuente=='internet')
+
+                    @php
+                    $Programas=EgresadoPos::select('programa')->whereNotNull('programa')->distinct()->get();
+                    
+                    $Planes=EgresadoPos::select('plan')->whereNotNull('plan')->distinct()->get();
+                    @endphp
+                <div class="form-group">
+                    <label for="exampleFormControlInput1" >Programa de posgrado</label>
+                    <select name="programa" class="form-control" id="select_programa" onchange="checkNotNa(this)">
+                        <option value="">Seleccione </option>
+                        @foreach($Programas->sortBy('programa') as $p)
+                            <option value="{{$p->programa}}" @if($Egresado->programa==$p->programa) selected @endif>{{$p->programa}}</option>
+                        @endforeach
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Plan de Estudios</label>
+                  
+                    <select name="plan" class="form-control" id="select_plan" onchange="checkNotNa(this)">
+                    <option value="">Seleccione </option>
+                    @foreach($Planes->sortBy('plan') as $p)
+                        <option value="{{$p->plan}}" @if($Egresado->plan==$p->plan) selected @endif>{{$p->plan}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                
+                 <div class="form-group">
+                    <label for="exampleFormControlInput1">¿Ya cuenta con grado?</label>
+                     <select class="form-control" name="grado" id="select_grado" onchange="checkNotNa(this)">
+                        <option value="">Seleccione</option>
+                        <option value="SI" @if($Egresado->grado=="SI") selected @endif>SI</option>
+                        <option value="NO" @if($Egresado->grado=="NO") selected @endif >NO</option>
+                     </select>   
+                </div>
+                 <div class="form-group">
+                    <label for="exampleFormControlInput1">Año en que obtuvo el grado</label>
+                    <input type="number" step="1" class="form-control" @if($Egresado->anio_egreso) value="{{$Egresado->anio_egreso}}" @else value="" @endif onchange="checkNotNa(this)" id="anio" name="anio" placeholder="Año en que obtuvo u obtendrá el grado" min="1970" max="2027" >
+                </div>
+                @else
+                 <div class="form-group">
+                    <label for="exampleFormControlInput1">Sexo</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" @if($Egresado->sexo=="M") value="Masculino" @else value="Femenino" @endif disabled style="background-color:#868b94">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Plan de Estudios</label>
                   
                     <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->plan}}" disabled style="background-color:#868b94">
                 </div>
-
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Sexo</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" @if($Egresado->sexo=="M") value="Masculino" @else value="Femenino" @endif disabled style="background-color:#868b94">
-                </div>
+                @endif
+                
                
                 <div class="form-group" >
                     <label for="exampleFormControlInput1">Correos</label>

@@ -38,12 +38,35 @@ if(countDigits(val)<10){
     document.getElementsByName('telefonos['+count_tel+']')[0].classList.add("error");
     document.getElementById('final-button').disabled=true;
 
-}else{
-    document.getElementById('warnlab['+count_tel+']').classList.remove("active-warn");
-    document.getElementsByName('telefonos['+count_tel+']')[0].classList.remove("error");
-    document.getElementById('final-button').disabled=false;
-}
+  }else{
+      document.getElementById('warnlab['+count_tel+']').classList.remove("active-warn");
+      document.getElementsByName('telefonos['+count_tel+']')[0].classList.remove("error");
+      document.getElementById('final-button').disabled=false;
+  }
 
 }
+@if($Egresado->fuente=='internet')
+function checkNotNa(sel) {
+    if (sel.value==""){
+        document.getElementById('final-button').disabled=true;
+    }else{
+      plan=document.getElementById('select_plan').value;
+      programa=document.getElementById('select_programa').value;
+      grado=document.getElementById('select_grado').value;
+      anio=document.getElementById('anio').value;
+      if(plan!="" && programa!="" && grado!=""&& anio!=""){
+          document.getElementById('final-button').disabled=false;
+      }
+    }
+  }
+plan=document.getElementById('select_plan').value;
+programa=document.getElementById('select_programa').value;
+grado=document.getElementById('select_grado').value;
+anio=document.getElementById('anio').value;
+document.getElementById('final-button').disabled=true;
+if(plan!="" && programa!="" && grado!=""&& anio!=""){
+          document.getElementById('final-button').disabled=false;
+      }
+@endif
 
 </script>

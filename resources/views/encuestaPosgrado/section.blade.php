@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <!--CABECERA/HEADER-->
     <div class="cabecera">
         <div class="logo">
