@@ -39,7 +39,7 @@ Route::controller(PosgradoController::class)->group(function(){
 Route::controller(Enc16Controller::class)->group(function(){
     Route::get('/encuesta_actualizacion/{type}', 'inicio')->name('enc16.inicio');
     Route::post('/verify_cuenta_2016', 'verify')->name('enc16.verify');
-    Route::get('/encuesta2016/section/{id}/{section}', 'section')->name('enc16.section');
+    Route::get('/encuesta_act/section/{id}/{section}', 'section')->name('enc16.section');
     Route::post('/update_personal_data_actualizacion/{id}', 'update_personal_data')->name('enc16.update_personal_data');
     Route::post('/update_section_actualizacion/{id}','update')->name('enc16.update');
 });
