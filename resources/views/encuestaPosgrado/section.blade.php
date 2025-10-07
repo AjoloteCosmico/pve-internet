@@ -6,19 +6,19 @@
     <!--CABECERA/HEADER-->
     <div class="cabecera">
         <div class="logo">
-        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}" style="width: 4.5vw !important; height:10vw !important" > </a>
+        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}" style="width: 3.5vw !important; min-width:50px;height:auto !important" > </a>
        </div>
           <div class="subtitulo2">
        <p>Secretaría General</p>
         </div>
         <div class="logo">
-            <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="{{url('img/logos/logoPVE-large.png')}}"> </a>
+            <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="{{url('img/logos/logoPVE-large.png')}}" style="max-width:100px;"> </a>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <a class=lovoPVE href="https://www.posgrado.unam.mx/"> <img src="{{url('img/logos/logoPosgrado.svg')}}" style="width: 8vw !important; height:auto !important"> </a>
         </div>
     </div>
 
-    <!--cpntenedpor de la encuesta-->
+    <!--contenedpor de la encuesta-->
 <div class="fondo_encuesta">
 
 <!--datos del egresado-->

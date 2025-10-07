@@ -15,6 +15,7 @@
                   
                     <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->plan}}" disabled style="background-color:#868b94">
                 </div>
+
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Sexo</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" @if($Egresado->sexo=="M") value="Masculino" @else value="Femenino" @endif disabled style="background-color:#868b94">
@@ -29,9 +30,7 @@
                     @endforeach
                     
                             <input type="email" class="form-control"   name="correos[{{$count_correo}}]" placeholder="Ingresa un correo actualizado">
-                            
-                            
-                                
+          
                     <div id="correosDiv"></div>
                     <button style="background-color:#3fbd3c" type="button" onclick="add_correo()"><i class="fa fa-plus" aria-hidden="true"></i> Agregar otro</button>
                 

@@ -27,6 +27,7 @@ class Enc16Controller extends Controller
     public function verify(Request $request){
 
         $cuenta=Request::get('cuenta');
+        $cuenta = ltrim($cuenta, "0"); 
         $Egresado=Egresado::where('cuenta',$cuenta)->first();
         $Encuesta=respuestas16::where('cuenta',$cuenta)->first();
         //hay egresado

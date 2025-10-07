@@ -14,7 +14,7 @@
         
         <!-- Modal body -->
         <div class="modal-body text-justify">
-El Programa de Vinculación con los Egresados de la Universidad Nacional Autónoma de México (UNAM), con domicilio en Zona Cultural de Ciudad Universitaria, Edificio D, planta baja, Alcaldía Coyoacán, C.P. 04510, en la Ciudad de México, es responsable del tratamiento de sus datos personales para el registro como egresado, difusión de información y generación de estadísticas para identificar, detectar e impulsar el desarrollo de oportunidades para los egresados de la UNAM.<br><br> No se realizarán transferencias de datos personales, salvo aquellas excepciones previstas por la Ley. Podrá ejercer sus derechos ARCO en  la Unidad de Transparencia de la UNAM, o a través de la Plataforma Nacional de Transparencia <br>(<a href='http://www.plataformadetransparencia.org.mx'>http://www.plataformadetransparencia.org.mx/</a>).<br><br>El aviso de privacidad integral se puede consultar en la sección Aviso de Privacidad de nuestro sitio web: <a href='http://www.pveaju.unam.mx/avisodeprivacidad'>http://www.pveaju.unam.mx/avisodeprivacidad</a>.
+El Programa de Vinculación con los Egresados de la Universidad Nacional Autónoma de México (UNAM), con domicilio en Zona Cultural de Ciudad Universitaria, Edificio D, planta baja, Alcaldía Coyoacán, C.P. 04510, en la Ciudad de México, es responsable del tratamiento de sus datos personales para el registro como egresado, difusión de información y generación de estadísticas para identificar, detectar e impulsar el desarrollo de oportunidades para los egresados de la UNAM.<br><br> No se realizarán transferencias de datos personales, salvo aquellas excepciones previstas por la Ley. Podrá ejercer sus derechos ARCO en  la Unidad de Transparencia de la UNAM, o a través de la Plataforma Nacional de Transparencia <br>(<a href='http://www.plataformadetransparencia.org.mx'>http://www.plataformadetransparencia.org.mx/</a>).<br><br>El aviso de privacidad integral se puede consultar en la sección Aviso de Privacidad de nuestro sitio web: <a href='https://www.pveaju.unam.mx/aviso-de-privacidad/'>https://www.pveaju.unam.mx/aviso-de-privacidad/</a>.
         </div>
         
         <!-- Modal footer -->
@@ -29,7 +29,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
      <!--CABECERA/HEADER-->
     <div class="cabecera">
         <div class="logo">
-        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}" style="width: 4.5vw !important; height:10vw !important" > </a>
+        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}" style="width: 3.9vw !important; height:10vw !important" > </a>
        </div>
           <div class="subtitulo2">
        <p>Secretaría General</p>
@@ -104,6 +104,23 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
                 </li>
 <br>
                 <li>
+                       @if(session('message') == 'notinsample')
+                
+                <li>
+                    <label>Apellido Paterno:</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="paterno"/>
+                </li>
+                <li>
+                    <label>Apellido Materno:</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"   name="materno"/>
+                </li>
+                <li>
+                    <label>Nombre(s):</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="nombre"/>
+                </li>
+               
+                
+                @endif
                     <button type="submit">Iniciar encuesta</button>
                 </li>
             </ul>
@@ -124,7 +141,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
 
     <div class="botonAviso">
         <p class="texto7">IMPORTANTE</p>
-        <a href="https://www.pveaju.unam.mx/aviso-de-privacidad.php">Aviso de Privacidad</a>
+        <a href="https://www.pveaju.unam.mx/aviso-de-privacidad">Aviso de Privacidad</a>
     </div>
 </div>
 @endsection
@@ -177,7 +194,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
     Swal.fire({
   icon: "warning",
   title: "Parece que no es tu generacion",
-  text: "Por favor Ingresa a la encuesta general llenando todos tus datos",
+  html: "Si en verdad egresasté de un posgrado de la UNAM, <br> Por favor Ingresa a la encuesta general llenando todos tus datos",
   footer: '<a href="#">Why do I have this issue?</a>'
 });
 </script>

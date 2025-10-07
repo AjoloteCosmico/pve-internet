@@ -21,8 +21,8 @@ class PosgradoController extends Controller
     }
 
     public function verify(Request $request){
-
         $cuenta=Request::get('cuenta');
+        $cuenta = ltrim($cuenta, "0"); 
         $Egresado=EgresadoPos::where('cuenta',$cuenta)->first();
         //TODO: CREAR TABLA CON LOS CAMPOS NESCESARIOS ASI COMO EL MODELO
         $Encuesta=respuestasPosgrado::where('cuenta',$cuenta)->first();
