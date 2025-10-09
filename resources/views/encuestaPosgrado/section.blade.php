@@ -63,6 +63,17 @@
 @endsection
 @push('js')
 
+@if (session('message') == 'incomplete_data')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    Swal.fire({
+  icon: "warning",
+  title: "LLena todos loc campos",
+  html: "Porfavor llena todos los campos marcados con *, plan de estudios, programa, grado y año de obtención del grado",
+  footer: 'Gracias por participar en las encuestas del seguimiento'
+});
+</script>
+@else
 @if($section=='personal_data')
                 @include('scripts.personal_data')
 
@@ -81,6 +92,7 @@
             @else
                 @include('scripts.section')
             @endif
+@endif
  @endpush
 
  @push('css')

@@ -170,7 +170,7 @@ class PosgradoController extends Controller
            $Egresado->anio_egreso=Request::get('anio');
            $Egresado->save();
            
-           if(Request::get('plan')=="" || Request::get('programa')|| Request::get('grado') || Request::get('anio')){
+           if(Request::get('plan')=="" || Request::get('programa')==""|| Request::get('grado')=="" || Request::get('anio')==""){
             return redirect()->back()
             ->with('message','incomplete_data');
            }
