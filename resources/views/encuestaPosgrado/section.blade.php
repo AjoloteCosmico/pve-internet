@@ -68,7 +68,7 @@
 <script>
     Swal.fire({
   icon: "warning",
-  title: "LLena todos loc campos",
+  title: "Llena todos los campos",
   html: "Porfavor llena todos los campos marcados con *, plan de estudios, programa, grado y año de obtención del grado",
   footer: 'Gracias por participar en las encuestas del seguimiento'
 });
