@@ -163,12 +163,18 @@ class PosgradoController extends Controller
         $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
         $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
         if($Egresado->fuente='internet'){
+
            $Egresado->plan=Request::get('plan');
            $Egresado->programa=Request::get('programa');
            $Egresado->grado=Request::get('grado');
            $Egresado->anio_egreso=Request::get('anio');
            $Egresado->save();
            
+           if(Request::get('plan')=="" || Request::get('programa')|| Request::get('grado') || Request::get('anio')){
+            return redirect()->back()
+            ->with('message','incomplete_data');
+           }
+        
         if(Request::get('grado')=='NO'){
             $Encuesta->sec_pb='1';
             $Encuesta->save();

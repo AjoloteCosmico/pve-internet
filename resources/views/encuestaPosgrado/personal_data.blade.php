@@ -23,7 +23,7 @@
                     $Planes=EgresadoPos::select('plan')->whereNotNull('plan')->distinct()->get();
                     @endphp
                 <div class="form-group">
-                    <label for="exampleFormControlInput1" >Programa de posgrado</label>
+                    <label for="exampleFormControlInput1" >* Programa de posgrado</label>
                     <select name="programa" class="form-control" id="select_programa" onchange="checkNotNa(this)">
                         <option value="">Seleccione </option>
                         @foreach($Programas->sortBy('programa') as $p)
@@ -33,7 +33,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Plan de Estudios</label>
+                    <label for="exampleFormControlInput1">* Plan de Estudios</label>
                   
                     <select name="plan" class="form-control" id="select_plan" onchange="checkNotNa(this)">
                     <option value="">Seleccione </option>
@@ -44,7 +44,7 @@
                 </div>
                 
                  <div class="form-group">
-                    <label for="exampleFormControlInput1">¿Ya cuenta con grado?</label>
+                    <label for="exampleFormControlInput1">* ¿Ya cuenta con grado?</label>
                      <select class="form-control" name="grado" id="select_grado" onchange="checkNotNa(this)">
                         <option value="">Seleccione</option>
                         <option value="SI" @if($Egresado->grado=="SI") selected @endif>SI</option>
@@ -52,7 +52,7 @@
                      </select>   
                 </div>
                  <div class="form-group">
-                    <label for="exampleFormControlInput1">Año en que obtuvo el grado</label>
+                    <label for="exampleFormControlInput1">* Año en que obtuvo el grado</label>
                     <input type="number" step="1" class="form-control" @if($Egresado->anio_egreso) value="{{$Egresado->anio_egreso}}" @else value="" @endif onchange="checkNotNa(this)" id="anio" name="anio" placeholder="Año en que obtuvo u obtendrá el grado" min="1970" max="2027" >
                 </div>
                 @else
@@ -66,7 +66,7 @@
                     <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->plan}}" disabled style="background-color:#868b94">
                 </div>
                 @endif
-                
+                <p>* campos obligatorios</p>
                
                 <div class="form-group" >
                     <label for="exampleFormControlInput1">Correos</label>
