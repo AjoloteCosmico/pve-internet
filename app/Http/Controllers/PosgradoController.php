@@ -162,7 +162,7 @@ class PosgradoController extends Controller
         // dd($Egresado,$Encuesta);
         $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
         $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
-        if($Egresado->fuente='internet'){
+        if($Egresado->fuente=='internet'){
 
            $Egresado->plan=Request::get('plan');
            $Egresado->programa=Request::get('programa');
