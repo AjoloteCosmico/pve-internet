@@ -59,8 +59,7 @@
                 @include('encuestaPosgrado.reactivos')
             @endif
             </div>
-   
-</div>
+        </div>
 @endsection
 @push('js')
 
