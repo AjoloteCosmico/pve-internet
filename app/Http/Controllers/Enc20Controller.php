@@ -18,7 +18,7 @@ use DB;
 class Enc20Controller extends Controller
 {
     public function inicio($type){
-        if($type!= '2020'&&$type!='general'&&$type!='2022'){
+        if($type!= '2020'&&$type!='general'&&$type!='2022'&&$type!='2021'){
             return redirect()->route('enc.inicio','general');
         }
         return view('encuesta2020.inicio',compact('type'));
