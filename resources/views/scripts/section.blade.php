@@ -294,6 +294,7 @@ function hable_reactive(react_name) {
    }
    
    function find_next(react_name){
+
        last_index=reactivos.indexOf(react_name);
        last_index=last_index+1;
        reactivo_siguiente=reactivos[last_index];
@@ -317,13 +318,14 @@ function hable_reactive(react_name) {
        while((no_se_contestan.includes(reactivo_siguiente)) &&( last_index<reactivos.length)) {
            last_index=last_index+1;
            reactivo_siguiente=reactivos[last_index];
-         }
+        }
    
-         console.log('reactivo-siguiente',reactivo_siguiente);
+        console.log('reactivo-siguiente',reactivo_siguiente);
       if(aun_no.includes(reactivo_siguiente)){
-                    aun_no.splice(aun_no.indexOf(reactivo_siguiente),1);
-                  }
+                    aun_no.splice(aun_no.indexOf(reactivo_siguiente),1);        
+        }
        act_block();
+       
        if(last_index>=reactivos.length){
            $("#final-button").removeAttr("disabled");
            var element = document.getElementById('final-button');
@@ -336,8 +338,8 @@ function hable_reactive(react_name) {
        var ventana = document.getElementById('rlist');
        var elementPosition = element.getBoundingClientRect().top;
        console.log(element);  
-       ventana.scrollTop= ventana.scrollTop+elementPosition-50-ventana.getBoundingClientRect().top;
-   }
+       ventana.scrollTop= ventana.scrollTop+elementPosition-240-ventana.getBoundingClientRect().top;
+    }
 
 
    
