@@ -40,8 +40,6 @@ class Enc20Controller extends Controller
                 
                 $Encuesta = respuestas20::where('cuenta', $cuenta)->first();
                 
-                
-                
                 if (!$Encuesta) {
                     $Encuesta = new respuestas20();
                     $Encuesta->cuenta = $cuenta;
