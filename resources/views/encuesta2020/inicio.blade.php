@@ -48,6 +48,8 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
             TODAS LAS CARRERAS Y GENERACIONES
             @elseif($type=='2020')
             Generación de egreso 2020
+            @elseif($type=='2021')
+            Generación de egreso 2021
             @else
             Generación de egreso 2022
             @endif
