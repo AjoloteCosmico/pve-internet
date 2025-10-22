@@ -60,7 +60,7 @@ Route::controller(EncVerdeController::class)->group(function(){
 
 
 Route::get('/', function () {
-    return redirect(route('enc.inicio',[2020]));
+    return redirect(route('enc.inicio',[2022]));
 });
 
 Auth::routes();

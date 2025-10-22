@@ -21,7 +21,7 @@ class ReactivosController extends Controller
             return view('components.reactivos.label',compact('Reactivo'));
         }
         
-        if($Reactivo->type=="option"){
+        if(($Reactivo->type=="option")||$Reactivo->type=="rating"){
             $Bloqueos=DB::table('bloqueos')->join('reactivos','bloqueos.bloqueado','reactivos.clave')
             ->where('clave_reactivo','=',$Reactivo->clave)->get();
             $Bloqueos=$Bloqueos->whereIn('bloqueado',$Reactivos->unique('clave')->pluck('clave')->toArray());
