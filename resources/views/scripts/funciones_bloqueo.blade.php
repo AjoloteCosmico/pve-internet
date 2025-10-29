@@ -504,6 +504,7 @@ if(last_index+1>=reactivos.length){
     ventana.scrollTop= ventana.scrollTop+elementPosition-50-ventana.getBoundingClientRect().top;
 }
 
+
 function submitForm(){
     
 
@@ -513,6 +514,14 @@ function submitForm(){
         }
     $("#main_form").submit();
 }
+
+
+
+
+
+
+
+
 
 for (var i = 1; i < reactivos.length; i++) { dishable_reactive(reactivos[i]);}
 

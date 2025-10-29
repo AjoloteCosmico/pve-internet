@@ -148,8 +148,7 @@ class Enc20Controller extends Controller
         
         // NO HAY EGRESADO 
         else {
-            
-            
+                    
             if($type == 'general'){
                 
                 
