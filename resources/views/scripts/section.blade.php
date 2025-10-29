@@ -506,18 +506,7 @@ function optionWasSelected(react_name, involucrados) {
     }
     $("#main_form").submit();
 }
-   /*
-   function submitForm(){
-       
-   
-       for (var i = 0; i < no_se_contestan.length; i++) {
-           console.log('cambiando valores',no_se_contestan[i]);
-           document.getElementsByName(no_se_contestan[i])[0].value="0";
-           }
-       $("#main_form").submit();
-   }
-   */
-
+ 
 
 
    //Funciones esteticas y visuales--------------------------------------------
