@@ -491,7 +491,22 @@ function optionWasSelected(react_name, involucrados) {
     }
 
    }
-   
+
+
+   function submitForm() {
+    for (var i = 0; i < no_se_contestan.length; i++) {
+        var name = no_se_contestan[i];
+        var elements = document.getElementsByName(name);
+        if (elements.length > 0) {
+            console.log('cambiando valores', name);
+            elements[0].value = "0";
+        } else {
+            console.warn(`⚠️ No se encontró un input con name="${name}"`);
+        }
+    }
+    $("#main_form").submit();
+}
+   /*
    function submitForm(){
        
    
@@ -501,7 +516,10 @@ function optionWasSelected(react_name, involucrados) {
            }
        $("#main_form").submit();
    }
-   
+   */
+
+
+
    //Funciones esteticas y visuales--------------------------------------------
    function showlabel(id){
        console.log('showing.label')
