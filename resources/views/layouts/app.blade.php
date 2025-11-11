@@ -40,7 +40,6 @@
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css" />
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css" />
 	
-	
 	@stack('css')
 	
 <!--tipografías-->
@@ -58,7 +57,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-VTNFQFLGSY');
 </script>
 <body>

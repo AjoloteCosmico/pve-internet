@@ -338,7 +338,7 @@ function hable_reactive(react_name) {
        var ventana = document.getElementById('rlist');
        var elementPosition = element.getBoundingClientRect().top;
        console.log(element);  
-       ventana.scrollTop= ventana.scrollTop+elementPosition-240-ventana.getBoundingClientRect().top;
+       ventana.scrollTop= ventana.scrollTop+elementPosition-80-ventana.getBoundingClientRect().top;
     }
 
 

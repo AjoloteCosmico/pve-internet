@@ -8,6 +8,7 @@ use App\Http\Controllers\PosgradoController;
 use App\Http\Controllers\CorreosController;
 use App\Http\Controllers\EncuestasController;
 use App\Http\Controllers\Enc16Controller;
+use App\Http\Controllers\EncContinuaController;
 use App\Http\Controllers\EncVerdeController;
 
 /*
@@ -42,6 +43,14 @@ Route::controller(Enc16Controller::class)->group(function(){
     Route::get('/encuesta_act/section/{id}/{section}', 'section')->name('enc16.section');
     Route::post('/update_personal_data_actualizacion/{id}', 'update_personal_data')->name('enc16.update_personal_data');
     Route::post('/update_section_actualizacion/{id}','update')->name('enc16.update');
+});
+
+Route::controller(EncContinuaController::class)->group(function(){
+    Route::get('/encuesta_continua/{hash?}', 'inicio')->name('enc_continua.inicio');
+    Route::post('/verify_cuenta_continua', 'verify')->name('enc_continua.verify');
+    Route::get('/encuesta_continua/section/{id}/{section}', 'section')->name('enc_continua.section');
+    Route::post('/update_personal_data_continua/{id}', 'update_personal_data')->name('enc_continua.update_personal_data');
+    Route::post('/update_section_continua/{id}','update')->name('enc_continua.update');
 });
 
 //Encuesta Egresados destacados
