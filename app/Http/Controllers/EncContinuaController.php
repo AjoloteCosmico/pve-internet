@@ -27,7 +27,6 @@ public function verify(Request $request){
         $Encuesta=RespuestasContinua::where('cuenta',$cuenta)->first();
         //HAY EGRESADO
         if(!$Egresado){
-            dd('no existe egresado');
             $Egresado = new Egresado();
             $Egresado->cuenta = $cuenta;
             $Egresado->fuente = 'encuesta ed continua';
