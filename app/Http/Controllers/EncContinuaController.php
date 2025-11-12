@@ -30,9 +30,9 @@ public function verify(Request $request){
             $Egresado = new Egresado();
             $Egresado->cuenta = $cuenta;
             $Egresado->fuente = 'encuesta ed continua';
-            $Egresado->nombre = $request->get('nombre');
-            $Egresado->paterno = $request->get('paterno');
-            $Egresado->materno = $request->get('materno');
+            $Egresado->nombre = Request::get('nombre');
+            $Egresado->paterno = Request::get('paterno');
+            $Egresado->materno = Request::get('materno');
             $Egresado->save();
           }
 
@@ -52,9 +52,14 @@ public function verify(Request $request){
     public function section($section,$id){
         $Encuesta=RespuestasContinua::find($id);
         
-        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->whereIn('anio_egreso',[2016,2017,2018,2019,2020,2021,2022])->first();
+        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->first();
+        if($Egresado->carrera){
         $Carrera=Carrera::where('clave_carrera',$Encuesta->nbr2)->first()->carrera;
         $Plantel=Carrera::where('clave_plantel',$Encuesta->nbr3)->first()->plantel;
+        }else{
+            $Carrera="No especificada";
+            $Plantel="No especificado";
+        }
         $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
         $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
         $Generacion=$Egresado->anio_egreso;
