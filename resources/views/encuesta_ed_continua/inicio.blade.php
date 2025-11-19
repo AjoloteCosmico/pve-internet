@@ -51,7 +51,11 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
         </p>
         <br><br><br>
         <p class="texto2">
-            Solicitamos su apoyo para contestar el siguiente cuestionario que tiene como propósito conocer:
+            Como parte de la campaña <b>ReUNAMos Saberes</b> , invitamos a nuestras y nuestros
+            egresados a participar en esta encuesta que busca fortalecer el vínculo con la
+            comunidad universitaria y enriquecer la oferta de educación continua.
+            Le solicitamos su apoyo para responder el siguiente cuestionario, cuyo propósito
+            es conocer:
             <br><br>
             <ol>
                 <li>
@@ -64,6 +68,9 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
                     Su grado de <span style="color: #e6af2b">satisfacción</span> con la preparación que recibió en la UNAM
                 </li>
             </ol>
+            <br>
+            Su participación es muy valiosa, ya que contribuirá a mejorar las oportunidades de
+actualización y formación que ofrece nuestra Universidad.
         </p>
     </div>
 
