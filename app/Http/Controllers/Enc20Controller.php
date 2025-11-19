@@ -261,7 +261,35 @@ class Enc20Controller extends Controller
                             'Bloqueos','NombreSeccion','Planteles','Carreras','Generacion'));
     }
 
-    public function update_personal_data(Request $request,$id){
+    public function update_personal_data(Request $request,$id){ 
+
+        //Agregamos la validacion correspondiente a telefonos y correos
+
+        $request->validate([
+            'correos.*' => [
+                'nullable',
+                'email',
+                'max:255',
+                'unique:correos,correo',
+                'distinct:ignore_case',
+            ],
+            'telefonos.*' => [
+                'nullable',
+                'string',
+                'max:20',
+                'min:10',
+                'unique:telefonos,telefono',
+                'distinct',
+            ],
+        ], [
+            'correos.*.unique' => 'El correo electrónico ya está registrado en la base de datos.',
+            'correos.*.distrinct' => 'El correo electrónico :input está duplicado en el formulario.',
+            'telefonos.*.unique' => 'El número de teléfono ya está registrado en la base de datos.',
+            'telefonos.*.distinct' => 'El número de teléfono :input está duplicado en el formulario.',
+
+
+        ]);
+
 
         $Encuesta=respuestas20::find($id);
         $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->first();
@@ -278,37 +306,49 @@ class Enc20Controller extends Controller
             $Egresado->anio_egreso= $request->get('anio_egreso');
             $Egresado->save();
         }
+
+
+
         foreach ($request->get('correos') as $correo) {
-         if($correo!="" && $Correos->where('correo',$correo)->count()==0){
-            $Correo= new Correo();
-            $Correo->cuenta=$Encuesta->cuenta;
-            $Correo->correo=$correo;
-            $Correo->status=13;
-            $Correo->save();
+            //cambiamos el if
+         if($correo!=""){
+            if($Correos->where('correo',$correo)->count()==0){
+                $Correo= new Correo();
+                $Correo->cuenta=$Encuesta->cuenta;
+                $Correo->correo=$correo;
+                $Correo->status=13;
+                $Correo->save();
+
+            }
          }
         }
 
         foreach ($request->get('telefonos') as $telefono) {
-            if($telefono!="" && $Telefonos->where('telefono',$telefono)->count()==0){
-               $Telefono= new Telefono();
-               $Telefono->cuenta=$Encuesta->cuenta;
-               $Telefono->telefono=$telefono;
-               $Telefono->status=13;
-               $Telefono->save();
+            //cambiamos e if
+            if($telefono!=""){
+                if($Telefonos->where('telefono',$telefono)->count()==0){
+                    $Telefono= new Telefono();
+                    $Telefono->cuenta=$Encuesta->cuenta;
+                    $Telefono->telefono=$telefono;
+                    $Telefono->status=13;
+                    $Telefono->save();
+                }
             }
-           }
-           $section='A';
+        }
         
-           foreach(array('A','E','F','C','D','G') as $sec){
-               $format_field='sec_'.strtolower($sec);
-              
-               if($Encuesta->$format_field!=1){ 
+        $section='A';
+        foreach(array('A','E','F','C','D','G') as $sec){
+            $format_field='sec_'.strtolower($sec);
+            if($Encuesta->$format_field!=1){ 
                    $section=$sec;
                    break;
                }
-           }
-      return redirect()->route('enc20.section',[$Encuesta->registro,$section]);
+            }
+        return redirect()->route('enc20.section',[$Encuesta->registro,$section]);
     }
+
+
+
 
     public function update(Request $request,$id){
         

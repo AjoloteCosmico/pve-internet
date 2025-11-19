@@ -21,12 +21,12 @@
                     @php   $count_correo=0; @endphp
                     @foreach($Correos as $c)
                     
-                            <input type="email" class="form-control"  value="{{$c->correo}}" name="correos[{{$count_correo}}]">
+                            <input type="email" class="form-control"  value="{{$c->correo}}" name="correos[{{$count_correo}}]" onblur="validate_correo({{$count_correo}})">
                               @php   $count_correo=$count_correo+1; @endphp
                           
                     @endforeach
                     
-                            <input type="email" class="form-control"   name="correos[{{$count_correo}}]" placeholder="Ingresa un correo actualizado">
+                            <input type="email" class="form-control"   name="correos[{{$count_correo}}]" placeholder="Ingresa un correo actualizado" onblur="validate_correo({{$count_correo}})">
                             
                             
                                 
