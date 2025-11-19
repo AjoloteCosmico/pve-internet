@@ -8,6 +8,7 @@ use App\Models\Carrera;
 use App\Models\Correo;
 use App\Models\Telefono;
 use App\Models\Egresado;
+use App\Models\EgresadoPos;
 use App\Models\RegistroPVEAJU;
 use App\Models\MapeoCarrera;
 use App\Models\Reactivo;
@@ -28,17 +29,103 @@ public function verify(Request $request){
         $cuenta = ltrim($cuenta, "0"); 
         $cuenta_formateada= str_pad($cuenta, 9, '0', STR_PAD_LEFT);
         $Egresado=Egresado::where('cuenta',$cuenta)->first();
-        //TODO: CREAR TABLA CON LOS CAMPOS NESCESARIOS ASI COMO EL MODELO
-        $Encuesta=RespuestasContinua::where('cuenta',$cuenta)->first();
+//BUSCAR EN BASE LICENCITATURA
+        //si se encuentra en el registro del seguimiento licenciatura
         if(!$Egresado){
-            //si no lo encontró, lo busca con el 0
+            //si no se encontró, busca con el 0
             $Egresado=Egresado::where('cuenta',$cuenta_formateada)->first();
         }
-        //HAY EGRESADO
+      
+        //hasta aqui, revisamos si se encontro en el registro del seguimiento, si es asi llenamos carrera y año
+        if($Egresado){
+            $Carrera=Carrera::where('clave_carrera',$Egresado->carrera)->first()->carrera;
+            $AnioEgreso=$Egresado->anio_egreso;
+            $cuenta_encuesta=$Egresado->cuenta;
+            $Encuesta=RespuestasContinua::where('cuenta',$Egresado->cuenta)->first();
+            if(!$Encuesta){
+                $Encuesta=new RespuestasContinua();
+                $Encuesta->cuenta=$cuenta_encuesta;
+                $Encuesta->nombre=$Egresado->nombre;
+                $Encuesta->paterno=$Egresado->paterno;
+                $Encuesta->materno=$Egresado->materno;
+                $Encuesta->nbr2=$Egresado->carrera;
+                $Encuesta->nbr3=$Egresado->plantel;
+                $Encuesta->carrera=$Carrera;
+                $Encuesta->anio_egreso=$AnioEgreso;
+                $Encuesta->save();
+            }    
+        return redirect()->route('enc_continua.section',['ed_continua',$Encuesta->registro]); 
+        }
+//BUSCAR EN BASE POSGRADO         
+        
+        if(!$Egresado){
+            //si no lo encontró, lo busca en la base de posgrado
+            $Egresado=EgresadoPos::where('cuenta',$cuenta)->first();
+        }
+        if(!$Egresado){
+            //si no lo encontró, lo busca en la base de posgrado con 0
+            $Egresado=EgresadoPos::where('cuenta',$cuenta_formateada)->first();
+        }
+
+        if($Egresado){
+            //caso en que el egresado esta en  la base de seguimiento posgrado
+            $Carrera=$Egresado->plan;
+            $AnioEgreso=$Egresado->anio_egreso;
+            $cuenta_encuesta=$Egresado->cuenta;
+            $Encuesta=RespuestasContinua::where('cuenta',$Egresado->cuenta)->first();
+            if(!$Encuesta){
+                $Encuesta=new RespuestasContinua();
+                $Encuesta->cuenta=$cuenta_encuesta;
+                $Encuesta->nombre=$Egresado->nombre;
+                $Encuesta->paterno=$Egresado->paterno;
+                $Encuesta->materno=$Egresado->materno;
+                $Encuesta->nbr2=0;
+                $Encuesta->nbr3=0;
+                $Encuesta->carrera=$Carrera;
+                $Encuesta->anio_egreso=$AnioEgreso;
+                $Encuesta->save();
+            }    
+        return redirect()->route('enc_continua.section',['ed_continua',$Encuesta->registro]); 
+        }
+//BUSCAR EN REGISTRO PVEAJU 
         if(!$Egresado){
             //try to find in view registro pveaju base humberto
-            $EgresadoRegistro=Egresado::where('cuenta',$cuenta_formateada)->first();
-            if(!$EgresadoRegistro){
+            $Egresado=RegistroPVEAJU::where('exa_cuenta',$cuenta_formateada)->first();
+         }
+         if($Egresado){
+            //caso en en que el egresado esta en la base del registro humberto
+            $CarreraMap=MapeoCarrera::where('car_carrer',$Egresado->car_carrer)->first();
+
+            $Carrera='';
+            if($CarreraMap){
+                if($CarreraMap->carrera_id){
+                    $Carrera=Carrera::where('clave_carrera',$CarreraMap->carrera_id)->first()->carrera;
+                }elseif($CarreraMap->clave_programa){
+                    $Carrera='Posgrado';
+                }
+            }
+            
+            $AnioEgreso=$Egresado->acad_afin;
+            $cuenta_encuesta=$Egresado->exa_cuenta;
+            $Encuesta=RespuestasContinua::where('cuenta',$Egresado->exa_cuenta)->first();
+            if(!$Encuesta){
+                $Encuesta=new RespuestasContinua();
+                $Encuesta->cuenta=$cuenta_encuesta;
+                $Encuesta->nombre=$Egresado->nombre;
+                $Encuesta->paterno=$Egresado->primer_apellido;
+                $Encuesta->materno=$Egresado->segundo_apellido;
+                $Encuesta->nbr2=$CarreraMap->carrera_id;
+                $Encuesta->nbr3=$CarreraMap->plantel_id;
+                $Encuesta->carrera=$Carrera;
+                $Encuesta->anio_egreso=$AnioEgreso;
+                $Encuesta->save();
+            }
+            
+            return redirect()->route('enc_continua.section',['ed_continua',$Encuesta->registro]);  
+          }
+//CREAR EGRESADO DIRECTAMENTE
+        if(!$Egresado){
+            
             $Egresado = new Egresado();
             $Egresado->cuenta = $cuenta;
             $Egresado->fuente = 'encuesta ed continua';
@@ -46,27 +133,25 @@ public function verify(Request $request){
             $Egresado->paterno = Request::get('paterno');
             $Egresado->materno = Request::get('materno');
             $Egresado->save();
-          }else{
-            $Egresado = new Egresado();
-            $Egresado->cuenta = $cuenta;
-            $Egresado->fuente = 'registro ced';
-            $Egresado->nombre =  $EgresadoRegistro->nombre;
-            $Egresado->paterno = $EgresadoRegistro->primer_apellido;
-            $Egresado->materno = $EgresadoRegistro->segundo_apellido;
-            $Egresado->generacion=$EgresadoRegistro->acad_inicio;
-            $Egresado->anio_egreso=$EgresadoRegistro->acad_fin;
-            // $mapCarrera=mapeoCarrera::where('car_carrer',$EgresadoRegistro->car_carrer)->where('car_nivel','L')->first()
             $Egresado->save();
-          } }
+            $cuenta_encuesta=$Egresado->cuenta;
+            $Encuesta=RespuestasContinua::where('cuenta',$Egresado->cuenta)->first();
+          } 
+
+
+
+
 
         if(!$Encuesta){
                 $Encuesta=new RespuestasContinua();
-                $Encuesta->cuenta=$cuenta;
+                $Encuesta->cuenta=$cuenta_encuesta;
                 $Encuesta->nombre=$Egresado->nombre;
                 $Encuesta->paterno=$Egresado->paterno;
                 $Encuesta->materno=$Egresado->materno;
                 $Encuesta->nbr2=$Egresado->carrera;
                 $Encuesta->nbr3=$Egresado->plantel;
+                $Encuesta->carrera=$Carrera;
+                $Encuesta->anio_egreso=$AnioEgreso;
                 $Encuesta->save();
             }    
         return redirect()->route('enc_continua.section',['ed_continua',$Encuesta->registro]);          
@@ -74,49 +159,24 @@ public function verify(Request $request){
 
     public function section($section,$id){
         $Encuesta=RespuestasContinua::find($id);
-        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->first();
-       if(!$Egresado){
-            //si no lo encontró, lo busca con el 0
-            $Egresado=Egresado::where('cuenta',str_pad($Encuesta->cuenta, 9, '0', STR_PAD_LEFT))->first();
-        }
         
-        if($Egresado->carrera){
-        $Carrera=Carrera::where('clave_carrera',$Encuesta->nbr2)->first()->carrera;
-        $Plantel=Carrera::where('clave_plantel',$Encuesta->nbr3)->first()->plantel;
-        }else{
-            $Carrera="No especificada";
-            $Plantel="No especificado";
-        }
-        $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
-        $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
-        // dd($Egresado);
-        $Generacion=$Egresado->anio_egreso;
+        $Telefonos=Telefono::where('cuenta',$Encuesta->cuenta)->get();       
+        $Correos=Correo::where('cuenta',$Encuesta->cuenta)->get();       
         if($section!='personal_data'){
             $Bloqueos=DB::table('bloqueos')->join('reactivos','bloqueos.clave_reactivo','reactivos.clave')
             ->where('reactivos.section','=',$section)->get();
             // dd($Bloqueos);
             $Reactivos=Reactivo::where('section',$section)->orderBy('orden')->get();
-            //Si No esta graduado
-            if($Egresado->grado=='NO'){
-                $Reactivos=Reactivo::where('section',$section)->whereNotIn('clave',['pbr1','pbr1otro','pbr2','pbr3','pbr4'])->orderBy('orden')->get();
-            }else{
-                //GRADUADO DE DOCTORADO
-                if(str_contains($Egresado->plan, 'DOCTORADO')){
-                    $Reactivos=Reactivo::where('section',$section)->whereNotIn('clave',['pbr5','pbr5otro','pbr6','pbr7'])->orderBy('orden')->get();
-               //GRADUADO DE MAESTRIA
-                }else{
-                    $Reactivos=Reactivo::where('section',$section)->whereNotIn('clave',['pbr3','pbr4','pbr5','pbr5otro','pbr6','pbr7'])->orderBy('orden')->get();
-                }
-            }
+            
         }else{
             $Reactivos="";
             $Bloqueos="";
         }
         
         return view('encuesta_ed_continua.section',
-                     compact('Encuesta','Egresado','Carrera','Plantel',
+                     compact('Encuesta',
                             'Telefonos','Correos','section','Reactivos',
-                            'Bloqueos','Generacion'));
+                            'Bloqueos',));
     }
 
     public function update(Request $request,$id){

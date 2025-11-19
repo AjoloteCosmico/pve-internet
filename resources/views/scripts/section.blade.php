@@ -301,7 +301,6 @@ function hable_reactive(react_name) {
            }
        }
        find_next(react_name);
-   
    }
    
    function find_next(react_name){
@@ -363,7 +362,6 @@ function hable_reactive(react_name) {
        }else{
            var element = document.getElementById(reactivo_siguiente+'-redact');
        }
-
    
    
        var ventana = document.getElementById('rlist');
@@ -516,13 +514,47 @@ function optionWasSelected(react_name, involucrados) {
                     
                     }
                 }
-                
             
             }     
     }
 
-   }
+    //si la opcion no esta checked (osease, el usuario la des-seleccionó)
+     if(!document.getElementById(react_name+'op'+String(op)).checked){
+    //iterar sobre cada opcion, revisar que lo bloques, donde reactivo es este reactivo, donde valor es este val
+        selected_options=[];
+        for(i=0;i<opciones.length;i++){
+            if(opciones[i].checked){
+        
+                console.log(opciones[i].dataset.clave);
+                selected_options.push(parseInt(opciones[i].dataset.clave));
+            }
+        }
+        //desbloquear involucrados
+        involucrados=all_bloqueos
+        .filter(item => item.clave_reactivo == react_name);
+        if(involucrados.length>0){
+           for (var i = 0; i < involucrados.length; i++) {
+               if(no_se_contestan.includes(involucrados[i].clave_reactivo)){
+                    no_se_contestan.splice(no_se_contestan.indexOf(involucrados[i].clave_reactivo),1);
+                   //  hable_reactive(involucrados[i]);
+                  }
+               }
+         }
+         const for_block = all_bloqueos
+        .filter(item => item.clave_reactivo == react_name)
+        .filter(item => selected_options.includes(item.valor));
+        console.log('AL DESBLOQUEAR',for_block,selected_options);
+        if (for_block.length > 0) {
+        for_block.forEach(item => {
+            if (!no_se_contestan.includes(item.bloqueado)) {
+                no_se_contestan.push(item.bloqueado);
+            }
+        });
+        console.log('Agregando nuevos bloqueos:', for_block.map(fb => fb.bloqueado));
+    }
 
+        }
+   }
 
    function submitForm() {
     for (var i = 0; i < no_se_contestan.length; i++) {

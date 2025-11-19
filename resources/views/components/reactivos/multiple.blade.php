@@ -8,6 +8,7 @@
             <div class="row" style="flex-wrap: nowrap; overflow-x: auto;">
                 <input type="checkbox" 
                    id="{{$Reactivo->clave.'op'.$o->clave}}" 
+                   data-clave="{{$o->clave}}"
                    class="{{$Reactivo->clave}}opcion" 
                    name="{{$Reactivo->clave}}opcion{{$o->clave}}" 
                    onclick="optionChecked('{{$Reactivo->clave}}','{{$o->clave}}', [ @foreach($Bloqueos->where('valor',$o->clave)->where('clave_reactivo',$Reactivo->clave) as $b) '{{$b->bloqueado}}', @endforeach ] )"
@@ -22,9 +23,7 @@
                     @endif()>
                         {{$o->descripcion}}
                     </label>
-              
             </div>
-           
            
 @endforeach
 

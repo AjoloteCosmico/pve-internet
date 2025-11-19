@@ -35,12 +35,12 @@
 
 <div class="datos">
     <p class="black_text"> Carrera:</p>
-    <p class="blue_text"> {{$Carrera}}</p>
+    <p class="blue_text"> {{$Encuesta->carrera}}</p>
 </div>
 
 <div class="datos">
     <p class="black_text"> Generación:</p>
-    <p class="blue_text"> {{$Generacion}}</p>
+    <p class="blue_text"> {{$Encuesta->anio_egreso}}</p>
 </div>
 
 </div>
