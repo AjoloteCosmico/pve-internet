@@ -13,6 +13,8 @@ class CorreosController extends Controller
          
         return view('encuesta.seg20.create_correo',compact('Egresado'));
     }
+
+    
     public function store(Request $request ,$cuenta,$carrera){
         $Egresado=Egresado::where('cuenta',$cuenta)->where('carrera',$carrera)->first();
         $Correo=new Correo();
