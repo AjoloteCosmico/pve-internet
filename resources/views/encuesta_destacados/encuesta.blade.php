@@ -16,7 +16,7 @@
         
         <!-- Modal body -->
         <div class="modal-body text-justify">
-El Programa de Vinculación con los Egresados de la Universidad Nacional Autónoma de México (UNAM), con domicilio en Zona Cultural de Ciudad Universitaria, Edificio D, planta baja, Alcaldía Coyoacán, C.P. 04510, en la Ciudad de México, es responsable del tratamiento de sus datos personales para el registro como egresado, difusión de información y generación de estadísticas para identificar, detectar e impulsar el desarrollo de oportunidades para los egresados de la UNAM.<br><br> No se realizarán transferencias de datos personales, salvo aquellas excepciones previstas por la Ley. Podrá ejercer sus derechos ARCO en  la Unidad de Transparencia de la UNAM, o a través de la Plataforma Nacional de Transparencia <br>(<a href='http://www.plataformadetransparencia.org.mx'>http://www.plataformadetransparencia.org.mx/</a>).<br><br>El aviso de privacidad integral se puede consultar en la sección Aviso de Privacidad de nuestro sitio web: <a href='https://www.pveaju.unam.mx/aviso-de-privacidad/'>https://www.pveaju.unam.mx/aviso-de-privacidad/</a>.
+El Programa de Vinculación con los Egresados y Académicos jubilados de la Universidad Nacional Autónoma de México (UNAM), con domicilio en Zona Cultural de Ciudad Universitaria, Edificio D, planta baja, Alcaldía Coyoacán, C.P. 04510, en la Ciudad de México, es responsable del tratamiento de sus datos personales para el registro como egresado, difusión de información y generación de estadísticas para identificar, detectar e impulsar el desarrollo de oportunidades para los egresados de la UNAM.<br><br> No se realizarán transferencias de datos personales, salvo aquellas excepciones previstas por la Ley. Podrá ejercer sus derechos ARCO en  la Unidad de Transparencia de la UNAM, o a través de la Plataforma Nacional de Transparencia <br>(<a href='http://www.plataformadetransparencia.org.mx'>http://www.plataformadetransparencia.org.mx/</a>).<br><br>El aviso de privacidad integral se puede consultar en la sección Aviso de Privacidad de nuestro sitio web: <a href='https://www.pveaju.unam.mx/aviso-de-privacidad/'>https://www.pveaju.unam.mx/aviso-de-privacidad/</a>.
         </div>
         
         <!-- Modal footer -->
@@ -54,7 +54,7 @@ El Programa de Vinculación con los Egresados de la Universidad Nacional Autóno
                  <b>Estimad@  Egresad@ </b>:
                  <hr>
                  <br>
-                 En el marco del 40 aniversario del Programa de Vinculación con los Egresados, Queremos reconocer a <b>cuatro egresadas o egresados que han dejado una huella</b>, no solo en su profesión, sino también en nuestra sociedad, representando los valores de nuestra Universidad con su trabajo y compromiso.
+                 En el marco del 40 aniversario del Programa de Vinculación con los Egresados y Académicos jubilados, Queremos reconocer a <b>cuatro egresadas o egresados que han dejado una huella</b>, no solo en su profesión, sino también en nuestra sociedad, representando los valores de nuestra Universidad con su trabajo y compromiso.
                 <br>
                 Buscamos a aquellas personas que, en los ámbitos público, privado o social, <b>han hecho una diferencia</b>. Aquellas y aquellos egresados cuya labor ha fomentado y difundido los ideales universitarios <b>más allá de nuestras aulas</b> y ha contribuido al desarrollo de México y su sociedad. 
                 <br>

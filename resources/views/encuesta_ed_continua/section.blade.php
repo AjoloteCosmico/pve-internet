@@ -12,6 +12,7 @@
         </div>
 
         <div class="subtitulo2 ">
+            <!-- //TODO: aqui van los logos 40 y egresados -->
             <p>Secretaría General</p>
         </div>
     </div>
@@ -28,7 +29,7 @@
 </div>
 
 <div class="datos">
-    <p class="black_text"> Número de Cúenta:</p>
+    <p class="black_text"> Número de Cuenta:</p>
     <p class="blue_text"> {{$Encuesta->cuenta}}</p>
 </div>
 
@@ -38,7 +39,7 @@
 </div>
 
 <div class="datos">
-    <p class="black_text"> Generacion:</p>
+    <p class="black_text"> Generación:</p>
     <p class="blue_text"> {{$Generacion}}</p>
 </div>
 

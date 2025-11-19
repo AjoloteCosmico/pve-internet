@@ -20,10 +20,13 @@
         <div 
             class="option-item"
             data-valor="{{$option->clave}}"
-            onmouseover="showMessage('{{ $option->help_info }}')" 
             onclick="optionWasSelected('{{$Reactivo->clave}}', [@foreach($Bloqueos->unique('bloqueado') as $b) '{{$b->bloqueado}}', @endforeach]);"
-            data-tippy-size="jumbo"
-            data-tippy-content="{{$option->help_info}}" 
+            @if($option->help_info)
+                onmouseover="showMessage('{{ $option->help_info }}')" 
+                data-tippy-size="jumbo"
+                data-tippy-content="{{$option->help_info}}" 
+                
+            @endif()
             data-bloqueos='[@foreach($Bloqueos->unique("bloqueado") as $b) "{{ $b->bloqueado }}", @endforeach]'
             >
             {{$option->descripcion}}

@@ -8,9 +8,13 @@ use App\Models\Carrera;
 use App\Models\Correo;
 use App\Models\Telefono;
 use App\Models\Egresado;
+use App\Models\RegistroPVEAJU;
+use App\Models\MapeoCarrera;
 use App\Models\Reactivo;
 use App\Models\Opcion;
 use App\Models\Comentario;
+
+use App\Models\multiple_option_answer;
 use DB;
 class EncContinuaController extends Controller
 {
@@ -22,11 +26,19 @@ public function verify(Request $request){
         
         $cuenta=Request::get('cuenta');
         $cuenta = ltrim($cuenta, "0"); 
+        $cuenta_formateada= str_pad($cuenta, 9, '0', STR_PAD_LEFT);
         $Egresado=Egresado::where('cuenta',$cuenta)->first();
         //TODO: CREAR TABLA CON LOS CAMPOS NESCESARIOS ASI COMO EL MODELO
         $Encuesta=RespuestasContinua::where('cuenta',$cuenta)->first();
+        if(!$Egresado){
+            //si no lo encontró, lo busca con el 0
+            $Egresado=Egresado::where('cuenta',$cuenta_formateada)->first();
+        }
         //HAY EGRESADO
         if(!$Egresado){
+            //try to find in view registro pveaju base humberto
+            $EgresadoRegistro=Egresado::where('cuenta',$cuenta_formateada)->first();
+            if(!$EgresadoRegistro){
             $Egresado = new Egresado();
             $Egresado->cuenta = $cuenta;
             $Egresado->fuente = 'encuesta ed continua';
@@ -34,7 +46,18 @@ public function verify(Request $request){
             $Egresado->paterno = Request::get('paterno');
             $Egresado->materno = Request::get('materno');
             $Egresado->save();
-          }
+          }else{
+            $Egresado = new Egresado();
+            $Egresado->cuenta = $cuenta;
+            $Egresado->fuente = 'registro ced';
+            $Egresado->nombre =  $EgresadoRegistro->nombre;
+            $Egresado->paterno = $EgresadoRegistro->primer_apellido;
+            $Egresado->materno = $EgresadoRegistro->segundo_apellido;
+            $Egresado->generacion=$EgresadoRegistro->acad_inicio;
+            $Egresado->anio_egreso=$EgresadoRegistro->acad_fin;
+            // $mapCarrera=mapeoCarrera::where('car_carrer',$EgresadoRegistro->car_carrer)->where('car_nivel','L')->first()
+            $Egresado->save();
+          } }
 
         if(!$Encuesta){
                 $Encuesta=new RespuestasContinua();
@@ -51,8 +74,12 @@ public function verify(Request $request){
 
     public function section($section,$id){
         $Encuesta=RespuestasContinua::find($id);
-        
         $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->first();
+       if(!$Egresado){
+            //si no lo encontró, lo busca con el 0
+            $Egresado=Egresado::where('cuenta',str_pad($Encuesta->cuenta, 9, '0', STR_PAD_LEFT))->first();
+        }
+        
         if($Egresado->carrera){
         $Carrera=Carrera::where('clave_carrera',$Encuesta->nbr2)->first()->carrera;
         $Plantel=Carrera::where('clave_plantel',$Encuesta->nbr3)->first()->plantel;
@@ -62,6 +89,7 @@ public function verify(Request $request){
         }
         $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
         $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
+        // dd($Egresado);
         $Generacion=$Egresado->anio_egreso;
         if($section!='personal_data'){
             $Bloqueos=DB::table('bloqueos')->join('reactivos','bloqueos.clave_reactivo','reactivos.clave')
@@ -102,6 +130,26 @@ public function verify(Request $request){
         $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr2)->first();
         $Encuesta->update($filteredArray);
         $Encuesta->save();
+        $reativos_multiples=Reactivo::where('type','multiple_option')->where('section','ed_continua')->get();
+        
+        foreach($reativos_multiples as $r){
+            $clave=$r->clave;
+            $selected_options = Arr::where(Request::except(['_token', '_method','btnradio','section']), function ($value, $key) use($clave){
+                return str_contains($key,$clave.'opcion');
+            });
+            // dd($selected_options);
+            //borramos las respuestas seleccionadas anteriores (si las habia)
+            $affectedRows = multiple_option_answer::where('encuesta_id',$Encuesta->registro)
+               ->where('reactivo',$clave)->delete();
+            foreach($selected_options as $key => $value){
+                $answer=new multiple_option_answer();
+                $answer->encuesta_id=$Encuesta->registro;
+                $answer->reactivo=$clave;
+                $answer->clave_opcion=str_replace($clave.'opcion','',$key);
+                $answer->save();
+            }
+            // dd($selected_options);
+        }
 
         //return personal data update with mesage
         return redirect()->route('enc_continua.section',['personal_data',$Encuesta->registro]);

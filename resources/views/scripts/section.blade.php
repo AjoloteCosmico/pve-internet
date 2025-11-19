@@ -17,7 +17,7 @@
    var  checked_boxes=[];//cajas que han sido seleccionadas?
    // Vaciamos la query de bloqueos a un array de objetos js
    var all_bloqueos=[
-       @foreach($Bloqueos as $b)
+       @foreach($Bloqueos->whereNotNull('bloqueado') as $b)
        {
            "clave_reactivo": "{{$b->clave_reactivo}}",
             "valor":{{$b->valor}},
@@ -28,10 +28,21 @@
       
    ];
 
+   var preventions=[
+       @foreach($Bloqueos->whereNotNull('prevent_block') as $b)
+       {
+           "clave_reactivo": "{{$b->clave_reactivo}}",
+            "valor":{{$b->valor}},
+            "prevent":"{{$b->prevent_block}}"
+       },
+       @endforeach
+     
+   ];
 
-   //document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
-   // console.log('aun no',aun_no);
-   // console.log('reactivos:',reactivos);
+//    document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
+//    console.log('aun no',aun_no);
+//    console.log('preventions',preventions);
+//    console.log('reactivos:',reactivos);
    //En la seccion D, no se pregunta la imnportancia de los factores de contratacion si el egresado no es empleado (prof independiente, trabajador independiente, propietario)
    
    console.log(no_se_contestan);
@@ -231,7 +242,7 @@ function hable_reactive(react_name) {
                }
        }
        
-   //document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
+//    document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
    }
    
    function optionWasClicked(react_name,for_block,involucrados,option_key=0){
@@ -298,10 +309,9 @@ function hable_reactive(react_name) {
        last_index=reactivos.indexOf(react_name);
        last_index=last_index+1;
        reactivo_siguiente=reactivos[last_index];
-
+       var opciones = document.getElementsByClassName(react_name+'opcion'); 
        // Condición específica para nfr23
        if (react_name === 'nfr23') {
-           var opciones = document.getElementsByClassName(react_name+'opcion'); 
            for (var i = 0; i < opciones.length; i++) {
             console.log('Opción ' + i + ' - checked:', opciones[i].checked);
                if (opciones[i].checked===true && opciones[i].id === 'nfr23op18') {
@@ -313,6 +323,27 @@ function hable_reactive(react_name) {
                }
            }
        }
+  
+
+       //revisar si hay prevenciones de ploqueo
+       const this_prev = preventions.filter(item => item.clave_reactivo == react_name);
+       this_prev.forEach(item => {
+            
+                for (var i = 0; i < opciones.length; i++) {
+                
+                console.log('Opción ' + i + ' - checked:', opciones[i].checked);
+                if (opciones[i].checked===true && opciones[i].id === react_name+'op'+item.valor) {
+                    console.log('Opción con valor  encontrada');
+                    if (no_se_contestan.includes(item.prevent)) {
+                        console.log('major priority unblock',item.prevent);
+                        no_se_contestan.splice(no_se_contestan.indexOf(item.prevent), 1);
+                        break;
+                    }
+                }
+            }
+            
+        });
+
        
        console.log('start while');
        while((no_se_contestan.includes(reactivo_siguiente)) &&( last_index<reactivos.length)) {
@@ -420,36 +451,36 @@ function optionWasSelected(react_name, involucrados) {
     //if para caso de nar3a
 
     if(react_name === 'nar3a') {
-    for (var i = 0; i < opciones.length; i++){
-        
-        if(opciones[i].id === 'nar3aop1'){
-            // Si 'nar3aop1' está seleccionada, bloquea las otras opciones
-            if(opciones[i].checked === true){
-                for(var j = 0; j < opciones.length; j++){
-                    // Evitar bloquear la opción 'nar3aop1' misma
-                    if(opciones[j].id !== 'nar3aop1'){
-                        // Desmarcar otras opciones seleccionadas
-                        if(opciones[j].checked === true){
-                            opciones[j].checked = false;
+        for (var i = 0; i < opciones.length; i++){
+            
+            if(opciones[i].id === 'nar3aop1'){
+                // Si 'nar3aop1' está seleccionada, bloquea las otras opciones
+                if(opciones[i].checked === true){
+                    for(var j = 0; j < opciones.length; j++){
+                        // Evitar bloquear la opción 'nar3aop1' misma
+                        if(opciones[j].id !== 'nar3aop1'){
+                            // Desmarcar otras opciones seleccionadas
+                            if(opciones[j].checked === true){
+                                opciones[j].checked = false;
+                            }
+                            // Bloquear otras opciones
+                            opciones[j].disabled = true;
                         }
-                        // Bloquear otras opciones
-                        opciones[j].disabled = true;
+                    }
+                } 
+                // Si 'nar3aop1' NO está seleccionada, desbloquea las otras opciones
+                else {
+                    for(var j = 0; j < opciones.length; j++){
+                        
+                        if(opciones[j].id !== 'nar3aop1'){
+                            opciones[j].disabled = false;
+                        }
                     }
                 }
-            } 
-            // Si 'nar3aop1' NO está seleccionada, desbloquea las otras opciones
-            else {
-                for(var j = 0; j < opciones.length; j++){
-                    
-                    if(opciones[j].id !== 'nar3aop1'){
-                        opciones[j].disabled = false;
-                    }
-                }
+                break;
             }
-            break;
         }
     }
-}
 
     //checa si es que hay una opcion seleccionada
     if(almenos_una_opcion){

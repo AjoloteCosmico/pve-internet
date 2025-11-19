@@ -369,7 +369,7 @@ thead{
 
 	.main {
 		display: flex;
-		flex-direction: column-reverse;
+		flex-direction: column;
 	}
 
 	.aviso {

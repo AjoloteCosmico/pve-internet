@@ -2,7 +2,7 @@
 use \App\Http\Controllers\ReactivosController;
 
 @endphp
-<h1 class="black_text"> Encuesta de educación Continua</h1>
+<h1 class="black_text"> Encuesta de educación continua</h1>
 
 <form action="{{ route('enc_continua.update',$Encuesta->registro)}}" method="POST" enctype="multipart/form-data" id="main_form">
                    @csrf    
