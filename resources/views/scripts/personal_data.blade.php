@@ -90,7 +90,11 @@ function validate_correo(count_correo){
 
   if (isDuplicate && val.length > 0) {
     inputElement.classList.add("error");
-    alert('Advertencia: El correo ' + val + ' está duplicado en este formulario.');
+    swal.fire({
+      icon: 'warning',
+      title: 'Correo duplicado',
+      text: 'El correo ' + val + ' está duplicado en este formulario.',
+    });
   } else {
     inputElement.classList.remove("error");
   }
