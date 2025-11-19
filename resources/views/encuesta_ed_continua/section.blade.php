@@ -16,6 +16,7 @@
             <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logo-40-color.png" style="width:9vh;"> </a>
         </div>
     </div>
+    
     <!--cpntenedpor de la encuesta-->
 <div class="fondo_encuesta">
 
