@@ -36,7 +36,7 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
 
         <div class="subtitulo2 ">
             <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png" style="width:9vh;"> </a>
-            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logo-40-color.png" style="width:9vh;"> </a>
+            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/Logo-40-color.png" style="width:9vh;"> </a>
         </div>
     </div>
 
