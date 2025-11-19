@@ -29,13 +29,14 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
     <!--CABECERA/HEADER-->
     <div class="cabecera">
         <div class="logo">
-            <a class=logoUNAM href="https://www.unam.mx/"> <img src="/img/logos/logoUNAM-large-azul.png"> </a>
+            <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/logoUNAM-large-azul.png"> </a>
 
-            <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png"> </a>
+            <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/nuestra_unam.png"> </a>
         </div>
 
         <div class="subtitulo2 ">
-            <p>Secretaría General</p>
+            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png" style="width:9vh;"> </a>
+            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logo-40-color.png" style="width:9vh;"> </a>
         </div>
     </div>
 

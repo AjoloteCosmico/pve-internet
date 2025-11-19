@@ -3,20 +3,19 @@
 @section('content')
 
 
-    <!--CABECERA/HEADER-->
+     <!--CABECERA/HEADER-->
     <div class="cabecera">
         <div class="logo">
-        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}"> </a>
+            <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/logoUNAM-large-azul.png"> </a>
 
-            <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="{{url('img/logos/logoPVE-large.png')}}"> </a>
+            <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/nuestra_unam.png"> </a>
         </div>
 
         <div class="subtitulo2 ">
-            <!-- //TODO: aqui van los logos 40 y egresados -->
-            <p>Secretaría General</p>
+            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png" style="width:9vh;"> </a>
+            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logo-40-color.png" style="width:9vh;"> </a>
         </div>
     </div>
-
     <!--cpntenedpor de la encuesta-->
 <div class="fondo_encuesta">
 
