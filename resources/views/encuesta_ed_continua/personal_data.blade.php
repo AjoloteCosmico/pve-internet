@@ -4,18 +4,9 @@
               
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Nombre</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->nombre}} {{$Egresado->paterno}} {{$Egresado->materno}}" disabled style="background-color:#868b94">
+                    <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Encuesta->nombre}} {{$Encuesta->paterno}} {{$Encuesta->materno}}" disabled style="background-color:#868b94">
                 </div>
-                @if($Encuesta->aplica2!=1)
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Sexo</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" @if($Egresado->sexo=="M") value="Masculino" @else value="Femenino" @endif disabled style="background-color:#868b94">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Fecha de nacimiento</label>
-                    <input type="date" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->fec_nac}}" disabled style="background-color:#868b94">
-                </div>
-                @endif
+                
                 <div class="form-group" >
                     <label for="exampleFormControlInput1">Correos</label>
                     @php   $count_correo=0; @endphp
@@ -59,29 +50,11 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Número de Cuenta</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$Egresado->cuenta}}"  disabled style="background-color:#868b94">
+                    <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$Encuesta->cuenta}}"  disabled style="background-color:#868b94">
                 </div>
-                @if($Encuesta->aplica2!=1)
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Carrera</label>
-                  
-                    <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Carrera}}" disabled style="background-color:#868b94">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Plantel</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$Plantel}}"  disabled style="background-color:#868b94">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Generación</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$Generacion}}"  disabled style="background-color:#868b94">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Promedio</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->promedio}}" disabled style="background-color:#868b94">
-                </div>
-                @else
-                @include('encuesta2016.general_reactives')
-                @endif
+               
+               {{--  @include('encuesta2016.general_reactives') --}}
+               
                 <center>
             <button id="final-button" class="btn blue_button" type="submit"> Guardar y enviar</button>
         </center>

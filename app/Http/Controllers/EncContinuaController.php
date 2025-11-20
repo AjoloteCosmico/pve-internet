@@ -90,15 +90,17 @@ public function verify(Request $request){
 //BUSCAR EN REGISTRO PVEAJU 
         if(!$Egresado){
             //try to find in view registro pveaju base humberto
-            $Egresado=RegistroPVEAJU::where('exa_cuenta',$cuenta_formateada)->first();
+            $Egresado=RegistroPVEAJU::where('exa_cuenta',$cuenta_formateada)->orderByDesc('acad_afin')->first();
          }
          if($Egresado){
             //caso en en que el egresado esta en la base del registro humberto
             $CarreraMap=MapeoCarrera::where('car_carrer',$Egresado->car_carrer)->first();
+            
 
             $Carrera='';
             if($CarreraMap){
-                if($CarreraMap->carrera_id){
+                if($CarreraMap->car_nivel=='L'){
+                    // dd($CarreraMap);
                     $Carrera=Carrera::where('clave_carrera',$CarreraMap->carrera_id)->first()->carrera;
                 }elseif($CarreraMap->clave_programa){
                     $Carrera='Posgrado';
@@ -150,7 +152,7 @@ public function verify(Request $request){
                 $Encuesta->materno=$Egresado->materno;
                 $Encuesta->nbr2=$Egresado->carrera;
                 $Encuesta->nbr3=$Egresado->plantel;
-                $Encuesta->carrera=$Carrera;
+                $Encuesta->carrera="";
                 $Encuesta->anio_egreso=$AnioEgreso;
                 $Encuesta->save();
             }    

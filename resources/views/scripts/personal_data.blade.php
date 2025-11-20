@@ -62,6 +62,7 @@ if (isLengthError || isDuplicate){
     document.getElementById('final-button').disabled=false;
 
   
+@if(isset($Egresado))
     @if($Egresado->fuente=='internet')
       plan=document.getElementById('select_plan').value;
       programa=document.getElementById('select_programa').value;
@@ -71,7 +72,7 @@ if (isLengthError || isDuplicate){
       if(plan!="" && programa!="" && grado!=""&& anio!=""){
           document.getElementById('final-button').disabled=false;
       }
-    @endif
+    @endif @endif
 
 }
 
@@ -100,7 +101,7 @@ function validate_correo(count_correo){
   }
 }
 
-
+@if(isset($Egresado))
 @if($Egresado->fuente=='internet')
 function checkNotNa(sel) {
     if (sel.value==""){
@@ -124,7 +125,7 @@ if(plan!="" && programa!="" && grado!=""&& anio!=""){
           document.getElementById('final-button').disabled=false;
       }
 @endif
-
+@endif
 
 
 //Funcion para validar duplicados 
