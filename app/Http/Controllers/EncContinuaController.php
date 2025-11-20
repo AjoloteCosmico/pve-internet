@@ -10,7 +10,7 @@ use App\Models\Telefono;
 use App\Models\Egresado;
 use App\Models\EgresadoPos;
 use App\Models\RegistroPVEAJU;
-use App\Models\MapeoCarrera;
+use App\Models\mapeoCarrera;
 use App\Models\Reactivo;
 use App\Models\Opcion;
 use App\Models\Comentario;
