@@ -222,8 +222,8 @@ public function verify(Request $request){
         $Encuesta=RespuestasContinua::find($id);
         $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->first();
         // dd($Egresado,$Encuesta);
-        $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
-        $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
+        $Telefonos=Telefono::where('cuenta',$Encuesta->cuenta)->get();       
+        $Correos=Correo::where('cuenta',$Encuesta->cuenta)->get();       
         
         
         foreach (Request::get('correos') as $correo) {
