@@ -43,6 +43,7 @@ public function verify(Request $request){
             $cuenta_encuesta=$Egresado->cuenta;
             $Encuesta=RespuestasContinua::where('cuenta',$Egresado->cuenta)->first();
             if(!$Encuesta){
+                // dd("flag lic");
                 $Encuesta=new RespuestasContinua();
                 $Encuesta->cuenta=$cuenta_encuesta;
                 $Encuesta->nombre=$Egresado->nombre;
@@ -74,6 +75,7 @@ public function verify(Request $request){
             $cuenta_encuesta=$Egresado->cuenta;
             $Encuesta=RespuestasContinua::where('cuenta',$Egresado->cuenta)->first();
             if(!$Encuesta){
+                // dd("flag pos");
                 $Encuesta=new RespuestasContinua();
                 $Encuesta->cuenta=$cuenta_encuesta;
                 $Encuesta->nombre=$Egresado->nombre;
@@ -109,8 +111,9 @@ public function verify(Request $request){
             
             $AnioEgreso=$Egresado->acad_afin;
             $cuenta_encuesta=$Egresado->exa_cuenta;
-            $Encuesta=RespuestasContinua::where('cuenta',$Egresado->exa_cuenta)->first();
+            $Encuesta=RespuestasContinua::whereIn('cuenta',[$cuenta,$cuenta_formateada])->first();
             if(!$Encuesta){
+                // dd("flag reg");
                 $Encuesta=new RespuestasContinua();
                 $Encuesta->cuenta=$cuenta_encuesta;
                 $Encuesta->nombre=$Egresado->nombre;
@@ -145,6 +148,7 @@ public function verify(Request $request){
 
 
         if(!$Encuesta){
+            // dd("flag ultima");
                 $Encuesta=new RespuestasContinua();
                 $Encuesta->cuenta=$cuenta_encuesta;
                 $Encuesta->nombre=$Egresado->nombre;
