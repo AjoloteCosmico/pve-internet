@@ -9,4 +9,5 @@ class mapeoCarrera extends Model
 {
     use HasFactory;
     protected $table = 'mapeoCarrera';
+    
 }
