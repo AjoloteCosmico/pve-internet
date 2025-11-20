@@ -38,7 +38,12 @@ public function verify(Request $request){
       
         //hasta aqui, revisamos si se encontro en el registro del seguimiento, si es asi llenamos carrera y año
         if($Egresado){
-            $Carrera=Carrera::where('clave_carrera',$Egresado->carrera)->first()->carrera;
+            $CarreraRow=Carrera::where('clave_carrera',$Egresado->carrera)->first();
+            if($CarreraRow){
+                $Carrera=$CarreraRow->carrera;
+            }else{
+                $Carrera=" ";
+            }
             $AnioEgreso=$Egresado->anio_egreso;
             $cuenta_encuesta=$Egresado->cuenta;
             $Encuesta=RespuestasContinua::where('cuenta',$Egresado->cuenta)->first();
