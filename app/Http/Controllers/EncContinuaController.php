@@ -143,7 +143,6 @@ public function verify(Request $request){
             $Egresado->paterno = Request::get('paterno');
             $Egresado->materno = Request::get('materno');
             $Egresado->save();
-            $Egresado->save();
             $cuenta_encuesta=$Egresado->cuenta;
             $Encuesta=RespuestasContinua::where('cuenta',$Egresado->cuenta)->first();
           } 
@@ -162,7 +161,6 @@ public function verify(Request $request){
                 $Encuesta->nbr2=$Egresado->carrera;
                 $Encuesta->nbr3=$Egresado->plantel;
                 $Encuesta->carrera="";
-                $Encuesta->anio_egreso=$AnioEgreso;
                 $Encuesta->save();
             }    
         return redirect()->route('enc_continua.section',['ed_continua',$Encuesta->registro]);          
