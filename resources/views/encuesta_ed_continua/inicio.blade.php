@@ -52,21 +52,24 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
         </p>
         <br><br><br>
         <p class="texto2">
-            Como parte de la campaña <b>ReUNAMos Saberes</b> , invitamos a nuestras y nuestros
-            egresados a participar en esta encuesta que busca fortalecer el vínculo con la
-            comunidad universitaria y enriquecer la oferta de educación continua.
-            Le solicitamos su apoyo para responder el siguiente cuestionario, cuyo propósito
-            es conocer:
+            Como parte de la campaña ReUNAMos Saberes, invitamos a nuestras y nuestros
+egresados a participar en esta encuesta que busca fortalecer el vínculo con la
+comunidad universitaria y enriquecer la oferta de educación continua.
+Solicitamos su apoyo para responder el siguiente cuestionario, cuyos propósitos
+son:
             <br><br>
             <ol>
                 <li>
-                    Su <span style="color: #e6af2b">opinión</span> sobre los beneficios que ha obtenido con su formación profesional
+                    <span style="color: #e6af2b">Identificar</span>  las necesidades de formación y actualización profesional de los
+egresados de la UNAM.
                 </li>
                 <li>
-                    Sus <span style="color: #e6af2b">expectativas</span> al incorporarse al campo ocupacional de su profesión
+                     <span style="color: #e6af2b">Fortalecer </span> los programas de educación continua con base en los intereses y
+obstáculos reales de la comunidad universitaria.
                 </li>
                 <li>
-                    Su grado de <span style="color: #e6af2b">satisfacción</span> con la preparación que recibió en la UNAM
+                    <span style="color: #e6af2b">Diseñar</span>  oportunidades de formación más accesibles y pertinentes para
+mejorar la empleabilidad y el desarrollo profesional.
                 </li>
             </ol>
             <br>
@@ -78,11 +81,39 @@ actualización y formación que ofrece nuestra Universidad.
         <!--CARDS PROPÓSITOS-->
 
     <div class="propositos">
-        <img class="card" src="/img/gráficos/pag-encuesta-1.png">
+        <!-- card 1 -->
+             
+        <div class="card-box">
+            <p>
+           Re<span class="amarillo">UNAM</span>os
+            <span class="bigwhite"> Saberes</span> para
+            <span class="bigwhite"> MANTENER VIVA</span> la
+            <span class="amarillo"> CHISPA </span> del
+            <span class="bigwhite">APRENDIZAJE</span> en nuestro dia a dia
+        </div>
+        <!-- card 2 -->
+   
+<div class="card-box">
+            <p>
+           La <span class="amarillo"> UNAM </span> 
+            <span class="lilwhite"> genera conocimiento y </span>
+            <span class="bigwhite"> EXPERIENCIAS </span> que
+            <span class="amarillo">TRANSFORMAN  </span>la vida del egresado
+        </div>
+        <!-- card 3 -->
+  
+<div class="card-box">
+            <p>
+            La <span class="amarillo">UNAM  </span> impulsa tu
+            <span class="bigwhite">  CARRERA PROFESIONAL</span> con
+            <span class="amarillo"> EDUCACIÓN CONTINUA</span> y
+            <span class="bigwhite">APRENDIZAJE </span> profundo
+        </div>
 
-        <img class="card" src="/img/gráficos/pag-encuesta-2.png">
 
-        <img class="card" src="/img/gráficos/pag-encuesta-3.png">
+
+
+        
     </div>
     </div>
 

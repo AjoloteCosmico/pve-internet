@@ -79,6 +79,41 @@
     width: auto;
     flex-shrink: auto;
 }
+.propositos .card-box {
+    margin: 35px 10px 5px;
+    border-radius: 5px;
+    /* max-height: 18vh; */
+    width: 14.5em;
+    flex-shrink: auto;
+    padding: 20px;
+    background-color: #002b7a; /* azul */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+/* Textos */
+.card-box p {
+    
+    margin: 1px 0;
+    line-height: 1.3em;
+    font-weight: 600;
+}
+.card-box .lilwhite {
+    font-size:0.9em;
+    color: #ffffff;
+}
+.card-box .amarillo {
+    font-size:1.5em;
+    color: #e3ab3c;
+}
+.card-box .bigwhite {
+    font-size:1.3em;
+    color: #ffffff;
+}
 
 .propositosFinal {
     display: flex;
