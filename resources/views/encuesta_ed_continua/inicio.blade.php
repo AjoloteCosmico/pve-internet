@@ -97,7 +97,7 @@ actualización y formación que ofrece nuestra Universidad.
             <p>
            La <span class="amarillo"> UNAM </span> 
             <span class="lilwhite"> genera conocimiento y </span>
-            <span class="bigwhite"> EXPERIENCIAS </span> que
+            <span class="bigwhite"> EXPERIENCIAS </span> que mejoran y
             <span class="amarillo">TRANSFORMAN  </span>la vida del egresado
         </div>
         <!-- card 3 -->
