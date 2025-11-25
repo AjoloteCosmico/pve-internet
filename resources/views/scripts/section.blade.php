@@ -39,6 +39,19 @@
      
    ];
 
+
+var opciones_excluyen=[
+        {
+           "reactivo": "edc4",
+            "opcion":'edc4op6',
+       },
+       {
+           "reactivo": "nar3a",
+            "opcion":'nar3aop1',
+       }
+     
+   ];
+
 //    document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
 //    console.log('aun no',aun_no);
 //    console.log('preventions',preventions);
@@ -447,16 +460,18 @@ function optionWasSelected(react_name, involucrados) {
     }
 
     //if para caso de nar3a
-
-    if(react_name === 'nar3a') {
+    console.log(opciones_excluyen.map(item => item.reactivo).filter((value, index, self) => self.indexOf(value) === index),react_name);
+    if(opciones_excluyen.map(item => item.reactivo).filter((value, index, self) => self.indexOf(value) === index).includes(react_name)) {
+        console.log('el reactivo tiene opciones q excluyen');
         for (var i = 0; i < opciones.length; i++){
             
-            if(opciones[i].id === 'nar3aop1'){
+            if(opciones_excluyen.map(item => item.opcion).filter((value, index, self) => self.indexOf(value) === index).includes(opciones[i].id)){
                 // Si 'nar3aop1' está seleccionada, bloquea las otras opciones
+                console.log('esta opcion, esta excluyendo');
                 if(opciones[i].checked === true){
                     for(var j = 0; j < opciones.length; j++){
                         // Evitar bloquear la opción 'nar3aop1' misma
-                        if(opciones[j].id !== 'nar3aop1'){
+                        if(opciones[j].id !== opciones[i].id ){
                             // Desmarcar otras opciones seleccionadas
                             if(opciones[j].checked === true){
                                 opciones[j].checked = false;
@@ -470,7 +485,7 @@ function optionWasSelected(react_name, involucrados) {
                 else {
                     for(var j = 0; j < opciones.length; j++){
                         
-                        if(opciones[j].id !== 'nar3aop1'){
+                        if(opciones[j].id !== opciones[i].id ){
                             opciones[j].disabled = false;
                         }
                     }
