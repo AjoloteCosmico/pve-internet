@@ -21,8 +21,8 @@
                     @php   $count_correo=0; @endphp
                     @foreach($Correos as $c)
                     
-                            <input type="email" class="form-control"  value="{{$c->correo}}" name="correos[{{$count_correo}}]" onblur="validate_correo({{$count_correo}})">
-                              @php   $count_correo=$count_correo+1; @endphp
+                            <input type="email" class="form-control"  value="{{$c->correo}}" name="old_correos[{{$loop->index()}}]" onblur="validate_correo({{$count_correo}})" onlyread >
+                            
                           
                     @endforeach
                     
@@ -39,9 +39,9 @@
                     @php   $count_tel=0; @endphp
                     @foreach($Telefonos as $t)
                     
-                        <input type="text" class="form-control myinput"  value="{{$t->telefono}}" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado"> 
+                        <input type="text" class="form-control myinput"  value="{{$t->telefono}}" name="old_telefonos[{{$loop->index()}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado"> 
                         <p class="warning-label" id="warnlab[{{$count_tel}}]"> Ingresa al menos 10 dígitos </p>
-                         @php   $count_tel=$count_tel+1; @endphp
+                         
                     @endforeach
 
                     
