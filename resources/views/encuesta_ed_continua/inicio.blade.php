@@ -254,8 +254,8 @@ actualización y formación que ofrece nuestra Universidad.
     Swal.fire({
   icon: "warning",
   title: "No tenemos tus datos en nuestros registros",
-  html: "Por favor Ingresa a la encuesta general llenando todos tus datos, o bien registrate primero el la cedula de exalumno en: <a href='https://registro.pveaju.unam.mx/'>Obten tu cédula de egresado UNAM</a> ",
-  footer: '<a href="https://registro.pveaju.unam.mx/">Obten tu cédula de egresado UNAM</a>'
+  html: "Por favor Ingresa a la encuesta llenando todos tus datos",
+  
 });
 </script>
 <script>
