@@ -20,7 +20,10 @@ use DB;
 class EncContinuaController extends Controller
 {
     public function inicio(){
-        return view('encuesta_ed_continua.inicio');
+        //la primera vez, se intuye que esta en base y solo s emuestra la cuenta es decir, no es externo a la base de datos
+        $Planteles=Carrera::select('clave_plantel','plantel')->distinct()->get();
+        $Carreras=Carrera::all();
+        return view('encuesta_ed_continua.inicio',compact('Carreras','Planteles'));
     }
 
 public function verify(Request $request){
@@ -102,8 +105,6 @@ public function verify(Request $request){
          if($Egresado){
             //caso en en que el egresado esta en la base del registro humberto
             $CarreraMap=MapeoCarrera::where('car_carrer',$Egresado->car_carrer)->first();
-            
-
             $Carrera='';
             if($CarreraMap){
                 if($CarreraMap->car_nivel=='L'){
@@ -135,19 +136,26 @@ public function verify(Request $request){
           }
 //CREAR EGRESADO DIRECTAMENTE
         if(!$Egresado){
-            
+            //verificar que estan los campos del formulario para cuando no se encontró en la base
+          if( Request::get('nombre'))  {
             $Egresado = new Egresado();
             $Egresado->cuenta = $cuenta;
             $Egresado->fuente = 'encuesta ed continua';
             $Egresado->nombre = Request::get('nombre');
             $Egresado->paterno = Request::get('paterno');
             $Egresado->materno = Request::get('materno');
+            $Egresado->carrera = Request::get('nbr2');
+            $Egresado->plantel = Request::get('nbr3');
+            $Egresado->anio_egreso = Request::get('anio_egreso');
+            $Egresado->sexo = Request::get('sexo');
             $Egresado->save();
             $cuenta_encuesta=$Egresado->cuenta;
             $Encuesta=RespuestasContinua::where('cuenta',$Egresado->cuenta)->first();
-          } 
-
-
+          }else{
+            //si no hay egresado, hay q crear uno, pero regresamos la pagina de inicio con todos los campos necearios para esto nombres, plantel etc
+            return redirect()->route('enc_continua.inicio')->with('externo','si')->with('cuenta',Request::get('cuenta'));
+           }
+        }
 
 
 
@@ -160,7 +168,13 @@ public function verify(Request $request){
                 $Encuesta->materno=$Egresado->materno;
                 $Encuesta->nbr2=$Egresado->carrera;
                 $Encuesta->nbr3=$Egresado->plantel;
+                $Encuesta->anio_egreso=$Egresado->anio_egreso;
+                $Carrera=Carrera::where('clave_carrera',$Egresado->carrera)->first();
+                if($Carrera){
+                $Encuesta->carrera=$Carrera->carrera;
+                }else{
                 $Encuesta->carrera="";
+                }
                 $Encuesta->save();
             }    
         return redirect()->route('enc_continua.section',['ed_continua',$Encuesta->registro]);          

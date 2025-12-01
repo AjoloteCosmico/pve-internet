@@ -16,20 +16,18 @@
                     <input type="date" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->fec_nac}}" disabled style="background-color:#868b94">
                 </div>
                 @endif
-                <div class="form-group" >
+                <div class="form-group" > 
                     <label for="exampleFormControlInput1">Correos</label>
                     @php   $count_correo=0; @endphp
                     @foreach($Correos as $c)
                     
                             <input type="email" class="form-control"  value="{{$c->correo}}" name="old_correos[{{$loop->index}}]" onblur="validate_correo({{$count_correo}})" onlyread >
-                            
-                          
+                                      
                     @endforeach
                     
                             <input type="email" class="form-control"   name="correos[{{$count_correo}}]" placeholder="Ingresa un correo actualizado" onblur="validate_correo({{$count_correo}})">
                             
-                            
-                                
+          
                     <div id="correosDiv"></div>
                     <button style="background-color:#3fbd3c" type="button" onclick="add_correo()"><i class="fa fa-plus" aria-hidden="true"></i> Agregar otro</button>
                 
@@ -44,7 +42,6 @@
                          
                     @endforeach
 
-                    
                     <input type="text" class="form-control myinput"  value="" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado" > 
                     <p class="warning-label" id="warnlab[{{$count_tel}}]"> Ingresa almenos 10 digitos </p>
                           

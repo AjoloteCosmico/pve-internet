@@ -135,25 +135,64 @@ actualización y formación que ofrece nuestra Universidad.
         @csrf
         
             <ul>
+                
+            @if(session('externo') == 'si')
                 <li>
-                    <label>Número de Cuenta:</label>
-                    <input type="number" id="numeroCuenta"   name="cuenta" max="999999999"/>
+                    <label>Número de Cuenta:  </label>
+                    <input type="number" id="numeroCuenta"   name="cuenta" readonly value="{{session('cuenta')}}" style="background-color:#CCC"  />
                 </li>
-
                 <li>
                     <label>Apellido Paterno:</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="paterno"/>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="paterno" required />
                 </li>
                 <li>
                     <label>Apellido Materno:</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"   name="materno"/>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"   name="materno" />
                 </li>
                 <li>
                     <label>Nombre(s):</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="nombre"/>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="nombre" required />
                 </li>
-               
+               <li>
+                    <label>Plantel:</label> <br>
+                     <select name="nbr3" id="nbr3" required >
+                            <option value="" >Seleccione... </option> 
+
+                            @foreach($Planteles as $option)
+                            <option value="{{$option->clave_plantel}} " >{{$option->plantel}} </option> 
+
+                            @endforeach
+                            </select> 
+                </li>
+               <li>
+                    <label>Carrera:</label> <br>
+                   <select name="nbr2" id="nbr2" required >
+                        <option value="" >Seleccione... </option> 
+                        @foreach($Carreras as $option)
+                        <option value="{{$option->clave}} " >{{$option->carrera}} </option> 
+                        <br>
+                        @endforeach
+                    </select>
+                </li>
+               <li>
+                    <label>Sexo:</label> <br>
+                    <select name="sexo" id="" required >
+                        <option value=""></option>
+                        <option value="F">Femenino</option>
+                        <option value="M">Maculino</option>
+                    </select>
+                </li>
+                <li>
+                    <label>Año de egreso:</label> <br>
+                    <input type="number"  name="anio_egreso" min="1960" max="2027" required/>
+                </li>
                 
+            @else
+                <li>
+                    <label>Número de Cuenta:  </label>
+                    <input type="number" id="numeroCuenta"   name="cuenta" max="999999999"/>
+                </li>
+            @endif
                 <li>
                     <button type="submit">Iniciar encuesta</button>
                 </li>
@@ -196,17 +235,7 @@ actualización y formación que ofrece nuestra Universidad.
 @endpush
 
 @push('js')
-@if (session('message') == 'no_data')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    Swal.fire({
-  icon: "error",
-  title: "Oops...",
-  text: "No encontramos tu número de cuenta, tal vez no perteneces a las generacion 2016, revisa que tu número de cuenta halla sido escrito correctamente!",
-  footer: '<a href="#">Why do I have this issue?</a>'
-});
-</script>
-@endif
+
 @if (session('message') == 'realized')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
@@ -219,16 +248,56 @@ actualización y formación que ofrece nuestra Universidad.
 </script>
 @endif
 
-@if (session('message') == 'notinsample')
+@if (session('externo') == 'si')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     Swal.fire({
   icon: "warning",
-  title: "Parece que no es tu generacion",
-  text: "Por favor Ingresa a la encuesta general llenando todos tus datos",
-  footer: '<a href="#">Why do I have this issue?</a>'
+  title: "No tenemos tus datos en nuestros registros",
+  html: "Por favor Ingresa a la encuesta general llenando todos tus datos, o bien registrate primero el la cedula de exalumno en: <a href='https://registro.pveaju.unam.mx/'>Obten tu cédula de egresado UNAM</a> ",
+  footer: '<a href="https://registro.pveaju.unam.mx/">Obten tu cédula de egresado UNAM</a>'
 });
 </script>
+<script>
+function removeOptions(selectElement) {
+   var i, L = selectElement.options.length - 1;
+   for(i = L; i >= 0; i--) {
+      selectElement.remove(i);
+   }
+}
+
+function set_carreras(seleccionado){
+    console.log('entrando a la funcion');
+        console.log(seleccionado)
+removeOptions(document.getElementById('nbr2'));
+var desc = document.getElementById("nbr2");
+@foreach($Planteles as $p)
+if(seleccionado=={{$p->clave_plantel}}){
+    var example_array = {
+        @foreach($Carreras as $carrera)
+        @if($carrera->clave_plantel==$p->clave_plantel)
+    {{$carrera->clave_carrera}} : '{{$carrera->carrera}}',
+         @endif
+    @endforeach
+};
+}
+@endforeach
+console.log(example_array);
+for(index in example_array) {
+    desc.options[desc.options.length] = new Option(example_array[index], index);
+}
+}
+
+$(document).ready(function () {     
+  $('#nbr3').change(function(){
+        var seleccionado = $(this).val();
+        set_carreras(seleccionado);
+        
+  });
+  });
+  var seleccionado = document.getElementById('nbr3').value;
+  set_carreras(seleccionado);
+  </script>
 @endif
 <script>
     $(window).load(function(){
