@@ -212,7 +212,7 @@ class EncContinuaEspecialidad extends Controller
         $Encuesta->save();
         $Egresado->save();
         if($Encuesta->completed==1){
-           return view('encuesta_esp.terminar',compact('Encuesta'));
+           return view('encuesta_especialidad.terminar',compact('Encuesta'));
         }else{
 
         }
