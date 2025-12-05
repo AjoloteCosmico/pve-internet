@@ -9,6 +9,7 @@ use App\Http\Controllers\CorreosController;
 use App\Http\Controllers\EncuestasController;
 use App\Http\Controllers\Enc16Controller;
 use App\Http\Controllers\EncContinuaController;
+use App\Http\Controllers\EncContinuaEspecialidad;
 use App\Http\Controllers\EncVerdeController;
 
 /*
@@ -51,6 +52,14 @@ Route::controller(EncContinuaController::class)->group(function(){
     Route::get('/encuesta_continua/section/{id}/{section}', 'section')->name('enc_continua.section');
     Route::post('/update_personal_data_continua/{id}', 'update_personal_data')->name('enc_continua.update_personal_data');
     Route::post('/update_section_continua/{id}','update')->name('enc_continua.update');
+});
+
+Route::controller(EncContinuaEspecialidad::class)->group(function(){
+    Route::get('/encuesta_especialidad/{hash?}', 'inicio')->name('enc_esp.inicio');
+    Route::post('/verify_cuenta_esp', 'verify')->name('enc_esp.verify');
+    Route::get('/encuesta_especialidad/section/{id}/{section}', 'section')->name('enc_esp.section');
+    Route::post('/update_personal_data_esp/{id}', 'update_personal_data')->name('enc_esp.update_personal_data');
+    Route::post('/update_section_esp/{id}','update')->name('enc_esp.update');
 });
 
 //Encuesta Egresados destacados
