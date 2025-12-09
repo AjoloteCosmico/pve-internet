@@ -14,7 +14,6 @@ use App\Models\Opcion;
 use App\Models\multiple_option_answer;
 use App\Models\Comentario;
 use DB;
-use Endroid\QrCode\QrCode;
 class Enc16Controller extends Controller
 {
     public function inicio($type){

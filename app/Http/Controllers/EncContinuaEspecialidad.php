@@ -12,6 +12,8 @@ use App\Models\Opcion;
 use App\Models\multiple_option_answer;
 use App\Models\Comentario;
 use DB;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\Hash;
 class EncContinuaEspecialidad extends Controller
 {
     //
@@ -212,11 +214,41 @@ class EncContinuaEspecialidad extends Controller
         $Encuesta->save();
         $Egresado->save();
         if($Encuesta->completed==1){
-           return view('encuesta_especialidad.terminar',compact('Encuesta'));
+            $qrString='esp'.$Egresado->cuenta.' '.$Encuesta->registro.'_'.now()->format('Ymd');
+            $qrCode = QrCode::size(200)
+                       ->color(5,10,48)
+                       ->style('round')
+                    //    ->format('png')
+                       ->merge('\public\img\logos\logoPVE-large.png',0.3,)
+                       ->generate($qrString);
+           
+           return view('encuesta_especialidad.terminar',compact('Encuesta','qrCode'));
         }else{
 
         }
         return redirect()->route('enc_esp.section',[$Encuesta->registro,$section]);
         // dd(Request::all());
+    }
+
+    public function showQrCode($surveyId)
+    {
+        // 1. Obtener los datos necesarios de la encuesta
+        $survey = \App\Models\Survey::findOrFail($surveyId);
+
+        // 2. Definir la cadena de texto para el QR
+        // Concatena el ID y la fecha de aplicación (ejemplo: '2025-12-05')
+        $dataToEncode = $survey->id . '_' . $survey->application_date->format('Ymd');
+        
+        // 3. Opcional: Hashear la cadena para mayor seguridad si es lo que deseas verificar despues
+        // Si quieres usar el hash como la clave, codifica el hash
+        $hashedData = Hash::make($dataToEncode);
+        
+        // La cadena final que se codificará en el QR
+        $qrString = $hashedData; 
+
+        // 4. Generar el QR
+        $qrCode = QrCode::size(200)->generate($qrString);
+
+        return view('survey.qrcode', compact('qrCode', 'survey'));
     }
 }

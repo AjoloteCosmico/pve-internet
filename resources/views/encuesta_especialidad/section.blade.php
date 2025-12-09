@@ -48,7 +48,7 @@
 </div>
 	<!--indicador lateral secciones-->
   <div class="blank_square sidebar">
-    <div class="row"><a class="btn section-btn @if($Encuesta->sec_espa==1) completed @endif @if($section=='espA') actual @endif"  > Sección 1: Perfíl del egresado &nbsp; @if($Encuesta->sec_pa==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
+    <div class="row"><a class="btn section-btn @if($Encuesta->sec_espa==1) completed @endif @if($section=='espA') actual @endif"  > Sección 1: Perfil del egresado &nbsp; @if($Encuesta->sec_pa==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
     <div class="row"><a class="btn section-btn @if($Encuesta->sec_espb==1) completed @endif @if($section=='espB') actual @endif"  > Sección 2: Datos académicos &nbsp; @if($Encuesta->sec_pb==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
     <div class="row"><a class="btn section-btn @if($Encuesta->sec_espc==1) completed @endif @if($section=='espC') actual @endif"  > Sección 3: Situación laboral &nbsp; @if($Encuesta->sec_pc==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
     <div class="row"><a class="btn section-btn @if($Encuesta->sec_espd==1) completed @endif @if($section=='espD') actual @endif"  > Sección 4: Satisfacción con la especialidad &nbsp; @if($Encuesta->sec_pd==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif </a></div>

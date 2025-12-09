@@ -44,7 +44,9 @@ class PosgradoController extends Controller
                 $Encuesta->paterno=$Egresado->paterno;
                 $Encuesta->materno=$Egresado->materno;
                 $Encuesta->carrera=$Egresado->carrera;
-                $Encuesta->plantel=$Egresado->plantel;             
+                $Encuesta->plantel=$Egresado->plantel;
+                $Encuesta->plan=$Egresado->plan;     
+                $Encuesta->anio_egreso=$Egresado->anio_egreso;                  
                 $Encuesta->completed=0;
                 $Encuesta->save();
                 //Revisar si pertenece a maestria o doctorado
@@ -71,7 +73,8 @@ class PosgradoController extends Controller
                 $Encuesta->materno=$Egresado->materno;
                 $Encuesta->carrera=$Egresado->carrera;
                 $Encuesta->plantel=$Egresado->plantel;
-             
+                $Encuesta->plan=$Egresado->plan;     
+                $Encuesta->anio_egreso=$Egresado->anio_egreso;                  
                 $Encuesta->completed=0;
                 $Encuesta->save();
                 //Revisar si pertenece a maestria o doctorado
@@ -169,7 +172,9 @@ class PosgradoController extends Controller
            $Egresado->grado=Request::get('grado');
            $Egresado->anio_egreso=Request::get('anio');
            $Egresado->save();
-           
+           $Encuesta->plan=$Egresado->plan;     
+           $Encuesta->anio_egreso=$Egresado->anio_egreso;                  
+           $Encuesta->save();
            if(Request::get('plan')=="" || Request::get('programa')==""|| Request::get('grado')=="" || Request::get('anio')==""){
             return redirect()->back()
             ->with('message','incomplete_data');
