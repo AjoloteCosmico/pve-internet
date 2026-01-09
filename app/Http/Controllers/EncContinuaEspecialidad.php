@@ -218,8 +218,6 @@ class EncContinuaEspecialidad extends Controller
             $qrCode = QrCode::size(200)
                        ->color(5,10,48)
                        ->style('round')
-                    //    ->format('png')
-                       ->merge('\public\img\logos\logoPVE-large.png',0.3,)
                        ->generate($qrString);
            
            return view('encuesta_especialidad.terminar',compact('Encuesta','qrCode'));

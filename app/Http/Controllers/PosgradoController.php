@@ -276,7 +276,7 @@ class PosgradoController extends Controller
         $Encuesta->save();
         $Egresado->save();
         if($Encuesta->completed==1){
-            $qrString='seg'.$Egresado->cuenta.' '.$Encuesta->registro.'_'.now()->format('Ymd');
+            $qrString='pos'.$Egresado->cuenta.' '.$Encuesta->registro.'_'.now()->format('Ymd');
             $qrCode = QrCode::size(200)
                        ->color(5,10,48)
                        ->style('round')
