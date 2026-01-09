@@ -13,6 +13,7 @@ use App\Models\Reactivo;
 use App\Models\Opcion;
 use App\Models\multiple_option_answer;
 use App\Models\Comentario;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use DB;
 
 class Enc20Controller extends Controller
@@ -407,7 +408,14 @@ class Enc20Controller extends Controller
         $Encuesta->save();
         $Egresado->save();
         if($Encuesta->completed==1){
-           return view('encuesta2020.terminar',compact('Encuesta'));
+            $qrString='seg'.$Egresado->cuenta.' '.$Encuesta->registro.'_'.now()->format('Ymd');
+            $qrCode = QrCode::size(200)
+                       ->color(5,10,48)
+                       ->style('round')
+                    //    ->format('png')
+                       ->merge('\public\img\logos\logoPVE-large.png',0.3,)
+                       ->generate($qrString);
+           return view('encuesta2020.terminar',compact('Encuesta','qrCode'));
         }else{
 
         }

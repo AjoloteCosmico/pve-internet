@@ -11,6 +11,7 @@ use App\Http\Controllers\Enc16Controller;
 use App\Http\Controllers\EncContinuaController;
 use App\Http\Controllers\EncContinuaEspecialidad;
 use App\Http\Controllers\EncVerdeController;
+use App\Http\Controllers\RedirectionController;
 
 /*
 |--------------------------------------------------------------------------|
@@ -74,6 +75,10 @@ Route::controller(EncVerdeController::class)->group(function(){
     Route::get('/encuesta_verde/{section}/{id}', 'section')->name('enc_verde.section');
     Route::post('/update_personal_data_verde/{id}', 'update_personal_data')->name('enc_verde.update_personal_data');
     Route::post('/update_section_verde/{id}','update')->name('enc_verde.update');
+});
+//Rutas para redireccionar y contar
+Route::controller(RedirectionController::class)->group(function(){
+    Route::get('/pveaju/credencial', 'credencial')->name('redirect_to.credential');
 });
 
 

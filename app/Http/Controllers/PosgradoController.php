@@ -12,6 +12,8 @@ use App\Models\Reactivo;
 use App\Models\Opcion;
 use App\Models\multiple_option_answer;
 use App\Models\Comentario;
+
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use DB;
 
 class PosgradoController extends Controller
@@ -180,10 +182,10 @@ class PosgradoController extends Controller
             ->with('message','incomplete_data');
            }
         
-        if(Request::get('grado')=='NO'){
-            $Encuesta->sec_pb='1';
-            $Encuesta->save();
-        }
+        // if(Request::get('grado')=='NO'){
+        //     $Encuesta->sec_pb='1';
+        //     $Encuesta->save();
+        // }
         }
 
         foreach (Request::get('correos') as $correo) {
@@ -274,7 +276,14 @@ class PosgradoController extends Controller
         $Encuesta->save();
         $Egresado->save();
         if($Encuesta->completed==1){
-           return view('encuestaPosgrado.terminar',compact('Encuesta'));
+            $qrString='seg'.$Egresado->cuenta.' '.$Encuesta->registro.'_'.now()->format('Ymd');
+            $qrCode = QrCode::size(200)
+                       ->color(5,10,48)
+                       ->style('round')
+                    //    ->format('png')
+                       ->merge('\public\img\logos\logoPVE-large.png',0.3,)
+                       ->generate($qrString);
+           return view('encuestaPosgrado.terminar',compact('Encuesta','qrCode'));
         }else{
 
         }
