@@ -106,6 +106,14 @@ class PosgradoController extends Controller
     }
 
     public function section($id,$section){
+        $Encuesta=respuestasPosgrado::find($id);
+        $Egresado=EgresadoPos::where('cuenta',$Encuesta->cuenta)->first();
+        if(($Encuesta->sec_pa==1)&&($Encuesta->sec_pb==1)&&($Encuesta->sec_pc==1)&&($Encuesta->sec_pd==1)&&($Encuesta->sec_pe==1)){
+            $Encuesta->completed=1;
+            $Encuesta->aplica=111;
+            $Encuesta->fec_capt=now()->modify('-6 hours') ;
+            $Egresado->status=2; //i.e encuestado via Internet
+        }
          if($Encuesta->completed==1){
             $qrString='pos'.$Egresado->cuenta.' '.$Encuesta->registro.'_'.now()->format('Ymd');
             $qrCode = QrCode::size(200)
@@ -114,8 +122,6 @@ class PosgradoController extends Controller
                        ->generate($qrString);
            return view('encuestaPosgrado.terminar',compact('Encuesta','qrCode'));
         }
-        $Encuesta=respuestasPosgrado::find($id);
-        $Egresado=EgresadoPos::where('cuenta',$Encuesta->cuenta)->first();
         
        $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
        $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
