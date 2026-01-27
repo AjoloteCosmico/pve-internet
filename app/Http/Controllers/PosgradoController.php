@@ -106,6 +106,14 @@ class PosgradoController extends Controller
     }
 
     public function section($id,$section){
+         if($Encuesta->completed==1){
+            $qrString='pos'.$Egresado->cuenta.' '.$Encuesta->registro.'_'.now()->format('Ymd');
+            $qrCode = QrCode::size(200)
+                       ->color(5,10,48)
+                       ->style('round')
+                       ->generate($qrString);
+           return view('encuestaPosgrado.terminar',compact('Encuesta','qrCode'));
+        }
         $Encuesta=respuestasPosgrado::find($id);
         $Egresado=EgresadoPos::where('cuenta',$Encuesta->cuenta)->first();
         
