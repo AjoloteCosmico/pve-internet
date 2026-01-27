@@ -113,6 +113,8 @@ class PosgradoController extends Controller
             $Encuesta->aplica=111;
             $Encuesta->fec_capt=now()->modify('-6 hours') ;
             $Egresado->status=2; //i.e encuestado via Internet
+            $Encuesta->save();
+            $Egresado->save();
         }
          if($Encuesta->completed==1){
             $qrString='pos'.$Egresado->cuenta.' '.$Encuesta->registro.'_'.now()->format('Ymd');
