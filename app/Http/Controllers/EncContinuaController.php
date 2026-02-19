@@ -32,7 +32,7 @@ public function verify(Request $request){
         $cuenta = ltrim($cuenta, "0"); 
         $cuenta_formateada= str_pad($cuenta, 9, '0', STR_PAD_LEFT);
         $Egresado=Egresado::where('cuenta',$cuenta)->first();
-//BUSCAR EN BASE LICENCITATURA
+        //BUSCAR EN BASE LICENCITATURA
         //si se encuentra en el registro del seguimiento licenciatura
         if(!$Egresado){
             //si no se encontró, busca con el 0
@@ -221,6 +221,7 @@ public function verify(Request $request){
                 return str_contains($key,$clave.'opcion');
             });
             // dd($selected_options);
+
             //borramos las respuestas seleccionadas anteriores (si las habia)
             $affectedRows = multiple_option_answer::where('encuesta_id',$Encuesta->registro)
                ->where('reactivo',$clave)->delete();

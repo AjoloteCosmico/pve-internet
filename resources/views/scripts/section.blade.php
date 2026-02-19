@@ -52,7 +52,7 @@ var opciones_excluyen=[
      
    ];
 
-//    document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
+    // document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
 //    console.log('aun no',aun_no);
 //    console.log('preventions',preventions);
 //    console.log('reactivos:',reactivos);
@@ -255,7 +255,7 @@ function hable_reactive(react_name) {
                }
        }
        
-//    document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
+//   document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
    }
    
    function optionWasClicked(react_name,for_block,involucrados,option_key=0){
@@ -385,7 +385,7 @@ function hable_reactive(react_name) {
 
 
    
-function optionWasSelected(react_name, involucrados) {
+function optionWasSelected(react_name, involucrados,update_rules,opciones_visibles) {
     // Obtener valor de la opción seleccionada
     const optionsContainer = document.getElementById('select-' + react_name);
     const selectedOption = optionsContainer.querySelector('.option-item:hover') || null;
@@ -430,6 +430,25 @@ function optionWasSelected(react_name, involucrados) {
             }
         });
         console.log('Agregando nuevos bloqueos:', for_block.map(fb => fb.bloqueado));
+    }
+
+
+
+    //caso en que hay que ocultar opciones
+    console.log('update_rules',update_rules,opciones_visibles);
+    if(update_rules.length>0){
+        
+        const options = document.querySelectorAll('.op-container-' + update_rules);
+        console.log('Aplicando reglas de actualización de opciones',options);
+        options.forEach(opt => {
+            opt.style.display = 'none'; // Oculta todas las opciones inicialmente
+            });
+        opciones_visibles.forEach(val_op => {
+            const option = document.getElementById(update_rules + 'cont-option-' + val_op);
+            if (option) {
+                option.style.display = 'block';
+            }
+        });
     }
 
     // Avanzar al siguiente reactivo
@@ -571,6 +590,8 @@ function optionWasSelected(react_name, involucrados) {
         }
    }
 
+
+
    function submitForm() {
     for (var i = 0; i < no_se_contestan.length; i++) {
         var name = no_se_contestan[i];
@@ -595,7 +616,6 @@ function optionWasSelected(react_name, involucrados) {
        $("#main_form").submit();
    }
    */
-
 
 
    //Funciones esteticas y visuales--------------------------------------------
