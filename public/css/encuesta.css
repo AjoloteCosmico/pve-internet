@@ -623,8 +623,9 @@ input[type="radio"] {
 }
 
 .option-item:hover {
-    background-color: #2e4b81;
-    
+    background-color: #2e4b81 !important;
+    color: #ccc !important;
+    cursor: pointer;
 }
 
 .option-item.selected {
@@ -633,7 +634,7 @@ input[type="radio"] {
 }
 
 .option-description {
-    opacity: 0;
+    opacity: 0; 
     max-height: 0;
     overflow: hidden;
     transition: all 0.3s;

@@ -116,8 +116,8 @@ function hable_reactive(react_name) {
         options.forEach(opt => {
             opt.style.pointerEvents = "auto";
             opt.style.opacity = "1";
-            opt.style.backgroundColor = "#002B7A";
-            opt.style.color = "#FFF";
+            opt.style.backgroundColor = "#e9e9e9";
+            opt.style.color = "#464646";
             opt.disabled = false;
         });
     }
@@ -433,7 +433,6 @@ function optionWasSelected(react_name, involucrados,update_rules,opciones_visibl
     }
 
 
-
     //caso en que hay que ocultar opciones
     console.log('update_rules',update_rules,opciones_visibles);
     if(update_rules.length>0){
@@ -442,11 +441,13 @@ function optionWasSelected(react_name, involucrados,update_rules,opciones_visibl
         console.log('Aplicando reglas de actualización de opciones',options);
         options.forEach(opt => {
             opt.style.display = 'none'; // Oculta todas las opciones inicialmente
+            opt.classList.add('block-by-update-rules');
             });
         opciones_visibles.forEach(val_op => {
             const option = document.getElementById(update_rules + 'cont-option-' + val_op);
             if (option) {
                 option.style.display = 'block';
+                option.classList.remove('block-by-update-rules');
             }
         });
     }

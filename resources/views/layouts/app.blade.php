@@ -104,20 +104,31 @@
     document.addEventListener('DOMContentLoaded', function () {
         // Mostrar/ocultar opciones
         window.toggleSelect = function (selectId) {
-            const selectOptions = document.getElementById(selectId);
-            if (selectOptions) {
-                selectOptions.style.display = selectOptions.style.display === 'block' ? 'none' : 'block';
-            }
-        };
+    const selectOptions = document.getElementById(selectId);
+
+    if (selectOptions) {
+        // Verificamos si el contenedor tiene la clase de bloqueo
+        const estaBloqueado = selectOptions.classList.contains('bloked-by-update-rules');
+
+        if (estaBloqueado) {
+            // Si está bloqueado, nos aseguramos de que esté oculto y salimos de la función
+            selectOptions.style.display = 'none';
+            console.log("El select está bloqueado por reglas de actualización.");
+            return; 
+        }
+
+        // Si NO está bloqueado, ejecutamos el toggle normal
+        selectOptions.style.display = (selectOptions.style.display === 'block') ? 'none' : 'block';
+    }
+};
 
         // Cerrar el menú al hacer clic fuera
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.custom-select')) {
                 document.querySelectorAll('.select-options').forEach(options => {
                     options.style.display = 'none';
-                });
+                });+
             }
-            
         });
 
         // Inicializar opciones personalizadas
