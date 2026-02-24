@@ -7,13 +7,13 @@
     <div class="cabecera">
         <div class="logo">
             <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/logoUNAM-large-azul.png"> </a>
-
             <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/nuestra_unam.png"> </a>
+            <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/Logo UNAM 475.jpg"> </a>
         </div>
 
         <div class="subtitulo2 ">
-            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png" style="width:9vh;"> </a>
-            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/Logo-40-color.png" style="width:9vh;"> </a>
+            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png" style="width:9vh;"> </a> &nbsp;&nbsp;
+            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logo-cuadrado-SE-azul.png" style="width:7vh;"> </a>
         </div>
     </div>
 

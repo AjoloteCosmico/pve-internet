@@ -12,7 +12,7 @@ use App\Http\Controllers\EncContinuaController;
 use App\Http\Controllers\EncContinuaEspecialidad;
 use App\Http\Controllers\EncVerdeController;
 use App\Http\Controllers\RedirectionController;
-
+use App\Http\Controllers\TrackingController;
 /*
 |--------------------------------------------------------------------------|
 | Web Routes                                                               |
@@ -80,7 +80,12 @@ Route::controller(EncVerdeController::class)->group(function(){
 Route::controller(RedirectionController::class)->group(function(){
     Route::get('/pveaju/credencial', 'credencial')->name('redirect_to.credential');
 });
+//rutas para tracking
+// routes/web.php
 
+Route::get('/track/{emailUuid}', [TrackingController::class, 'track'])
+    ->name('email.track')
+    ->middleware('throttle:60,1'); // Limitar peticiones por seguridad
 
 Route::get('/', function () {
     return redirect(route('enc.inicio',[2022]));
