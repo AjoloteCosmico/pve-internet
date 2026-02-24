@@ -12,11 +12,10 @@ class TrackingController extends Controller
     {
         try {
             // Buscar o crear el registro de tracking
-            $tracking = EmailTracking::firstOrNew(['email_uuid' => $emailUuid]);
-            
+            $tracking = EmailTracking::firstOrNew(['id' => $emailUuid]);
             // Solo registrar si no se había abierto antes
             if (!$tracking->opened_at) {
-                $tracking->opened_at = now();
+                $tracking->opened_at = now()->modify('-6 hours');
                 $tracking->ip_address = $request->ip();
                 $tracking->user_agent = $request->userAgent();
                 $tracking->save();
@@ -26,6 +25,8 @@ class TrackingController extends Controller
                 // Aquí puedes disparar eventos, notificaciones, etc.
                 // event(new EmailOpened($tracking));
             }
+
+            return response()->file(public_path('img/logoPVE.png'));
 
             // Devolver una imagen transparente de 1x1
             $pixel = base64_decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
@@ -40,7 +41,7 @@ class TrackingController extends Controller
         } catch (\Exception $e) {
             Log::error("Error en tracking: " . $e->getMessage());
             // Siempre devolver una imagen, aunque falle el registro
-            return response()->file(public_path('img/1x1.png'));
+            return response()->file(public_path('img/pixel.png'));
         }
     }
 }
