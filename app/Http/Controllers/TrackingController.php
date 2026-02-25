@@ -26,7 +26,7 @@ class TrackingController extends Controller
                 // event(new EmailOpened($tracking));
             }
 
-            return response()->file(public_path('img/logoPVE.png'));
+            // return response()->file(public_path('img/logoPVE.png'));
 
             // Devolver una imagen transparente de 1x1
             $pixel = base64_decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');

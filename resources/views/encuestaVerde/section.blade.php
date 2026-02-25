@@ -21,14 +21,14 @@
     <p class="black_text"> Carrera:</p>
     <p class="blue_text"> {{$Carrera}}</p>
 </div>
-<div>
-     <img src="{{ asset('img/verde/header.png') }}" class="header_logos" style="width:20vw;" alt="Header" >
+<div >
+     <img src="{{ asset('img/verde/header-blue.png') }}" class="header_logos" style="width:20vw;" alt="Header" >
 </div>
 
 </div>
 
 	<!--indicador lateral secciones-->
-    <div class="blank_square sidebar " style="width: 20vw; padding:.3 vw !important">
+    <div class="blank_square sidebar blue-square" style="width: 20vw; padding:.3 vw !important">
           <img class="card"  src="{{ asset('img/verde/hoja_delgado.png') }}" >
     </div>
       
@@ -83,6 +83,9 @@ console.log('inicializar tippy');
     .verde{
         background-color: #152824  !important;
         /* #29524a */
+    }
+    .blue-square{
+        background-color: #3373ba !important;
     }
    .swal2-popup {
   font-size: 1.6rem !important;

@@ -32,9 +32,9 @@ El Programa de Vinculación con los Egresados y Académicos jubilados de la Univ
 
   <!-- LADO IZQUIERDO -->
   <div class="izquierda">
-    <img src="{{ asset('img/verde/header.png') }}" alt="Header" class="header-img" >
+    <img src="{{ asset('img/verde/header-white.png') }}" alt="Header" class="header-img" >
     <br> <br>
-    <img src="{{ asset('img/verde/empleabilidad.png') }}" alt="Empleabilidad Verde" class="emp-img">
+    <img src="{{ asset('img/verde/empleabilidad-label-blue.png') }}" alt="Empleabilidad Verde" class="emp-img">
    
     <img src="{{ asset('img/verde/leyenda.png') }}" alt="Empleabilidad Verde" class="fondo-img">
     
@@ -128,7 +128,7 @@ El Programa de Vinculación con los Egresados y Académicos jubilados de la Univ
       flex-wrap: wrap;
       min-height: 80vh;
       width: 100% !important;
-      background: #fff;
+      background: #3373ba;
       z-index: 10;
     }
 
@@ -140,7 +140,7 @@ El Programa de Vinculación con los Egresados y Académicos jubilados de la Univ
       justify-content: left;
       align-items: left;
       padding: 3vw 9vw 4vh 9vw;
-      background: #fff;
+      background: #3373ba;
     }
 
     .fondo-img {

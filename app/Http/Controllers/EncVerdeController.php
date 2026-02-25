@@ -22,7 +22,7 @@ public function verify(Request $request){
         
         $cuenta=Request::get('cuenta');
         $cuenta = ltrim($cuenta, "0"); 
-        $Egresado=Egresado::where('cuenta',$cuenta)->whereIn('anio_egreso',[2016,2017,2018,2019,2020,2021,2022])->first();
+        $Egresado=Egresado::where('cuenta',$cuenta)->whereIn('anio_egreso',[2022,2023,2024])->first();
         //TODO: CREAR TABLA CON LOS CAMPOS NESCESARIOS ASI COMO EL MODELO
         $Encuesta=RespuestasVerdes::where('cuenta',$cuenta)->first();
         //HAY EGRESADO
@@ -54,7 +54,7 @@ public function verify(Request $request){
     public function section($section,$id){
         $Encuesta=RespuestasVerdes::find($id);
         
-        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->whereIn('anio_egreso',[2016,2017,2018,2019,2020,2021,2022])->first();
+        $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->whereIn('anio_egreso',[2022,2023,2024])->first();
         $Carrera=Carrera::where('clave_carrera',$Encuesta->nbr2)->first()->carrera;
         $Plantel=Carrera::where('clave_plantel',$Encuesta->nbr3)->first()->plantel;
        $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
