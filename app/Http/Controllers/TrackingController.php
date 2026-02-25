@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\Log;
 
 class TrackingController extends Controller
 {
-    public function track(Request $request, $emailUuid)
+    public function track(Request $request, $uuid)
     {
         try {
-            // Buscar o crear el registro de tracking
-            $tracking = EmailTracking::firstOrNew(['id' => $emailUuid]);
+            // Buscar por la columna tracking_uuid
+            $tracking = EmailTracking::where('tracking_uuid', $uuid)->first();
+
             // Solo registrar si no se había abierto antes
             if (!$tracking->opened_at) {
                 $tracking->opened_at = now()->modify('-6 hours');
@@ -20,16 +21,17 @@ class TrackingController extends Controller
                 $tracking->user_agent = $request->userAgent();
                 $tracking->save();
                 
-                Log::info("Correo {$emailUuid} abierto desde IP: {$request->ip()}");
+                Log::info("Correo UUID {$uuid} abierto desde IP: {$request->ip()}");
                 
                 // Aquí puedes disparar eventos, notificaciones, etc.
                 // event(new EmailOpened($tracking));
             }
 
-            // return response()->file(public_path('img/logoPVE.png'));
+           // return response()->file(public_path('img/logoPVE.png'));
 
             // Devolver una imagen transparente de 1x1
             $pixel = base64_decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+            //$pixel = base64_decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
             
             return response($pixel, 200)
                 ->header('Content-Type', 'image/gif')
