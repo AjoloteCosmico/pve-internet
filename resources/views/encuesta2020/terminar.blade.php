@@ -64,7 +64,11 @@
     <p class="texto2">
         Los resultados obtenidos servirán para contribuir al mejoramiento de esta Máxima Casa de Estudios
     </p>
-    <br><br>
+     <br>
+    <div class="qr-code-container">
+        {!! $qrCode !!}
+    </div>
+    <br>
     <p class="texto2">
         <a href="https://www.pveaju.unam.mx/encuesta/01/seguimiento2024/#creditos"><span style= "font-size:min(1.9vh);text-decoration:underline;">CRÉDITOS</span></a>
     </p>
@@ -91,8 +95,12 @@
     </div>
 
 </div>
+<div class="col" style="padding:2vw">
+    <a href="{{route('redirect_to.credential')}}">
+    <img class="card" src="/img/gráficos/CREDENCIAL DIGITAL V.jpg"></a>
 </div>
-
+</div>
+ 
 </body>
 
 <!--FOOTER-->

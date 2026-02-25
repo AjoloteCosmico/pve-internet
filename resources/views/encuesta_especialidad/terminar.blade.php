@@ -31,15 +31,19 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!--CABECERA/HEADER-->
+      <!--CABECERA/HEADER-->
     <div class="cabecera">
         <div class="logo">
-            <a class=logoUNAM href="https://www.unam.mx/"> <img src="/img/logos/logoUNAM-large-azul.png"> </a>
-            <a class=lovoPVE href="https://www.pveu.unam.mx/"> <img src="/img/logos/logoPVE-large.png"> </a>
+            <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/logoUNAM-large-azul.png"> </a>
+
+            <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/nuestra_unam.png"> </a>
         </div>
 
         <div class="subtitulo2 ">
-            <p>Secretaría General</p>
+            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png" style="width:9vh;"> </a>
+                 &nbsp;&nbsp;&nbsp;&nbsp;
+            <a class=lovoPVE href="https://www.posgrado.unam.mx/"> <img src="{{url('img/logos/logoPosgrado.svg')}}" style="width: 8vw !important; height:auto !important"> </a>
+       
         </div>
     </div>
     <!--MENSAJE-->
@@ -47,7 +51,7 @@
 <div class="izquierda">
 <div class="info">
     <p class="subtitulo3 principal">
-        ENCUESTA FINALIZADA
+        ENCUESTA EGRESADOS ESPECIALIDAD FINALIZADA
     </p>
     <br>
     <p class="subtitulo">
@@ -61,14 +65,13 @@
         <span style="font-size:1.5vmax"><b>Fecha de encuesta: </b> {{now()->modify('-6 hours')}}</span>
     </p>
     <br>
-    <div class="qr-code-container">
-        {!! $qrCode !!}
-    </div>
-    <br>
     <p class="texto2">
         Los resultados obtenidos servirán para contribuir al mejoramiento de esta Máxima Casa de Estudios
     </p>
-    <br><br>
+    <br>
+    <div class="qr-code-container">
+        {!! $qrCode !!}
+    </div>
     <p class="texto2">
         <a href="https://www.pveaju.unam.mx/encuesta/01/seguimiento2024/#creditos"><span style= "font-size:min(1.9vh);text-decoration:underline;">CRÉDITOS</span></a>
     </p>
@@ -94,10 +97,6 @@
         <img class="card" src="/img/gráficos/pag-encuesta-3.png">
     </div>
 
-</div>
-<div class="col" style="padding:2vw">
-    <a href="{{route('redirect_to.credential')}}">
-    <img class="card" src="/img/gráficos/CREDENCIAL DIGITAL V.jpg"></a>
 </div>
 </div>
 

@@ -12,6 +12,8 @@ use App\Models\Reactivo;
 use App\Models\Opcion;
 use App\Models\multiple_option_answer;
 use App\Models\Comentario;
+
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use DB;
 
 class PosgradoController extends Controller
@@ -44,7 +46,9 @@ class PosgradoController extends Controller
                 $Encuesta->paterno=$Egresado->paterno;
                 $Encuesta->materno=$Egresado->materno;
                 $Encuesta->carrera=$Egresado->carrera;
-                $Encuesta->plantel=$Egresado->plantel;             
+                $Encuesta->plantel=$Egresado->plantel;
+                $Encuesta->plan=$Egresado->plan;     
+                $Encuesta->anio_egreso=$Egresado->anio_egreso;                  
                 $Encuesta->completed=0;
                 $Encuesta->save();
                 //Revisar si pertenece a maestria o doctorado
@@ -71,7 +75,8 @@ class PosgradoController extends Controller
                 $Encuesta->materno=$Egresado->materno;
                 $Encuesta->carrera=$Egresado->carrera;
                 $Encuesta->plantel=$Egresado->plantel;
-             
+                $Encuesta->plan=$Egresado->plan;     
+                $Encuesta->anio_egreso=$Egresado->anio_egreso;                  
                 $Encuesta->completed=0;
                 $Encuesta->save();
                 //Revisar si pertenece a maestria o doctorado
@@ -103,6 +108,22 @@ class PosgradoController extends Controller
     public function section($id,$section){
         $Encuesta=respuestasPosgrado::find($id);
         $Egresado=EgresadoPos::where('cuenta',$Encuesta->cuenta)->first();
+        if(($Encuesta->sec_pa==1)&&($Encuesta->sec_pb==1)&&($Encuesta->sec_pc==1)&&($Encuesta->sec_pd==1)&&($Encuesta->sec_pe==1)){
+            $Encuesta->completed=1;
+            $Encuesta->aplica=111;
+            $Encuesta->fec_capt=now()->modify('-6 hours') ;
+            $Egresado->status=2; //i.e encuestado via Internet
+            $Encuesta->save();
+            $Egresado->save();
+        }
+         if($Encuesta->completed==1){
+            $qrString='pos'.$Egresado->cuenta.' '.$Encuesta->registro.'_'.now()->format('Ymd');
+            $qrCode = QrCode::size(200)
+                       ->color(5,10,48)
+                       ->style('round')
+                       ->generate($qrString);
+           return view('encuestaPosgrado.terminar',compact('Encuesta','qrCode'));
+        }
         
        $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
        $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
@@ -169,16 +190,18 @@ class PosgradoController extends Controller
            $Egresado->grado=Request::get('grado');
            $Egresado->anio_egreso=Request::get('anio');
            $Egresado->save();
-           
+           $Encuesta->plan=$Egresado->plan;     
+           $Encuesta->anio_egreso=$Egresado->anio_egreso;                  
+           $Encuesta->save();
            if(Request::get('plan')=="" || Request::get('programa')==""|| Request::get('grado')=="" || Request::get('anio')==""){
             return redirect()->back()
             ->with('message','incomplete_data');
            }
         
-        if(Request::get('grado')=='NO'){
-            $Encuesta->sec_pb='1';
-            $Encuesta->save();
-        }
+        // if(Request::get('grado')=='NO'){
+        //     $Encuesta->sec_pb='1';
+        //     $Encuesta->save();
+        // }
         }
 
         foreach (Request::get('correos') as $correo) {
@@ -269,7 +292,12 @@ class PosgradoController extends Controller
         $Encuesta->save();
         $Egresado->save();
         if($Encuesta->completed==1){
-           return view('encuestaPosgrado.terminar',compact('Encuesta'));
+            $qrString='pos'.$Egresado->cuenta.' '.$Encuesta->registro.'_'.now()->format('Ymd');
+            $qrCode = QrCode::size(200)
+                       ->color(5,10,48)
+                       ->style('round')
+                       ->generate($qrString);
+           return view('encuestaPosgrado.terminar',compact('Encuesta','qrCode'));
         }else{
 
         }

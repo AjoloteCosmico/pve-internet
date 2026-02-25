@@ -31,7 +31,7 @@
     background-color: #050a30;
     color: white;
     align-items:center;
-    padding: 4% 15% ;
+    padding: 4% ;
 }
 .texto-encuesta{
     color:#12171d;
@@ -42,12 +42,12 @@
 }
 
 .izquierda {
-    width: 60%;
+    width: 55%;
     padding-right: 3%;
 }
 .derecha {
     padding-left: 3%;
-    width: 40%;
+    width: 35%;
 }
 
 /*INFORMACIÓN*/
@@ -78,6 +78,41 @@
     max-height: 18vh;
     width: auto;
     flex-shrink: auto;
+}
+.propositos .card-box {
+    margin: 35px 10px 5px;
+    border-radius: 5px;
+    /* max-height: 18vh; */
+    width: 14.5em;
+    flex-shrink: auto;
+    padding: 20px;
+    background-color: #002b7a; /* azul */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+/* Textos */
+.card-box p {
+    
+    margin: 1px 0;
+    line-height: 1.3em;
+    font-weight: 600;
+}
+.card-box .lilwhite {
+    font-size:0.9em;
+    color: #ffffff;
+}
+.card-box .amarillo {
+    font-size:1.5em;
+    color: #e3ab3c;
+}
+.card-box .bigwhite {
+    font-size:1.3em;
+    color: #ffffff;
 }
 
 .propositosFinal {
@@ -226,6 +261,7 @@ input[type=number]::-webkit-outer-spin-button {
 .texto8{
     font-size: small;
 }
+
 
 .fondo_verde{
     background-color: #868b94;
@@ -587,8 +623,9 @@ input[type="radio"] {
 }
 
 .option-item:hover {
-    background-color: #2e4b81;
-    
+    background-color: #2e4b81 !important;
+    color: #ccc !important;
+    cursor: pointer;
 }
 
 .option-item.selected {
@@ -597,7 +634,7 @@ input[type="radio"] {
 }
 
 .option-description {
-    opacity: 0;
+    opacity: 0; 
     max-height: 0;
     overflow: hidden;
     transition: all 0.3s;

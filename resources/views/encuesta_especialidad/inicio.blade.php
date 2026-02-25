@@ -36,7 +36,8 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
 
         <div class="subtitulo2 ">
             <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png" style="width:9vh;"> </a>
-            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/Logo-40-color.png" style="width:9vh;"> </a>
+            <a class=lovoPVE href="https://www.posgrado.unam.mx/"> <img src="{{url('img/logos/logoPosgrado.svg')}}" style="width: 8vw !important; height:auto !important"> </a>
+      
         </div>
     </div>
 
@@ -44,10 +45,10 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
 <div class="main">
     
     <div class="izquierda">
-        <h1>ENCUESTA DE EDUCACIÓN CONTINUA UNAM</h1>
+        <h1>ENCUESTA PARA EGRESADOS DE ESPECIALIDADES UNAM</h1>
     <div class="info">
         <p class="subtitulo3">
-            TODAS LAS CARRERAS Y GENERACIONES
+            GENERACIONES 2018 - 2021
            
         </p>
         <br><br><br>
@@ -64,7 +65,7 @@ son:
 egresados de la UNAM.
                 </li>
                 <li>
-                     <span style="color: #e6af2b">Fortalecer </span> los programas de educación continua con base en los intereses y
+                     <span style="color: #e6af2b">Fortalecer </span> los programas de especialidades con base en los intereses y
 obstáculos reales de la comunidad universitaria.
                 </li>
                 <li>
@@ -77,46 +78,14 @@ mejorar la empleabilidad y el desarrollo profesional.
 actualización y formación que ofrece nuestra Universidad.
         </p>
     </div>
-
-        <!--CARDS PROPÓSITOS-->
+    <!--CARDS PROPÓSITOS-->
 
     <div class="propositos">
-        <!-- card 1 -->
-             
-        <div class="card-box">
-            <p>
-           Re<span class="amarillo">UNAM</span>os
-            <span class="bigwhite"> Saberes</span> para
-            <span class="bigwhite"> MANTENER VIVA</span> la
-            <span class="amarillo"> CHISPA </span> del
-            <span class="bigwhite">APRENDIZAJE</span> en nuestro dia a dia
-        </div>
-        <!-- card 2 -->
-   
-<div class="card-box">
-            <p>
-           La <span class="amarillo"> UNAM </span> 
-            <span class="lilwhite"> genera conocimiento y </span>
-            <span class="bigwhite"> EXPERIENCIAS </span> que mejoran y
-            <span class="amarillo">TRANSFORMAN  </span>la vida del egresado
-        </div>
-        <!-- card 3 -->
-  
-<div class="card-box">
-            <p>
-            La <span class="amarillo">UNAM  </span> impulsa tu
-            <span class="bigwhite">  CARRERA PROFESIONAL</span> con
-            <span class="amarillo"> EDUCACIÓN CONTINUA</span> y
-            <span class="bigwhite">APRENDIZAJE </span> profundo
-        </div>
-
-
-
-
-        
+        <img class="card" src="/img/gráficos/pag-encuesta-1.png">
+        <img class="card" src="/img/gráficos/pag-encuesta-2.png">
+        <img class="card" src="/img/gráficos/pag-encuesta-3.png">
     </div>
     </div>
-
 
 <div class="derecha">
 
@@ -131,68 +100,15 @@ actualización y formación que ofrece nuestra Universidad.
         </p>
         <br>
 
-        <form action="{{ route('enc_continua.verify')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('enc_esp.verify')}}" method="POST" enctype="multipart/form-data">
         @csrf
-        
             <ul>
-                
-            @if(session('externo') == 'si')
+    
                 <li>
                     <label>Número de Cuenta:  </label>
-                    <input type="number" id="numeroCuenta"   name="cuenta" readonly value="{{session('cuenta')}}" style="background-color:#CCC"  />
+                    <input type="number" id="numeroCuenta"   name="cuenta"  max="999999999"  />
                 </li>
-                <li>
-                    <label>Apellido Paterno:</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="paterno" required />
-                </li>
-                <li>
-                    <label>Apellido Materno:</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"   name="materno" />
-                </li>
-                <li>
-                    <label>Nombre(s):</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="nombre" required />
-                </li>
-               <li>
-                    <label>Plantel:</label> <br>
-                     <select name="nbr3" id="nbr3" required >
-                            <option value="" >Seleccione... </option> 
-
-                            @foreach($Planteles as $option)
-                            <option value="{{$option->clave_plantel}} " >{{$option->plantel}} </option> 
-
-                            @endforeach
-                            </select> 
-                </li>
-               <li>
-                    <label>Carrera:</label> <br>
-                   <select name="nbr2" id="nbr2" required >
-                        <option value="" >Seleccione... </option> 
-                        @foreach($Carreras as $option)
-                        <option value="{{$option->clave}} " >{{$option->carrera}} </option> 
-                        <br>
-                        @endforeach
-                    </select>
-                </li>
-               <li>
-                    <label>Sexo:</label> <br>
-                    <select name="sexo" id="" required >
-                        <option value=""></option>
-                        <option value="F">Femenino</option>
-                        <option value="M">Maculino</option>
-                    </select>
-                </li>
-                <li>
-                    <label>Año de egreso:</label> <br>
-                    <input type="number"  name="anio_egreso" min="1960" max="2027" required/>
-                </li>
-                
-            @else
-                <li>
-                    <label>Número de Cuenta:  </label>
-                    <input type="number" id="numeroCuenta"   name="cuenta" max="999999999"/>
-                </li>
-            @endif
+                    <br>
                 <li>
                     <button type="submit">Iniciar encuesta</button>
                 </li>
@@ -248,56 +164,15 @@ actualización y formación que ofrece nuestra Universidad.
 </script>
 @endif
 
-@if (session('externo') == 'si')
+@if (session('message') == 'notinsample')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     Swal.fire({
   icon: "warning",
-  title: "No tenemos tus datos en nuestros registros",
-  html: "Por favor Ingresa a la encuesta llenando todos tus datos",
-  
+  title: "Parece que no es tu generacion",
+  html: "No tenemos registrado tu número de cuenta como un egresado de especialidad UNAM para las generaciones del estudio, si lo deseas, puedes contestar la encuesta para todas las carreras y generaciones en el siguiente enlace: <br> <a href='https://encuestas.pveaju.unam.mx/encuesta_generacion/general'>Encuesta de egresados UNAM</a>",
 });
 </script>
-<script>
-function removeOptions(selectElement) {
-   var i, L = selectElement.options.length - 1;
-   for(i = L; i >= 0; i--) {
-      selectElement.remove(i);
-   }
-}
-
-function set_carreras(seleccionado){
-    console.log('entrando a la funcion');
-        console.log(seleccionado)
-removeOptions(document.getElementById('nbr2'));
-var desc = document.getElementById("nbr2");
-@foreach($Planteles as $p)
-if(seleccionado=={{$p->clave_plantel}}){
-    var example_array = {
-        @foreach($Carreras as $carrera)
-        @if($carrera->clave_plantel==$p->clave_plantel)
-    {{$carrera->clave_carrera}} : '{{$carrera->carrera}}',
-         @endif
-    @endforeach
-};
-}
-@endforeach
-console.log(example_array);
-for(index in example_array) {
-    desc.options[desc.options.length] = new Option(example_array[index], index);
-}
-}
-
-$(document).ready(function () {     
-  $('#nbr3').change(function(){
-        var seleccionado = $(this).val();
-        set_carreras(seleccionado);
-        
-  });
-  });
-  var seleccionado = document.getElementById('nbr3').value;
-  set_carreras(seleccionado);
-  </script>
 @endif
 <script>
     $(window).load(function(){

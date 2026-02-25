@@ -4,10 +4,10 @@ use \App\Http\Controllers\ReactivosController;
 @endphp
 <h1 class="black_text"> Encuesta de educación continua</h1>
 
-<form action="{{ route('enc_continua.update',$Encuesta->registro)}}" method="POST" enctype="multipart/form-data" id="main_form">
+<form action="{{ route('enc_esp.update',$Encuesta->registro)}}" method="POST" enctype="multipart/form-data" id="main_form">
                    @csrf    
                   <input type="text" name="section" value="{{$Reactivos->first()->section}}" hidden>
-                     
+                 <input type="text" name="{{'sec_'.strtolower($Reactivos->first()->section)}}" value="1" hidden>    
             @foreach($Reactivos as $reactivo)
                 <div id="{{$reactivo->clave}}" style="padding: 1.2vmax;  @if($reactivo->child==1) padding-left:4.4vmax !important @endif" >
                

@@ -1,4 +1,4 @@
-<!--
+{{--
 <select name="{{$Reactivo->clave}}" id="{{'select-'.$Reactivo->clave}}" onchange="optionWasSelected('{{$Reactivo->clave}}',[@foreach($Bloqueos->unique('bloqueado') as $b) '{{$b->bloqueado}}', @endforeach ])">
 <option value="" >Seleccione... </option> 
 
@@ -8,7 +8,7 @@
 <br>
 @endforeach
 </select>
--->
+--}}
 
 
 <div class="custom-select">
@@ -18,12 +18,16 @@
     <div class="select-options" id="{{ 'select-' . $Reactivo->clave }}">
         @foreach($Opciones->sortBy('orden') as $option)
         <div 
-            class="option-item"
+            class="option-item {{'op-container-'.$Reactivo->clave}}"
             data-valor="{{$option->clave}}"
-            onmouseover="showMessage('{{ $option->help_info }}')" 
-            onclick="optionWasSelected('{{$Reactivo->clave}}', [@foreach($Bloqueos->unique('bloqueado') as $b) '{{$b->bloqueado}}', @endforeach]);"
-            data-tippy-size="jumbo"
-            data-tippy-content="{{$option->help_info}}" 
+            id="{{ $Reactivo->clave.'cont-option-'.$option->clave }}"
+            onclick="optionWasSelected('{{$Reactivo->clave}}', [@foreach($Bloqueos->unique('bloqueado') as $b) '{{$b->bloqueado}}', @endforeach],'{{$Reactivo->update_rules}}',[{{$option->update_rules}}]);"
+            @if($option->help_info)
+                onmouseover="showMessage('{{ $option->help_info }}')" 
+                data-tippy-size="jumbo"
+                data-tippy-content="{{$option->help_info}}" 
+                
+            @endif()
             data-bloqueos='[@foreach($Bloqueos->unique("bloqueado") as $b) "{{ $b->bloqueado }}", @endforeach]'
             >
             {{$option->descripcion}}

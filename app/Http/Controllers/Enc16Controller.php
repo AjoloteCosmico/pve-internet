@@ -13,8 +13,8 @@ use App\Models\Reactivo;
 use App\Models\Opcion;
 use App\Models\multiple_option_answer;
 use App\Models\Comentario;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use DB;
-use Endroid\QrCode\QrCode;
 class Enc16Controller extends Controller
 {
     public function inicio($type){
@@ -323,8 +323,13 @@ class Enc16Controller extends Controller
         $Encuesta->save();
         $Egresado->save();
         if($Encuesta->completed==1){
+            $qrString='act'.$Egresado->cuenta.' '.$Encuesta->registro.'_'.now()->format('Ymd');
+            $qrCode = QrCode::size(200)
+                       ->color(5,10,48)
+                       ->style('round')
+                       ->generate($qrString);
 
-            return view('encuesta2016.terminar',compact('Encuesta'));
+            return view('encuesta2016.terminar',compact('Encuesta','qrCode'));
         }
         return redirect()->route('enc16.section',[$Encuesta->registro,$section]);
     }

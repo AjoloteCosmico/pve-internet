@@ -17,7 +17,7 @@
    var  checked_boxes=[];//cajas que han sido seleccionadas?
    // Vaciamos la query de bloqueos a un array de objetos js
    var all_bloqueos=[
-       @foreach($Bloqueos as $b)
+       @foreach($Bloqueos->whereNotNull('bloqueado') as $b)
        {
            "clave_reactivo": "{{$b->clave_reactivo}}",
             "valor":{{$b->valor}},
@@ -28,10 +28,34 @@
       
    ];
 
+   var preventions=[
+       @foreach($Bloqueos->whereNotNull('prevent_block') as $b)
+       {
+           "clave_reactivo": "{{$b->clave_reactivo}}",
+            "valor":{{$b->valor}},
+            "prevent":"{{$b->prevent_block}}"
+       },
+       @endforeach
+     
+   ];
 
-   //document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
-   // console.log('aun no',aun_no);
-   // console.log('reactivos:',reactivos);
+
+var opciones_excluyen=[
+        {
+           "reactivo": "edc4",
+            "opcion":'edc4op6',
+       },
+       {
+           "reactivo": "nar3a",
+            "opcion":'nar3aop1',
+       }
+     
+   ];
+
+    // document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
+//    console.log('aun no',aun_no);
+//    console.log('preventions',preventions);
+//    console.log('reactivos:',reactivos);
    //En la seccion D, no se pregunta la imnportancia de los factores de contratacion si el egresado no es empleado (prof independiente, trabajador independiente, propietario)
    
    console.log(no_se_contestan);
@@ -92,8 +116,8 @@ function hable_reactive(react_name) {
         options.forEach(opt => {
             opt.style.pointerEvents = "auto";
             opt.style.opacity = "1";
-            opt.style.backgroundColor = "#002B7A";
-            opt.style.color = "#FFF";
+            opt.style.backgroundColor = "#e9e9e9";
+            opt.style.color = "#464646";
             opt.disabled = false;
         });
     }
@@ -231,7 +255,7 @@ function hable_reactive(react_name) {
                }
        }
        
-   //document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
+//   document.getElementById('monitor_reactivos_cerrrados').innerHTML='no se contstan:'+no_se_contestan+' aun no: '+aun_no;
    }
    
    function optionWasClicked(react_name,for_block,involucrados,option_key=0){
@@ -290,7 +314,6 @@ function hable_reactive(react_name) {
            }
        }
        find_next(react_name);
-   
    }
    
    function find_next(react_name){
@@ -298,10 +321,9 @@ function hable_reactive(react_name) {
        last_index=reactivos.indexOf(react_name);
        last_index=last_index+1;
        reactivo_siguiente=reactivos[last_index];
-
+       var opciones = document.getElementsByClassName(react_name+'opcion'); 
        // Condición específica para nfr23
        if (react_name === 'nfr23') {
-           var opciones = document.getElementsByClassName(react_name+'opcion'); 
            for (var i = 0; i < opciones.length; i++) {
             console.log('Opción ' + i + ' - checked:', opciones[i].checked);
                if (opciones[i].checked===true && opciones[i].id === 'nfr23op18') {
@@ -313,6 +335,27 @@ function hable_reactive(react_name) {
                }
            }
        }
+  
+
+       //revisar si hay prevenciones de ploqueo
+       const this_prev = preventions.filter(item => item.clave_reactivo == react_name);
+       this_prev.forEach(item => {
+            
+                for (var i = 0; i < opciones.length; i++) {
+                
+                console.log('Opción ' + i + ' - checked:', opciones[i].checked);
+                if (opciones[i].checked===true && opciones[i].id === react_name+'op'+item.valor) {
+                    console.log('Opción con valor  encontrada');
+                    if (no_se_contestan.includes(item.prevent)) {
+                        console.log('major priority unblock',item.prevent);
+                        no_se_contestan.splice(no_se_contestan.indexOf(item.prevent), 1);
+                        break;
+                    }
+                }
+            }
+            
+        });
+
        
        console.log('start while');
        while((no_se_contestan.includes(reactivo_siguiente)) &&( last_index<reactivos.length)) {
@@ -332,7 +375,6 @@ function hable_reactive(react_name) {
        }else{
            var element = document.getElementById(reactivo_siguiente+'-redact');
        }
-
    
    
        var ventana = document.getElementById('rlist');
@@ -343,7 +385,7 @@ function hable_reactive(react_name) {
 
 
    
-function optionWasSelected(react_name, involucrados) {
+function optionWasSelected(react_name, involucrados,update_rules,opciones_visibles) {
     // Obtener valor de la opción seleccionada
     const optionsContainer = document.getElementById('select-' + react_name);
     const selectedOption = optionsContainer.querySelector('.option-item:hover') || null;
@@ -390,6 +432,26 @@ function optionWasSelected(react_name, involucrados) {
         console.log('Agregando nuevos bloqueos:', for_block.map(fb => fb.bloqueado));
     }
 
+
+    //caso en que hay que ocultar opciones
+    console.log('update_rules',update_rules,opciones_visibles);
+    if(update_rules.length>0){
+        
+        const options = document.querySelectorAll('.op-container-' + update_rules);
+        console.log('Aplicando reglas de actualización de opciones',options);
+        options.forEach(opt => {
+            opt.style.display = 'none'; // Oculta todas las opciones inicialmente
+            opt.classList.add('block-by-update-rules');
+            });
+        opciones_visibles.forEach(val_op => {
+            const option = document.getElementById(update_rules + 'cont-option-' + val_op);
+            if (option) {
+                option.style.display = 'block';
+                option.classList.remove('block-by-update-rules');
+            }
+        });
+    }
+
     // Avanzar al siguiente reactivo
     find_next(react_name);
 }
@@ -418,38 +480,40 @@ function optionWasSelected(react_name, involucrados) {
     }
 
     //if para caso de nar3a
-
-    if(react_name === 'nar3a') {
-    for (var i = 0; i < opciones.length; i++){
-        
-        if(opciones[i].id === 'nar3aop1'){
-            // Si 'nar3aop1' está seleccionada, bloquea las otras opciones
-            if(opciones[i].checked === true){
-                for(var j = 0; j < opciones.length; j++){
-                    // Evitar bloquear la opción 'nar3aop1' misma
-                    if(opciones[j].id !== 'nar3aop1'){
-                        // Desmarcar otras opciones seleccionadas
-                        if(opciones[j].checked === true){
-                            opciones[j].checked = false;
+    console.log(opciones_excluyen.map(item => item.reactivo).filter((value, index, self) => self.indexOf(value) === index),react_name);
+    if(opciones_excluyen.map(item => item.reactivo).filter((value, index, self) => self.indexOf(value) === index).includes(react_name)) {
+        console.log('el reactivo tiene opciones q excluyen');
+        for (var i = 0; i < opciones.length; i++){
+            
+            if(opciones_excluyen.map(item => item.opcion).filter((value, index, self) => self.indexOf(value) === index).includes(opciones[i].id)){
+                // Si 'nar3aop1' está seleccionada, bloquea las otras opciones
+                console.log('esta opcion, esta excluyendo');
+                if(opciones[i].checked === true){
+                    for(var j = 0; j < opciones.length; j++){
+                        // Evitar bloquear la opción 'nar3aop1' misma
+                        if(opciones[j].id !== opciones[i].id ){
+                            // Desmarcar otras opciones seleccionadas
+                            if(opciones[j].checked === true){
+                                opciones[j].checked = false;
+                            }
+                            // Bloquear otras opciones
+                            opciones[j].disabled = true;
                         }
-                        // Bloquear otras opciones
-                        opciones[j].disabled = true;
+                    }
+                } 
+                // Si 'nar3aop1' NO está seleccionada, desbloquea las otras opciones
+                else {
+                    for(var j = 0; j < opciones.length; j++){
+                        
+                        if(opciones[j].id !== opciones[i].id ){
+                            opciones[j].disabled = false;
+                        }
                     }
                 }
-            } 
-            // Si 'nar3aop1' NO está seleccionada, desbloquea las otras opciones
-            else {
-                for(var j = 0; j < opciones.length; j++){
-                    
-                    if(opciones[j].id !== 'nar3aop1'){
-                        opciones[j].disabled = false;
-                    }
-                }
+                break;
             }
-            break;
         }
     }
-}
 
     //checa si es que hay una opcion seleccionada
     if(almenos_una_opcion){
@@ -485,12 +549,48 @@ function optionWasSelected(react_name, involucrados) {
                     
                     }
                 }
-                
             
             }     
     }
 
+    //si la opcion no esta checked (osease, el usuario la des-seleccionó)
+     if(!document.getElementById(react_name+'op'+String(op)).checked){
+    //iterar sobre cada opcion, revisar que lo bloques, donde reactivo es este reactivo, donde valor es este val
+        selected_options=[];
+        for(i=0;i<opciones.length;i++){
+            if(opciones[i].checked){
+        
+                console.log(opciones[i].dataset.clave);
+                selected_options.push(parseInt(opciones[i].dataset.clave));
+            }
+        }
+        //desbloquear involucrados
+        involucrados=all_bloqueos
+        .filter(item => item.clave_reactivo == react_name);
+        if(involucrados.length>0){
+           for (var i = 0; i < involucrados.length; i++) {
+               if(no_se_contestan.includes(involucrados[i].clave_reactivo)){
+                    no_se_contestan.splice(no_se_contestan.indexOf(involucrados[i].clave_reactivo),1);
+                   //  hable_reactive(involucrados[i]);
+                  }
+               }
+         }
+         const for_block = all_bloqueos
+        .filter(item => item.clave_reactivo == react_name)
+        .filter(item => selected_options.includes(item.valor));
+        console.log('AL DESBLOQUEAR',for_block,selected_options);
+        if (for_block.length > 0) {
+        for_block.forEach(item => {
+            if (!no_se_contestan.includes(item.bloqueado)) {
+                no_se_contestan.push(item.bloqueado);
+            }
+        });
+        console.log('Agregando nuevos bloqueos:', for_block.map(fb => fb.bloqueado));
+    }
+
+        }
    }
+
 
 
    function submitForm() {
@@ -517,7 +617,6 @@ function optionWasSelected(react_name, involucrados) {
        $("#main_form").submit();
    }
    */
-
 
 
    //Funciones esteticas y visuales--------------------------------------------

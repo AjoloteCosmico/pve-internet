@@ -1,4 +1,4 @@
-<form action="{{ route('enc_continua.update_personal_data',$Encuesta->registro)}}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('enc_esp.update_personal_data',$Encuesta->registro)}}" method="POST" enctype="multipart/form-data">
                    @csrf    
             <h1 class="black_text"> Confirme sus datos de contacto</h1>
               

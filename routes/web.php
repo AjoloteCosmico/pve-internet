@@ -9,8 +9,10 @@ use App\Http\Controllers\CorreosController;
 use App\Http\Controllers\EncuestasController;
 use App\Http\Controllers\Enc16Controller;
 use App\Http\Controllers\EncContinuaController;
+use App\Http\Controllers\EncContinuaEspecialidad;
 use App\Http\Controllers\EncVerdeController;
-
+use App\Http\Controllers\RedirectionController;
+use App\Http\Controllers\TrackingController;
 /*
 |--------------------------------------------------------------------------|
 | Web Routes                                                               |
@@ -53,6 +55,14 @@ Route::controller(EncContinuaController::class)->group(function(){
     Route::post('/update_section_continua/{id}','update')->name('enc_continua.update');
 });
 
+Route::controller(EncContinuaEspecialidad::class)->group(function(){
+    Route::get('/encuesta_especialidad/{hash?}', 'inicio')->name('enc_esp.inicio');
+    Route::post('/verify_cuenta_esp', 'verify')->name('enc_esp.verify');
+    Route::get('/encuesta_especialidad/section/{id}/{section}', 'section')->name('enc_esp.section');
+    Route::post('/update_personal_data_esp/{id}', 'update_personal_data')->name('enc_esp.update_personal_data');
+    Route::post('/update_section_esp/{id}','update')->name('enc_esp.update');
+});
+
 //Encuesta Egresados destacados
 Route::get('/encuesta_destacados', [App\Http\Controllers\EncDestacadosController::class, 'index'])->name('enc_destacados.index');
 Route::post('/encuesta_destacados_save', [App\Http\Controllers\EncDestacadosController::class, 'save'])->name('enc_destacados.save');
@@ -66,7 +76,16 @@ Route::controller(EncVerdeController::class)->group(function(){
     Route::post('/update_personal_data_verde/{id}', 'update_personal_data')->name('enc_verde.update_personal_data');
     Route::post('/update_section_verde/{id}','update')->name('enc_verde.update');
 });
+//Rutas para redireccionar y contar
+Route::controller(RedirectionController::class)->group(function(){
+    Route::get('/pveaju/credencial', 'credencial')->name('redirect_to.credential');
+});
+//rutas para tracking
+// routes/web.php
 
+Route::get('/track/{emailUuid}', [TrackingController::class, 'track'])
+    ->name('email.track')
+    ->middleware('throttle:60,1'); // Limitar peticiones por seguridad
 
 Route::get('/', function () {
     return redirect(route('enc.inicio',[2022]));

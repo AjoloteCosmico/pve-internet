@@ -2,7 +2,9 @@
 @foreach($Opciones->sortBy('orden')  as $option)
 <div id="{{'cuadrito'.$Reactivo->clave.$option->clave}}" 
      data-tippy-size="jumbo"
-     data-tippy-content="{{$option->help_info}}" 
+     @if($option->help_info)
+          data-tippy-content="{{$option->help_info}}" 
+     @endif()
      class="{{'cuadrito-'.$Reactivo->clave}}" 
      style="border: 1px solid black; border-radius: 1.3vw; padding:1.3vw; margin 2.5vw;"  
      onclick="optionWasClicked('{{$Reactivo->clave}}',[@foreach($Bloqueos as $b) @if($b->valor==$option->clave) '{{$b->bloqueado}}', @endif @endforeach ], [@foreach($Bloqueos->unique('bloqueado') as $b) '{{$b->bloqueado}}', @endforeach ],'{{$option->clave}}');">

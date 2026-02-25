@@ -363,13 +363,12 @@ thead{
 	}
 }
 
-
 /*MEDIA QUERIES MENSAJES ENCUESTA*/
 @media screen and (max-width: 1020px) {
 
 	.main {
 		display: flex;
-		flex-direction: column-reverse;
+		flex-direction: column;
 	}
 
 	.aviso {

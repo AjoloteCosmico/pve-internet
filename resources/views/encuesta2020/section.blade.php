@@ -3,16 +3,17 @@
 @section('content')
 
 
-    <!--CABECERA/HEADER-->
+         <!--CABECERA/HEADER-->
     <div class="cabecera">
         <div class="logo">
-        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}"> </a>
-
-            <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="{{url('img/logos/logoPVE-large.png')}}"> </a>
+            <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/logoUNAM-large-azul.png"> </a>
+            <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/nuestra_unam.png"> </a>
+            <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/Logo UNAM 475.jpg"> </a>
         </div>
 
         <div class="subtitulo2 ">
-            <p>Secretaría General</p>
+            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png" style="width:9vh;"> </a> &nbsp;&nbsp;
+            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logo-cuadrado-SE-azul.png" style="width:7vh;"> </a>
         </div>
     </div>
 
