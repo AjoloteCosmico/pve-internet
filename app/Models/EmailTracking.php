@@ -10,7 +10,6 @@ class EmailTracking extends Model
 {
     use HasFactory, HasUuids;
 
-
     protected $table = 'email_tracking';
 
     /**
