@@ -96,8 +96,17 @@
 
 </div>
 <div class="col" style="padding:2vw">
-    <a href="{{route('redirect_to.credential')}}">
-    <img class="card" src="/img/gráficos/CREDENCIAL DIGITAL V.jpg"></a>
+    <div class="row" style="width:15vw;">
+        <a href="{{route('redirect_to.credential')}}">
+            <img class="card" src="/img/gráficos/CREDENCIAL DIGITAL V.jpg">
+        </a>
+    </div>
+    <div class="row">
+        <a href="{{route('redirect_counter','SIEEE_end_poll')}}">
+            <img class="card" src="/img/gráficos/SIEEE.png">
+        </a>
+    </div>
+        
 </div>
 </div>
  

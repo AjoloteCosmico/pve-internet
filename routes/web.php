@@ -79,6 +79,7 @@ Route::controller(EncVerdeController::class)->group(function(){
 //Rutas para redireccionar y contar
 Route::controller(RedirectionController::class)->group(function(){
     Route::get('/pveaju/credencial', 'credencial')->name('redirect_to.credential');
+    Route::get('/pveaju/resource/{counter_name}', 'redirect_counter')->name('redirect_counter');
 });
 //rutas para tracking
 // routes/web.php
