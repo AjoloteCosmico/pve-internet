@@ -64,7 +64,11 @@
     <p class="texto2">
         Los resultados obtenidos servirán para contribuir al mejoramiento de esta Máxima Casa de Estudios
     </p>
-    <br><br>
+     <br>
+    <div class="qr-code-container">
+        {!! $qrCode !!}
+    </div>
+    <br>
     <p class="texto2">
         <a href="https://www.pveaju.unam.mx/encuesta/01/seguimiento2024/#creditos"><span style= "font-size:min(1.9vh);text-decoration:underline;">CRÉDITOS</span></a>
     </p>
@@ -91,8 +95,21 @@
     </div>
 
 </div>
+<div class="col" style="padding:2vw">
+    <div class="row" style="width:15vw;">
+        <a href="{{route('redirect_to.credential')}}">
+            <img class="card" src="/img/gráficos/CREDENCIAL DIGITAL V.jpg">
+        </a>
+    </div>
+    <div class="row">
+        <a href="{{route('redirect_counter','SIEEE_end_poll')}}">
+            <img class="card" src="/img/gráficos/SIEEE.png">
+        </a>
+    </div>
+        
 </div>
-
+</div>
+ 
 </body>
 
 <!--FOOTER-->
@@ -100,7 +117,7 @@
 	<div class="footer">
 
 		<p class="texto6">
-		© Copyright 2026 Universidad Nacional Autónoma de México.
+		© Copyright 2024 Universidad Nacional Autónoma de México.
 		<br>
 		Todos los derechos reservados.
 		</p>

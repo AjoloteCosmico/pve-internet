@@ -131,6 +131,10 @@ public function verify(Request $request){
             }
            }
           
-      return redirect()->route('enc_verde.inicio')->with('teminada','ok');
+      return redirect()->view('enc_verde.terminar')->with('teminada','ok');
+    }
+
+    public function terminar(){
+
     }
 }

@@ -6,7 +6,7 @@
                     <label for="exampleFormControlInput1">Nombre</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->nombre}} {{$Egresado->paterno}} {{$Egresado->materno}}" disabled style="background-color:#868b94">
                 </div>
-                @if($Encuesta->aplica2!=1)
+                @if($Egresado->sexo)
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Sexo</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" @if($Egresado->sexo=="M") value="Masculino" @else value="Femenino" @endif disabled style="background-color:#868b94">
