@@ -28,7 +28,9 @@ class Enc20Controller extends Controller
 
     public function verify(Request $request, $type){
 
-
+        //validar request
+        $request->validate([
+            'cuenta' => 'required|string|max:255']);
         $cuenta = $request->get('cuenta'); 
         $cuenta = ltrim($cuenta, "0"); 
         $Egresado = Egresado::where('cuenta', $cuenta)->first();
