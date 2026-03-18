@@ -104,22 +104,22 @@ El Programa de Vinculación con los Egresados y Académicos jubilados de la Univ
             <ul>
                 <li>
                     <label>Número de Cuenta:</label>
-                    <input type="number" id="numeroCuenta"   name="cuenta" max="999999999"/>
+                    <input type="number" id="numeroCuenta"   name="cuenta" min="10000000" max="999999999" required/>
                 </li>
 
                 @if($type=='general')
                 
                 <li>
                     <label>Apellido Paterno:</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="paterno"/>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="paterno" required/>
                 </li>
                 <li>
                     <label>Apellido Materno:</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"   name="materno"/>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"   name="materno" required/>
                 </li>
                 <li>
                     <label>Nombre(s):</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="nombre"/>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="nombre" required/>
                 </li>
                
                 
