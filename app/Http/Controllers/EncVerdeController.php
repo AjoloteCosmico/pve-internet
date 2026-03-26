@@ -101,7 +101,7 @@ public function verify(Request $request){
         //actualizar tabla egresado_muestra status=2
         $EgMuestra=DB::table('egresado_muestra')
                 ->where('egresado_id',$Egresado->id)
-                ->where('muestra_id',897) //ID de muestra de educación continua
+                ->where('muestra_id',898) //ID de muestra de educación continua
                 ->update(['status' => 2,
                 'updated_at'=>now()]);
         //return personal data update with mesage
