@@ -130,7 +130,7 @@ actualización y formación que ofrece nuestra Universidad.
             PARA GENERACIONES QUE INGRESARON ANTES DE 1999 SE ANTEPONE UN <b>"0"</b> EN EL NÚMERO DE CUENTA
         </p>
         <br>
-{-- 
+{{-- 
         <form action="{{ route('enc_continua.verify')}}" method="POST" enctype="multipart/form-data">
         @csrf
         
@@ -198,8 +198,8 @@ actualización y formación que ofrece nuestra Universidad.
                 </li>
             </ul>
         </form>
-        --}
-        <h1>NO DISPONIBLE TEMPORAMENTE </h1>
+        --}}
+        <h1 style="color: black">NO DISPONIBLE TEMPORAMENTE </h1>
         <br>
         <p class="texto8">
             <b>Preferentemente utilizar Google Chrome</b>
