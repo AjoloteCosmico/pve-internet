@@ -36,7 +36,8 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
 
         <div class="subtitulo2 ">
             <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png" style="width:9vh;"> </a>
-            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/Logo-40-color.png" style="width:9vh;"> </a>
+            &nbsp;&nbsp;
+            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logo-cuadrado-SE-azul.png" style="width:7vh;"> </a>
         </div>
     </div>
 
@@ -52,24 +53,21 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
         </p>
         <br><br><br>
         <p class="texto2">
-            Como parte de la campaña ReUNAMos Saberes, invitamos a nuestras y nuestros
-egresados a participar en esta encuesta que busca fortalecer el vínculo con la
-comunidad universitaria y enriquecer la oferta de educación continua.
-Solicitamos su apoyo para responder el siguiente cuestionario, cuyos propósitos
-son:
+            Como parte de la campaña ReUNAMos Saberes, invitamos a nuestras y nuestros egresados a participar 
+            en esta encuesta que busca fortalecer el vínculo con la comunidad universitaria y enriquecer la oferta de educación continua.
+            <br>
+            Le solicitamos su apoyo para responder el siguiente cuestionario, cuyo propósito es conocer:
+
             <br><br>
             <ol>
                 <li>
-                    <span style="color: #e6af2b">Identificar</span>  las necesidades de formación y actualización profesional de los
-egresados de la UNAM.
+                    <span style="color: #e6af2b">Su opinión</span> 	 sobre los beneficios obtenidos con su formación profesional.
                 </li>
                 <li>
-                     <span style="color: #e6af2b">Fortalecer </span> los programas de educación continua con base en los intereses y
-obstáculos reales de la comunidad universitaria.
+                     <span style="color: #e6af2b">Sus expectativas </span> al incorporarse al campo ocupacional de su profesión.
                 </li>
                 <li>
-                    <span style="color: #e6af2b">Diseñar</span>  oportunidades de formación más accesibles y pertinentes para
-mejorar la empleabilidad y el desarrollo profesional.
+                    <span style="color: #e6af2b">Su grado de satisfacción </span>  con la preparación que recibió en la UNAM.
                 </li>
             </ol>
             <br>
@@ -130,7 +128,7 @@ actualización y formación que ofrece nuestra Universidad.
             PARA GENERACIONES QUE INGRESARON ANTES DE 1999 SE ANTEPONE UN <b>"0"</b> EN EL NÚMERO DE CUENTA
         </p>
         <br>
-{{-- 
+
         <form action="{{ route('enc_continua.verify')}}" method="POST" enctype="multipart/form-data">
         @csrf
         
@@ -186,11 +184,15 @@ actualización y formación que ofrece nuestra Universidad.
                     <label>Año de egreso:</label> <br>
                     <input type="number"  name="anio_egreso" min="1960" max="2027" required/>
                 </li>
+                <li>
+                    <label>Su edad actual:</label> <br>
+                    <input type="number"  name="edad" min="18" max="109" required/>
+                </li>
                 
             @else
                 <li>
                     <label>Número de Cuenta:  </label>
-                    <input type="number" id="numeroCuenta"   name="cuenta" max="999999999"/>
+                    <input type="number" id="numeroCuenta"   name="cuenta" max="999999999" required/>
                 </li>
             @endif
                 <li>
@@ -198,8 +200,7 @@ actualización y formación que ofrece nuestra Universidad.
                 </li>
             </ul>
         </form>
-        --}}
-        <h1 style="color: black">NO DISPONIBLE TEMPORAMENTE </h1>
+    
         <br>
         <p class="texto8">
             <b>Preferentemente utilizar Google Chrome</b>

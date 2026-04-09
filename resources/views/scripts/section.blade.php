@@ -627,3 +627,25 @@ function optionWasSelected(react_name, involucrados,update_rules,opciones_visibl
    
       }
 </script>
+<!-- funcion para trazar la forma de estrella de las opciones de rating, se ejecuta al cargar la pagina -->
+<script>
+(function() {
+  function starPath(cx, cy, r) {
+    const pts = [];
+    for (let i = 0; i < 10; i++) {
+      const angle = (Math.PI / 5) * i - Math.PI / 2;
+      const rad = i % 2 === 0 ? r : r * 0.4;
+      pts.push(`${cx + rad * Math.cos(angle)},${cy + rad * Math.sin(angle)}`);
+    }
+    return `M ${pts.join(' L ')} Z`;
+  }
+
+  document.querySelectorAll('.star-option').forEach(function(wrap) {
+    const svg = wrap.querySelector('svg');
+    if (!svg) return;
+    const w = parseFloat(svg.getAttribute('width'));
+    const half = w / 2;
+    svg.querySelector('path').setAttribute('d', starPath(half, half, half - 2));
+  });
+})();
+</script>

@@ -9,6 +9,7 @@ use \App\Http\Controllers\ReactivosController;
                   <input type="text" name="section" value="{{$Reactivos->first()->section}}" hidden>
                      
             @foreach($Reactivos as $reactivo)
+
                 <div id="{{$reactivo->clave}}" style="padding: 1.2vmax;  @if($reactivo->child==1) padding-left:4.4vmax !important @endif" >
                
                 @if($reactivo->child==1) 

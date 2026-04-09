@@ -149,6 +149,7 @@ public function verify(Request $request){
             $Egresado->anio_egreso = Request::get('anio_egreso');
             $Egresado->sexo = Request::get('sexo');
             $Egresado->save();
+            
             $cuenta_encuesta=$Egresado->cuenta;
             $Encuesta=RespuestasContinua::where('cuenta',$Egresado->cuenta)->first();
           }else{
@@ -169,6 +170,8 @@ public function verify(Request $request){
                 $Encuesta->nbr2=$Egresado->carrera;
                 $Encuesta->nbr3=$Egresado->plantel;
                 $Encuesta->anio_egreso=$Egresado->anio_egreso;
+                if(Request::get('edad')){
+                    $Encuesta->edad=Request::get('edad');}
                 $Carrera=Carrera::where('clave_carrera',$Egresado->carrera)->first();
                 if($Carrera){
                 $Encuesta->carrera=$Carrera->carrera;

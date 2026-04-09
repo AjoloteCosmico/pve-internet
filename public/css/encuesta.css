@@ -667,3 +667,38 @@ input[type="radio"] {
     background-color: #ffffff;
     color: #000000;
 }
+
+
+.star-option {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.star-option:hover .star-shape {
+    fill: #2e4b81 !important;
+    stroke: #2e4b81 !important;
+}
+
+.cuadrito-selected .star-shape {
+    fill: #002B7A !important;
+    stroke: #002B7A !important;
+}
+.star-label {
+    color: rgb(80, 80, 80) !important;
+    font-size: 1.4em !important;
+}
+/* span del star seleccionado mas grande */
+.cuadrito-selected .star-label {
+    color: black !important;
+    font-size: 1.8em !important;
+}
+
+/* Contenedor padre: asegura que las estrellas queden en fila */
+.stars-row-wrapper {
+    display: flex;
+    align-items: flex-end;
+    /* justify-content: space-evenly; */
+    gap: 6px;
+    flex-wrap: nowrap;
+}
