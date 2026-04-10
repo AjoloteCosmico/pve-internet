@@ -53,7 +53,7 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
         </p>
         <br><br><br>
         <p class="texto2">
-            Como parte de la campaña ReUNAMos Saberes, invitamos a nuestras y nuestros egresados a participar 
+            Como parte de la campaña <span style="color: #e6af2b">reUNAMmos</span>  Saberes, invitamos a nuestras y nuestros egresados a participar 
             en esta encuesta que busca fortalecer el vínculo con la comunidad universitaria y enriquecer la oferta de educación continua.
             <br>
             Le solicitamos su apoyo para responder el siguiente cuestionario, cuyo propósito es conocer:
