@@ -238,11 +238,12 @@ public function verify(Request $request){
             // dd($selected_options);
         }
          //change status of egresado_muestra
+         if($Egresado){
          $EgMuestra=DB::table('egresado_muestra')
                 ->where('egresado_id',$Egresado->id)
                 ->where('muestra_id',897) //ID de muestra de educación continua
                 ->update(['status' => 2,
-                'updated_at'=>now()]);
+                'updated_at'=>now()]);}
         //return personal data update with mesage
         return redirect()->route('enc_continua.section',['personal_data',$Encuesta->registro]);
             // return view('encuesta2016.terminar',compact('Encuesta'));

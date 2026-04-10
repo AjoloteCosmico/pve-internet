@@ -99,11 +99,13 @@ public function verify(Request $request){
         $Encuesta->update($filteredArray);
         $Encuesta->save();
         //actualizar tabla egresado_muestra status=2
-        $EgMuestra=DB::table('egresado_muestra')
-                ->where('egresado_id',$Egresado->id)
-                ->where('muestra_id',898) //ID de muestra de educación continua
-                ->update(['status' => 2,
-                'updated_at'=>now()]);
+        if($Egresado){
+            $EgMuestra=DB::table('egresado_muestra')
+                    ->where('egresado_id',$Egresado->id)
+                    ->where('muestra_id',898) //ID de muestra de educación continua
+                    ->update(['status' => 2,
+                    'updated_at'=>now()]);
+        }
         //return personal data update with mesage
         return redirect()->route('enc_verde.section',['personal_data',$Encuesta->id]);
             // return view('encuesta2016.terminar',compact('Encuesta'));
