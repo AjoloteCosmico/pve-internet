@@ -19,9 +19,8 @@
         </div>
     </div>
 
-    <!--cpntenedpor de la encuesta-->
+<!--cpntenedpor de la encuesta-->
 <div class="fondo_encuesta">
-
 <!--datos del egresado-->
 <div class="blank_square horizontal">
 
