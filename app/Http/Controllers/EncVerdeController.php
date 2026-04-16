@@ -12,6 +12,7 @@ use App\Models\Reactivo;
 use App\Models\Opcion;
 use App\Models\Comentario;
 use DB;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class EncVerdeController extends Controller
 {
     public function inicio(){
@@ -137,8 +138,12 @@ public function verify(Request $request){
                $Telefono->save();
             }
            }
-          
-      return redirect()->view('encuestaVerde.terminar')->with('teminada','ok');
+        $qrString='emp_verde'.$Egresado->cuenta.' '.$Encuesta->registro.'_'.now()->format('Ymd');
+        $qrCode = QrCode::size(200)
+                    ->color(5,10,48)
+                    ->style('round')
+                    ->generate($qrString);
+      return view('encuestaVerde.terminar',compact('Encuesta','qrCode'))->with('teminada','ok');
     }
 
     public function terminar(){

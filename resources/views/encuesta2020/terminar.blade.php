@@ -101,11 +101,7 @@
             <img class="card" src="/img/gráficos/CREDENCIAL DIGITAL V.jpg">
         </a>
     </div>
-    <div class="row">
-        <a href="{{route('redirect_counter','SIEEE_end_poll')}}">
-            <img class="card" src="/img/gráficos/SIEEE.png">
-        </a>
-    </div>
+    
         
 </div>
 </div>
