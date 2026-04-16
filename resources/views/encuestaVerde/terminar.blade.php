@@ -96,7 +96,7 @@
 
 </div>
 <div class="col" style="padding:2vw">
-    <div class="row" style="width:15vw;">
+    <div class="row" style="width:30vw;">
         <a href="{{route('redirect_to.credential')}}">
             <img class="card" src="/img/gráficos/CREDENCIAL DIGITAL V.jpg">
         </a>
