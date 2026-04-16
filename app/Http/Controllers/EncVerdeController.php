@@ -138,7 +138,7 @@ public function verify(Request $request){
             }
            }
           
-      return redirect()->view('enc_verde.terminar')->with('teminada','ok');
+      return redirect()->view('encuestaVerde.terminar')->with('teminada','ok');
     }
 
     public function terminar(){
