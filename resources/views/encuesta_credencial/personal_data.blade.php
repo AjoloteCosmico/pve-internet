@@ -30,13 +30,13 @@
                     @php   $count_tel=0; @endphp
                     @foreach($Telefonos as $t)
                     
-                        <input type="text" class="form-control myinput"  value="{{$t->telefono}}" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado"> 
+                        <input type="text" class="form-control myinput"  value="{{$t->telefono}}" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]" onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado"> 
                         <p class="warning-label" id="warnlab[{{$count_tel}}]"> Ingresa al menos 10 dígitos </p>
                          @php   $count_tel=$count_tel+1; @endphp
                     @endforeach
 
                     
-                    <input type="text" class="form-control myinput"  value="" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]", onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado" > 
+                    <input type="text" class="form-control myinput"  value="" name="telefonos[{{$count_tel}}]" id="telefonos[{{$count_tel}}]" onkeyup="validate_phone({{$count_tel}})" placeholder="Ingresa un numero actualizado" > 
                     <p class="warning-label" id="warnlab[{{$count_tel}}]"> Ingresa almenos 10 digitos </p>
                           
                             
@@ -48,6 +48,15 @@
                  
                     <!-- //pasando este loop agregar un telefono obligatorio y mover aqui el boton de mas -->
                 </div>
+                @if ($errors->any())
+                    <div class="alert alert-danger mt-3">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Número de Cuenta</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$Encuesta->cuenta}}"  disabled style="background-color:#868b94">

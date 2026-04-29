@@ -48,6 +48,15 @@
                  
                     <!-- //pasando este loop agregar un telefono obligatorio y mover aqui el boton de mas -->
                 </div>
+                @if ($errors->any())
+                    <div class="alert alert-danger mt-3">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Número de Cuenta</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$Encuesta->cuenta}}"  disabled style="background-color:#868b94">

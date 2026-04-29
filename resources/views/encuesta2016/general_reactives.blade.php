@@ -1,7 +1,7 @@
 <div class="form-group">
     <label for="exampleFormControlInput1">Plantel</label>
                     
-    <select name="nbr3" id="nbr3" >
+    <select name="nbr3" id="nbr3" required>
     <option value="" >Seleccione... </option> 
 
     @foreach($Planteles as $option)
@@ -13,7 +13,7 @@
 <div class="form-group">
     <label for="exampleFormControlInput1">Carrera</label>
                   
-    <select name="nbr2" id="nbr2" >
+    <select name="nbr2" id="nbr2" required>
     <option value="" >Seleccione... </option> 
     @foreach($Carreras as $option)
     <option value="{{$option->clave}} " >{{$option->carrera}} </option> 
@@ -23,12 +23,12 @@
 </div>
 <div class="form-group">
     <label for="exampleFormControlInput1">Año en que ingresó</label>
-    <input type="number"  name="anio_ingreso">
+    <input type="number"  name="anio_ingreso" required>
 </div>
 
 <div class="form-group">
     <label for="exampleFormControlInput1">Año en que Egresó</label>
-    <input type="number"  name="anio_egreso">
+    <input type="number"  name="anio_egreso" required>
 
 </div>
                   

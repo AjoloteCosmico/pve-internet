@@ -46,8 +46,8 @@
 
 </div>
 	<!--indicador lateral secciones-->
-     <div class="blank_square sidebar" >
-         <img class="card"  src="{{ asset('img/gráficos/credencial.png') }}" style="height: 80vh; width: 13.5vw; border-radius: 3%;" >
+     <div class="blank_square sidebar" style="background-image: url({{ asset('img/gráficos/UNAM_es_tu_casa.jpg') }});background-repeat: no-repeat;background-size: 19vw;width:19vw;">
+         <!-- <img class="card"  src="{{ asset('img/gráficos/UNAM_es_tu_casa.jpg') }}" style="height: 80vh; width: 19vw; border-radius: 3%;" > -->
      </div>
            <!-- lista de reactivos  -->
                 <div class="blank_square listaReactivos" id="rlist">

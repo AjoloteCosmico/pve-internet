@@ -41,8 +41,12 @@ class EncuestaCredController extends Controller
             $Reactivos="";
             $Bloqueos="";
         }
-        
-        return view('encuesta_credencial.section',
+        if($section=='jubilados'){
+            $view='encuesta_credencial.section_jubilados';
+        }else{
+            $view='encuesta_credencial.section';
+        }
+        return view($view,
                      compact(
                         // 'Encuesta','Egresado','Carrera','Plantel',
                         //     'Telefonos','Correos',

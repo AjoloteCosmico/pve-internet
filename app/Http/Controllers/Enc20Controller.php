@@ -311,7 +311,6 @@ class Enc20Controller extends Controller
         }
 
 
-
         foreach ($request->get('correos') as $correo) {
             //cambiamos el if
          if($correo!=""){

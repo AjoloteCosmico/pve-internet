@@ -299,9 +299,9 @@ function hable_reactive(react_name) {
                    //  hable_reactive(involucrados[i]);
                   }
                }
-               console.log('resetenadno lista de no contestar');
-                  console.log('involucrados ',involucrados);
-                  console.log('no se contestan ',no_se_contestan);
+            console.log('resetenadno lista de no contestar');
+            console.log('involucrados ',involucrados);
+            console.log('no se contestan ',no_se_contestan);
            }
            //si es que hay algo que bloquear lo hace
            console.log('agregando a no se contestan');

@@ -98,11 +98,20 @@
                   <div id="telefonosDiv">
 
                   </div>
+
                   <button style="background-color:#3fbd3c" type="button" onclick="add_tel()"> <i class="fa fa-plus" aria-hidden="true"></i> Agregar otro </button>
                  
                     <!-- //pasando este loop agregar un telefono obligatorio y mover aqui el boton de mas -->
                 </div>
-                
+                @if ($errors->any())
+                    <div class="alert alert-danger mt-3">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <center>
             <button id="final-button" class="btn blue_button" type="submit"> Guardar y enviar</button>
         </center>

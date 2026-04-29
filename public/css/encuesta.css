@@ -686,12 +686,12 @@ input[type="radio"] {
 }
 .star-label {
     color: rgb(80, 80, 80) !important;
-    font-size: 1.3vw !important;
+    font-size: 1.5vh !important;
 }
 /* span del star seleccionado mas grande */
 .cuadrito-selected .star-label {
     color: black !important;
-    font-size: 1.5vw !important;
+    font-size: 1.7vh !important;
 }
 
 /* Contenedor padre: asegura que las estrellas queden en fila */

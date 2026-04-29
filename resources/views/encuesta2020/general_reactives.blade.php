@@ -3,8 +3,8 @@
 <div class="form-group">
     <label for="exampleFormControlInput1">Plantel</label>
                     
-    <select name="nbr3" id="nbr3" >
-    <option value="" >Seleccione... </option> 
+    <select name="nbr3" id="nbr3" required >
+    <option value="{{old('nbr3')}}" >Seleccione... </option> 
 
     @foreach($Planteles as $option)
     <option value="{{$option->clave_plantel}} " >{{$option->plantel}} </option> 
@@ -15,8 +15,8 @@
 <div class="form-group">
     <label for="exampleFormControlInput1">Carrera</label>
                   
-    <select name="nbr2" id="nbr2" >
-    <option value="" >Seleccione... </option> 
+    <select name="nbr2" id="nbr2" required >
+    <option value="{{old('nbr2')}}" >Seleccione... </option> 
     @foreach($Carreras as $option)
     <option value="{{$option->clave}} " >{{$option->carrera}} </option> 
     <br>
@@ -25,12 +25,12 @@
 </div>
 <div class="form-group">
     <label for="exampleFormControlInput1">Año en que ingresó</label>
-    <input type="number"  name="anio_ingreso">
+    <input type="number"  name="anio_ingreso" value="{{old('anio_ingreso')}}" required>
 </div>
 
 <div class="form-group">
     <label for="exampleFormControlInput1">Año en que Egresó</label>
-    <input type="number"  name="anio_egreso">
+    <input type="number"  name="anio_egreso"  value="{{old('anio_ingreso')}}" required>
 
 </div>
                   

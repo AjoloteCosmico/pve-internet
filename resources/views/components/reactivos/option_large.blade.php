@@ -15,7 +15,7 @@
     <div class="select-header" onclick="toggleSelect('{{ 'select-' . $Reactivo->clave }}')">
         <span class="selected-value">Seleccione...</span>
     </div>
-    <div class="select-options" id="{{ 'select-' . $Reactivo->clave }}">
+    <div class="select-options" id="{{ 'select-' . $Reactivo->clave }}" style="display: none;">
         @foreach($Opciones->sortBy('orden') as $option)
         <div 
             class="option-item {{'op-container-'.$Reactivo->clave}}"
@@ -39,9 +39,32 @@
 </div>
 
 <script>
-    function showMessage(message) {
-        console.log(message); // Muestra el mensaje en la consola
+    function toggleSelect(selectId) {
+        const selectOptions = document.getElementById(selectId);
+        if (selectOptions) {
+            // Cerrar otros selects abiertos
+            document.querySelectorAll('.select-options').forEach(opt => {
+                if (opt.id !== selectId) {
+                    opt.style.display = 'none';
+                }
+            });
+            // Toggle del select actual
+            selectOptions.style.display = selectOptions.style.display === 'none' ? 'block' : 'none';
+        }
     }
+
+    function showMessage(message) {
+        console.log(message);
+    }
+
+    // Cerrar select cuando se haga clic fuera
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.custom-select')) {
+            document.querySelectorAll('.select-options').forEach(opt => {
+                opt.style.display = 'none';
+            });
+        }
+    });
 </script>
 
 

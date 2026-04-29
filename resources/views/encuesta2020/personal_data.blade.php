@@ -23,8 +23,7 @@
                     @php   $count_correo=0; @endphp
                     @foreach($Correos as $c)
                     
-                            <input type="email" class="form-control"  value="{{$c->correo}}" name="old_correos[{{$loop->index}}]" onblur="validate_correo({{$count_correo}})" onlyread >
-                                      
+                            <input type="email" class="form-control"  value="{{$c->correo}}" name="old_correos[{{$loop->index}}]" onblur="validate_correo({{$count_correo}})" onlyread >     
                     @endforeach
                     
                             <input type="email" class="form-control"   name="correos[{{$count_correo}}]" placeholder="Ingresa un correo actualizado" onblur="validate_correo({{$count_correo}})">
@@ -56,6 +55,7 @@
                  
                     <!-- //pasando este loop agregar un telefono obligatorio y mover aqui el boton de mas -->
                 </div>
+                
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Número de Cuenta</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$Egresado->cuenta}}"  disabled style="background-color:#868b94">

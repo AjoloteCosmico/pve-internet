@@ -2,7 +2,7 @@
 use \App\Http\Controllers\ReactivosController;
 
 @endphp
-<h1 class="black_text"> Encuesta de satisfacción credencial digital PVEAJU</h1>
+<h1 class="black_text">@if($section=='credencial') Encuesta de satisfacción credencial digital PVEAJU @else  ENCUESTA PARA ACADÉMICOS JUBILADOS @endif</h1>
 
 <form action="{{ route('enc_esp.update',1)}}" method="POST" enctype="multipart/form-data" id="main_form">
                    @csrf    
@@ -20,7 +20,6 @@ use \App\Http\Controllers\ReactivosController;
                 @if($reactivo->extra_label)
                     <h4>{{$reactivo->extra_label}} </h4>
                 @endif
-            
 
             {{ReactivosController::chooseType($reactivo->id,$Reactivos)}}
             </div>
