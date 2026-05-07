@@ -59,6 +59,7 @@ var opciones_excluyen=[
    //En la seccion D, no se pregunta la imnportancia de los factores de contratacion si el egresado no es empleado (prof independiente, trabajador independiente, propietario)
    
    console.log(no_se_contestan);
+   var special_block_applied = false;  // Bandera para ejecutar el bloqueo especial solo una vez
    act_block();
 
 
@@ -242,8 +243,10 @@ function hable_reactive(react_name) {
    function act_block(){
        @if($section=='D'&&in_array($Encuesta->ncr6,array(2,3,6))&&($Egresado->act_suvery!=1))
        console.log('pushing to no se contestan');
-       if(!no_se_contestan.includes('ndr3')){
-          no_se_contestan.push("ndr3",'ndr8','ndr4','ndr9','ndr5','ndr10','ndr6','ndr11','ndr7','ndr12','ndr12a','ndr12b','ndr12c','ndr13a'); 
+       if(!special_block_applied){
+          console.log("ACTIVANDO EL IF -|-|-|-|-|-|-|");
+          no_se_contestan.push("ndr3",'ndr8','ndr4','ndr9','ndr5','ndr10','ndr6','ndr11','ndr7','ndr12','ndr12a','ndr12b','ndr12c','ndr13a');
+          special_block_applied = true;
        }
        @endif
        console.log('Actualizando--------------------');
@@ -357,10 +360,13 @@ function hable_reactive(react_name) {
         });
 
        
-       console.log('start while');
+       console.log('start while ' +reactivo_siguiente);
        while((no_se_contestan.includes(reactivo_siguiente)) &&( last_index<reactivos.length)) {
+           
            last_index=last_index+1;
            reactivo_siguiente=reactivos[last_index];
+           console.log(last_index,reactivos.length,reactivo_siguiente);
+           
         }
    
         console.log('reactivo-siguiente',reactivo_siguiente);
