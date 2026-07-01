@@ -36,7 +36,8 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
 
         <div class="subtitulo2 ">
             <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png" style="width:9vh;"> </a>
-            <a class=lovoPVE href="https://www.posgrado.unam.mx/"> <img src="{{url('img/logos/logoPosgrado.svg')}}" style="width: 8vw !important; height:auto !important"> </a>
+            &nbsp;&nbsp;
+            <a class=lovoPVE href="https://posgrado.derecho.unam.mx/"> <img src="{{url('img/logos/escudo_derecho.png')}}" style="height: 6vh !important; width:auto !important"> </a>
       
         </div>
     </div>
@@ -48,35 +49,19 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
         <h1>ENCUESTA PARA EGRESADOS DE ESPECIALIDADES UNAM</h1>
     <div class="info">
         <p class="subtitulo3">
-            GENERACIONES 2018 - 2021
+            GENERACIONES 2020 - 2024
            
         </p>
-        <br><br><br>
-        <p class="texto2">
-            Como parte de la campaña ReUNAMos Saberes, invitamos a nuestras y nuestros
-egresados a participar en esta encuesta que busca fortalecer el vínculo con la
-comunidad universitaria y enriquecer la oferta de educación continua.
-Solicitamos su apoyo para responder el siguiente cuestionario, cuyos propósitos
-son:
-            <br><br>
-            <ol>
-                <li>
-                    <span style="color: #e6af2b">Identificar</span>  las necesidades de formación y actualización profesional de los
-egresados de la UNAM.
-                </li>
-                <li>
-                     <span style="color: #e6af2b">Fortalecer </span> los programas de especialidades con base en los intereses y
-obstáculos reales de la comunidad universitaria.
-                </li>
-                <li>
-                    <span style="color: #e6af2b">Diseñar</span>  oportunidades de formación más accesibles y pertinentes para
-mejorar la empleabilidad y el desarrollo profesional.
-                </li>
-            </ol>
-            <br>
-            Su participación es muy valiosa, ya que contribuirá a mejorar las oportunidades de
-actualización y formación que ofrece nuestra Universidad.
+        <br><br>
+        <p style="font-size: 24px;">Estimado(a) egresado(a):</p>
+        <br>
+        <p class="texto2" style="text-align: justify">
+           
+Con el compromiso de mantener y fortalecer la calidad de nuestros programas académicos, le invitamos a participar en la Encuesta de Seguimiento de Egresados del Programa Único de Especialidad en Derecho. Este instrumento tiene como objetivo conocer su trayectoria profesional, evaluar el impacto de la formación recibida y detectar áreas de oportunidad que contribuyan a la mejora continua con respecto a la Especialidad que cursó.
+Su participación es fundamental para que nuestra institución continúe ofreciendo una educación de calidad, acorde con las demandas del entorno laboral y social. La información que proporciones será tratada de manera confidencial y se utilizará exclusivamente con fines académicos y estadísticos.
+<br>
         </p>
+   
     </div>
     <!--CARDS PROPÓSITOS-->
 

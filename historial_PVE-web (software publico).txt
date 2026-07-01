@@ -1,0 +1,254 @@
+Colaborador          | Total Líneas Agregadas | Commits
+--------------------------------------------- | --------
+FelipeGonzalez       | 1650                   | 39
+DavidJacome          | 32                     | 3
+
+FelipeGonzalez|2026-05-07|61217ad| parche en el algoritmo
+ resources/views/scripts/section.blade.php | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+FelipeGonzalez|2026-04-29|86e41d0|beta de encuesta cred y jubilados parche para correos y telefonos
+ app/Http/Controllers/Enc20Controller.php           |   1 -
+ app/Http/Controllers/EncuestaCredController.php    |   8 +-
+ public/css/encuesta.css                            |   4 +-
+ "public/img/gr\303\241ficos/UNAM_es_tu_casa.jpg"   | Bin 0 -> 225108 bytes
+ "public/img/gr\303\241ficos/credencial.png"        | Bin 0 -> 461012 bytes
+ .../components/reactivos/option_large.blade.php    |  27 +++++-
+ .../views/encuesta2016/general_reactives.blade.php |   8 +-
+ .../views/encuesta2016/personal_data.blade.php     |   9 ++
+ .../views/encuesta2020/general_reactives.blade.php |  12 +--
+ .../views/encuesta2020/personal_data.blade.php     |   4 +-
+ .../views/encuestaPosgrado/personal_data.blade.php |  11 ++-
+ .../views/encuestaVerde/personal_data.blade.php    |   9 ++
+ .../encuesta_credencial/personal_data.blade.php    |  13 ++-
+ .../views/encuesta_credencial/reactivos.blade.php  |   3 +-
+ .../views/encuesta_credencial/section.blade.php    |   3 +
+ .../section_jubilados.blade.php                    | 103 +++++++++++++++++++++
+ .../encuesta_ed_continua/personal_data.blade.php   |   9 ++
+ .../encuesta_especialidad/personal_data.blade.php  |   9 ++
+ resources/views/scripts/section.blade.php          |   6 +-
+ 19 files changed, 212 insertions(+), 27 deletions(-)
+
+FelipeGonzalez|2026-04-16|af70d85|casteo de ncuenta
+ app/Http/Controllers/PosgradoController.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+FelipeGonzalez|2026-04-15|5899cfd|acomodar banner credencial digial
+ resources/views/encuesta2020/terminar.blade.php  | 2 +-
+ resources/views/encuestaVerde/terminar.blade.php | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+FelipeGonzalez|2026-04-15|2edf1f9| remover banner
+ app/Http/Controllers/EncVerdeController.php      | 9 +++++++--
+ resources/views/encuesta2020/terminar.blade.php  | 6 +-----
+ resources/views/encuestaVerde/terminar.blade.php | 6 +-----
+ 3 files changed, 9 insertions(+), 12 deletions(-)
+
+FelipeGonzalez|2026-04-15|e841355| corrección bug en encuesta verde
+ app/Http/Controllers/EncVerdeController.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+FelipeGonzalez|2026-04-13|c397804| mezclar prototipo credencial a producción
+ resources/views/encuesta_credencial/section.blade.php | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+FelipeGonzalez|2026-04-13|155884f|prototipo encuesta_credencial
+ app/Http/Controllers/EncuestaCredController.php    | 44 +++++++++++++++++++++-
+ public/css/encuesta.css                            |  4 +-
+ .../views/encuesta_credencial/reactivos.blade.php  |  4 +-
+ .../views/encuesta_credencial/section.blade.php    | 24 +++++-------
+ routes/web.php                                     | 10 +++++
+ 5 files changed, 66 insertions(+), 20 deletions(-)
+
+FelipeGonzalez|2026-04-10|976bb2c|Comienza desarrollo encuesta credencial
+ app/Http/Controllers/EncuestaCredController.php    |  10 ++
+ .../general_reactives.blade.php                    |  76 +++++++++
+ .../views/encuesta_credencial/inicio.blade.php     | 184 +++++++++++++++++++++
+ .../encuesta_credencial/personal_data.blade.php    |  70 ++++++++
+ .../views/encuesta_credencial/reactivos.blade.php  |  33 ++++
+ .../views/encuesta_credencial/section.blade.php    | 107 ++++++++++++
+ .../views/encuesta_credencial/terminar.blade.php   | 116 +++++++++++++
+ 7 files changed, 596 insertions(+)
+
+FelipeGonzalez|2026-04-10|f3ca377|corrección bug al guardar encuestas cuando el egresado viene de registrpvaju
+ app/Http/Controllers/EncContinuaController.php        |  3 ++-
+ app/Http/Controllers/EncVerdeController.php           | 12 +++++++-----
+ resources/views/encuesta_ed_continua/inicio.blade.php |  4 +---
+ 3 files changed, 10 insertions(+), 9 deletions(-)
+
+FelipeGonzalez|2026-04-09|43022ac|correccion al label reUNAMos saberes
+ resources/views/encuesta_ed_continua/inicio.blade.php | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+FelipeGonzalez|2026-04-09|1d10bf1| commit para subir a producción, cambios en la redaccion del texto al  inicio de ed_continua
+ resources/views/encuesta_ed_continua/inicio.blade.php    | 2 +-
+ resources/views/encuesta_ed_continua/reactivos.blade.php | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+FelipeGonzalez|2026-04-08|fab50b3|cam,bios a ed continua, componente de raiting
+ app/Http/Controllers/EncContinuaController.php     |  3 ++
+ app/Http/Controllers/ReactivosController.php       |  7 ++++-
+ public/css/encuesta.css                            | 35 ++++++++++++++++++++++
+ .../views/components/reactivos/rating.blade.php    | 35 ++++++++++++++++++++++
+ .../views/encuesta_ed_continua/inicio.blade.php    | 33 ++++++++++----------
+ .../views/encuesta_ed_continua/reactivos.blade.php |  1 +
+ resources/views/scripts/section.blade.php          | 22 ++++++++++++++
+ 7 files changed, 119 insertions(+), 17 deletions(-)
+
+FelipeGonzalez|2026-04-07|a28353a|ed continua inhabilitar form
+ resources/views/encuesta_ed_continua/inicio.blade.php | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+FelipeGonzalez|2026-04-07|16f2d60|CORTE ENCUESTA_CONTINUA
+ resources/views/encuesta_ed_continua/inicio.blade.php | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+FelipeGonzalez|2026-03-26|16f0f0f|correccion muestra id
+ app/Http/Controllers/EncVerdeController.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+FelipeGonzalez|2026-03-26|6135821|marcar status eg_muestra
+ app/Http/Controllers/EncContinuaController.php | 7 ++++++-
+ app/Http/Controllers/EncVerdeController.php    | 7 ++++++-
+ 2 files changed, 12 insertions(+), 2 deletions(-)
+
+FelipeGonzalez|2026-03-18|edd3080|validación de cuenta en back
+ app/Http/Controllers/Enc20Controller.php | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+FelipeGonzalez|2026-03-18|b6b4f36|requerir num cuenta front
+ resources/views/encuesta2020/inicio.blade.php | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+FelipeGonzalez|2026-03-04|1368949|proxies
+ app/Http/Middleware/TrustProxies.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+FelipeGonzalez|2026-03-02|7f77116| redirection
+ app/Http/Controllers/EncVerdeController.php        |   6 +-
+ "public/img/gr\303\241ficos/SIEEE.png"             | Bin 0 -> 124454 bytes
+ .../views/encuesta2016/personal_data.blade.php     |   2 +-
+ .../views/encuesta2020/personal_data.blade.php     |   6 +-
+ .../views/encuestaVerde/personal_data.blade.php    |   2 +-
+ resources/views/encuestaVerde/terminar.blade.php   | 126 +++++++++++++++++++++
+ .../views/encuesta_ed_continua/terminar.blade.php  |   2 +-
+ 7 files changed, 137 insertions(+), 7 deletions(-)
+
+FelipeGonzalez|2026-02-27|6162749|cambios cred
+ app/Http/Controllers/RedirectionController.php       | 12 ++++++++++++
+ resources/views/encuesta2020/personal_data.blade.php |  2 ++
+ resources/views/encuesta2020/terminar.blade.php      | 13 +++++++++++--
+ routes/web.php                                       |  1 +
+ 4 files changed, 26 insertions(+), 2 deletions(-)
+
+FelipeGonzalez|2026-02-26|0aaf24c| davo tracking
+ app/Models/EmailTracking.php | 1 -
+ 1 file changed, 1 deletion(-)
+
+FelipeGonzalez|2026-02-25|1f6df88|Merge branch 'david-dev' of https://github.com/FelipeGonzalez/pve-internet into production
+FelipeGonzalez|2026-02-25|371e505|cambio de id grafica enc verde
+ app/Http/Controllers/EncVerdeController.php     |   4 ++--
+ app/Http/Controllers/TrackingController.php     |   2 +-
+ public/img/verde/empleabilidad-label-blue.png   | Bin 0 -> 75546 bytes
+ public/img/verde/header-blue.png                | Bin 0 -> 144060 bytes
+ public/img/verde/header-white.png               | Bin 0 -> 145598 bytes
+ resources/views/encuestaVerde/inicio.blade.php  |   8 ++++----
+ resources/views/encuestaVerde/section.blade.php |   9 ++++++---
+ 7 files changed, 13 insertions(+), 10 deletions(-)
+
+DavidJacome|2026-02-25|676ab1a|correos cambios trak
+ app/Http/Controllers/TrackingController.php | 12 +++++++-----
+ app/Models/EmailTracking.php                | 26 +++++++++++++++++++++++++-
+ 2 files changed, 32 insertions(+), 6 deletions(-)
+
+DavidJacome|2026-02-25|c86c090|Merge branch 'production' of github.com:FelipeGonzalez/pve-internet into david-dev
+FelipeGonzalez|2026-02-24|3fc989b|cambios al tracking
+ app/Http/Controllers/TrackingController.php |   9 +++++----
+ public/img/{1x1.png => pixel.png}           | Bin
+ 2 files changed, 5 insertions(+), 4 deletions(-)
+
+FelipeGonzalez|2026-02-24|fc8dba8|model para tracking
+ app/Models/EmailTracking.php | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+FelipeGonzalez|2026-02-24|0b30d58|cambios a cabecera y traking pixel
+ app/Http/Controllers/TrackingController.php        |  47 +++++++++++++++++++++
+ ...26_02_24_191350_create_email_tracking_table.php |  34 +++++++++++++++
+ public/img/1x1.png                                 | Bin 0 -> 3764 bytes
+ public/img/logos/Logo UNAM 475.jpg                 | Bin 0 -> 1006932 bytes
+ public/img/logos/Logo-40-color.png                 | Bin 143641 -> 0 bytes
+ public/img/logos/logo-40-blanco-dorado.png         | Bin 179598 -> 0 bytes
+ public/img/logos/logo-cuadrado-SE-azul.png         | Bin 0 -> 85123 bytes
+ resources/views/encuesta2016/section.blade.php     |  11 ++---
+ resources/views/encuesta2020/section.blade.php     |  11 ++---
+ .../views/encuesta_ed_continua/section.blade.php   |   6 +--
+ routes/web.php                                     |   7 ++-
+ 11 files changed, 102 insertions(+), 14 deletions(-)
+
+FelipeGonzalez|2026-02-19|a5642dd|mas correcciones
+ resources/views/layouts/app.blade.php | 25 +++++++------------------
+ 1 file changed, 7 insertions(+), 18 deletions(-)
+
+FelipeGonzalez|2026-02-19|79eb7dd|correcciones finales a encuesta
+ public/css/encuesta.css                   |  7 ++++---
+ resources/views/layouts/app.blade.php     | 25 ++++++++++++++++++-------
+ resources/views/scripts/section.blade.php |  7 ++++---
+ 3 files changed, 26 insertions(+), 13 deletions(-)
+
+FelipeGonzalez|2026-02-19|adddc52|cambios a encuesta verde
+ app/Http/Controllers/EncContinuaController.php     |   3 +-
+ notebook.ipynb                                     | 135 +++++++++++++++++++--
+ .../components/reactivos/option_large.blade.php    |   9 +-
+ resources/views/encuestaVerde/reactivos.blade.php  |   2 +-
+ resources/views/encuestaVerde/section.blade.php    |   2 +
+ resources/views/scripts/section.blade.php          |  28 ++++-
+ 6 files changed, 160 insertions(+), 19 deletions(-)
+
+DavidJacome|2026-02-05|c39f106|.
+ resources/views/scripts/personal_data.blade.php | 4 ----
+ 1 file changed, 4 deletions(-)
+
+FelipeGonzalez|2026-01-27|b39d180|bug on save after check completed
+ app/Http/Controllers/PosgradoController.php | 2 ++
+ 1 file changed, 2 insertions(+)
+
+FelipeGonzalez|2026-01-27|9a11a8a|validar encuesta en cada sección
+ app/Http/Controllers/PosgradoController.php | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+FelipeGonzalez|2026-01-27|1f5b809|validar antes de cada seccion pantalla terminar
+ app/Http/Controllers/PosgradoController.php | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+FelipeGonzalez|2026-01-26|12650d1|limit text size
+ resources/views/components/reactivos/text.blade.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+FelipeGonzalez|2026-01-09|c973c0c|qr pogrado correction
+ app/Http/Controllers/EncContinuaEspecialidad.php | 2 --
+ app/Http/Controllers/PosgradoController.php      | 2 +-
+ 2 files changed, 1 insertion(+), 3 deletions(-)
+
+FelipeGonzalez|2026-01-09|54466f6|bug qr on act
+ app/Http/Controllers/Enc16Controller.php | 2 --
+ 1 file changed, 2 deletions(-)
+
+FelipeGonzalez|2026-01-09|279eeaf|bug merge qr with image, quit
+ app/Http/Controllers/Enc20Controller.php    | 2 --
+ app/Http/Controllers/PosgradoController.php | 2 --
+ 2 files changed, 4 deletions(-)
+
+FelipeGonzalez|2026-01-09|cad5063|Qr al finalizar, redireccion a credencial con contador de clicks
+ app/Http/Controllers/Enc16Controller.php             |  10 +++++++++-
+ app/Http/Controllers/Enc20Controller.php             |  10 +++++++++-
+ app/Http/Controllers/PosgradoController.php          |  19 ++++++++++++++-----
+ app/Http/Controllers/RedirectionController.php       |  15 +++++++++++++++
+ app/Models/Counter.php                               |  11 +++++++++++
+ public/css/encuesta.css                              |   6 +++---
+ .../img/gr\303\241ficos/CREDENCIAL DIGITAL H.jpg"    | Bin 0 -> 79608 bytes
+ .../img/gr\303\241ficos/CREDENCIAL DIGITAL V.jpg"    | Bin 0 -> 152027 bytes
+ resources/views/encuesta2016/terminar.blade.php      |  10 +++++++++-
+ resources/views/encuesta2020/terminar.blade.php      |  12 ++++++++++--
+ resources/views/encuestaPosgrado/terminar.blade.php  |  10 +++++++++-
+ routes/web.php                                       |   5 +++++
+ 12 files changed, 94 insertions(+), 14 deletions(-)

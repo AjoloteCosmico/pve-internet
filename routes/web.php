@@ -14,6 +14,7 @@ use App\Http\Controllers\EncuestaCredController;
 use App\Http\Controllers\EncVerdeController;
 use App\Http\Controllers\RedirectionController;
 use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------|
 | Web Routes                                                               |
@@ -103,6 +104,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+// Rutas para envío de emails
+Route::post('/mail/send-single', [MailController::class, 'sendSingle'])->name('mail.sendSingle');
+Route::post('/mail/send-bulk', [MailController::class, 'sendBulk'])->name('mail.sendBulk');
+Route::get('/send_test/x',[MailController::class, 'send_test'])->name('mail.test');
 Route::group(['middleware' => ['auth']], function()
 {   
 });

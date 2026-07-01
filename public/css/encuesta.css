@@ -342,9 +342,11 @@ font-weight: bold;
     background-color: #D9D9D9;
     padding: 1% 5%;
     display:grid;
-    grid-template-columns: repeat(auto);
-    grid-template-rows: repeat(20vh 80vh);
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto 1fr;
+    gap: 1vw;
     justify-content: stretch;
+    align-items: start;
 }
 
 .blank_square{
@@ -701,4 +703,153 @@ input[type="radio"] {
     /* justify-content: space-evenly; */
     gap: 6px;
     flex-wrap: nowrap;
+}
+
+/*=============================================
+    TABLA REACTIVOS - ESTILOS RESPONSIVOS
+=============================================*/
+
+.table_container {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 1.2vmax 0;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.table_container:first-child {
+    margin-top: 0;
+}
+
+.table_title {
+    padding: 0.8vmax 0;
+    margin: 0.8vmax 0 1.2vmax 0;
+    color: #0d1014;
+    font-weight: bold;
+    font-size: 1.2vmax;
+    border-bottom: 2px solid #002b7a;
+}
+
+.table_wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: visible;
+    border-radius: 0.6vw;
+    border: 1px solid #e0e0e0;
+}
+
+.table_wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.table_wrapper::-webkit-scrollbar-thumb {
+    background-color: #e6af2b;
+    border-radius: 3px;
+}
+
+.reactivo_table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: transparent;
+    font-size: 1vmax;
+}
+
+.reactivo_table thead {
+    background-color: #002b7a;
+    color: white;
+    font-weight: 600;
+}
+
+.reactivo_table thead th {
+    padding: 1vmax 0.8vmax;
+    text-align: left;
+    border: 1px solid #ddd;
+    word-wrap: break-word;
+    font-size: 0.95vmax;
+}
+
+.reactivo_table tbody tr {
+    border-bottom: 1px solid #e5e5e5;
+    transition: background-color 0.2s;
+}
+
+.reactivo_table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.reactivo_table tbody td {
+    padding: 1vmax 0.8vmax;
+    border: 1px solid #e5e5e5;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+
+.table_description {
+    display: block;
+    font-weight: 500;
+    color: #0d1014;
+    margin-bottom: 0.4vmax;
+}
+
+.table_label {
+    display: block;
+    color: #666;
+    font-size: 0.9vmax;
+    font-weight: 500;
+}
+
+/* Asegurar que los inputs/selects dentro de tabla tengan tamaño apropiado */
+.reactivo_table input,
+.reactivo_table select,
+.reactivo_table textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Responsive: tablet y móvil */
+@media screen and (max-width: 1024px) {
+    .table_container {
+        padding: 0;
+        margin: 0.8vmax 0;
+    }
+    
+    .reactivo_table {
+        font-size: 0.9vmax;
+    }
+    
+    .reactivo_table thead th {
+        padding: 0.8vmax 0.6vmax;
+        font-size: 0.85vmax;
+    }
+    
+    .reactivo_table tbody td {
+        padding: 0.8vmax 0.6vmax;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .table_container {
+        padding: 0;
+        margin: 0.6vmax 0;
+    }
+    
+    .reactivo_table {
+        font-size: 0.85vmax;
+    }
+    
+    .reactivo_table thead th {
+        padding: 0.6vmax 0.4vmax;
+        font-size: 0.8vmax;
+    }
+    
+    .reactivo_table tbody td {
+        padding: 0.6vmax 0.4vmax;
+    }
+    
+    .table_wrapper {
+        border: 1px solid #ccc;
+    }
 }

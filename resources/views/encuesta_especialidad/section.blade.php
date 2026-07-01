@@ -13,9 +13,9 @@
 
         <div class="subtitulo2 ">
             <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png" style="width:9vh;"> </a>
-                 &nbsp;&nbsp;&nbsp;&nbsp;
-            <a class=lovoPVE href="https://www.posgrado.unam.mx/"> <img src="{{url('img/logos/logoPosgrado.svg')}}" style="width: 8vw !important; height:auto !important"> </a>
-       
+                 &nbsp;&nbsp;
+            <a class=lovoPVE href="https://posgrado.derecho.unam.mx/"> <img src="{{url('img/logos/escudo_derecho.png')}}" style="height: 6vh !important; width:auto !important"> </a>
+      
         </div>
     </div>
 
@@ -48,10 +48,11 @@
 </div>
 	<!--indicador lateral secciones-->
   <div class="blank_square sidebar">
-    <div class="row"><a class="btn section-btn @if($Encuesta->sec_espa==1) completed @endif @if($section=='espA') actual @endif"  > Sección 1: Perfil del egresado &nbsp; @if($Encuesta->sec_pa==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
-    <div class="row"><a class="btn section-btn @if($Encuesta->sec_espb==1) completed @endif @if($section=='espB') actual @endif"  > Sección 2: Datos académicos &nbsp; @if($Encuesta->sec_pb==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
-    <div class="row"><a class="btn section-btn @if($Encuesta->sec_espc==1) completed @endif @if($section=='espC') actual @endif"  > Sección 3: Situación laboral &nbsp; @if($Encuesta->sec_pc==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
-    <div class="row"><a class="btn section-btn @if($Encuesta->sec_espd==1) completed @endif @if($section=='espD') actual @endif"  > Sección 4: Satisfacción con la especialidad &nbsp; @if($Encuesta->sec_pd==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif </a></div>
+    <div class="row"><a class="btn section-btn @if($Encuesta->sec_espa==1) completed @endif @if($section=='espA') actual @endif"  > Sección 1: Perfil del egresado &nbsp; @if($Encuesta->sec_espa==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
+    <div class="row"><a class="btn section-btn @if($Encuesta->sec_espf==1) completed @endif @if($section=='espF') actual @endif"  > Sección 2: Datos académicos &nbsp; @if($Encuesta->sec_espf==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
+    <div class="row"><a class="btn section-btn @if($Encuesta->sec_espe==1) completed @endif @if($section=='espE') actual @endif"  > Sección 3: Actualización académica &nbsp; @if($Encuesta->sec_espe==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif</a></div>
+    <div class="row"><a class="btn section-btn @if($Encuesta->sec_espc==1) completed @endif @if($section=='espC') actual @endif"  > Sección 4: Satisfacción con la especialidad &nbsp; @if($Encuesta->sec_espc==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif </a></div>
+    <div class="row"><a class="btn section-btn @if($Encuesta->sec_espg==1) completed @endif @if($section=='espG') actual @endif"  > Sección 4: Satisfacción con la especialidad &nbsp; @if($Encuesta->sec_espg==1)<i class="fas fa-check-circle fa-xl" aria-hidden="true"></i> @endif </a></div>
   </div>
                 <!-- lista de reactivos  -->
                 <div class="blank_square listaReactivos" id="rlist">

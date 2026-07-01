@@ -84,13 +84,16 @@ class EncContinuaEspecialidad extends Controller
             case 'espA':
                 $NombreSeccion="SECCIÓN 1: Perfil del egresado";
                 break;
-            case 'espB':
+            case 'espF':
                 $NombreSeccion="SECCIÓN 2: Datos académicos";
                 break;
-            case 'espC':
-                $NombreSeccion="SECCIÓN 3: Situación laboral";
+            case 'espE':
+                $NombreSeccion="SECCIÓN 3: Actualización académica";
                 break;
-            case 'espD':
+            case 'espC':
+                $NombreSeccion="SECCIÓN 4: Situación laboral";
+                break;
+            case 'espG':
                 $NombreSeccion="SECCIÓN 4: Satisfacción con la especialidad";
                 break;       
         }
@@ -193,7 +196,7 @@ class EncContinuaEspecialidad extends Controller
         }
 
 
-        foreach(array('espA','espB','espC','espD') as $sec){
+        foreach(array('espA','espF','espE','espC','espG') as $sec){
             $format_field='sec_'.strtolower($sec);
            
             if($Encuesta->$format_field!=1){ 
@@ -201,7 +204,7 @@ class EncContinuaEspecialidad extends Controller
                 break;
             }
         }
-        if(($Encuesta->sec_espa==1)&&($Encuesta->sec_espb==1)&&($Encuesta->sec_espc==1)&&($Encuesta->sec_espd==1)){
+        if(($Encuesta->sec_espa==1)&&($Encuesta->sec_espf==1)&&($Encuesta->sec_espe==1)&&($Encuesta->sec_espc==1)&&($Encuesta->sec_espg==1)){
             $Encuesta->completed=1;
             $Encuesta->aplica=111;
             $Encuesta->fec_capt=now()->modify('-6 hours') ;

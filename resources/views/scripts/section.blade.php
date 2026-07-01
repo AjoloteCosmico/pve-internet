@@ -241,7 +241,7 @@ function hable_reactive(react_name) {
 
    //act_block: bloquea todo lo que exista en los arreglos 'no se contestan' y 'aun no'
    function act_block(){
-       @if($section=='D'&&in_array($Encuesta->ncr6,array(2,3,6))&&($Egresado->act_suvery!=1))
+       @if($section=='D'&&in_array($Encuesta->ncr6,array(2,3,6))&&($Egresado->act_suvery!=1)&&($Egresado->act_suvery!=2))
        console.log('pushing to no se contestan');
        if(!special_block_applied){
           console.log("ACTIVANDO EL IF -|-|-|-|-|-|-|");
