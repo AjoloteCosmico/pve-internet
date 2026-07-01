@@ -72,14 +72,21 @@
     <div class="qr-code-container">
         {!! $qrCode !!}
     </div>
+    <p class="texto2"> Qr de validación, guardalo como comprobante de que has respondido esta encuesta </p>
+    <br><br><br>
+
+
     <p class="texto2">
-        <a href="https://www.pveaju.unam.mx/encuesta/01/seguimiento2024/#creditos"><span style= "font-size:min(1.9vh);text-decoration:underline;">CRÉDITOS</span></a>
+        <a href="https://www.pveaju.unam.mx/encuesta/01/seguimiento2024/#creditos"><span style= "font-size:min(1.9vh);text-decoration:underline;">VER CRÉDITOS DEL SEGUIMIENTO</span></a>
+    </p>
+    <p class="texto2">
+        <a href="https://www.pveaju.unam.mx/encuesta/01/seguimiento2024/#resultados"><span style= "font-size:min(1.9vh);text-decoration:underline;">VER RESULTADOS DE ESTUDIOS PASADOS</span></a>
     </p>
 </div>
 
 <div class="finalBtn">
     <div class="boton1">
-        <a href="https://www.pveaju.unam.mx/encuesta/01/seguimiento2024/#resultados">FINALIZAR Y SALIR</a>
+        <a href="https://www.pveaju.unam.mx/encuesta/01/seguimiento2024/#resultados">SALIR</a>
     </div>
 </div>
 
@@ -97,6 +104,10 @@
         <img class="card" src="/img/gráficos/pag-encuesta-3.png">
     </div>
 
+</div>
+<div class="col" style="padding:2vw">
+    <a href="{{route('redirect_to.credential')}}">
+    <img class="card" src="/img/gráficos/CREDENCIAL DIGITAL V.jpg"></a>
 </div>
 </div>
 
