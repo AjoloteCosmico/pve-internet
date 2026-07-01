@@ -150,7 +150,7 @@ class EncContinuaEspecialidad extends Controller
            }
            $section='espA';
         
-           foreach(array('espA','espB','espC','espD') as $sec){
+           foreach(array('espA','espF','espE','espC','espG') as $sec){
                $format_field='sec_'.strtolower($sec);
               
                if($Encuesta->$format_field!=1){ 
