@@ -18,7 +18,7 @@ use DB;
 class Enc16Controller extends Controller
 {
     public function inicio($type){
-        if($type!== '2016'){
+        if($type!== '2018'){
             return redirect()->route('enc.inicio','general');
         }
         return view('encuesta2016.inicio',compact('type'));
@@ -33,7 +33,7 @@ class Enc16Controller extends Controller
         //hay egresado
         if($Egresado){
             //es 2016
-            if($Egresado->anio_egreso==2016&&$Egresado->act_suvery==1){
+            if($Egresado->anio_egreso==2018&&$Egresado->act_suvery==2){
                 //llena los datos de la tabla y comienza la encuesta
                 if(!$Encuesta){
                     $Encuesta=new respuestas16();
@@ -42,6 +42,8 @@ class Enc16Controller extends Controller
                     $Encuesta->paterno=$Egresado->paterno;
                     $Encuesta->materno=$Egresado->materno;
                     $Encuesta->nbr2=$Egresado->carrera;
+                    $Encuesta->nbr7='2018';
+                    $Encuesta->gen=2018;
                     $Encuesta->nbr3=$Egresado->plantel;
                     $Encuesta->completed=0;
                     $Encuesta->save();
@@ -54,7 +56,7 @@ class Enc16Controller extends Controller
                     }
             }
             //si es 2020
-            if($Egresado->anio_egreso==2020||$Egresado->muestra==3){
+            if($Egresado->anio_egreso==2022||$Egresado->muestra==5){
                 //LLENA LOS DATOS CON LA TABLA DE EG Y COMIENZA ENC
                 if(!$Encuesta){
                     $Encuesta=new respuestas20();
@@ -64,7 +66,7 @@ class Enc16Controller extends Controller
                     $Encuesta->materno=$Egresado->materno;
                     $Encuesta->nbr2=$Egresado->carrera;
                     $Encuesta->nbr3=$Egresado->plantel;
-                    $Encuesta->gen_dgae=2020;
+                    $Encuesta->gen_dgae=2022;
                     $Encuesta->completed=0;
                     $Encuesta->save();
                 }
@@ -99,7 +101,7 @@ class Enc16Controller extends Controller
                     }
                 }
 
-                if(Request::get('type')=='2016'){
+                if(Request::get('type')=='2018'){
                     //type 2016
                     //redirecciona a encuesta general
                     return redirect()->route('enc16.inicio', 'general')->with('message','notinsample');
@@ -132,7 +134,7 @@ class Enc16Controller extends Controller
                     }
 
             }
-            if(Request::get('type')=='2016'){
+            if(Request::get('type')=='2018'){
                 //tipo2016 redirecciona a encuesta general
                 return redirect()->route('enc16.inicio','general')->with('message','notinsample');;
             }

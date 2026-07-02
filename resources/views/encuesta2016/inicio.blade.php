@@ -47,7 +47,7 @@ El Programa de Vinculación con los Egresados y Académicos jubilados de la Univ
             @if($type=='general')
             TODAS LAS CARRERAS Y GENERACIONES
             @else
-            Generación de egreso 2016
+            Generación de egreso 2018 <br> <h1>ENCUESTA DE ACTUALZIACIÓN</h1>
             @endif
            
         </p>
@@ -168,7 +168,7 @@ El Programa de Vinculación con los Egresados y Académicos jubilados de la Univ
     Swal.fire({
   icon: "error",
   title: "Oops...",
-  text: "No encontramos tu número de cuenta, tal vez no perteneces a las generacion 2016, revisa que tu número de cuenta halla sido escrito correctamente!",
+  text: "No encontramos tu número de cuenta, tal vez no perteneces a las generacion 2018, revisa que tu número de cuenta halla sido escrito correctamente!",
   footer: '<a href="#">Why do I have this issue?</a>'
 });
 </script>

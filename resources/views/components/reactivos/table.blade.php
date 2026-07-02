@@ -79,7 +79,7 @@
                             <td>
                                 
                                 @if(!$reactivo_celda)
-                                    {{-- Reactivo no encontrado, celda vacía --}}
+                                    {{-- Reactivo no encontrado, celda vacía --}} 
 
                                 @elseif($col_source === 'description')
                                     {{-- Solo mostrar texto, sin input --}}
