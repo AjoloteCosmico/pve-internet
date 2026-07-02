@@ -308,7 +308,8 @@ font-weight: bold;
     }
 
 .input-label{
-  size:1.5vh;  
+  size:1.5vh; 
+  background-color: #002b7a; 
 }
 .warning-label{
     display:none;
@@ -487,15 +488,43 @@ font-weight: bold;
 .active{
     padding:0.9vh 1.9vmin;
     border-radius: 0.9vmin;
-    background: #002b7a !important;
+    background: linear-gradient(90deg, #db9c1e 0%, #a3710e 45%, #96680c 100%) !important;
+    background-size: 200% 100%;
     color:white !important;
-   animation: fade 1.5s infinite 200ms;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    transform: scale(1);
+    animation: pulse 2.5s ease-in-out infinite, shine 3.2s ease-in-out infinite;
+    transition: transform 180ms ease, box-shadow 180ms ease;
 }
 .active:hover{
     cursor: pointer; 
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     font-size: max(0.9vmax,14px);
     animation: none;
+    box-shadow: 0 8px 18px rgba(0, 43, 122, 0.25);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0, 43, 122, 0);
+    }
+    50% {
+        transform: scale(1.07);
+        box-shadow: 0 8px 18px rgba(0, 43, 122, 0.18);
+    }
+}
+
+@keyframes shine {
+    0% {
+        background-position: -150% 0;
+    }
+    50% {
+        background-position: 50% 0;
+    }
+    100% {
+        background-position: 250% 0;
+    }
 }
 
 .completed{
@@ -765,7 +794,9 @@ input[type="radio"] {
 .reactivo_table thead th {
     padding: 1vmax 0.8vmax;
     text-align: left;
-    border: 1px solid #ddd;
+    color: #cdd0d5;
+    background-color: #002b7a;
+    border: 2px solid hsl(0, 0%, 90%);
     word-wrap: break-word;
     font-size: 0.95vmax;
 }
@@ -784,6 +815,15 @@ input[type="radio"] {
     border: 1px solid #e5e5e5;
     vertical-align: top;
     word-wrap: break-word;
+}
+.reactivo_table tbody th {
+    padding: 1vmax 0.8vmax;
+    border: 1px solid hsl(0, 0%, 90%);
+    vertical-align: center;
+    text-align: center;
+    word-wrap: break-word;
+    color: #3f4040;
+    background-color: #799fe6;
 }
 
 .table_description {
@@ -823,6 +863,8 @@ input[type="radio"] {
     .reactivo_table thead th {
         padding: 0.8vmax 0.6vmax;
         font-size: 0.85vmax;
+        color: #cdd0d5;
+        background-color: #002b7a;
     }
     
     .reactivo_table tbody td {

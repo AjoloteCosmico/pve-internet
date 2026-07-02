@@ -1,6 +1,6 @@
 
 <div class="container" name="{{$Reactivo->clave}}" style="width: 90%">
-<p style="font-size:1.3em">Seleccione una o varias opciones</p>
+<p style="font-size:1.3em">Seleccione una o varias opciones, presiona "siguiente" cuando termines</p>
 <br>
 @foreach($Opciones->sortBy('orden')  as $o)
 
@@ -28,7 +28,7 @@
 @endforeach
 
 <br>
-<button class="input-label" type="button" id="{{$Reactivo->clave.'label'}}" onclick="find_next('{{$Reactivo->clave}}')" disabled>Listo</button>
+<button class="input-label" type="button" id="{{$Reactivo->clave.'label'}}" onclick="find_next('{{$Reactivo->clave}}')" disabled>Continuar</button>
 
 </div>
 

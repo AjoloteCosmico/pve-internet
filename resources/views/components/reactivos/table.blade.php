@@ -61,7 +61,7 @@
                     @endphp
                     @if(str_contains($row_claves[0],'label'))
                     <tr >
-                        <td colspan='2'>{{ $ReactivosTabla[$row_claves[0]]->description }} </td>
+                        <th colspan='2' >{{ $ReactivosTabla[$row_claves[0]]->description }} </th>
                     </tr>
                     @else
                       
@@ -103,7 +103,7 @@
 
                                     {{-- Llamar RenderReactive igual que en section.blade --}}
                                     <div id="container{{$reactivo_celda->clave}}">
-                                        <p style="color:rgba(0,0,0,0.1); font-size: 15px;">{{$reactivo_celda->clave}}/{{$reactivo_celda->reference}}</p>
+                                        <!-- <p style="color:rgba(0,0,0,0.1); font-size: 15px;">{{$reactivo_celda->clave}}/{{$reactivo_celda->reference}}</p> -->
                                     {{\App\Http\Controllers\ReactivosController::chooseType($reactivo_celda->id,$Reactivos);
                                           }}
                                     </div>
