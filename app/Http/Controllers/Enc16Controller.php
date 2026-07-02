@@ -167,7 +167,7 @@ class Enc16Controller extends Controller
         $Comentario=''.Comentario::where('cuenta','=',$Encuesta->cuenta)->first();
         $Telefonos=Telefono::where('cuenta','=',$Egresado->cuenta)->get();
         $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();
-        $Generacion=respuestas16::where('cuenta',$Egresado->cuenta)->first()->gen_dgae;
+        $Generacion=$Egresado->anio_egreso;
 
         $Coment=Comentario::where('cuenta','=',$Encuesta->cuenta)->first();
         if($section!='personal_data'){

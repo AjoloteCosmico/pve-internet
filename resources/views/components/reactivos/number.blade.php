@@ -1,3 +1,3 @@
 
 <input type="number"  onfocus="showlabel('{{$Reactivo->clave.'label'}}')" onchange="unblockNext('{{$Reactivo->clave}}')" name="{{$Reactivo->clave}}">
-<label class="input-label" id="{{$Reactivo->clave.'label'}}">Presiona Enter  </label> 
+<button class="input-label" type="button" id="{{$Reactivo->clave.'label'}}">Presiona Enter o da click aqui</button>
