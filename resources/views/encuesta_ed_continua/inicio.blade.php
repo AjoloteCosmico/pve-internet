@@ -150,7 +150,7 @@ actualización y formación que ofrece nuestra Universidad.
                 </li>
                <li>
                     <label>Plantel:</label> <br>
-                     <select name="nbr3" id="nbr3" required >
+                     <select name="nbr3" id="nbr3" required style="font-size:14px">
                             <option value="" >Seleccione... </option> 
 
                             @foreach($Planteles as $option)
@@ -161,7 +161,7 @@ actualización y formación que ofrece nuestra Universidad.
                 </li>
                <li>
                     <label>Carrera:</label> <br>
-                   <select name="nbr2" id="nbr2" required >
+                   <select name="nbr2" id="nbr2" required style="font-size:14px">
                         <option value="" >Seleccione... </option> 
                         @foreach($Carreras as $option)
                         <option value="{{$option->clave}} " >{{$option->carrera}} </option> 
@@ -171,10 +171,10 @@ actualización y formación que ofrece nuestra Universidad.
                 </li>
                <li>
                     <label>Sexo:</label> <br>
-                    <select name="sexo" id="" required >
+                    <select name="sexo" id="" required style="font-size:14px">
                         <option value=""></option>
                         <option value="F">Femenino</option>
-                        <option value="M">Maculino</option>
+                        <option value="M">Masculino</option>
                     </select>
                 </li>
                 <li>
@@ -235,6 +235,19 @@ actualización y formación que ofrece nuestra Universidad.
 @endpush
 
 @push('js')
+
+
+@if (session('cuenta') == 'invalida')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    Swal.fire({
+  icon: "warning",
+  title: "Cuenta Invalida",
+  text: "Parece que tu número de cuenta esta mal escrito, pues no corresponde a un formato valido para números de cuenta UNAM",
+  footer: '<a href="#">Why do I have this issue?</a>'
+});
+</script>
+@endif
 
 @if (session('message') == 'realized')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

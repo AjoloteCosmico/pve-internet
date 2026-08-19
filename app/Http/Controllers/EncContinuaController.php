@@ -21,8 +21,8 @@ class EncContinuaController extends Controller
 {
     public function inicio(){
         //la primera vez, se intuye que esta en base y solo s emuestra la cuenta es decir, no es externo a la base de datos
-        $Planteles=Carrera::select('clave_plantel','plantel')->distinct()->get();
-        $Carreras=Carrera::all();
+        $Planteles=Carrera::select('clave_plantel','plantel')->distinct()->get()->sortBy('plantel');
+        $Carreras=Carrera::where('clave_carrera','!=','501')->get()->sortBy('carrera');
         return view('encuesta_ed_continua.inicio',compact('Carreras','Planteles'));
     }
 
@@ -31,7 +31,11 @@ public function verify(Request $request){
         $cuenta=Request::get('cuenta');
         $cuenta = ltrim($cuenta, "0"); 
         $cuenta_formateada= str_pad($cuenta, 9, '0', STR_PAD_LEFT);
+        if(! validar_cuenta($cuenta) ){
+            return redirect()->back()->with("cuenta","invalida");
+        }
         $Egresado=Egresado::where('cuenta',$cuenta)->first();
+
         //BUSCAR EN BASE LICENCITATURA
         //si se encuentra en el registro del seguimiento licenciatura
         if(!$Egresado){
@@ -61,6 +65,8 @@ public function verify(Request $request){
                 $Encuesta->nbr3=$Egresado->plantel;
                 $Encuesta->carrera=$Carrera;
                 $Encuesta->anio_egreso=$AnioEgreso;
+                $Encuesta->sexo=$Egresado->sexo;
+                $Encuesta->edad = $Egresado->fec_nac?->diffInYears(now());
                 $Encuesta->save();
             }    
         return redirect()->route('enc_continua.section',['ed_continua',$Encuesta->registro]); 
@@ -93,6 +99,8 @@ public function verify(Request $request){
                 $Encuesta->nbr3=0;
                 $Encuesta->carrera=$Carrera;
                 $Encuesta->anio_egreso=$AnioEgreso;
+                $Encuesta->sexo=$Egresado->sexo;
+                $Encuesta->edad = $Egresado->fec_nac?->diffInYears(now());
                 $Encuesta->save();
             }    
         return redirect()->route('enc_continua.section',['ed_continua',$Encuesta->registro]); 
@@ -129,6 +137,8 @@ public function verify(Request $request){
                 $Encuesta->nbr3=$CarreraMap->plantel_id;
                 $Encuesta->carrera=$Carrera;
                 $Encuesta->anio_egreso=$AnioEgreso;
+                $Encuesta->sexo=$Egresado->exa_sexo;
+                $Encuesta->edad = $Egresado->exa_fchnac?->diffInYears(now());
                 $Encuesta->save();
             }
             
@@ -149,7 +159,6 @@ public function verify(Request $request){
             $Egresado->anio_egreso = Request::get('anio_egreso');
             $Egresado->sexo = Request::get('sexo');
             $Egresado->save();
-            
             $cuenta_encuesta=$Egresado->cuenta;
             $Encuesta=RespuestasContinua::where('cuenta',$Egresado->cuenta)->first();
           }else{
