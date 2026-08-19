@@ -66,7 +66,7 @@ public function verify(Request $request){
                 $Encuesta->carrera=$Carrera;
                 $Encuesta->anio_egreso=$AnioEgreso;
                 $Encuesta->sexo=$Egresado->sexo;
-                $Encuesta->edad = $Egresado->fec_nac?->diffInYears(now());
+                $Encuesta->edad = date_diff(date_create($Egresado->fec_nac), date_create('now'))->y ?? null;
                 $Encuesta->save();
             }    
         return redirect()->route('enc_continua.section',['ed_continua',$Encuesta->registro]); 
@@ -100,7 +100,8 @@ public function verify(Request $request){
                 $Encuesta->carrera=$Carrera;
                 $Encuesta->anio_egreso=$AnioEgreso;
                 $Encuesta->sexo=$Egresado->sexo;
-                $Encuesta->edad = $Egresado->fec_nac?->diffInYears(now());
+                
+                $Encuesta->edad = date_diff(date_create($Egresado->fec_nac), date_create('now'))->y ?? null;
                 $Encuesta->save();
             }    
         return redirect()->route('enc_continua.section',['ed_continua',$Encuesta->registro]); 
@@ -138,7 +139,8 @@ public function verify(Request $request){
                 $Encuesta->carrera=$Carrera;
                 $Encuesta->anio_egreso=$AnioEgreso;
                 $Encuesta->sexo=$Egresado->exa_sexo;
-                $Encuesta->edad = $Egresado->exa_fchnac?->diffInYears(now());
+                
+                $Encuesta->edad = date_diff(date_create($Egresado->exa_fchnc), date_create('now'))->y ?? null;
                 $Encuesta->save();
             }
             
