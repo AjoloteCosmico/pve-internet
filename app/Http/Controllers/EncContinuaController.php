@@ -181,6 +181,8 @@ public function verify(Request $request){
                 $Encuesta->anio_egreso=$Egresado->anio_egreso;
                 if(Request::get('edad')){
                     $Encuesta->edad=Request::get('edad');}
+                if(Request::get('sexo')){
+                    $Encuesta->edad=Request::get('sexo');}
                 $Carrera=Carrera::where('clave_carrera',$Egresado->carrera)->first();
                 if($Carrera){
                 $Encuesta->carrera=$Carrera->carrera;
