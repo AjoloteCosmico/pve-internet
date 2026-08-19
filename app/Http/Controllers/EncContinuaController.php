@@ -228,6 +228,8 @@ public function verify(Request $request){
         $Encuesta=RespuestasContinua::find($id);
         $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->where('carrera',$Encuesta->nbr2)->first();
         $Encuesta->update($filteredArray);
+        $Encuesta->fec_capt=now()->modify('-6 hours');
+        $Encuesta->aplica='111';
         $Encuesta->save();
         $reativos_multiples=Reactivo::where('type','multiple_option')->where('section','ed_continua')->get();
         
