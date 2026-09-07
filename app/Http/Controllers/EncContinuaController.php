@@ -230,6 +230,7 @@ public function verify(Request $request){
         $Encuesta->update($filteredArray);
         $Encuesta->fec_capt=now()->modify('-6 hours');
         $Encuesta->aplica='111';
+        $Encuesta->completed='1';
         $Encuesta->save();
         $reativos_multiples=Reactivo::where('type','multiple_option')->where('section','ed_continua')->get();
         

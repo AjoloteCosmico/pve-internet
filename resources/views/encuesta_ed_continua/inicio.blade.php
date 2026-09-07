@@ -32,9 +32,10 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
             <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/logoUNAM-large-azul.png"> </a>
 
             <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/nuestra_unam.png"> </a>
+            PVEAJU UNAM
         </div>
 
-        <div class="subtitulo2 ">
+        <div class="subtitulo2 "> Secretaría General
             <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png" style="width:9vh;"> </a>
             &nbsp;&nbsp;
             <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logo-cuadrado-SE-azul.png" style="width:7vh;"> </a>
@@ -45,12 +46,11 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
 <div class="main">
     
     <div class="izquierda">
-        <h1>ENCUESTA DE EDUCACIÓN CONTINUA UNAM</h1>
-    <div class="info">
-        <p class="subtitulo3">
-            TODAS LAS CARRERAS Y GENERACIONES
-        </p>
-        <br><br><br>
+        <div class="hero-continua">
+            <img src="{{ asset('img/gráficos/ed_continua.jpg') }}" alt="Encuesta de Educación Continua UNAM">
+            <div class="info" style="padding: 10px;">
+        
+        <br>
         <p class="texto2">
             Como parte de la campaña <span style="color: #e6af2b">reUNAMos Saberes</span> , invitamos a nuestras y nuestros egresados a participar 
             en esta encuesta que busca fortalecer el vínculo con la comunidad universitaria y enriquecer la oferta de educación continua cuyo propósito es conocer:
@@ -110,6 +110,8 @@ actualización y formación que ofrece nuestra Universidad.
 
         
     </div>
+        </div>
+        
     </div>
 
 
@@ -189,7 +191,9 @@ actualización y formación que ofrece nuestra Universidad.
             @else
                 <li>
                     <label>Número de Cuenta:  </label>
-                    <input type="number" id="numeroCuenta"   name="cuenta" max="999999999" required/>
+                    <div class="field-glow">
+                        <input type="number" id="numeroCuenta" name="cuenta" max="999999999" required class="cuenta-input" />
+                    </div>
                 </li>
             @endif
                 <li>
@@ -230,6 +234,199 @@ actualización y formación que ofrece nuestra Universidad.
     margin: 20px 10px 0px 10px !important;
     width: 170px;
     height: 45px;
+}
+
+.main {
+    gap: 2.5rem;
+}
+
+.izquierda {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 2%;
+}
+
+.derecha {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 2%;
+}
+
+.hero-continua {
+    position: relative;
+    width: 100%;
+    max-width: 760px;
+    border-radius: 26px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28), 0 0 30px rgba(230, 175, 43, 0.12);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(230, 175, 43, 0.08));
+}
+
+.hero-continua::before {
+    content: "";
+    position: absolute;
+    inset: -16% -12%;
+    background: radial-gradient(circle, rgba(230, 175, 43, 0.36), transparent 58%);
+    filter: blur(28px);
+    animation: pulseGlow 4.5s ease-in-out infinite;
+}
+
+.hero-continua img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 26px;
+    object-fit: cover;
+}
+
+.iniciar {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(0, 43, 122, 0.08);
+    border-radius: 28px;
+    padding: 2rem 1.7rem 1.25rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: smaller;
+    box-shadow: 0 22px 45px rgba(5, 10, 48, 0.18), 0 8px 18px rgba(230, 175, 43, 0.15);
+    transform: translateY(-4px);
+    animation: floatPanel 4s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.iniciar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(230, 175, 43, 0.15) 30%, rgba(0, 43, 122, 0.08) 50%, rgba(230, 175, 43, 0.15) 70%, transparent 100%);
+    transform: translateX(-100%);
+    animation: shimmer 4.5s ease-in-out infinite;
+}
+
+.iniciar > * {
+    position: relative;
+    z-index: 1;
+}
+
+form {
+    width: 100%;
+    margin: 10px auto 10px auto;
+    color: black;
+    font-weight: 600;
+    font-size: small;
+    border-radius: 18px;
+}
+
+form ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+form li {
+    margin-bottom: 15px;
+}
+
+.field-glow {
+    position: relative;
+    display: inline-block;
+    width: min(100%, 290px);
+    margin: 0 auto 6px;
+    padding: 2px;
+    border-radius: 14px;
+    background: linear-gradient(90deg, rgba(230, 175, 43, 0.15), rgba(0, 43, 122, 0.15), rgba(230, 175, 43, 0.7), rgba(0, 43, 122, 0.15), rgba(230, 175, 43, 0.15));
+    background-size: 220% 100%;
+    animation: scanGlow 3.8s linear infinite;
+    box-shadow: 0 0 18px rgba(230, 175, 43, 0.24);
+}
+
+.field-glow input {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin: 0;
+    border-radius: 12px;
+    border: 1px solid #dfe4ef;
+    background: linear-gradient(180deg, #fff 0%, #f7f8fb 100%);
+    box-shadow: inset 0 2px 6px rgba(5, 10, 48, 0.08);
+}
+
+input {
+    width: 80%;
+    border: 1px solid gray;
+    margin: 0 10px 20px 10px;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: inset gray 2px 2px 5px ;
+}
+
+button {
+    background-color: #ba800d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    margin: 10px;
+    text-decoration: none;
+    border: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    box-shadow: 0 12px 22px rgba(186, 128, 13, 0.28);
+    font-size: small;
+    transition: all 0.25s ease;
+}
+
+button:hover {
+    background-color: #002b7a;
+    transform: translateY(-3px);
+    box-shadow: 0 16px 24px rgba(0, 43, 122, 0.22);
+}
+
+@keyframes floatPanel {
+    0%, 100% { transform: translateY(-4px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-120%); }
+    40%, 100% { transform: translateX(120%); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.65; transform: scale(0.96); }
+    50% { opacity: 1; transform: scale(1.04); }
+}
+
+@keyframes scanGlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+@media (max-width: 980px) {
+    .main {
+        flex-direction: column;
+        padding: 5% 6%;
+    }
+
+    .izquierda,
+    .derecha {
+        width: 100%;
+        padding: 0;
+    }
+
+    .hero-continua {
+        max-width: 100%;
+    }
 }
 </style>
 @endpush
