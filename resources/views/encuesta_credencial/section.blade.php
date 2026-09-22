@@ -26,22 +26,22 @@
 
 <div class="datos">
     <p class="black_text"> Nombre:</p>
-    <p class="blue_text"> EGRESADO DE PRUEBA</p>
+    <p class="blue_text"> {{$Encuesta->nombre . ' ' . $Encuesta->paterno }}</p>
 </div>
 
 <div class="datos">
     <p class="black_text"> Número de Cuenta:</p>
-    <p class="blue_text">00000000 </p>
+    <p class="blue_text">{{$Encuesta->cuenta}} </p>
 </div>
 
 <div class="datos">
     <p class="black_text"> Carrera:</p>
-    <p class="blue_text"> Arquitectura </p>
+    <p class="blue_text"> {{$Encuesta->carrera}} </p>
 </div>
 
 <div class="datos">
     <p class="black_text"> Generación:</p>
-    <p class="blue_text"> 2025</p>
+    <p class="blue_text"> {{$Encuesta->anio_egreso}}</p>
 </div>
 
 </div>

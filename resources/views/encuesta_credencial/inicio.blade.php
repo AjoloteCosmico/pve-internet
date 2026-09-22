@@ -32,12 +32,13 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
             <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/logoUNAM-large-azul.png"> </a>
 
             <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/nuestra_unam.png"> </a>
+            PVEAJU UNAM
         </div>
 
-        <div class="subtitulo2 ">
+        <div class="subtitulo2 "> Secretaría General
             <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logoPVE-large.png" style="width:9vh;"> </a>
-            <a class=lovoPVE href="https://www.posgrado.unam.mx/"> <img src="{{url('img/logos/logoPosgrado.svg')}}" style="width: 8vw !important; height:auto !important"> </a>
-      
+            &nbsp;&nbsp;
+            <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="/img/logos/logo-cuadrado-SE-azul.png" style="width:7vh;"> </a>
         </div>
     </div>
 
@@ -45,52 +46,42 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
 <div class="main">
     
     <div class="izquierda">
-        <h1>ENCUESTA PARA EGRESADOS DE ESPECIALIDADES UNAM</h1>
-    <div class="info">
-        <p class="subtitulo3">
-            GENERACIONES 2018 - 2021
-           
-        </p>
-        <br><br><br>
+        <div class="hero-continua">
+            <img src="{{ asset('img/gráficos/credencial.png') }}" style="width:60%; align-self:center; margin:10px" alt="Encuesta de Credencial UNAM">
+            <div class="info" style="padding: 10px;">
+        
+        <br>
         <p class="texto2">
-            Como parte de la campaña ReUNAMos Saberes, invitamos a nuestras y nuestros
-egresados a participar en esta encuesta que busca fortalecer el vínculo con la
-comunidad universitaria y enriquecer la oferta de educación continua.
-Solicitamos su apoyo para responder el siguiente cuestionario, cuyos propósitos
-son:
+            Para brindarle la mejor atención posible a la comunidad de  <span style="color: #e6af2b">Egresados UNAM</span>, nos interesa conocer su opinion sobre la nueva credencial digital.
+
             <br><br>
             <ol>
                 <li>
-                    <span style="color: #e6af2b">Identificar</span>  las necesidades de formación y actualización profesional de los
-egresados de la UNAM.
+                    <span style="color: #e6af2b">La facilidad</span> para tramitarla, asi como su opinión sobre el monto de la aprotación.
                 </li>
                 <li>
-                     <span style="color: #e6af2b">Fortalecer </span> los programas de especialidades con base en los intereses y
-obstáculos reales de la comunidad universitaria.
+                     <span style="color: #e6af2b">Sus expectativas </span> sobre los beneficios y usabilidad de la credencial en su vida diaria.
                 </li>
                 <li>
-                    <span style="color: #e6af2b">Diseñar</span>  oportunidades de formación más accesibles y pertinentes para
-mejorar la empleabilidad y el desarrollo profesional.
+                    <span style="color: #e6af2b">Su grado de satisfacción </span>  con este documento de identificación que nos mantiene conectados a nuestra universidad.
                 </li>
             </ol>
             <br>
-            Su participación es muy valiosa, ya que contribuirá a mejorar las oportunidades de
-actualización y formación que ofrece nuestra Universidad.
+            Su participación es muy valiosa, ya que nos permite mejorar activamente los servicios para los egresados de la UNAM.
         </p>
     </div>
-    <!--CARDS PROPÓSITOS-->
 
-    <div class="propositos">
-        <img class="card" src="/img/gráficos/pag-encuesta-1.png">
-        <img class="card" src="/img/gráficos/pag-encuesta-2.png">
-        <img class="card" src="/img/gráficos/pag-encuesta-3.png">
+        <!--CARDS PROPÓSITOS-->
+
+        </div>
+        
     </div>
-    </div>
+
 
 <div class="derecha">
 
         <!--CUADRO DE INICIAR ENCUESTA-->
-    <div class="iniciar">
+    <div class="iniciar"> 
         <p class="texto4">
             <b>DURACIÓN APROXIMADA: 7 MINUTOS</b>
         </p>
@@ -100,20 +91,80 @@ actualización y formación que ofrece nuestra Universidad.
         </p>
         <br>
 
-        <form action="{{ route('enc_esp.verify')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('enc_credencial.verify')}}" method="POST" enctype="multipart/form-data">
         @csrf
+        
             <ul>
-    
+                
+            @if(session('externo') == 'si')
                 <li>
                     <label>Número de Cuenta:  </label>
-                    <input type="number" id="numeroCuenta"   name="cuenta"  max="999999999"  />
+                    <input type="number" id="numeroCuenta"   name="cuenta" readonly value="{{session('cuenta')}}" style="background-color:#CCC"  />
                 </li>
-                    <br>
+                <li>
+                    <label>Apellido Paterno:</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="paterno" required />
+                </li>
+                <li>
+                    <label>Apellido Materno:</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"   name="materno" />
+                </li>
+                <li>
+                    <label>Nombre(s):</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="nombre" required />
+                </li>
+               <li>
+                    <label>Plantel:</label> <br>
+                     <select name="nbr3" id="nbr3" required style="font-size:14px">
+                            <option value="" >Seleccione... </option> 
+
+                            @foreach($Planteles as $option)
+                            <option value="{{$option->clave_plantel}} " >{{$option->plantel}} </option> 
+
+                            @endforeach
+                            </select> 
+                </li>
+               <li>
+                    <label>Carrera:</label> <br>
+                   <select name="nbr2" id="nbr2" required style="font-size:14px">
+                        <option value="" >Seleccione... </option> 
+                        @foreach($Carreras as $option)
+                        <option value="{{$option->clave}} " >{{$option->carrera}} </option> 
+                        <br>
+                        @endforeach
+                    </select>
+                </li>
+               <li>
+                    <label>Sexo:</label> <br>
+                    <select name="sexo" id="" required style="font-size:14px">
+                        <option value=""></option>
+                        <option value="F">Femenino</option>
+                        <option value="M">Masculino</option>
+                    </select>
+                </li>
+                <li>
+                    <label>Año de egreso:</label> <br>
+                    <input type="number"  name="anio_egreso" min="1960" max="2027" required/>
+                </li>
+                <li>
+                    <label>Su edad actual:</label> <br>
+                    <input type="number"  name="edad" min="18" max="109" required/>
+                </li>
+                
+            @else
+                <li>
+                    <label>Número de Cuenta:  </label>
+                    <div class="field-glow">
+                        <input type="number" id="numeroCuenta" name="cuenta" max="999999999" required class="cuenta-input" />
+                    </div>
+                </li>
+            @endif
                 <li>
                     <button type="submit">Iniciar encuesta</button>
                 </li>
             </ul>
         </form>
+    
         <br>
         <p class="texto8">
             <b>Preferentemente utilizar Google Chrome</b>
@@ -147,10 +198,229 @@ actualización y formación que ofrece nuestra Universidad.
     width: 170px;
     height: 45px;
 }
+
+.main {
+    gap: 2.5rem;
+}
+
+.izquierda {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 2%;
+}
+
+.derecha {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 2%;
+}
+
+.hero-continua {
+    position: relative;
+    width: 100%;
+    max-width: 760px;
+    border-radius: 26px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28), 0 0 30px rgba(230, 175, 43, 0.12);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(230, 175, 43, 0.08));
+}
+
+.hero-continua::before {
+    content: "";
+    position: absolute;
+    inset: -16% -12%;
+    background: radial-gradient(circle, rgba(230, 175, 43, 0.36), transparent 58%);
+    filter: blur(28px);
+    animation: pulseGlow 4.5s ease-in-out infinite;
+}
+
+.hero-continua img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 26px;
+    object-fit: cover;
+}
+
+.iniciar {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(0, 43, 122, 0.08);
+    border-radius: 28px;
+    padding: 2rem 1.7rem 1.25rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: smaller;
+    box-shadow: 0 22px 45px rgba(5, 10, 48, 0.18), 0 8px 18px rgba(230, 175, 43, 0.15);
+    transform: translateY(-4px);
+    animation: floatPanel 4s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.iniciar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(230, 175, 43, 0.15) 30%, rgba(0, 43, 122, 0.08) 50%, rgba(230, 175, 43, 0.15) 70%, transparent 100%);
+    transform: translateX(-100%);
+    animation: shimmer 4.5s ease-in-out infinite;
+}
+
+.iniciar > * {
+    position: relative;
+    z-index: 1;
+}
+
+form {
+    width: 100%;
+    margin: 10px auto 10px auto;
+    color: black;
+    font-weight: 600;
+    font-size: small;
+    border-radius: 18px;
+}
+
+form ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+form li {
+    margin-bottom: 15px;
+}
+
+.field-glow {
+    position: relative;
+    display: inline-block;
+    width: min(100%, 290px);
+    margin: 0 auto 6px;
+    padding: 2px;
+    border-radius: 14px;
+    background: linear-gradient(90deg, rgba(230, 175, 43, 0.15), rgba(0, 43, 122, 0.15), rgba(230, 175, 43, 0.7), rgba(0, 43, 122, 0.15), rgba(230, 175, 43, 0.15));
+    background-size: 220% 100%;
+    animation: scanGlow 3.8s linear infinite;
+    box-shadow: 0 0 18px rgba(230, 175, 43, 0.24);
+}
+
+.field-glow input {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin: 0;
+    border-radius: 12px;
+    border: 1px solid #dfe4ef;
+    background: linear-gradient(180deg, #fff 0%, #f7f8fb 100%);
+    box-shadow: inset 0 2px 6px rgba(5, 10, 48, 0.08);
+}
+
+input {
+    width: 80%;
+    border: 1px solid gray;
+    margin: 0 10px 20px 10px;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: inset gray 2px 2px 5px ;
+}
+
+button {
+    background-color: #ba800d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    margin: 10px;
+    text-decoration: none;
+    border: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    box-shadow: 0 12px 22px rgba(186, 128, 13, 0.28);
+    font-size: small;
+    transition: all 0.25s ease;
+}
+
+button:hover {
+    background-color: #002b7a;
+    transform: translateY(-3px);
+    box-shadow: 0 16px 24px rgba(0, 43, 122, 0.22);
+}
+
+@keyframes floatPanel {
+    0%, 100% { transform: translateY(-4px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-120%); }
+    40%, 100% { transform: translateX(120%); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.65; transform: scale(0.96); }
+    50% { opacity: 1; transform: scale(1.04); }
+}
+
+@keyframes scanGlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+@media (max-width: 980px) {
+    .main {
+        flex-direction: column;
+        padding: 5% 6%;
+    }
+
+    .izquierda,
+    .derecha {
+        width: 100%;
+        padding: 0;
+    }
+
+    .hero-continua {
+        max-width: 100%;
+    }
 </style>
-@endpush
+    @endpush
 
 @push('js')
+@if (session('error_encuesta') == 'Error')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    Swal.fire({
+  icon: "error",
+  title: "Error",
+  text: "Error en el servidor, contacte directamente a soporte egresado@exalumno.unam.mx",
+  footer: '<a href="#">Why do I have this issue?</a>'
+});
+</script>
+@endif
+
+@if (session('cuenta') == 'invalida')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    Swal.fire({
+  icon: "warning",
+  title: "Cuenta Invalida",
+  text: "Parece que tu número de cuenta esta mal escrito, pues no corresponde a un formato valido para números de cuenta UNAM",
+  footer: '<a href="#">Why do I have this issue?</a>'
+});
+</script>
+@endif
 
 @if (session('message') == 'realized')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -164,21 +434,61 @@ actualización y formación que ofrece nuestra Universidad.
 </script>
 @endif
 
-@if (session('message') == 'notinsample')
+@if (session('externo') == 'si')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     Swal.fire({
   icon: "warning",
-  title: "Parece que no es tu generacion",
-  html: "No tenemos registrado tu número de cuenta como un egresado de especialidad UNAM para las generaciones del estudio, si lo deseas, puedes contestar la encuesta para todas las carreras y generaciones en el siguiente enlace: <br> <a href='https://encuestas.pveaju.unam.mx/encuesta_generacion/general'>Encuesta de egresados UNAM</a>",
+  title: "No tenemos tus datos en nuestros registros",
+  html: "Por favor Ingresa a la encuesta llenando todos tus datos",
+  
 });
 </script>
+<script>
+function removeOptions(selectElement) {
+   var i, L = selectElement.options.length - 1;
+   for(i = L; i >= 0; i--) {
+      selectElement.remove(i);
+   }
+}
+
+function set_carreras(seleccionado){
+    console.log('entrando a la funcion');
+        console.log(seleccionado)
+removeOptions(document.getElementById('nbr2'));
+var desc = document.getElementById("nbr2");
+@foreach($Planteles as $p)
+if(seleccionado=={{$p->clave_plantel}}){
+    var example_array = {
+        @foreach($Carreras as $carrera)
+        @if($carrera->clave_plantel==$p->clave_plantel)
+    {{$carrera->clave_carrera}} : '{{$carrera->carrera}}',
+         @endif
+    @endforeach
+};
+}
+@endforeach
+console.log(example_array);
+for(index in example_array) {
+    desc.options[desc.options.length] = new Option(example_array[index], index);
+}
+}
+
+$(document).ready(function () {     
+  $('#nbr3').change(function(){
+        var seleccionado = $(this).val();
+        set_carreras(seleccionado);
+        
+  });
+  });
+  var seleccionado = document.getElementById('nbr3').value;
+  set_carreras(seleccionado);
+  </script>
 @endif
 <script>
     $(window).load(function(){
     $('#myModal').modal('show');
   })
-</script>
 </script>
 
  @endpush

@@ -514,6 +514,5 @@ $(document).ready(function () {
     $('#myModal').modal('show');
   })
 </script>
-</script>
 
  @endpush

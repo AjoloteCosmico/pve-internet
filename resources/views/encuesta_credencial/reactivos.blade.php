@@ -4,7 +4,7 @@ use \App\Http\Controllers\ReactivosController;
 @endphp
 <h1 class="black_text">@if($section=='credencial') Encuesta de satisfacción credencial digital PVEAJU @else  ENCUESTA PARA ACADÉMICOS JUBILADOS @endif</h1>
 
-<form action="{{ route('enc_esp.update',1)}}" method="POST" enctype="multipart/form-data" id="main_form">
+<form action="{{ route('enc_credencial.update', $Encuesta->registro)}}" method="POST" enctype="multipart/form-data" id="main_form">
                    @csrf    
                   <input type="text" name="section" value="{{$Reactivos->first()->section}}" hidden>
                  <input type="text" name="{{'sec_'.strtolower($Reactivos->first()->section)}}" value="1" hidden>    

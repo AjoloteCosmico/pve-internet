@@ -61,7 +61,7 @@ Route::controller(EncContinuaController::class)->group(function(){
 Route::controller(EncuestaCredController::class)->group(function(){
     Route::get('/encuesta_credencial/{hash?}', 'inicio')->name('enc_credencial.inicio');
     Route::post('/verify_cuenta_credencial', 'verify')->name('enc_credencial.verify');
-    Route::get('/encuesta_credencial/section/{section}', 'section')->name('enc_credencial.section');
+    Route::get('/encuesta_credencial/section/{id}/{section}', 'section')->name('enc_credencial.section');
     Route::post('/update_personal_data_credencial/{id}', 'update_personal_data')->name('enc_credencial.update_personal_data');
     Route::post('/update_section_credencial/{id}','update')->name('enc_credencial.update');
 });
