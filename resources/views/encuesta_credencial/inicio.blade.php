@@ -47,7 +47,7 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
     
     <div class="izquierda">
         <div class="hero-continua">
-            <img src="{{ asset('img/gráficos/credencial.png') }}" style="width:60%; align-self:center; margin:10px" alt="Encuesta de Credencial UNAM">
+            <img src="{{ asset('img/gráficos/cred-mockup.jpg') }}" style="width:70%; align-self:center; margin:10px" alt="Encuesta de Credencial UNAM">
             <div class="info" style="padding: 10px;">
         
         <br>
@@ -83,7 +83,7 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
         <!--CUADRO DE INICIAR ENCUESTA-->
     <div class="iniciar"> 
         <p class="texto4">
-            <b>DURACIÓN APROXIMADA: 7 MINUTOS</b>
+            <b>DURACIÓN APROXIMADA: 4 MINUTOS</b>
         </p>
         <br>
         <p class="texto4">
