@@ -102,27 +102,69 @@ El Programa de Vinculación con los Egresados y Académicos jubilados de la Univ
         @csrf
             <input type="hidden" name="type" value="{{$type}}">
             <ul>
-                <li>
-                    <label>Número de Cuenta:</label>
-                    <input type="number" id="numeroCuenta"   name="cuenta" min="10000000" max="999999999" required/>
-                </li>
+                @if($type=='general' && session('externo') == 'si')
+                    <li>
+                        <label>Número de Cuenta:</label>
+                        <input type="number" id="numeroCuenta" name="cuenta" value="{{ session('cuenta') ?? old('cuenta') ?? '' }}" min="10000000" max="999999999" required/>
+                    </li>
+                    <li>
+                        <label>Apellido Paterno:</label>
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="paterno" value="{{ old('paterno') }}" required/>
+                    </li>
+                    <li>
+                        <label>Apellido Materno:</label>
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="materno" value="{{ old('materno') }}"/>
+                    </li>
+                    <li>
+                        <label>Nombre(s):</label>
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="nombre" value="{{ old('nombre') }}" required/>
+                    </li>
+                    <li>
+                        <label>Plantel:</label><br>
+                        <select name="nbr3" id="nbr3" required>
+                            <option value="">Seleccione...</option>
+                            @foreach(App\Models\Carrera::select('clave_plantel','plantel')->distinct()->get() as $option)
+                                <option value="{{ $option->clave_plantel }}">{{ $option->plantel }}</option>
+                            @endforeach
+                        </select>
+                    </li>
+                    <li>
+                        <label>Carrera:</label><br>
+                        <select name="nbr2" id="nbr2" required>
+                            <option value="">Seleccione...</option>
+                            @foreach(App\Models\Carrera::all() as $option)
+                                <option value="{{ $option->clave_carrera }}">{{ $option->carrera }}</option>
+                            @endforeach
+                        </select>
+                    </li>
+                    <li>
+                        <label>Sexo:</label><br>
+                        <select name="sexo" required>
+                            <option value="">Seleccione...</option>
+                            <option value="F">Femenino</option>
+                            <option value="M">Masculino</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>Año de egreso:</label>
+                        <input type="number" name="anio_egreso" min="1960" max="2030" value="{{ old('anio_egreso') }}" required/>
+                    </li>
+                    <li>
+                        <label>Su edad actual:</label>
+                        <input type="number" name="edad" min="18" max="109" value="{{ old('edad') }}" required/>
+                    </li>
+                @else
+                    <li>
+                        <label>Número de Cuenta:</label>
+                        <input type="number" id="numeroCuenta" name="cuenta" value="{{ session('cuenta') ?? old('cuenta') ?? '' }}" min="10000000" max="999999999" required/>
+                    </li>
 
-                @if($type=='general')
-                
-                <li>
-                    <label>Apellido Paterno:</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="paterno" required/>
-                </li>
-                <li>
-                    <label>Apellido Materno:</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"   name="materno" required/>
-                </li>
-                <li>
-                    <label>Nombre(s):</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="nombre" required/>
-                </li>
-               
-                
+                    @if($type=='general')
+                    <li>
+                        <label>Apellido Paterno:</label>
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" name="paterno" value="{{ old('paterno') }}" required/>
+                    </li>
+                    @endif
                 @endif
                 <br>
                 <br>
@@ -201,6 +243,30 @@ El Programa de Vinculación con los Egresados y Académicos jubilados de la Univ
   icon: "warning",
   title: "Parece que no es tu generacion",
   text: "Por favor Ingresa a la encuesta general llenando todos tus datos",
+  footer: '<a href="#">Why do I have this issue?</a>'
+});
+</script>
+@endif
+
+@if (session('message') == 'apellido_incorrecto')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    Swal.fire({
+  icon: "warning",
+  title: "No coincide el primer apellido",
+  text: "Asegúrate de escribir correctamente tu primer apellido. Si no es ese, revisa si debes usar tu segundo apellido.",
+  footer: '<a href="#">Why do I have this issue?</a>'
+});
+</script>
+@endif
+
+@if (session('message') == 'cuenta_invalida')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    Swal.fire({
+  icon: "error",
+  title: "Número de cuenta inválido",
+  text: "El número de cuenta no cumple con la validación de la UNAM. Verifica tus datos.",
   footer: '<a href="#">Why do I have this issue?</a>'
 });
 </script>

@@ -1,9 +1,13 @@
 <script>
-@isset($Correos)
-var ncorreos="{{$Correos->count()+1}}";
-var ntel="{{$Telefonos->count()+1}}";
-@endisset
+@php
+    $correosCollection = $Correos ?? collect();
+    $telefonosCollection = $Telefonos ?? collect();
+    $totalCorreos = $correosCollection->count();
+    $totalTelefonos = $telefonosCollection->count();
+@endphp
 
+var ncorreos = {{ $totalCorreos + 1 }};
+var ntel = {{ $totalTelefonos + 1 }};
 
 function add_correo(){
     console.log('ejecutando funcion');
@@ -146,5 +150,4 @@ function isDuplicateInForm(namePrefix, currentValue, currentElement){
   return false;
 
 }
-
 </script>

@@ -27,7 +27,6 @@ class PosgradoController extends Controller
         $cuenta=Request::get('cuenta');
         $cuenta = ltrim((Int)$cuenta, "0"); 
         if(Request::get('external')==1){
-            
             // crear egresado 
             $Egresado=new EgresadoPos();
             $Egresado->cuenta=$cuenta;

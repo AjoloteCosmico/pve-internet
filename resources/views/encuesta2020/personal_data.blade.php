@@ -1,20 +1,32 @@
+@php
+    $egresadoVista = $Egresado ?? (object) [
+        'cuenta' => $Encuesta->cuenta ?? '',
+        'nombre' => $Encuesta->nombre ?? '',
+        'paterno' => $Encuesta->paterno ?? '',
+        'materno' => $Encuesta->materno ?? '',
+        'sexo' => $Encuesta->sexo ?? null,
+        'fec_nac' => null,
+        'promedio' => null,
+    ];
+@endphp
+
 <form action="{{ route('enc20.update_personal_data',$Encuesta->registro)}}" method="POST" enctype="multipart/form-data">
                    @csrf    
             <h1 class="black_text"> Confirme sus datos de contacto</h1>
               
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Nombre</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->nombre}} {{$Egresado->paterno}} {{$Egresado->materno}}" disabled style="background-color:#868b94">
+                    <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$egresadoVista->nombre}} {{$egresadoVista->paterno}} {{$egresadoVista->materno}}" disabled style="background-color:#868b94">
                 </div>
-               @if($Egresado->sexo)
+               @if($egresadoVista->sexo)
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Sexo</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" @if($Egresado->sexo=="M") value="Masculino" @else value="Femenino" @endif disabled style="background-color:#868b94">
+                    <input type="text" class="form-control" id="exampleFormControlInput1" @if($egresadoVista->sexo=="M") value="Masculino" @else value="Femenino" @endif disabled style="background-color:#868b94">
                 </div>
                 
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Fecha de nacimiento</label>
-                    <input type="date" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->fec_nac}}" disabled style="background-color:#868b94">
+                    <input type="date" class="form-control" id="exampleFormControlInput1" value="{{$egresadoVista->fec_nac}}" disabled style="background-color:#868b94">
                 </div>
                 @endif
                 
@@ -58,7 +70,7 @@
                 
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Número de Cuenta</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$Egresado->cuenta}}"  disabled style="background-color:#868b94">
+                    <input type="text" class="form-control" id="exampleFormControlInput1"  value="{{$egresadoVista->cuenta}}"  disabled style="background-color:#868b94">
                 </div>
                 @if($Encuesta->aplica2!=1)
                 <div class="form-group">
@@ -77,16 +89,14 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Promedio</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$Egresado->promedio}}" disabled style="background-color:#868b94">
+                    <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$egresadoVista->promedio}}" disabled style="background-color:#868b94">
                 </div>
-                @else
-                @include('encuesta2020.general_reactives')
+            
                 @endif
                 <center>
             <button id="final-button" class="btn blue_button" type="submit"> Guardar y enviar</button>
         </center>
         </form>
-
 
 @push('css')
 <style>

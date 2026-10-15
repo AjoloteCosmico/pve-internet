@@ -17,9 +17,13 @@ function  validar_cuenta($cuenta)
             $SumaNones = $SumaNones * 3;
             $SumaPares = $SumaPares * 7;
             $Suma = $SumaNones + $SumaPares;
-            if($SumaNones==0 && $SumaPares==0){ //esto es para evitar el caso en que typean '000000000' pues la operacion daria (0*3+0*7)%10=0 (num valido) pero sabemos  q no es
+
+             //el sig if es para evitar el caso en que typean '000000000' 
+             // pues la operacion daria (0*3+0*7)%10=0 (num valido) pero sabemos que no es
+            if($SumaNones==0 && $SumaPares==0){
                 return False;
             }
+            
             $verfiDigit= $Suma % 10;
             if((Int)$verfiDigit==(Int)$cuenta[8]){
                 return True;
