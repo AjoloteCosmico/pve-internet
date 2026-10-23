@@ -555,27 +555,30 @@ class Enc20Controller extends AbstractEncuestaController
 
         $Encuesta=respuestas20::find($id);
         $Egresado=Egresado::where('cuenta',$Encuesta->cuenta)->first();
-        // dd($Egresado,$Encuesta);
-        $Telefonos=Telefono::where('cuenta',$Egresado->cuenta)->get();       
-        $Correos=Correo::where('cuenta',$Egresado->cuenta)->get();       
-        
+        $cuentaContacto = $Egresado ? $Egresado->cuenta : $Encuesta->cuenta;
+
+        $Telefonos=Telefono::where('cuenta',$cuentaContacto)->get();
+        $Correos=Correo::where('cuenta',$cuentaContacto)->get();
+
         if($Encuesta->aplica2==1){
             $Encuesta->nbr2= $request->get('nbr2');
             $Encuesta->nbr3= $request->get('nbr3');
             $Encuesta->save();
-            $Egresado->plantel= $request->get('nbr3');
-            $Egresado->carrera= $request->get('nbr2');
-            $Egresado->anio_egreso= $request->get('anio_egreso');
-            $Egresado->save();
-        }
 
+            if ($Egresado) {
+                $Egresado->plantel= $request->get('nbr3');
+                $Egresado->carrera= $request->get('nbr2');
+                $Egresado->anio_egreso= $request->get('anio_egreso');
+                $Egresado->save();
+            }
+        }
 
         foreach ($request->get('correos') as $correo) {
             //cambiamos el if
          if($correo!=""){
             if($Correos->where('correo',$correo)->count()==0){
                 $Correo= new Correo();
-                $Correo->cuenta=$Encuesta->cuenta;
+                $Correo->cuenta=$cuentaContacto;
                 $Correo->correo=$correo;
                 $Correo->status=13;
                 $Correo->save();
@@ -589,7 +592,7 @@ class Enc20Controller extends AbstractEncuestaController
             if($telefono!=""){
                 if($Telefonos->where('telefono',$telefono)->count()==0){
                     $Telefono= new Telefono();
-                    $Telefono->cuenta=$Encuesta->cuenta;
+                    $Telefono->cuenta=$cuentaContacto;
                     $Telefono->telefono=$telefono;
                     $Telefono->status=13;
                     $Telefono->save();
