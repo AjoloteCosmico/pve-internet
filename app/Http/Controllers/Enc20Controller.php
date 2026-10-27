@@ -662,16 +662,22 @@ class Enc20Controller extends AbstractEncuestaController
             $Encuesta->aplica=111;
             $Encuesta->ncr21_a=$Encuesta->ncr21;
             $Encuesta->fec_capt=now()->modify('-6 hours') ;
+            if($Egresado){
             $Egresado->status=2; //i.e encuestado via Internet
+            $Egresado->save();
+            }
 
         }else{
             $Encuesta->completed=0;
+           if($Egresado){
             $Egresado->status=10; //encuesta inconclusa
+            $Egresado->save();
+           }
         }
         $Encuesta->save();
-        $Egresado->save();
+        
         if($Encuesta->completed==1){
-            $qrString='seg'.$Egresado->cuenta.' '.$Encuesta->registro.'_'.now()->format('Ymd');
+            $qrString='seg'.$Encuesta->cuenta.' '.$Encuesta->registro.'_'.now()->format('Ymd');
             $qrCode = QrCode::size(200)
                        ->color(5,10,48)
                        ->style('round')
