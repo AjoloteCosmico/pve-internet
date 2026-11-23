@@ -13,11 +13,11 @@
             &nbsp;&nbsp;
             <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="https://www.pveaju.unam.mx/wp-content/uploads/2025/03/logo-pveaju-color-12.png" style="width:9vh;"> </a>
             &nbsp;&nbsp;
-            <a class="lovoPVE" href="https://www.pveaju.unam.mx/encuesta/01/seguimiento_egresados_UNAM/"> <img src="/img/logos/logo-SE-azul.png" style="width:7vh;"> </a>
+            <a class="lovoPVE" href="https://www.pveaju.unam.mx/encuesta/01/seguimiento_egresados_UNAM/"> <img src="/img/logos/logo-SE-azul.png" style="width:9vh;"> </a>
         </div>
     </div>
 
-    
+
 <!--contenedor de la encuesta-->
 <div class="fondo_encuesta">
 <!--datos del egresado-->

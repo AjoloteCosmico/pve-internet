@@ -39,7 +39,7 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
             &nbsp;&nbsp;
             <a class="lovoPVE" href="https://www.pveaju.unam.mx/"> <img src="https://www.pveaju.unam.mx/wp-content/uploads/2025/03/logo-pveaju-color-12.png" style="width:9vh;"> </a>
             &nbsp;&nbsp;
-            <a class="lovoPVE" href="https://www.pveaju.unam.mx/encuesta/01/seguimiento_egresados_UNAM/"> <img src="/img/logos/logo-SE-azul.png" style="width:7vh;"> </a>
+            <a class="lovoPVE" href="https://www.pveaju.unam.mx/encuesta/01/seguimiento_egresados_UNAM/"> <img src="/img/logos/logo-SE-azul.png" style="width:14.5vh;"> </a>
         </div>
     </div>
 
@@ -48,14 +48,14 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
     
     <div class="izquierda">
         <div class="hero-continua">
+            <h1 style="padding: 10px;   text-align: center; "> ENCUESTA SATISFACCIÓN CREDENCIAL EGRESADO UNAM</h1>
             <img src="{{ asset('img/gráficos/cred-mockup.jpg') }}" style="width:70%; align-self:center; margin:10px" alt="Encuesta de Credencial UNAM">
             <div class="info" style="padding: 10px;">
         
         <br>
         <p class="texto2">
             Para brindarle la mejor atención posible a la comunidad de  <span style="color: #e6af2b">Egresados UNAM</span>, nos interesa conocer su opinion sobre la nueva credencial digital.
-
-            <br><br>
+            <br>
             <ol>
                 <li>
                     <span style="color: #e6af2b">La facilidad</span> para tramitarla, asi como su opinión sobre el monto de la aprotación.
@@ -67,7 +67,6 @@ El Programa de Vinculación con los Egresados y Académicos jubilados  de la Uni
                     <span style="color: #e6af2b">Su grado de satisfacción </span>  con este documento de identificación que nos mantiene conectados a nuestra universidad.
                 </li>
             </ol>
-            <br>
             Su participación es muy valiosa, ya que nos permite mejorar activamente los servicios para los egresados de la UNAM.
         </p>
     </div>
