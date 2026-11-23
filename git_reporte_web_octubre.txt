@@ -1,0 +1,48 @@
+==================================================
+    REPORTE DETALLADO (TODAS LAS RAMAS)           
+    Filtro de tiempo : 2026-09-30
+    Fecha generación : Fri Oct 30 13:06:57     2026                    
+==================================================
+
+Total de commits encontrados: 3
+--------------------------------------------------
+
+
+--------------------------------------------------
+Commit Hash : 6be707572c557aa7bc0904771a185e0c2937e39c
+Commit Corto: 6be7075
+Ramas/Tags  : HEAD -> production, origin/production
+Autor       : FelipeGonzalez <72818026+FelipeGonzalez@users.noreply.github.com>
+Fecha       : Tue Oct 27 10:17:36 2026 -0600
+Descripción : fix , registroPVEAJU case protect acces to variable $Egresado
+Archivos modificados (Lineas - / +):
+8	2	app/Http/Controllers/Enc20Controller.php
+
+
+--------------------------------------------------
+Commit Hash : 3d3288a3f643bf394b80bdde37031fe86a183bcf
+Commit Corto: 3d3288a
+Ramas/Tags  : 
+Autor       : FelipeGonzalez <72818026+FelipeGonzalez@users.noreply.github.com>
+Fecha       : Fri Oct 23 17:58:28 2026 -0600
+Descripción : fix bug al entrar cuando solo hay registro en registroPVEAJU
+Archivos modificados (Lineas - / +):
+14	11	app/Http/Controllers/Enc20Controller.php
+
+
+--------------------------------------------------
+Commit Hash : b76ce307959c93fb6a1a17e986da123059884399
+Commit Corto: b76ce30
+Ramas/Tags  : 
+Autor       : FelipeGonzalez <72818026+FelipeGonzalez@users.noreply.github.com>
+Fecha       : Thu Oct 15 16:51:36 2026 -0600
+Descripción : validar ycuenta y buscar datos en registro y posgrado
+Archivos modificados (Lineas - / +):
+5	1	app/Helpers/helpers.php
+515	138	app/Http/Controllers/Enc20Controller.php
+0	1	app/Http/Controllers/PosgradoController.php
+-	-	public/img/logos/logo-cuadrado-SE-azul.png
+-	-	public/img/logos/logoPVE-large.png
+86	20	resources/views/encuesta2020/inicio.blade.php
+19	9	resources/views/encuesta2020/personal_data.blade.php
+8	5	resources/views/scripts/personal_data.blade.php

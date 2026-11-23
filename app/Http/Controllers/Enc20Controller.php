@@ -548,8 +548,6 @@ class Enc20Controller extends AbstractEncuestaController
             'correos.*.distrinct' => 'El correo electrónico :input está duplicado en el formulario.',
             'telefonos.*.unique' => 'El número de teléfono ya está registrado en la base de datos.',
             'telefonos.*.distinct' => 'El número de teléfono :input está duplicado en el formulario.',
-
-
         ]);
 
 
