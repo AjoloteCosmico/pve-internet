@@ -224,7 +224,7 @@ class PosgradoController extends Controller
            }
            $section='pA';
         
-           foreach(array('pA','pE','pF','pC','pD','pG') as $sec){
+           foreach(array('pA','pB','pC','pD','pE') as $sec){
                $format_field='sec_'.strtolower($sec);
               
                if($Encuesta->$format_field!=1){ 

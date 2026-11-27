@@ -11,8 +11,8 @@
        <p>Secretaría General</p>
         </div>
         <div class="logo">
-            <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="{{url('img/logos/logoPVE-large.png')}}" style="max-width:100px;"> </a>
-            &nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="lovoPVE" href="https://www.pveaju.unam.mx/encuesta/01/seguimiento_egresados_UNAM/"> <img src="/img/logos/logo-SE-azul.png" style="width:14.5vh;"> </a>
+         &nbsp;&nbsp;&nbsp;&nbsp;
             <a class=lovoPVE href="https://www.posgrado.unam.mx/"> <img src="{{url('img/logos/logoPosgrado.svg')}}" style="width: 8vw !important; height:auto !important"> </a>
         </div>
     </div>

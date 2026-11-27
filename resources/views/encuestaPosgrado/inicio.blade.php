@@ -29,14 +29,17 @@ El Programa de Vinculación con los Egresados y Académicos jubilados de la Univ
      <!--CABECERA/HEADER-->
     <div class="cabecera">
         <div class="logo">
-        <a class=logoUNAM href="https://www.unam.mx/"> <img src="{{url('img/logos/logoUNAM-large-azul.png')}}" style="width: 3.5vw !important; min-width:50px;height:auto !important"  > </a>
-       </div>
+            <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/logoUNAM-large-azul.png"> </a>
+
+            <a class="logoUNAM" href="https://www.unam.mx/"> <img src="/img/logos/nuestra_unam.png"> </a>
+            PVEAJU UNAM
+        </div>
           <div class="subtitulo2">
        <p>Secretaría General</p>
         </div>
         <div class="logo">
-            <a class=lovoPVE href="https://www.pveaju.unam.mx/"> <img src="{{url('img/logos/logoPVE-large.png')}}" style="max-width:90px;"> </a>
-            &nbsp;&nbsp;&nbsp;&nbsp;
+          <a class="lovoPVE" href="https://www.pveaju.unam.mx/encuesta/01/seguimiento_egresados_UNAM/"> <img src="/img/logos/logo-SE-azul.png" style="width:14.5vh;"> </a>
+         &nbsp;&nbsp;&nbsp;&nbsp;
             <a class=lovoPVE href="https://www.posgrado.unam.mx/"> <img src="{{url('img/logos/logoPosgrado.svg')}}" style="width: 8vw !important; height:auto !important"> </a>
         </div>
     </div>
